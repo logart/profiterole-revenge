@@ -56,9 +56,6 @@
             <div class="block-create-menu">
                 <h1>Рецепты</h1>
 
-                 <div>Время приготовления(в часах):<div class="mar" id="time">2</div>   </div>
-                <div class="slider btn-group"></div>
-
 
              <div id="cuisine">
              </div>
@@ -68,29 +65,6 @@
 
 </div>
 
-    <script type="text/javascript">
-    $(".slider").slider({
-                animate: true,
-                range: "min",
-                value: 2,
-                min: 0,
-                max: 5,
-                step: 1,
-
-                //Получаем значение и выводим его на странице
-                slide: function(event, ui) {
-                    $("#time").html(ui.value);
-                },
-
-                //Обновляем скрытое поле формы, так что можно передать данные с помощью формы
-                change: function(event, ui) {
-                    $('#hidden').attr('value', ui.value);
-                },
-
-                 stop: function(event, ui) {}
-
-            });
-</script>
 
 [/#assign]
 [#include "structure.ftl"/]

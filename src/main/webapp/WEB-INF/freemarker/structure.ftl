@@ -10,33 +10,9 @@
     <link rel="stylesheet" type="text/css" href="<@spring.url '/css/style.css'/>" media="screen"/>
     ${styles!}
     ${scripts!}
-    <!-- bin/jquery.slider.min.css -->
-    <#--<link rel="stylesheet" href="css/jslider.css" type="text/css">-->
-    <#--<link rel="stylesheet" href="css/jslider.blue.css" type="text/css">-->
-    <#--<link rel="stylesheet" href="css/jslider.plastic.css" type="text/css">-->
-    <#--<link rel="stylesheet" href="css/jslider.round.css" type="text/css">-->
-    <#--<link rel="stylesheet" href="css/jslider.round.plastic.css" type="text/css">-->
-     <link rel="stylesheet" href="css/slider.css" type="text/css">
-    <!-- end -->
-     <link rel="stylesheet" href="css/dpop.css" type="text/css">
-    <link rel="stylesheet" href="css/skin.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
 
-
-    <#--<script type="text/javascript" src="js/jquery-1.8.1.js"></script>-->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <!-- bin/jquery.slider.min.js -->
-    <script type="text/javascript" src="js/jshashtable-2.1_src.js"></script>
-    <script type="text/javascript" src="js/jquery.numberformatter-1.2.3.js"></script>
-    <script type="text/javascript" src="js/tmpl.js"></script>
-    <script type="text/javascript" src="js/jquery.dependClass-0.1.js"></script>
-    <script type="text/javascript" src="js/draggable-0.1.js"></script>
-    <#--<script type="text/javascript" src="js/jquery.slider.js"></script>-->
-         <script type="text/javascript" src="js/bootstrap.js"></script>
-    <!-- end -->
-    <script type="text/javascript" src="js/jquery.jcarousel.js"></script>
-    <script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
-    <script type="text/javascript" src="js/jquery.carouFredSel-5.6.4.js"></script>
 
 
     <title>Profiterole</title>
