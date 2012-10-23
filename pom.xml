@@ -334,7 +334,7 @@
                             <appname>dima-test</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>dima-test.cloudfoundry.com</url>
+                            <url>dimyc-pikyc.cloudfoundry.com</url>
                             <username>flieriya@gmail.com</username>
                             <password>omgWTF11</password>
                             <memory>256</memory>
@@ -356,7 +356,7 @@
                             <appname>ulya-test</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>ulya-test.cloudfoundry.com</url>
+                            <url>ulita.cloudfoundry.com</url>
                             <username>flieriya@gmail.com</username>
                             <password>omgWTF11</password>
                             <memory>256</memory>
