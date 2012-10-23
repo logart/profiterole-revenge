@@ -37,6 +37,15 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeDao.getRecipeCuisineList(cuisine);
     }
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Recipe> getOneRecipeList(Integer recipeId) {
+
+        return recipeDao.getOneRecipeList(recipeId);
+
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -36,8 +36,8 @@ public class RecipeDaoImpl implements RecipeDao {
      */
     @Override
     public List<Recipe> getOneRecipeList(Integer recipeId) {
-        List<Recipe> results1 = this.entityManager.createQuery("select t from Recipe t where t.recipeId =: recipeId ")
-                .setParameter("selectedrecipeId", recipeId).getResultList();
+        List<Recipe> results1 = this.entityManager.createNamedQuery("Recipe.findRecipeById")
+                .setParameter("selectedId", recipeId).getResultList();
         return results1;
     }
 

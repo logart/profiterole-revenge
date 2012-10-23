@@ -28,6 +28,8 @@ public interface RecipeService {
 
     List<Recipe> getRecipeCuisineList(Cuisine cuisine);
 
+    List<Recipe> getOneRecipeList(Integer recipeId);
+
     /**
      * {@method addRecipe(Recipe recipe)}
      * for adding information about some particular recipe into DB
