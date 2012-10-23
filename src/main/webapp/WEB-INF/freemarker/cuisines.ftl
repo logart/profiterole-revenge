@@ -25,4 +25,4 @@
    <img src="${a.imglink}" height="100" width="100"/><label class="title">${a.cuisin}</label>
 </div>
 [/#list]
-<button></button>
+<div style="clear: both;"></div>

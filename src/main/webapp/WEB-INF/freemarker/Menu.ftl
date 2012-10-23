@@ -46,12 +46,18 @@
 
     <div class="row-fluid">
         <div class="span6">
-            <div class="block-create-menu">
-                <div id="recipesdrop">
-                    <div id="cart_items" class="back"></div>
-                </div>
-            </div>
+        <div class="block-create-menu" id="breakfast" style="display:block">
+            <h1>Завтрак</h1>
+            <div style="clear: both;"></div>
         </div>
+        <div class="block-create-menu" id="lunch" style="display:none">
+             обед
+        </div>
+        <div class="block-create-menu" id="dinner" style="display:none">
+             ужин
+        </div>
+
+            </div>
         <div class="span6 align2">
             <div class="block-create-menu">
                 <h1>Рецепты</h1>

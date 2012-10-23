@@ -1,10 +1,10 @@
 [#ftl]
 
 [#list model as a]
-<div class="item1">
 <a href="#myModal" data-toggle="modal">
-<div class="imgContainer"><img src="${a.smallImg}" /></a></div> <label class="title">${a.title}</label>
-</div>
+<div class="item1">
+<div class="imgContainer"><img src="${a.smallImg}" /></div> <label class="title">${a.title}</label>
+</div></a>
 [/#list]
 
 <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -21,7 +21,13 @@
 </div>
 
 
-<button class="btn" id="back">Назад к кухням</button>
+<button class="btn" id="back" onclick="display_alert()">Назад к кухням</button>
+
+<script>
+$(".item1").onclick(){
+
+    }
+</script>
 
 <script type="text/javascript">
    var total_items = 0;
