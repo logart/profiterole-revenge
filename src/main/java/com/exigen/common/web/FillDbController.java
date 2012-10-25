@@ -60,26 +60,24 @@ public class FillDbController {
         Categories cat5 = new Categories("Напитки");
 
         /**
-         * {@code сuis1..12} describes cuisines for our DB
+         * {@code cuisine1..12} describes cuisines for our DB
          */
-        Cuisine сuis1 = new Cuisine("Украинская", "/img/ukr.jpg");
-        Cuisine сuis2 = new Cuisine("Русская", "/img/rus.jpg");
-        Cuisine сuis3 = new Cuisine("Японская", "/img/jap.jpg");
-        Cuisine сuis4 = new Cuisine("Китайская", "/img/chi.jpg");
-        Cuisine сuis5 = new Cuisine("Тайская", "/img/tha.jpg");
-        Cuisine сuis6 = new Cuisine("Итальянская", "/img/ita.jpg");
-        Cuisine сuis7 = new Cuisine("Мексиканская", "/img/mex.jpg");
-        Cuisine сuis8 = new Cuisine("Французская", "/img/fra.jpg");
-        Cuisine сuis9 = new Cuisine("Армянская", "/img/arm.jpg");
-        Cuisine сuis10 = new Cuisine("Индийская", "/img/ind.jpg");
-        Cuisine сuis11 = new Cuisine("Греческая", "/img/gre.jpg");
-        Cuisine сuis12 = new Cuisine("Грузинская", "/img/gru.jpg");
+        Cuisine cuisine1 = new Cuisine("Украинская", "/img/ukr.jpg");
+        Cuisine cuisine2 = new Cuisine("Русская", "/img/rus.jpg");
+        Cuisine cuisine3 = new Cuisine("Японская", "/img/jap.jpg");
+        Cuisine cuisine4 = new Cuisine("Китайская", "/img/chi.jpg");
+        Cuisine cuisine5 = new Cuisine("Тайская", "/img/tha.jpg");
+        Cuisine cuisine6 = new Cuisine("Итальянская", "/img/ita.jpg");
+        Cuisine cuisine7 = new Cuisine("Мексиканская", "/img/mex.jpg");
+        Cuisine cuisine8 = new Cuisine("Французская", "/img/fra.jpg");
+        Cuisine cuisine9 = new Cuisine("Армянская", "/img/arm.jpg");
+        Cuisine cuisine10 = new Cuisine("Индийская", "/img/ind.jpg");
+        Cuisine cuisine11 = new Cuisine("Греческая", "/img/gre.jpg");
+        Cuisine cuisine12 = new Cuisine("Грузинская", "/img/gru.jpg");
 
         /**
-         * {@code rec, rec1} describes recipes for our DB
+         * {@code bigImg1..bigImg20} describes big images for our DB
          */
-//        Recipe rec = new Recipe("Классический борщ", Meal.BREAKFAST, сuis1, cat5);
-//        Recipe rec1 = new Recipe("Тушеная капуста", Meal.DINNER, сuis2, cat5);
 
         String bigImg1=   "http://eda.2k.ua/content/catalog/gribnoy_salat_so_sladkim_pertsem_orig.jpg";
         String bigImg2=   "http://eda.2k.ua/content/catalog/dynya_s_myatoy_i_imbirem_orig.jpg";
@@ -102,6 +100,9 @@ public class FillDbController {
         String bigImg19=   "http://eda.2k.ua/content/catalog/limonnyy_punsh_orig.jpg";
         String bigImg20=   "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
 
+        /**
+         * {@code smallImg1..smallImg20} describes small images for our DB
+         */
         String smallImg1= "http://eda.2k.ua/content/catalog/gribnoy_salat_so_sladkim_pertsem_orig.jpg";
         String smallImg2= "http://eda.2k.ua/content/catalog/dynya_s_myatoy_i_imbirem_orig.jpg";
         String smallImg3= "http://eda.2k.ua/content/catalog/ryzhiki_zapechennye_v_smetane_orig.jpg";
@@ -123,6 +124,9 @@ public class FillDbController {
         String smallImg19= "http://eda.2k.ua/content/catalog/limonnyy_punsh_orig.jpg";
         String smallImg20= "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
 
+        /**
+         * {@code description1..description20} describes descriptions for our DB
+         */
         String description1= "Основной ингредиент:  Грибы, Мясо, дичь, Овощи, Сыр, творог";
         String description2= "По ингредиенту:  Зелень и травы, Фрукты, ягоды, орехи";
         String description3= "По ингредиенту:  Грибы, Молочные продукты";
@@ -144,88 +148,95 @@ public class FillDbController {
         String description19= "По ингредиенту: Алкоголь, Фрукты, ягоды, орехи";
         String description20= "По ингредиенту:  Алкоголь, Зелень и травы, Фрукты, ягоды, орехи";
 
+        /**
+         * {@code rec1..rec20} describes recipes for our DB
+         */
         Recipe rec1 = new Recipe("Грибной салат с болгарским перцем", Meal.DINNER,
-                description1	,  сuis2  , cat1, bigImg1, smallImg1, 1 );
+                description1	,  cuisine2  , cat1, bigImg1, smallImg1, 1 );
 
         Recipe rec2 = new Recipe(  "Дыня с мятой и имбирем ", Meal.DINNER,
-                description2	,  сuis2  , cat1, bigImg2, smallImg2, 1 );
+                description2	,  cuisine2  , cat1, bigImg2, smallImg2, 1 );
 
         Recipe rec3 = new Recipe("Рыжики запеченные в сметане ", Meal.DINNER,
-                description3	,  сuis2  , cat1, bigImg3, smallImg3, 1 );
+                description3	,  cuisine2  , cat1, bigImg3, smallImg3, 1 );
 
         Recipe rec4 = new Recipe("Салат из баклажанов и феты ", Meal.DINNER,
-                description4	,  сuis2  , cat1, bigImg4, smallImg4, 1 );
+                description4	,  cuisine2  , cat1, bigImg4, smallImg4, 1 );
 
         Recipe rec5 = new Recipe("Крем-суп из брокколи \"Малыш\" ", Meal.BREAKFAST,
-                description5	,  сuis2  , cat2, bigImg5, smallImg5, 1 );
+                description5	,  cuisine2  , cat2, bigImg5, smallImg5, 1 );
 
         Recipe rec6 = new Recipe("Сырный суп с кольраби ", Meal.BREAKFAST,
-                description6	,  сuis2  , cat2, bigImg6, smallImg6, 1 );
+                description6	,  cuisine2  , cat2, bigImg6, smallImg6, 1 );
 
         Recipe rec7 = new Recipe(" Острый томатный суп с фасолью", Meal.BREAKFAST,
-                description7	,  сuis2  , cat2, bigImg7, smallImg7, 1 );
+                description7	,  cuisine2  , cat2, bigImg7, smallImg7, 1 );
 
         Recipe rec8 = new Recipe("Рыбный суп с морепродуктами ", Meal.BREAKFAST,
-                description8	,  сuis2  , cat2, bigImg8, smallImg8, 1 );
+                description8	,  cuisine2  , cat2, bigImg8, smallImg8, 1 );
 
         Recipe rec9 = new Recipe("Шницели из горбуши ", Meal.DINNER,
-                description9	,  сuis2  , cat3, bigImg9, smallImg9, 1 );
+                description9	,  cuisine2  , cat3, bigImg9, smallImg9, 1 );
 
         Recipe rec10 = new Recipe(" Котлеты из индейки с картофельным пюре", Meal.DINNER,
-                description10	,  сuis2  , cat3, bigImg10, smallImg10, 1 );
+                description10	,  cuisine2  , cat3, bigImg10, smallImg10, 1 );
 
         Recipe rec11 = new Recipe(" Белые грибы в сливочном соусе ", Meal.DINNER,
-                description11	,  сuis2  , cat3, bigImg11, smallImg11, 1 );
+                description11	,  cuisine2  , cat3, bigImg11, smallImg11, 1 );
 
         Recipe rec12 = new Recipe("Стейк лосося со спаржей и брокколи ", Meal.DINNER,
-                description12	,  сuis2  , cat3, bigImg12, smallImg12, 1 );
+                description12	,  cuisine2  , cat3, bigImg12, smallImg12, 1 );
 
         Recipe rec13 = new Recipe("Трюфели шоколадные ", Meal.SUPPER,
-                description13	,  сuis2  , cat4, bigImg13, smallImg13, 1 );
+                description13	,  cuisine2  , cat4, bigImg13, smallImg13, 1 );
 
         Recipe rec14 = new Recipe(" Гаджарка-халва. Халва из моркови", Meal.SUPPER,
-                description14	,  сuis2  , cat4, bigImg14, smallImg14, 1 );
+                description14	,  cuisine2  , cat4, bigImg14, smallImg14, 1 );
 
         Recipe rec15 = new Recipe("Тирамису ", Meal.SUPPER,
-                description15	,  сuis2  , cat4, bigImg15, smallImg15, 1 );
+                description15	,  cuisine2  , cat4, bigImg15, smallImg15, 1 );
 
         Recipe rec16 = new Recipe(" Арбузное желе с фисташковой карамелью", Meal.DINNER,
-                description16	,  сuis2  , cat4, bigImg16, smallImg16, 1 );
+                description16	,  cuisine2  , cat4, bigImg16, smallImg16, 1 );
 
         Recipe rec17 = new Recipe(" Молочный шейк с черникой", Meal.DINNER,
-                description17	,  сuis2  , cat5, bigImg17, smallImg17, 1 );
+                description17	,  cuisine2  , cat5, bigImg17, smallImg17, 1 );
 
         Recipe rec18 = new Recipe("Коктейль \"Ягодный смэш\" ", Meal.DINNER,
-                description18	,  сuis2  , cat5, bigImg18, smallImg18, 1 );
+                description18	,  cuisine2  , cat5, bigImg18, smallImg18, 1 );
 
         Recipe rec19 = new Recipe("Лимонный пунш ", Meal.DINNER,
-                description19	,  сuis2  , cat5, bigImg19, smallImg19, 1 );
+                description19	,  cuisine2  , cat5, bigImg19, smallImg19, 1 );
 
         Recipe rec20 = new Recipe("Коктейль \"Мохито\" ", Meal.DINNER,
-                description20	,  сuis2  , cat5, bigImg20, smallImg20, 1 );
+                description20	,  cuisine2  , cat5, bigImg20, smallImg20, 1 );
 
         /**
-         * adding information in DB with helps Services
+         * adding information in DB with helps cuisineService
          */
-        cuisineService.addCuisine(сuis1);
-        cuisineService.addCuisine(сuis2);
-        cuisineService.addCuisine(сuis3);
-        cuisineService.addCuisine(сuis4);
-        cuisineService.addCuisine(сuis5);
-        cuisineService.addCuisine(сuis6);
-        cuisineService.addCuisine(сuis7);
-        cuisineService.addCuisine(сuis8);
-        cuisineService.addCuisine(сuis9);
-        cuisineService.addCuisine(сuis10);
-        cuisineService.addCuisine(сuis11);
-        cuisineService.addCuisine(сuis12);
-
+        cuisineService.addCuisine(cuisine1);
+        cuisineService.addCuisine(cuisine2);
+        cuisineService.addCuisine(cuisine3);
+        cuisineService.addCuisine(cuisine4);
+        cuisineService.addCuisine(cuisine5);
+        cuisineService.addCuisine(cuisine6);
+        cuisineService.addCuisine(cuisine7);
+        cuisineService.addCuisine(cuisine8);
+        cuisineService.addCuisine(cuisine9);
+        cuisineService.addCuisine(cuisine10);
+        cuisineService.addCuisine(cuisine11);
+        cuisineService.addCuisine(cuisine12);
+        /**
+         * adding information in DB with helps categoriesService
+         */
         categoriesService.addCategories(cat1);
         categoriesService.addCategories(cat2);
         categoriesService.addCategories(cat3);
         categoriesService.addCategories(cat4);
         categoriesService.addCategories(cat5);
-
+        /**
+         * adding information in DB with helps recipeService
+         */
         recipeService.addRecipe(rec1);
         recipeService.addRecipe(rec2);
         recipeService.addRecipe(rec3);

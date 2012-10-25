@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MenuController {
-    private final static Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
 
     @Autowired
     private CuisineService cuisineService;
