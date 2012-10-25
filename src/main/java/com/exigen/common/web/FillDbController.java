@@ -3,7 +3,6 @@ package com.exigen.common.web;
 
 import com.exigen.common.domain.Categories;
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Meal;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.service.CategoriesService;
 import com.exigen.common.service.CuisineService;
@@ -49,6 +48,10 @@ public class FillDbController {
     private List<Categories> categoriesList;
     private List<Cuisine> cuisineList;
     private List<Recipe> recipeList;
+    private List<String> bigImgList;
+    private List<String> smallImgList;
+    private List<String> descriptionList;
+    private List<String> titleList;
 
     /**
      * {@method getOneRecipeList(Integer recipeId)} using for test
@@ -92,7 +95,7 @@ public class FillDbController {
 
     }
 
-    public void addRecipes() {
+    public void addBigImg(){
 
         /**
          * {@code bigImg1..bigImg20} describes big images for our DB
@@ -118,7 +121,11 @@ public class FillDbController {
         String bigImg18 = "http://eda.2k.ua/content/catalog/item_7130_orig.jpg";
         String bigImg19 = "http://eda.2k.ua/content/catalog/limonnyy_punsh_orig.jpg";
         String bigImg20 = "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
+        bigImgList = new ArrayList<String>(Arrays.asList(bigImg1, bigImg2, bigImg3, bigImg4, bigImg5, bigImg6, bigImg7, bigImg8, bigImg9, bigImg10, bigImg11, bigImg12, bigImg13, bigImg14, bigImg15, bigImg16, bigImg17, bigImg18, bigImg19, bigImg20));
 
+    }
+
+    public void addSmallImg(){
         /**
          * {@code smallImg1..smallImg20} describes small images for our DB
          */
@@ -142,6 +149,11 @@ public class FillDbController {
         String smallImg18 = "http://eda.2k.ua/content/catalog/item_7130_orig.jpg";
         String smallImg19 = "http://eda.2k.ua/content/catalog/limonnyy_punsh_orig.jpg";
         String smallImg20 = "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
+        smallImgList = new ArrayList<String>(Arrays.asList(smallImg1, smallImg2, smallImg3, smallImg4, smallImg5, smallImg6, smallImg7, smallImg8, smallImg9, smallImg10, smallImg11, smallImg12, smallImg13, smallImg14, smallImg15, smallImg16, smallImg17, smallImg18, smallImg19, smallImg20));
+
+    }
+
+    public void addDescription(){
 
         /**
          * {@code description1..description20} describes descriptions for our DB
@@ -166,73 +178,65 @@ public class FillDbController {
         String description18 = "По ингредиенту:  Фрукты, ягоды, орехи";
         String description19 = "По ингредиенту: Алкоголь, Фрукты, ягоды, орехи";
         String description20 = "По ингредиенту:  Алкоголь, Зелень и травы, Фрукты, ягоды, орехи";
+        descriptionList = new ArrayList<String>(Arrays.asList(description1, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11, description12, description13, description14, description15, description16, description17, description18, description19, description20));
+
+    }
+
+    public void addTitle(){
+
+        /**
+         * {@code title1..title20} describes titles for our DB
+         */
+        String title1 = "Грибной салат с болгарским перцем";
+        String title2 = "Дыня с мятой и имбирем ";
+        String title3 = "Рыжики запеченные в сметане ";
+        String title4 = "Салат из баклажанов и феты ";
+        String title5 = "Крем-суп из брокколи \"Малыш\" ";
+        String title6 = "Сырный суп с кольраби ";
+        String title7 = " Острый томатный суп с фасолью";
+        String title8 = "Рыбный суп с морепродуктами ";
+        String title9 = "Шницели из горбуши ";
+        String title10 = " Котлеты из индейки с картофельным пюре";
+        String title11 = " Белые грибы в сливочном соусе ";
+        String title12 = "Стейк лосося со спаржей и брокколи ";
+        String title13 = "Трюфели шоколадные ";
+        String title14 = " Гаджарка-халва. Халва из моркови";
+        String title15 = "Тирамису ";
+        String title16 = " Арбузное желе с фисташковой карамелью";
+        String title17 = " Молочный шейк с черникой";
+        String title18 = "Коктейль \"Ягодный смэш\" ";
+        String title19 = "Лимонный пунш ";
+        String title20 = "Коктейль \"Мохито\" ";
+        titleList = new ArrayList<String>(Arrays.asList(title1, title2, title3, title4, title5, title6, title7, title8, title9, title10, title11, title12, title13, title14, title15, title16, title17, title18, title19, title20));
+
+    }
+
+    public void addRecipes() {
 
         /**
          * {@code rec1..rec20} describes recipes for our DB
          */
-        Recipe rec1 = new Recipe("Грибной салат с болгарским перцем", Meal.DINNER,
-                description1, cuisineList.get(1), categoriesList.get(0), bigImg1, smallImg1, 1);
 
-        Recipe rec2 = new Recipe("Дыня с мятой и имбирем ", Meal.DINNER,
-                description2,cuisineList.get(1), categoriesList.get(0), bigImg2, smallImg2, 1);
+        recipeList = new ArrayList<Recipe>();
+        for (int i=0;i<=3;i++){
+            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(0),bigImgList.get(i),smallImgList.get(i),12));
+        }
 
-        Recipe rec3 = new Recipe("Рыжики запеченные в сметане ", Meal.DINNER,
-                description3,cuisineList.get(1), categoriesList.get(0), bigImg3, smallImg3, 1);
+        for (int i=3;i<=7;i++){
+            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(1),bigImgList.get(i),smallImgList.get(i),20));
+        }
 
-        Recipe rec4 = new Recipe("Салат из баклажанов и феты ", Meal.DINNER,
-                description4,cuisineList.get(1), categoriesList.get(0), bigImg4, smallImg4, 1);
+        for (int i=7;i<=11;i++){
+            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(2),bigImgList.get(i),smallImgList.get(i),10));
+        }
 
-        Recipe rec5 = new Recipe("Крем-суп из брокколи \"Малыш\" ", Meal.BREAKFAST,
-                description5,cuisineList.get(1), categoriesList.get(1), bigImg5, smallImg5, 1);
-
-        Recipe rec6 = new Recipe("Сырный суп с кольраби ", Meal.BREAKFAST,
-                description6,cuisineList.get(1), categoriesList.get(1), bigImg6, smallImg6, 1);
-
-        Recipe rec7 = new Recipe(" Острый томатный суп с фасолью", Meal.BREAKFAST,
-                description7,cuisineList.get(1), categoriesList.get(1), bigImg7, smallImg7, 1);
-
-        Recipe rec8 = new Recipe("Рыбный суп с морепродуктами ", Meal.BREAKFAST,
-                description8,cuisineList.get(1), categoriesList.get(1), bigImg8, smallImg8, 1);
-
-        Recipe rec9 = new Recipe("Шницели из горбуши ", Meal.DINNER,
-                description9,cuisineList.get(1), categoriesList.get(2), bigImg9, smallImg9, 1);
-
-        Recipe rec10 = new Recipe(" Котлеты из индейки с картофельным пюре", Meal.DINNER,
-                description10,cuisineList.get(1), categoriesList.get(2), bigImg10, smallImg10, 1);
-
-        Recipe rec11 = new Recipe(" Белые грибы в сливочном соусе ", Meal.DINNER,
-                description11,cuisineList.get(1), categoriesList.get(2), bigImg11, smallImg11, 1);
-
-        Recipe rec12 = new Recipe("Стейк лосося со спаржей и брокколи ", Meal.DINNER,
-                description12,cuisineList.get(1), categoriesList.get(2), bigImg12, smallImg12, 1);
-
-        Recipe rec13 = new Recipe("Трюфели шоколадные ", Meal.SUPPER,
-                description13,cuisineList.get(1), categoriesList.get(3), bigImg13, smallImg13, 1);
-
-        Recipe rec14 = new Recipe(" Гаджарка-халва. Халва из моркови", Meal.SUPPER,
-                description14,cuisineList.get(1), categoriesList.get(3), bigImg14, smallImg14, 1);
-
-        Recipe rec15 = new Recipe("Тирамису ", Meal.SUPPER,
-                description15,cuisineList.get(1), categoriesList.get(3), bigImg15, smallImg15, 1);
-
-        Recipe rec16 = new Recipe(" Арбузное желе с фисташковой карамелью", Meal.DINNER,
-                description16,cuisineList.get(1), categoriesList.get(3), bigImg16, smallImg16, 1);
-
-        Recipe rec17 = new Recipe(" Молочный шейк с черникой", Meal.DINNER,
-                description17,cuisineList.get(1), categoriesList.get(4), bigImg17, smallImg17, 1);
-
-        Recipe rec18 = new Recipe("Коктейль \"Ягодный смэш\" ", Meal.DINNER,
-                description18,cuisineList.get(1), categoriesList.get(4), bigImg18, smallImg18, 1);
-
-        Recipe rec19 = new Recipe("Лимонный пунш ", Meal.DINNER,
-                description19,cuisineList.get(1), categoriesList.get(4), bigImg19, smallImg19, 1);
-
-        Recipe rec20 = new Recipe("Коктейль \"Мохито\" ", Meal.DINNER,
-                description20,cuisineList.get(1), categoriesList.get(4), bigImg20, smallImg20, 1);
-
-        recipeList = new ArrayList<Recipe>(Arrays.asList(rec1, rec2, rec3, rec4, rec5, rec6, rec7, rec8, rec9, rec10, rec11, rec12, rec13, rec14, rec15, rec16, rec17, rec18, rec19, rec20));
+        for (int i=11;i<=15;i++){
+            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(3),bigImgList.get(i),smallImgList.get(i),30));
+        }
+        for (int i=15;i<=19;i++){
+            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(4),bigImgList.get(i),smallImgList.get(i),5));
+        }
     }
-
 
     @RequestMapping(value = {"/filldb"})
     public ModelAndView fillDb() {

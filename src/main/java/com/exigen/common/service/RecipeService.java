@@ -1,7 +1,6 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Meal;
 import com.exigen.common.domain.Recipe;
 
 import java.util.List;
@@ -14,17 +13,6 @@ import java.util.List;
  * @date July 17,2012
  */
 public interface RecipeService {
-
-    /**
-     * {@method getRecipeList(Meal meal)}
-     *
-     * @param meal(category for Breakfast,Dinner or Supper)
-     * @return the list of recipes, when field "meal" in Recipe Entity equals meal.
-     * @throws org.springframework.dao.DataAccessException(resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when meal is null, or meal is not exist in Meal Enum)
-     */
-    List<Recipe> getRecipeList(Meal meal);
 
     List<Recipe> getRecipeCuisineList(Cuisine cuisine);
 

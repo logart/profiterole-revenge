@@ -35,18 +35,6 @@ public class Recipe implements Serializable {
     private String title;
 
     /**
-     * By default, enum values are represented internally by their ordinal numbers.
-     * Caution is required when modifying an enum type that is already in use in an
-     * exiting database. New enum fields can be added safely only at the end (with
-     * new higher ordinal numbers).
-     * <p/>
-     * enum type {@code Meal} describes possibility basic categories of eating.
-     */
-
-    @Enumerated(EnumType.STRING)
-    private Meal meal;
-
-    /**
      * {@code description} this field is intended to describe the recipe
      */
     @Column(columnDefinition="mediumtext")
@@ -76,9 +64,8 @@ public class Recipe implements Serializable {
     public Recipe() {
     }
 
-    public Recipe(String title, Meal meal, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, float time) {
+    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, float time) {
         this.title = title;
-        this.meal = meal;
         this.description = description;
         this.cuisine = cuisine;
         this.categories = categories;
@@ -126,14 +113,6 @@ public class Recipe implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Meal getMeal() {
-        return meal;
-    }
-
-    public void setMeal(Meal meal) {
-        this.meal = meal;
     }
 
     public Cuisine getCuisine() {

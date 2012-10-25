@@ -1,7 +1,6 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Meal;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.repository.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +20,6 @@ public class RecipeServiceImpl implements RecipeService {
      */
     @Autowired
     private RecipeDao recipeDao;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public List<Recipe> getRecipeList(Meal meal) {
-        return recipeDao.getRecipeList(meal);
-    }
 
     @Override
     @Transactional(readOnly = true)

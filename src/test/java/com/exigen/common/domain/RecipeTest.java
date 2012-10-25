@@ -28,18 +28,6 @@ public class RecipeTest {
     }
 
     @Test
-    public void testSetAndGetMeal(){
-        Meal testMeal=Meal.BREAKFAST;
-        assertNull(recipe.getMeal());
-        recipe.setMeal(testMeal);
-        assertEquals(testMeal,recipe.getMeal());
-    }
-    @After
-    public void testMeal(){
-        System.out.println("test of meal is done");
-    }
-
-    @Test
     public void GetSetRecipeId(){
         Integer test=2;
         assertNull(recipe.getRecipeId());

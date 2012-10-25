@@ -1,7 +1,6 @@
 package com.exigen.common.repository;
 
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Meal;
 import com.exigen.common.domain.Recipe;
 import org.springframework.stereotype.Repository;
 
@@ -19,17 +18,6 @@ public class RecipeDaoImpl implements RecipeDao {
      */
     @PersistenceContext
     private EntityManager entityManager;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<Recipe> getRecipeList(Meal meal) {
-        List<Recipe> results = this.entityManager.createQuery("select t from Recipe t where t.meal=(:selectedMeal)")
-                .setParameter("selectedMeal", meal)
-                .getResultList();
-        return results;
-    }
 
     /**
      * {@inheritDoc}
