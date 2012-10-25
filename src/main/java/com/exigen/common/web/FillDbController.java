@@ -212,7 +212,12 @@ public class FillDbController {
     }
 
     public void addRecipes() {
-
+        addTitle();
+        addDescription();
+        addCuisines();
+        addCategories();
+        addBigImg();
+        addSmallImg();
         /**
          * {@code rec1..rec20} describes recipes for our DB
          */
@@ -240,8 +245,6 @@ public class FillDbController {
 
     @RequestMapping(value = {"/filldb"})
     public ModelAndView fillDb() {
-        addCategories();
-        addCuisines();
         addRecipes();
         /**
          * adding information in DB with helps cuisineService
