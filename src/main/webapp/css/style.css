@@ -1,4 +1,4 @@
-.recipe,.equipment{
+.recipe{
 background-color:white;
 background-color:rgba(255, 255, 255, 0.8);
 margin-bottom:21px;
@@ -9,14 +9,14 @@ border-radius:21px;
 
 }
 
-.block-create-menu,.equipment{
+.block-create-menu{
 background-color:white;
 margin-bottom:21px;
 padding:21px 27.3px;
 -webkit-border-radius:21px;
 -moz-border-radius:21px;
 border-radius:21px;
-
+text-align: center;
 margin-top:20px;
 }
 
@@ -27,68 +27,6 @@ margin-top:20px;
 .btn-large{
 width: 100px;
 }
-
-.span6 {
-    text-align: center;
-}
-
-.blockmenu,.equipment{
-text-align: center;
-background-color:blue;
-background-color:rgba(98, 156, 171, 0.7);
-margin-bottom:21px;
-padding:21px 27.3px;
--webkit-border-radius:21px;
--moz-border-radius:21px;
-border-radius:21px;}
-
- .block1 {
-   background-color: #ff7800;
-   width: 8px;
-   height:100%;
-   }
-
-  .item {
-   background: #fff;
-   float: left;
-   padding: 5px;
-   margin: 5px;
-   cursor: click;
-   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
-   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
-    box-shadow: 0 1px 2px rgba(0,0,0,.5);
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
-    border-radius: .5em;
-    z-index: 5;
-    vertical-align: middle;
-    }
-    #cuisine {
-
-                margin: 0 auto;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-
-    .item1 {
-       background: #fff;
-       float: left;
-       padding: 5px;
-       margin: 5px;
-       cursor: move;
-       -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
-       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
-        box-shadow: 0 1px 2px rgba(0,0,0,.5);
-        -webkit-border-radius: .5em;
-        -moz-border-radius: .5em;
-        border-radius: .5em;
-        z-index: 5;
-        vertical-align: middle;
-        horizontal-align: middle;
-        width: 150px;
-        height: 150px;
-        }
-
 
 
           .imgContainer{
@@ -103,7 +41,9 @@ border-radius:21px;}
 
 
     .title {
-     color: #333;
+     width: 100px;
+     height: 100px;
+     cursor: move;
     }
 
 
@@ -122,20 +62,9 @@ border-radius:21px;}
 .fader,#background .fader{background:transparent url("/img/background-fade.png") repeat-x scroll left bottom;bottom:-100px;left:0;position:absolute;width:100%;z-index:0;}
 #background .fader{position:absolute;height:100%;}
 
-.image_carousel {
-	padding: 15px 0 15px 40px;
-}
-.image_carousel img {
-	border: 1px solid #ccc;
-	background-color: white;
-	padding: 9px;
-	margin: 7px;
-	display: block;
-	float: left;
-}
-.clearfix {
-	float: none;
-	clear: both;
+.btn {
+padding: 4px;
+margin-bottom: 4px;
 }
 
 

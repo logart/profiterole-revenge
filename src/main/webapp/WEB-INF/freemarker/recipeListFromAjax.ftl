@@ -1,9 +1,9 @@
 [#ftl]
 <h1>Рецепты</h1>
 [#list model as a]
-<div class="item1" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
+<div class="btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
      data-toggle="modal" data-target="#myModal">
-    <div class="imgContainer"><img src="${a.smallImg}"/></div>
+    <div class="imgContainer"><img src="${a.smallImg}" class="img-rounded"/></div>
     <label class="title">${a.title}</label>
 </div>
 [/#list]
@@ -13,7 +13,7 @@
 
 </div>
 
-
+<div style="clear: both;"></div>
 <button class="btn" id="back">Назад к кухням</button>
 
 <script type="text/javascript">
@@ -24,14 +24,14 @@
 </script>
 
 <script type="text/javascript">
-    $(".item1[data-toggle=modal]").click(function (e) {
+    $(".btn[data-toggle=modal]").click(function (e) {
     lv_target = $(this).attr('data-target')
     lv_url = $(this).attr('href')
     $(lv_target).load(lv_url)})
 </script>
 
 <script>
-    $('.item1').popover({
+    $('.btn').popover({
     trigger: 'hover',
     })
 

@@ -6,7 +6,7 @@
     <h3 id="myModalLabel">${a.title}</h3>
 </div>
 <div class="modal-body">
-    <img src="${a.bigImg}"/>
+    <img src="${a.bigImg}" class="img-rounded"/>
     <h4>Время приготовления: </h4>
 
     <p>${a.time}</p>
