@@ -1,10 +1,29 @@
 [#ftl]
+
+
 <h1>Рецепты</h1>
+<ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#1">Закуски</a></li>
+    <li><a href="#2">Первое</a></li>
+    <li><a href="#3">Второе</a></li>
+    <li><a href="#4">Десерты</a></li>
+    <li><a href="#5">Напитки</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="1">
+
+    </div>
+    <div class="tab-pane" id="2">...</div>
+    <div class="tab-pane" id="3">...</div>
+    <div class="tab-pane" id="4">...</div>
+    <div class="tab-pane" id="5">...</div>
+</div>
 [#list model as a]
 <div class="btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
      data-toggle="modal" data-target="#myModal">
     <div class="imgContainer"><img src="${a.smallImg}" class="img-rounded"/></div>
-    <label class="title">${a.title}</label>
+    <label class="title">${a.categories.categoriesId}</label>
 </div>
 [/#list]
 
@@ -15,6 +34,19 @@
 
 <div style="clear: both;"></div>
 <button class="btn" id="back">Назад к кухням</button>
+
+<script>
+    $(function () {
+    $('#myTab a:last').tab('show');
+    })
+</script>
+
+<script>
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+</script>
 
 <script type="text/javascript">
     $('#back').click(function(){
