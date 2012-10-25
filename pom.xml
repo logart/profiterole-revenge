@@ -224,7 +224,7 @@
         </plugins>
     </build>
 
-    <!--DEPLOY TO THE TEST SERVERS-->
+
     <pluginRepositories>
         <pluginRepository>
             <id>repository.springframework.maven.milestone</id>
@@ -232,9 +232,11 @@
             <url>http://maven.springframework.org/milestone</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <!--Test-server profile-->
     <profiles>
         <profile>
-            <id>test-server-1</id>
+            <id>profiterole-test-server</id>
             <build>
                 <plugins>
                     <plugin>
@@ -242,31 +244,10 @@
                         <artifactId>cf-maven-plugin</artifactId>
                         <version>1.0.0.M1</version>
                         <configuration>
-                            <appname>profiterole-test-1</appname>
+                            <appname>profiterole-test</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>profi-test-1.cloudfoundry.com</url>
-                            <username>logart2007@gmail.com</username>
-                            <password>Qwaszx12345@</password>
-                            <memory>256</memory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>test-server-2</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.cloudfoundry</groupId>
-                        <artifactId>cf-maven-plugin</artifactId>
-                        <version>1.0.0.M1</version>
-                        <configuration>
-                            <appname>profiterole-test-2</appname>
-                            <server>mycloudfoundry-instance</server>
-                            <target>http://api.cloudfoundry.com</target>
-                            <url>profi-test-2.cloudfoundry.com</url>
+                            <url>profiterole-test.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
                             <password>Qwaszx12345@</password>
                             <memory>256</memory>
@@ -276,8 +257,9 @@
             </build>
         </profile>
 
+        <!--Production server profile-->
         <profile>
-            <id>profiterole</id>
+            <id>profiterole-production-server</id>
             <build>
                 <plugins>
                     <plugin>
@@ -285,10 +267,10 @@
                         <artifactId>cf-maven-plugin</artifactId>
                         <version>1.0.0.M1</version>
                         <configuration>
-                            <appname>profiterole</appname>
+                            <appname>profiterole-production</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>profiterole.cloudfoundry.com</url>
+                            <url>profiterole-production.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
                             <password>Qwaszx12345@</password>
                             <memory>256</memory>
@@ -298,9 +280,9 @@
             </build>
         </profile>
 
-        <!--Profile for current developing branch-->
+        <!--Profile for current development project version-->
         <profile>
-            <id>current-branch</id>
+            <id>profiterole-development-server</id>
             <build>
                 <plugins>
                     <plugin>
@@ -308,10 +290,10 @@
                         <artifactId>cf-maven-plugin</artifactId>
                         <version>1.0.0.M1</version>
                         <configuration>
-                            <appname>current-branch</appname>
+                            <appname>profiterole-development</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>current-branch.cloudfoundry.com</url>
+                            <url>profiterole-development.cloudfoundry.com</url>
                             <username>flieriya@gmail.com</username>
                             <password>omgWTF11</password>
                             <memory>256</memory>
@@ -321,7 +303,7 @@
             </build>
         </profile>
 
-        <!--Profiles for developers-->
+        <!--Profiles for developers private servers-->
         <profile>
             <id>dima-test</id>
             <build>
