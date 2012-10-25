@@ -245,7 +245,7 @@
                             <appname>profiterole-test-1</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>profiterole-test-1.cloudfoundry.com</url>
+                            <url>profi-test-1.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
                             <password>Qwaszx12345@</password>
                             <memory>256</memory>
@@ -266,7 +266,7 @@
                             <appname>profiterole-test-2</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>profiterole-test-2.cloudfoundry.com</url>
+                            <url>profi-test-2.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
                             <password>Qwaszx12345@</password>
                             <memory>256</memory>
