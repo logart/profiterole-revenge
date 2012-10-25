@@ -2,8 +2,6 @@ package com.exigen.common.web;
 
 import com.exigen.common.service.CuisineService;
 import com.exigen.common.service.RecipeService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Controller class for Menu view
- *
- * @author Olga Seredinskaya
  */
 
 
@@ -44,17 +40,15 @@ public class MenuController {
 
 
     @RequestMapping(value = {"/recipeListFromAjax"})
-    public
     @ResponseBody
-    ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
+    public ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
 
         return new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
     }
 
     @RequestMapping(value = {"/modalRecipeDescription"})
-    public
     @ResponseBody
-    ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
+    public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
 
 
         return new ModelAndView("modalRecipeDescription", "model", this.recipeService.getOneRecipeList(recipeId));

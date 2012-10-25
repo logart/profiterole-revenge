@@ -13,6 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Class  {@code FillDbController} creates for add information in our DB
  * @DATE September 16, 2012
@@ -41,27 +45,32 @@ public class FillDbController {
     @Autowired
     private RecipeService recipeService;
 
+    private List<Categories> categoriesList;
+    private List<Cuisine> cuisineList;
+    private List<Recipe> recipeList;
+
     /**
      * {@method getOneRecipeList(Integer recipeId)} using for test
      * our add and get methods in DAO
      * @return list of cuisines on filldb view
      *
      */
-    @RequestMapping(value = {"/filldb"})
-    public ModelAndView fillDb() {
-
+    public void addItems(){
         /**
          * {@code cat1..5} describes categories for our DB
          */
+
         Categories cat1 = new Categories("Закуски");
         Categories cat2 = new Categories("Первое");
         Categories cat3 = new Categories("Второе");
         Categories cat4 = new Categories("Десерты");
         Categories cat5 = new Categories("Напитки");
+        categoriesList =  new ArrayList<Categories>(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
 
         /**
-         * {@code cuisine1..12} describes cuisines for our DB
-         */
+        * {@code cuisine1..12} describes cuisines for our DB
+        */
+
         Cuisine cuisine1 = new Cuisine("Украинская", "/img/ukr.jpg");
         Cuisine cuisine2 = new Cuisine("Русская", "/img/rus.jpg");
         Cuisine cuisine3 = new Cuisine("Японская", "/img/jap.jpg");
@@ -74,6 +83,7 @@ public class FillDbController {
         Cuisine cuisine10 = new Cuisine("Индийская", "/img/ind.jpg");
         Cuisine cuisine11 = new Cuisine("Греческая", "/img/gre.jpg");
         Cuisine cuisine12 = new Cuisine("Грузинская", "/img/gru.jpg");
+        cuisineList=new ArrayList<Cuisine>(Arrays.asList(cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,cuisine6,cuisine7,cuisine8,cuisine9,cuisine10,cuisine11,cuisine12));
 
         /**
          * {@code bigImg1..bigImg20} describes big images for our DB
@@ -211,52 +221,32 @@ public class FillDbController {
         Recipe rec20 = new Recipe("Коктейль \"Мохито\" ", Meal.DINNER,
                 description20	,  cuisine2  , cat5, bigImg20, smallImg20, 1 );
 
+        recipeList=new ArrayList<Recipe>(Arrays.asList(rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12,rec13,rec14,rec15,rec16,rec17,rec18,rec19,rec20));
+    }
+
+
+    @RequestMapping(value = {"/filldb"})
+    public ModelAndView fillDb() {
+        addItems();
         /**
          * adding information in DB with helps cuisineService
          */
-        cuisineService.addCuisine(cuisine1);
-        cuisineService.addCuisine(cuisine2);
-        cuisineService.addCuisine(cuisine3);
-        cuisineService.addCuisine(cuisine4);
-        cuisineService.addCuisine(cuisine5);
-        cuisineService.addCuisine(cuisine6);
-        cuisineService.addCuisine(cuisine7);
-        cuisineService.addCuisine(cuisine8);
-        cuisineService.addCuisine(cuisine9);
-        cuisineService.addCuisine(cuisine10);
-        cuisineService.addCuisine(cuisine11);
-        cuisineService.addCuisine(cuisine12);
+        for(Cuisine cuisine: cuisineList){
+            cuisineService.addCuisine(cuisine);
+        }
+
         /**
          * adding information in DB with helps categoriesService
          */
-        categoriesService.addCategories(cat1);
-        categoriesService.addCategories(cat2);
-        categoriesService.addCategories(cat3);
-        categoriesService.addCategories(cat4);
-        categoriesService.addCategories(cat5);
+        for(Categories categories: categoriesList){
+            categoriesService.addCategories(categories);
+        }
         /**
          * adding information in DB with helps recipeService
          */
-        recipeService.addRecipe(rec1);
-        recipeService.addRecipe(rec2);
-        recipeService.addRecipe(rec3);
-        recipeService.addRecipe(rec4);
-        recipeService.addRecipe(rec5);
-        recipeService.addRecipe(rec6);
-        recipeService.addRecipe(rec7);
-        recipeService.addRecipe(rec8);
-        recipeService.addRecipe(rec9);
-        recipeService.addRecipe(rec10);
-        recipeService.addRecipe(rec11);
-        recipeService.addRecipe(rec12);
-        recipeService.addRecipe(rec13);
-        recipeService.addRecipe(rec14);
-        recipeService.addRecipe(rec15);
-        recipeService.addRecipe(rec16);
-        recipeService.addRecipe(rec17);
-        recipeService.addRecipe(rec18);
-        recipeService.addRecipe(rec19);
-        recipeService.addRecipe(rec20);
+        for(Recipe recipe:recipeList){
+            recipeService.addRecipe(recipe);
+        }
 
         /**
          * return information from DB on view for example
