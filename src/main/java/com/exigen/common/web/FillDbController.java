@@ -223,22 +223,22 @@ public class FillDbController {
          */
 
         recipeList = new ArrayList<Recipe>();
-        for (int i=0;i<=3;i++){
+        for (int i=0;i<4;i++){
             recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(0),bigImgList.get(i),smallImgList.get(i),12));
         }
 
-        for (int i=3;i<=7;i++){
+        for (int i=4;i<8;i++){
             recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(1),bigImgList.get(i),smallImgList.get(i),20));
         }
 
-        for (int i=7;i<=11;i++){
+        for (int i=8;i<12;i++){
             recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(2),bigImgList.get(i),smallImgList.get(i),10));
         }
 
-        for (int i=11;i<=15;i++){
+        for (int i=12;i<16;i++){
             recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(3),bigImgList.get(i),smallImgList.get(i),30));
         }
-        for (int i=15;i<=19;i++){
+        for (int i=16;i<20;i++){
             recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(4),bigImgList.get(i),smallImgList.get(i),5));
         }
     }
