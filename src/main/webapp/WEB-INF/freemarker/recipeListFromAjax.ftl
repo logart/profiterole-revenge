@@ -37,34 +37,36 @@
 
 <script>
     $(function () {
-    $('#myTab a:last').tab('show');
+        $('#myTab a:last').tab('show');
     })
 </script>
 
 <script>
     $('#myTab a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
+        e.preventDefault();
+        $(this).tab('show');
     })
 </script>
 
 <script type="text/javascript">
-    $('#back').click(function(){
-    $.get("/menuCuisinesAjax", function(response){
-    $('#cuisine').html(response);
-    });});
+    $('#back').click(function () {
+        $.get("/menuCuisinesAjax", function (response) {
+            $('#cuisine').html(response);
+        });
+    });
 </script>
 
 <script type="text/javascript">
     $(".btn[data-toggle=modal]").click(function (e) {
-    lv_target = $(this).attr('data-target')
-    lv_url = $(this).attr('href')
-    $(lv_target).load(lv_url)})
+        lv_target = $(this).attr('data-target')
+        lv_url = $(this).attr('href')
+        $(lv_target).load(lv_url)
+    })
 </script>
 
 <script>
     $('.btn').popover({
-    trigger: 'hover',
+        trigger:'hover',
     })
 
 </script>

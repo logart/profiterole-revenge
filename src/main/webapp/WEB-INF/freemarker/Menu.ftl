@@ -3,30 +3,48 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){
-    $.get("/menuCuisinesAjax", function(response){
-    $('#cuisine').html(response);
-    });
+    $(document).ready(function () {
+        $.get("/menuCuisinesAjax", function (response) {
+            $('#cuisine').html(response);
+        });
 
 
-    $('.btn').click(function(){
+        $('.btn').click(function () {
 
-    $('#hiddens').show(500);
+            $('#hiddens').show(500);
 
-    var myMeal=$(this).attr("value");
-    $('#menuDrop').children().hide();
-    $(myMeal).show();
+            var myMeal = $(this).attr("value");
+            $('#menuDrop').children().hide();
+            $(myMeal).show();
 
 
-    var heightArray = $(".block-create-menu").map( function(){
-    return $(this).height();
-    }).get();
-    var maxHeight = Math.max.apply( Math, heightArray);
-    $(".block-create-menu").height(maxHeight);
+            var heightArray = $(".block-create-menu").map(
+                    function () {
+                        return $(this).height();
+                    }).get();
+            var maxHeight = Math.max.apply(Math, heightArray);
+            $(".block-create-menu").height(maxHeight);
 
-    });
+        });
     });
 </script>
+<script type="text/javascript">
+    $(function () {
+        $("#slider-range").slider({
+            range:true,
+            min:10,
+            max:540,
+            values:[ 75, 300 ],
+            slide:function (event, ui) {
+                $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 0 ]) % 60, 10) +
+                        " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 1 ]) % 60, 10));
+            }
+        });
+        $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 0) % 60, 10) +
+                " - " + parseInt($("#slider-range").slider("values", 1) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 1) % 60, 10));
+    });
+</script>
+
 
 <div class="btn-group" data-toggle="buttons-radio">
     <button class="btn btn-large" value="#breakfast">Завтрак</button>
@@ -51,6 +69,14 @@
         </div>
         <div class="span6 align2">
             <div class="block-create-menu" id="rec">
+                <p>
+                    <label for="amount"><h5>Time range:</h5></label>
+                    <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;"/>
+                </p>
+
+                <div id="slider-range"></div>
+                <span id="time"></span>
+
                 <div id="cuisine"></div>
 
 
