@@ -2,18 +2,18 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-    $('div.btn').click( function() {
-    var myCuisine=$(this).attr("href");
+        $('div.btn').click(function () {
+            var myCuisine = $(this).attr("href");
 
-    $.get("/recipeListFromAjax",{cuisineId: myCuisine},
-    function(response){
-    $('#cuisine').html(response);
-    });
+            $.get("/recipeListFromAjax", {cuisineId:myCuisine},
+                    function (response) {
+                        $('#cuisine').html(response);
+                    });
 
 
-    });
+        });
 
     });
 </script>
