@@ -20,10 +20,11 @@
     <div class="tab-pane" id="5">...</div>
 </div>
 [#list model as a]
-<div class="btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
+<div class="btn recepies_btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
      data-toggle="modal" data-target="#myModal">
     <div class="imgContainer"><img src="${a.smallImg}" class="img-rounded"/></div>
     <label class="title">${a.categories.categoriesId}</label>
+    <div class="time_value" style="display: none">${a.time}</div>
 </div>
 [/#list]
 
@@ -66,10 +67,13 @@
 
 <script>
     $('.btn').popover({
-        trigger:'hover',
+        trigger:'hover'
     })
 
 </script>
+
+
+
 
 
 
