@@ -209,14 +209,6 @@
                     <formats>
                         <format>xml</format>
                     </formats>
-                    <executions>
-                        <execution>
-                            <phase>process-classes</phase>
-                            <goals>
-                                <goal>cobertura</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </configuration>
             </plugin>
 
