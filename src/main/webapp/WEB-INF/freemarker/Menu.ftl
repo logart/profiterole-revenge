@@ -28,23 +28,47 @@
         });
     });
 </script>
+
+[#--Slider java-script--]
 <script type="text/javascript">
     $(function () {
         $("#slider-range").slider({
             range:true,
-            min:10,
+            min:0,
             max:540,
-            values:[ 75, 300 ],
+            values:[ 0, 300 ],
             slide:function (event, ui) {
                 $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 0 ]) % 60, 10) +
                         " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 1 ]) % 60, 10));
+                filterRecipies();
             }
         });
         $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 0) % 60, 10) +
                 " - " + parseInt($("#slider-range").slider("values", 1) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 1) % 60, 10));
     });
+
+
 </script>
 
+[#--Time filtering Java-script--]
+<script type="text/javascript">
+    function filterRecipies() {
+        var slider_values = $("#slider-range").slider("option", "values");
+        $(".btn.recepies_btn").filter(function (index) {
+
+                    if (($(this).find(".time_value").text() >= slider_values[0]) && ($(this).find(".time_value").text() <= slider_values[1])) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                    return true;
+                }
+        );
+
+    }
+
+</script>
 
 <div class="btn-group" data-toggle="buttons-radio">
     <button class="btn btn-large" value="#breakfast">Завтрак</button>
@@ -75,7 +99,6 @@
                 </p>
 
                 <div id="slider-range"></div>
-                <span id="time"></span>
 
                 <div id="cuisine"></div>
 
