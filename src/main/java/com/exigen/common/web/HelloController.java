@@ -19,7 +19,7 @@ public class HelloController {
      * @return empty view name
      *
      */
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         return new ModelAndView("MainPage");
     }
