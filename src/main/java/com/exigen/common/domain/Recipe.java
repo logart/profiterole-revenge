@@ -58,13 +58,13 @@ public class Recipe implements Serializable {
     @Column(columnDefinition="mediumtext")
     private String smallImg;
 
-    private float time;
+    private Integer time;
 
 
     public Recipe() {
     }
 
-    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, float time) {
+    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time) {
         this.title = title;
         this.description = description;
         this.cuisine = cuisine;
@@ -94,7 +94,7 @@ public class Recipe implements Serializable {
         return time;
     }
 
-    public void setTime(float time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 

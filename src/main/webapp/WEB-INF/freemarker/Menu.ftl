@@ -4,6 +4,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
         $.get("/menuCuisinesAjax", function (response) {
             $('#cuisine').html(response);
         });
@@ -26,6 +27,7 @@
             $(".block-create-menu").height(maxHeight);
 
         });
+
     });
 </script>
 
@@ -56,7 +58,7 @@
         var slider_values = $("#slider-range").slider("option", "values");
         $(".btn.recepies_btn").filter(function (index) {
 
-                    if (($(this).find(".time_value").text() >= slider_values[0]) && ($(this).find(".time_value").text() <= slider_values[1])) {
+                    if (($(this).find(".time_value").text() >= slider_values[0]) && ($(this).find(".time_value").text() <= slider_values[1]) && ($(this).find(".cat_value").text() == $('#myTab .active a').attr('id') )) {
                         $(this).show();
                     }
                     else {
