@@ -52,6 +52,7 @@ public class FillDbController {
     private List<String> smallImgList;
     private List<String> descriptionList;
     private List<String> titleList;
+    private List<Integer> timeList;
 
     /**
      * {@method getOneRecipeList(Integer recipeId)} using for test
@@ -60,7 +61,7 @@ public class FillDbController {
      * @return list of cuisines on filldb view
      */
 
-    public void addCategories(){
+    public void addCategories() {
         /**
          * {@code cat1..5} describes categories for our DB
          */
@@ -73,7 +74,8 @@ public class FillDbController {
         categoriesList = new ArrayList<Categories>(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
 
     }
-    public void addCuisines(){
+
+    public void addCuisines() {
 
         /**
          * {@code cuisine1..12} describes cuisines for our DB
@@ -95,7 +97,7 @@ public class FillDbController {
 
     }
 
-    public void addBigImg(){
+    public void addBigImg() {
 
         /**
          * {@code bigImg1..bigImg20} describes big images for our DB
@@ -125,7 +127,7 @@ public class FillDbController {
 
     }
 
-    public void addSmallImg(){
+    public void addSmallImg() {
         /**
          * {@code smallImg1..smallImg20} describes small images for our DB
          */
@@ -153,7 +155,7 @@ public class FillDbController {
 
     }
 
-    public void addDescription(){
+    public void addDescription() {
 
         /**
          * {@code description1..description20} describes descriptions for our DB
@@ -182,7 +184,7 @@ public class FillDbController {
 
     }
 
-    public void addTitle(){
+    public void addTitle() {
 
         /**
          * {@code title1..title20} describes titles for our DB
@@ -211,6 +213,35 @@ public class FillDbController {
 
     }
 
+    public void addTime() {
+
+        /**
+         * {@code time1..time20} describes times for our DB
+         */
+        Integer time1 = 10;
+        Integer time2 = 20;
+        Integer time3 = 30;
+        Integer time4 = 40;
+        Integer time5 = 10;
+        Integer time6 = 20;
+        Integer time7 = 30;
+        Integer time8 = 40;
+        Integer time9 = 10;
+        Integer time10 = 20;
+        Integer time11 = 30;
+        Integer time12 = 40;
+        Integer time13 = 10;
+        Integer time14 = 20;
+        Integer time15 = 30;
+        Integer time16 = 40;
+        Integer time17 = 10;
+        Integer time18 = 20;
+        Integer time19 = 30;
+        Integer time20 = 40;
+        timeList = new ArrayList<Integer>(Arrays.asList(time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20));
+
+    }
+
     public void addRecipes() {
         addTitle();
         addDescription();
@@ -218,28 +249,29 @@ public class FillDbController {
         addCategories();
         addBigImg();
         addSmallImg();
+        addTime();
         /**
          * {@code rec1..rec20} describes recipes for our DB
          */
 
         recipeList = new ArrayList<Recipe>();
-        for (int i=0;i<4;i++){
-            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(0),bigImgList.get(i),smallImgList.get(i),12));
+        for (int i = 0; i < 4; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(0), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
 
-        for (int i=4;i<8;i++){
-            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(1),bigImgList.get(i),smallImgList.get(i),20));
+        for (int i = 4; i < 8; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
 
-        for (int i=8;i<12;i++){
-            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(2),bigImgList.get(i),smallImgList.get(i),10));
+        for (int i = 8; i < 12; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
 
-        for (int i=12;i<16;i++){
-            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(3),bigImgList.get(i),smallImgList.get(i),30));
+        for (int i = 12; i < 16; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(3), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
-        for (int i=16;i<20;i++){
-            recipeList.add(new Recipe(titleList.get(i),descriptionList.get(i),cuisineList.get(1),categoriesList.get(4),bigImgList.get(i),smallImgList.get(i),5));
+        for (int i = 16; i < 20; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(4), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
     }
 
