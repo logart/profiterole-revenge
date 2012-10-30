@@ -37,8 +37,8 @@
         $("#slider-range").slider({
             range:true,
             min:0,
-            max:540,
-            values:[ 0, 300 ],
+            max:60,
+            values:[ 0, 60 ],
             slide:function (event, ui) {
                 $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 0 ]) % 60, 10) +
                         " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 1 ]) % 60, 10));
@@ -97,7 +97,7 @@
             <div class="block-create-menu" id="rec">
                 <p>
                     <label for="amount"><h5>Time range:</h5></label>
-                    <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;"/>
+                    <input readonly="readonly" type="input-small" id="amount" style="border: 0; color: #f6931f; font-weight: bold;text-align:center;cursor:default;background-color:#FFFFFF;"/>
                 </p>
 
                 <div id="slider-range"></div>
