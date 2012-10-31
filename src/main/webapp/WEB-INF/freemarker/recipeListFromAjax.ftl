@@ -96,7 +96,8 @@
             $( this )
                     .find( "p" )
                     .html( "" );
-            $( this ).append(ui.draggable.clone(true,false));
+            var trash_icon = "<a href='#' title='Delete this recipe' class='ui-icon ui-icon-trash' onclick='$(this).parent().remove(); return false;'>Delete recipe</a>";
+            $( this ).append((ui.draggable.clone(true,false)).prepend(trash_icon));
 
 
         }
