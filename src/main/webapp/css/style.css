@@ -41,7 +41,7 @@
 
 .title {
     width: 100px;
-    height: 100px;
+    /*height: 100px;*/
     cursor: move;
 }
 
@@ -92,5 +92,14 @@
     margin-bottom: 4px;
 }
 
+.draggable {
+    /*width: 150px;*/
+    height: 150px;
+    padding: 0.5em;
+}
 
+.droppable {
+    padding: 0.5em;
+    margin: 10px;
+}
 
