@@ -31,7 +31,7 @@
     });
 </script>
 
-[#--Slider java-script--]
+[#--Slider JavaScript--]
 <script type="text/javascript">
     $(function () {
         $("#slider-range").slider({
@@ -52,11 +52,11 @@
 
 </script>
 
-[#--Time filtering Java-script--]
+[#--Time filtering JavaScript--]
 <script type="text/javascript">
     function filterRecipies() {
         var slider_values = $("#slider-range").slider("option", "values");
-        $(".btn.recepies_btn").filter(function (index) {
+        $("#cuisine").find(".btn.recepies_btn").filter(function (index) {
 
                     if (($(this).find(".time_value").text() >= slider_values[0]) && ($(this).find(".time_value").text() <= slider_values[1]) && ($(this).find(".cat_value").text() == $('#myTab .active a').attr('id') )) {
                         $(this).show();
@@ -82,14 +82,17 @@
 
     <div class="row-fluid">
         <div class="span6" id="menuDrop">
-            <div class="block-create-menu" id="breakfast">
+            <div class="block-create-menu droppable" id="breakfast">
                 <h1>Завтрак</h1>
+                <p>Для добавления рецепта перетащите его в эту область</p>
             </div>
-            <div class="block-create-menu" id="dinner">
+            <div class="block-create-menu droppable" id="dinner">
                 <h1>Обед</h1>
+                <p>Для добавления рецепта перетащите его в эту область</p>
             </div>
-            <div class="block-create-menu" id="supper">
+            <div class="block-create-menu droppable" id="supper">
                 <h1>Ужин</h1>
+                <p>Для добавления рецепта перетащите его в эту область</p>
             </div>
 
         </div>

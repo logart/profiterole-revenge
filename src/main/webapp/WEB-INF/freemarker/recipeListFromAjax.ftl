@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-    filterRecipies();
+        filterRecipies();
     });
 </script>
 
@@ -18,10 +18,12 @@
 
 
 [#list model as a]
-<div class="btn recepies_btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
+<div class="btn draggable recepies_btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
      data-toggle="modal" data-target="#myModal">
-    <div class="imgContainer"><img src="${a.smallImg}" class="img-rounded"/></div>
+    <div class="imgContainer"><span class="pagination-centered"><img src="${a.smallImg}" class="img-rounded"/></span>
+    </div>
     <label class="title">${a.title}</label>
+
     <div class="time_value" style="display: none">${a.time}</div>
     <div class="cat_value" style="display: none">${a.categories.categoriesId}</div>
 </div>
@@ -46,20 +48,6 @@
         e.preventDefault();
         $(this).tab('show');
         filterRecipies();
-    <!--alert($(this).attr('id'));-->
-        <!--var cat=$(this).attr('id');-->
-    <!--$(".btn.recepies_btn").filterR(function (index) {-->
-
-    <!--if (($(this).find(".cat_value").text()==cat ) {-->
-    <!--$(this).show();-->
-    <!--}-->
-    <!--else {-->
-    <!--$(this).hide();-->
-    <!--}-->
-    <!--return true;-->
-    <!--}-->
-    <!--);-->
-
     })
 </script>
 
@@ -80,14 +68,41 @@
 </script>
 
 <script>
-    $('.btn').popover({
+    $('#cuisine').find('.btn').popover({
         trigger:'hover'
+    })
+
+    $('.block-create-menu.droppable').find('.btn').popover({
+        trigger:'hover',
+        placement: 'left'
     })
 
 </script>
 
+[#--Dragg-able JavaScript--]
+<script type="text/javascript">
+    $(function () {
+        $(".draggable").draggable({ handle:"label", revert:true, helper: "clone", cursor:"move" });
+        $("div, title").disableSelection();
+    });
+</script>
+
+[#--Dropp-able JavaScript--]
+<script type="text/javascript">
+    $(function() {
+    $( ".droppable" ).droppable({
+        accept: ".recepies_btn",
+        drop: function( event, ui ) {
+            $( this )
+                    .find( "p" )
+                    .html( "" );
+            $( this ).append(ui.draggable.clone(true,false));
 
 
+        }
+    });
+    });
+</script>
 
 
 
