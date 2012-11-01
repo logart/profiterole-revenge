@@ -6,8 +6,11 @@ import java.util.List;
 
 
 /**
- * Class  is an ordinary user defined Java class whose instances
+ * Class {@code Recipe} is an ordinary user defined Java class whose instances
  * can be stored in the database.
+ *
+ * @author Ivan
+ * @date July 17,2012
  */
 @Entity
 @Table(name = "cuisine")
@@ -39,14 +42,24 @@ public class Cuisine implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuisine")
     private List<Recipe> recipes;
 
+    /**
+     * {@method Cuisine} its a default constructor for JPA
+     */
 
     public Cuisine() {
     }
+    /**
+     * {@method Cuisine} its a constructor for adding data in entity
+     */
 
     public Cuisine(String cuisin, String imglink) {
         this.cuisin = cuisin;
         this.imglink = imglink;
     }
+
+    /**
+     * {@methods } its a getters and setters
+     */
 
     public Integer getCuisineId() {
         return cuisineId;
