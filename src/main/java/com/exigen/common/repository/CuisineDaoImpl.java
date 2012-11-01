@@ -83,6 +83,11 @@ public class CuisineDaoImpl implements CuisineDao {
         entityManager.remove(cuisine);
     }
 
+    /**
+     * {@method setEntityManager(EntityManager entityManager)}
+     * for tests in DAO. Inject EM in this class
+     */
+
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

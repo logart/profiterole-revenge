@@ -45,6 +45,10 @@ public class FillDbController {
     @Autowired
     private RecipeService recipeService;
 
+    /**
+     * {@code Lsts} add lists for categories, suisines, recipes and ext
+     */
+
     private List<Categories> categoriesList;
     private List<Cuisine> cuisineList;
     private List<Recipe> recipeList;
@@ -71,6 +75,11 @@ public class FillDbController {
         Categories cat3 = new Categories("Второе");
         Categories cat4 = new Categories("Десерты");
         Categories cat5 = new Categories("Напитки");
+
+        /**
+         * {@code categoriesList} add  categories in the list
+         */
+
         categoriesList = new ArrayList<Categories>(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
 
     }
@@ -101,6 +110,11 @@ public class FillDbController {
         Cuisine cuisine10 = new Cuisine("Индийская", "/img/ind.jpg");
         Cuisine cuisine11 = new Cuisine("Греческая", "/img/gre.jpg");
         Cuisine cuisine12 = new Cuisine("Грузинская", "/img/gru.jpg");
+
+        /**
+         * {@code cuisineList} add  cuisines in the list
+         */
+
         cuisineList = new ArrayList<Cuisine>(Arrays.asList(cuisine1, cuisine2, cuisine3, cuisine4, cuisine5, cuisine6, cuisine7, cuisine8, cuisine9, cuisine10, cuisine11, cuisine12));
 
     }
@@ -140,6 +154,10 @@ public class FillDbController {
         String bigImg18 = "http://eda.2k.ua/content/catalog/item_7130_orig.jpg";
         String bigImg19 = "http://eda.2k.ua/content/catalog/limonnyy_punsh_orig.jpg";
         String bigImg20 = "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
+
+        /**
+        * {@code bigImgList} add big images in the list
+        */
         bigImgList = new ArrayList<String>(Arrays.asList(bigImg1, bigImg2, bigImg3, bigImg4, bigImg5, bigImg6, bigImg7, bigImg8, bigImg9, bigImg10, bigImg11, bigImg12, bigImg13, bigImg14, bigImg15, bigImg16, bigImg17, bigImg18, bigImg19, bigImg20));
 
     }
@@ -178,6 +196,11 @@ public class FillDbController {
         String smallImg18 = "http://eda.2k.ua/content/catalog/item_7130_orig.jpg";
         String smallImg19 = "http://eda.2k.ua/content/catalog/limonnyy_punsh_orig.jpg";
         String smallImg20 = "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
+
+        /**
+         * {@code smallImgList} add  small images for recipes in the list
+         */
+
         smallImgList = new ArrayList<String>(Arrays.asList(smallImg1, smallImg2, smallImg3, smallImg4, smallImg5, smallImg6, smallImg7, smallImg8, smallImg9, smallImg10, smallImg11, smallImg12, smallImg13, smallImg14, smallImg15, smallImg16, smallImg17, smallImg18, smallImg19, smallImg20));
 
     }
@@ -187,7 +210,7 @@ public class FillDbController {
      * creates for describe description of creation in recipe entity. This
      * method inicialize variables for recipes and add it in descriptionList
      *
-     * @throws Exception.Data(where ArrayList is empty)
+     * @throws javax.xml.crypto.Data(where ArrayList is empty)
      */
 
     public void addDescription() {
@@ -215,6 +238,11 @@ public class FillDbController {
         String description18 = "По ингредиенту:  Фрукты, ягоды, орехи";
         String description19 = "По ингредиенту: Алкоголь, Фрукты, ягоды, орехи";
         String description20 = "По ингредиенту:  Алкоголь, Зелень и травы, Фрукты, ягоды, орехи";
+
+        /**
+         * {@code descriptionList} add  descriptions of recipes in the list
+         */
+
         descriptionList = new ArrayList<String>(Arrays.asList(description1, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11, description12, description13, description14, description15, description16, description17, description18, description19, description20));
 
     }
@@ -224,7 +252,7 @@ public class FillDbController {
      * creates for describe title of creation in recipe entity. This
      * method inicialize variables for recipes and add it in titleList
      *
-     * @throws Exception.Data(where ArrayList is empty)
+     * @throws javax.xml.crypto.Data(where ArrayList is empty)
      */
     public void addTitle() {
 
@@ -251,6 +279,11 @@ public class FillDbController {
         String title18 = "Коктейль \"Ягодный смэш\" ";
         String title19 = "Лимонный пунш ";
         String title20 = "Коктейль \"Мохито\" ";
+
+        /**
+         * {@code titleList} add titles of recipes in the list
+         */
+
         titleList = new ArrayList<String>(Arrays.asList(title1, title2, title3, title4, title5, title6, title7, title8, title9, title10, title11, title12, title13, title14, title15, title16, title17, title18, title19, title20));
 
     }
@@ -288,6 +321,11 @@ public class FillDbController {
         Integer time18 = 20;
         Integer time19 = 30;
         Integer time20 = 40;
+
+        /**
+         * {@code timeList} add values of time in the list
+         */
+
         timeList = new ArrayList<Integer>(Arrays.asList(time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20));
 
     }
