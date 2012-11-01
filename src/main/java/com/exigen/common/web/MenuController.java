@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controller class for Menu view
+ * Class  {@code FillDbController} creates for mapped "Menu" view and
+ * other information about cuisines and recipes with ajax support
+ * @DATE July 25, 2012
+ * @author Ivan.
  */
-
 
 @Controller
 public class MenuController {
