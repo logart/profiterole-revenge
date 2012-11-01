@@ -88,6 +88,11 @@ public class RecipeServiceImpl implements RecipeService {
         recipeDao.removeRecipe(recipe);
     }
 
+    /**
+     * {@method setRecipeDao(RecipeDao recipeDao)}
+     * for tests services. Inject in this class
+     */
+
     public void setRecipeDao(RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
     }
