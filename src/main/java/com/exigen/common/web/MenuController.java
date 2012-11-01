@@ -17,14 +17,26 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MenuController {
 
+    /**
+     * {@code cuisineService} describes the CuisineService for inject on this
+     * class
+     */
+
     @Autowired
     private CuisineService cuisineService;
+
+    /**
+     * {@code recipeService} describes the RecipeService for inject on this
+     * class
+     */
 
     @Autowired
     private RecipeService recipeService;
 
     /**
-     * A method for displaying the Menu view with twelve categories
+     * {@method index()} using for mapped "Menu" page view
+     *
+     * @return empty view name "Menu"
      */
     @RequestMapping(value = {"/menu"})
     public String menuPage() {
@@ -32,12 +44,23 @@ public class MenuController {
         return "Menu";
     }
 
+    /**
+     * {@method menuCuisineAjax()} using for mapped ajax queries      *
+     *
+     * @return list of cuisines
+     */
+
     @RequestMapping(value = {"/menuCuisinesAjax"})
     public ModelAndView menuCuisineAjax() {
 
         return new ModelAndView("cuisines", "model", this.cuisineService.getCuisine());
     }
 
+    /**
+     * {@method listRecipesToAjax()} using for mapped ajax queries      *
+     *
+     * @return list of recipes in some cuisine
+     */
 
     @RequestMapping(value = {"/recipeListFromAjax"})
     @ResponseBody
@@ -45,6 +68,12 @@ public class MenuController {
 
         return new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
     }
+
+    /**
+     * {@method modalRecipeDescription()} using for mapped ajax queries      *
+     *
+     * @return description of some recipe in modal window
+     */
 
     @RequestMapping(value = {"/modalRecipeDescription"})
     @ResponseBody
