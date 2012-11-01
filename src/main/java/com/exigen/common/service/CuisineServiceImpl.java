@@ -83,6 +83,11 @@ public class CuisineServiceImpl implements CuisineService {
         cuisineDao.removeCuisine(cuisine);
     }
 
+    /**
+     * {@method setCuisineDao(CuisineDao categoriesDao)}
+     * for tests services. Inject in this class
+     */
+
     public void setCuisineDao(CuisineDao categoriesDao) {
         this.cuisineDao = categoriesDao;
     }

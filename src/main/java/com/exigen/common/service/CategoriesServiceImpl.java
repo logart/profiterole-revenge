@@ -66,6 +66,11 @@ public class CategoriesServiceImpl implements CategoriesService {
         categoriesDao.removeCategories(categ);
     }
 
+    /**
+     * {@method setCategoriesDao(CategoriesDao categoriesDao)}
+     * for tests services. Inject in this class
+     */
+
     public void setCategoriesDao(CategoriesDao categoriesDao) {
         this.categoriesDao = categoriesDao;
     }
