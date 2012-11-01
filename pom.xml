@@ -353,5 +353,28 @@
             </build>
         </profile>
 
+        <profile>
+            <id>ivan-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>ivan-test-exigen-app</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>ivan-test-exigen-app.cloudfoundry.com</url>
+                            <username>vanik1251@mail.ru</username>
+                            <password>Qy0oPYgA</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
     </profiles>
 </project>
