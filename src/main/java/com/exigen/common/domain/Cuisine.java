@@ -58,36 +58,66 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@methods } its a getters and setters
+     * {@method  getCuisineId()} its a getter
      */
 
     public Integer getCuisineId() {
         return cuisineId;
     }
 
+    /**
+     * {@method  setCuisineId()} its a setter
+     */
+
     public void setCuisineId(Integer cuisineId) {
         this.cuisineId = cuisineId;
     }
+
+    /**
+     * {@method  getCuisin()} its a getter
+     */
 
     public String getCuisin() {
         return cuisin;
     }
 
+    /**
+     * {@method  setCuisin} its a setter
+     */
+
+
     public void setCuisin(String cuisin) {
         this.cuisin = cuisin;
     }
+
+    /**
+     * {@method  getRecipes()} its a getter
+     */
 
     public List<Recipe> getRecipes() {
         return recipes;
     }
 
+    /**
+     * {@method  setRecipes} its a setter
+     */
+
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
 
+    /**
+     * {@method  getImglink()} its a getter
+     */
+
     public String getImglink() {
         return imglink;
     }
+
+    /**
+     * {@method  setImglink} its a setter
+     */
+
 
     public void setImglink(String imglink) {
         this.imglink = imglink;
