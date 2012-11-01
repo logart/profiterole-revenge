@@ -29,6 +29,15 @@ public class RecipeDaoImpl implements RecipeDao {
         return results1;
     }
 
+    /**
+     * {@method getRecipeCuisineList(Cuisine cuisine)}
+     *
+     * @param cuisine(object of some particular recipe)
+     * @return the list of recipes, where cuisine in Recipe entity =@param).
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
+     */
     @Override
     public List<Recipe> getRecipeCuisineList(Cuisine cuisine) {
         List<Recipe> results = this.entityManager.createNamedQuery("Recipe.findRecipeFromCuisine")

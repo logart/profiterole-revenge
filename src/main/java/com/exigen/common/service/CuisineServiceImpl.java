@@ -10,7 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * {@inheritDoc}
+ * Class {@code CuisineService} used for push object from and in DAO for get, add and
+ * remove objects into DB with helps SpringTransaction and JPA
+ *
+ * @author Sergey
+ * @date July 17,2012
  */
 @Service("cuisineService")
 
@@ -22,7 +26,11 @@ public class CuisineServiceImpl implements CuisineService {
     private CuisineDao cuisineDao;
 
     /**
-     * {@inheritDoc}
+     * {@method getCuisine()}
+     *
+     * @return the list of all cuisines, when it situated in Cuisine entity
+     * @throws org.springframework.dao.DataAccessException(resource
+     *          on cloudfoundry is unavalible, DB is changed)
      */
     @Override
     @Transactional(readOnly = true)
@@ -31,7 +39,13 @@ public class CuisineServiceImpl implements CuisineService {
     }
 
     /**
-     * {@inheritDoc}
+     * {@method getOneCuisineList(Cuisine cuis)}
+     *
+     * @return the list of recipes, when it situated in this Cuisine.
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuis is null, or parameter cuis is does not match
+     *                                   no one object in database)
      */
     @Override
     @Transactional(readOnly = true)
@@ -40,7 +54,13 @@ public class CuisineServiceImpl implements CuisineService {
     }
 
     /**
-     * {@inheritDoc}
+     * {@method addCuisine(Cuisine cuisine)}
+     * for add info about our cuisines into DB
+     *
+     * @param cuisine(object of some particular cuisine)
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null)
      */
     @Override
     @Transactional
@@ -49,7 +69,13 @@ public class CuisineServiceImpl implements CuisineService {
     }
 
     /**
-     * {@inheritDoc}
+     * {@method removeCuisine(Cuisine cuisine)}
+     * for remove our cuisines from DB
+     *
+     * @param cuisine(object of some particular cuisine)
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null)
      */
     @Override
     @Transactional
