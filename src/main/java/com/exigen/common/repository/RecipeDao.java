@@ -26,6 +26,16 @@ public interface RecipeDao {
      */
     List<Recipe> getOneRecipeList(Integer recipeId);
 
+    /**
+     * {@method getRecipeCuisineList(Cuisine cuisine)}
+     *
+     * @param cuisine(object of some particular recipe)
+     * @return the list of recipes, where cuisine in Recipe entity =@param).
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
+     */
+
     List<Recipe> getRecipeCuisineList(Cuisine cuisine);
 
     /**

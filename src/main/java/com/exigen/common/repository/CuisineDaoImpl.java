@@ -9,7 +9,11 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * {@inheritDoc}
+ * Class {@code CuisineDao} used for get, add and remove objects
+ * from Cuisine entity with helps JPA
+ *
+ * @author Sergey
+ * @date June 17,2012
  */
 @Repository("cuisineDao")
 
@@ -21,7 +25,11 @@ public class CuisineDaoImpl implements CuisineDao {
     private EntityManager entityManager;
 
     /**
-     * {@inheritDoc}
+     * {@method getCuisine()}
+     *
+     * @return the list of all cuisines, when it situated in Cuisine entity
+     * @throws org.springframework.dao.DataAccessException(resource
+     *          on cloudfoundry is unavalible, DB is changed)
      */
     @Override
     public List<Cuisine> getCuisine() {
@@ -31,7 +39,13 @@ public class CuisineDaoImpl implements CuisineDao {
     }
 
     /**
-     * {@inheritDoc}
+     * {@method getOneCuisineList(Cuisine cuis)}
+     *
+     * @return the list of recipes, when it situated in this Cuisine.
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuis is null, or parameter cuis is does not match
+     *                                   no one object in database)
      */
     @Override
     public List<Recipe> getOneCuisineList(Integer cuis) {
@@ -42,7 +56,13 @@ public class CuisineDaoImpl implements CuisineDao {
     }
 
     /**
-     * {@inheritDoc}
+     * {@method addCuisine(Cuisine cuisine)}
+     * for add info about our cuisines into DB
+     *
+     * @param cuisine(object of some particular cuisine)
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null)
      */
     @Override
     public void addCuisine(Cuisine cuisine) {
@@ -50,7 +70,13 @@ public class CuisineDaoImpl implements CuisineDao {
     }
 
     /**
-     * {@inheritDoc}
+     * {@method removeCuisine(Cuisine cuisine)}
+     * for remove our cuisines from DB
+     *
+     * @param cuisine(object of some particular cuisine)
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null)
      */
     @Override
     public void removeCuisine(Cuisine cuisine) {
