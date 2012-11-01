@@ -55,12 +55,12 @@ public class FillDbController {
     private List<Integer> timeList;
 
     /**
-     * {@method getOneRecipeList(Integer recipeId)} using for test
-     * our add and get methods in DAO
+     * {@method addCategories()}
+     * creates for adding categories for creation in recipe entity. This
+     * method inicialize variables for recipes and add it in smallImgList
      *
-     * @return list of cuisines on filldb view
+     * @throws Exception.Data(where ArrayList is empty)
      */
-
     public void addCategories() {
         /**
          * {@code cat1..5} describes categories for our DB
@@ -74,6 +74,14 @@ public class FillDbController {
         categoriesList = new ArrayList<Categories>(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
 
     }
+
+    /**
+     * {@method addCuisines()}
+     * creates for adding cuisines for creation in recipe entity. This
+     * method inicialize variables for recipes and add it in smallImgList
+     *
+     * @throws Exception.Data(where ArrayList is empty)
+     */
 
     public void addCuisines() {
 
@@ -97,10 +105,19 @@ public class FillDbController {
 
     }
 
+    /**
+     * {@method addBigImg()}
+     * creates for adding big image field for creation in recipe entity. This
+     * method inicialize variables for recipes and add it in smallImgList
+     *
+     * @throws Exception.Data(where ArrayList is empty), ResourceNotFoundException(where
+     *                              link is empty)
+     */
+
     public void addBigImg() {
 
         /**
-         * {@code bigImg1..bigImg20} describes big images for our DB
+         * {@code bigImg1..bigImg20} describes big images for our DB. This images adding into our cuisines
          */
 
         String bigImg1 = "http://eda.2k.ua/content/catalog/gribnoy_salat_so_sladkim_pertsem_orig.jpg";
@@ -127,9 +144,19 @@ public class FillDbController {
 
     }
 
+
+    /**
+     * {@method addSmallImg()}
+     * creates for adding small image field for creation in recipe entity. This
+     * method inicialize variables for recipes and add it in smallImgList
+     *
+     * @throws Exception.Data(where ArrayList is empty), ResourceNotFoundException(where
+     *                              link is empty)
+     */
+
     public void addSmallImg() {
         /**
-         * {@code smallImg1..smallImg20} describes small images for our DB
+         * {@code smallImg1..smallImg20} describes small images for our DB. This images adding into our cuisines
          */
         String smallImg1 = "http://eda.2k.ua/content/catalog/gribnoy_salat_so_sladkim_pertsem_orig.jpg";
         String smallImg2 = "http://eda.2k.ua/content/catalog/dynya_s_myatoy_i_imbirem_orig.jpg";
@@ -154,6 +181,14 @@ public class FillDbController {
         smallImgList = new ArrayList<String>(Arrays.asList(smallImg1, smallImg2, smallImg3, smallImg4, smallImg5, smallImg6, smallImg7, smallImg8, smallImg9, smallImg10, smallImg11, smallImg12, smallImg13, smallImg14, smallImg15, smallImg16, smallImg17, smallImg18, smallImg19, smallImg20));
 
     }
+
+    /**
+     * {@method addDescription()}
+     * creates for describe description of creation in recipe entity. This
+     * method inicialize variables for recipes and add it in descriptionList
+     *
+     * @throws Exception.Data(where ArrayList is empty)
+     */
 
     public void addDescription() {
 
@@ -184,6 +219,13 @@ public class FillDbController {
 
     }
 
+    /**
+     * {@method addTitle()}
+     * creates for describe title of creation in recipe entity. This
+     * method inicialize variables for recipes and add it in titleList
+     *
+     * @throws Exception.Data(where ArrayList is empty)
+     */
     public void addTitle() {
 
         /**
@@ -212,6 +254,14 @@ public class FillDbController {
         titleList = new ArrayList<String>(Arrays.asList(title1, title2, title3, title4, title5, title6, title7, title8, title9, title10, title11, title12, title13, title14, title15, title16, title17, title18, title19, title20));
 
     }
+
+    /**
+     * {@method addTime()}
+     * creates for describe time of creation in recipe entity. This
+     * method inicialize variables for recipes and add it in timeList
+     *
+     * @throws Exception.Data(where ArrayList is empty)
+     */
 
     public void addTime() {
 
@@ -242,6 +292,15 @@ public class FillDbController {
 
     }
 
+    /**
+     * {@method addRecipes()}
+     * creates for adding information into our DB. It works for adding RecipeTitle, RecipeDescription,
+     * Categories, Cuisines, Time for recipe, Big and Small Image for recipe
+     *
+     * @throws org.springframework.dao.DataAccessException(resource
+     *          on cloudfoundry is unavalible, DB is changed)
+     */
+
     public void addRecipes() {
         addTitle();
         addDescription();
@@ -250,8 +309,9 @@ public class FillDbController {
         addBigImg();
         addSmallImg();
         addTime();
+
         /**
-         * {@code rec1..rec20} describes recipes for our DB
+         * {@code rec1..rec20} adding information in collection
          */
 
         recipeList = new ArrayList<Recipe>();
