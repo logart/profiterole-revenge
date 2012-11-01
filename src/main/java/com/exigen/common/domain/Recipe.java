@@ -9,6 +9,7 @@ import java.io.Serializable;
  * can be stored in the database.
  *
  * @author Ulyana Kucheryavaya
+ * @date July 17,2012
  */
 @Entity
 @Table(name = "recipe")
@@ -30,7 +31,7 @@ public class Recipe implements Serializable {
     private Integer recipeId;
 
     /**
-     * {@code title} describes name of recipe
+     * {@code title} describes name of recipe in this entity. Its showed in our views
      */
     private String title;
 
@@ -53,16 +54,37 @@ public class Recipe implements Serializable {
     @ManyToOne
     @JoinColumn(name = "categ_id", nullable = false)
     private Categories categories;
+
+    /**
+     * {@code  bigImg} This field to save reference on image for recipe
+     */
+
     @Column(columnDefinition="mediumtext")
     private String bigImg;
+
+    /**
+     * {@code  smallImg} This field to save reference on image(small) for recipe
+     */
+
     @Column(columnDefinition="mediumtext")
     private String smallImg;
 
+    /**
+     * {@code  time} This field to save time of creation for recipe
+     */
+
     private Integer time;
 
+    /**
+     * {@method Recipe} its a default constructor for JPA
+     */
 
     public Recipe() {
     }
+
+    /**
+     * {@method Recipe} its a constructor for adding data in entity
+     */
 
     public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time) {
         this.title = title;
@@ -73,6 +95,10 @@ public class Recipe implements Serializable {
         this.smallImg = smallImg;
         this.time = time;
     }
+
+    /**
+     * {@methods } its a getters and setters
+     */
 
     public String getBigImg() {
         return bigImg;

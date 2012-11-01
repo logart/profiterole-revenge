@@ -6,10 +6,11 @@ import java.util.List;
 
 
 /**
- * Class {@code Categories} is an ordinary user defined Java class whose instances
+ * Class {@code Recipe} is an ordinary user defined Java class whose instances
  * can be stored in the database.
  *
- * @author Sergey_
+ * @author Ivan
+ * @date July 17,2012
  */
 @Entity
 @Table(name = "categories")
@@ -36,12 +37,24 @@ public class Categories implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categories")
     private List<Recipe> recipeList;
 
+    /**
+     * {@method Categories} its a default constructor for JPA
+     */
+
     public Categories() {
     }
+
+    /**
+     * {@method Categories} its a constructor for adding data in entity
+     */
 
     public Categories(String categ) {
         this.categ = categ;
     }
+
+    /**
+     * {@methods } its a getters and setters
+     */
 
     public Integer getCategoriesId() {
         return categoriesId;
