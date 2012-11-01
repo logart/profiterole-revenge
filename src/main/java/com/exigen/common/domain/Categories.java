@@ -53,28 +53,49 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@methods } its a getters and setters
+     * {@method  getCategoriesId()} its a getter
      */
 
     public Integer getCategoriesId() {
         return categoriesId;
     }
 
+    /**
+     * {@method  setCategoriesId()} its a setter
+     */
+
     public void setCategoriesId(Integer categoriesId) {
         this.categoriesId = categoriesId;
     }
+
+    /**
+     * {@method  getCateg()} its a getter
+     */
 
     public String getCateg() {
         return categ;
     }
 
+    /**
+     * {@method  setCateg} its a setter
+     */
+
     public void setCateg(String categ) {
         this.categ = categ;
     }
 
+    /**
+     * {@method  getRecipeList()} its a getter
+     */
+
     public List<Recipe> getRecipeList() {
         return recipeList;
     }
+
+    /**
+     * {@method  setRecipeList} its a setter
+     */
+
 
     public void setRecipeList(List<Recipe> recipeList) {
         this.recipeList = recipeList;
