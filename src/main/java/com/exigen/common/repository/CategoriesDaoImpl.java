@@ -66,6 +66,11 @@ public class CategoriesDaoImpl implements CategoriesDao {
         entityManager.remove(categ);
     }
 
+    /**
+     * {@method setEntityManager(EntityManager entityManager)}
+     * for tests in DAO. Inject EM in this class
+     */
+
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
