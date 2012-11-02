@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Class  {@code FillDbController} creates for mapped "Menu" view and
- * other information about cuisines and recipes with ajax support
+ * Class  {@code MenuController} creates cuisines and recepies
+ * freemarker pages with information about cuisines and recipes
+ * with ajax support
  * @DATE July 25, 2012
  * @author Ivan.
  */
@@ -26,25 +27,6 @@ public class MenuController {
 
     @Autowired
     private CuisineService cuisineService;
-
-    /**
-     * {@code recipeService} describes the RecipeService for inject on this
-     * class
-     */
-
-    @Autowired
-    private RecipeService recipeService;
-
-    /**
-     * {@method index()} using for mapped "Menu" page view
-     *
-     * @return empty view name "Menu"
-     */
-    @RequestMapping(value = {"/menu"})
-    public String menuPage() {
-
-        return "Menu";
-    }
 
     /**
      * {@method menuCuisineAjax()} using for mapped ajax queries      *
@@ -71,17 +53,4 @@ public class MenuController {
         return new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
     }
 
-    /**
-     * {@method modalRecipeDescription()} using for mapped ajax queries      *
-     *
-     * @return description of some recipe in modal window
-     */
-
-    @RequestMapping(value = {"/modalRecipeDescription"})
-    @ResponseBody
-    public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
-
-
-        return new ModelAndView("modalRecipeDescription", "model", this.recipeService.getOneRecipeList(recipeId));
-    }
 }
