@@ -59,6 +59,15 @@ public class FillDbController {
     private List<Integer> timeList;
 
     /**
+     * {@code time-constants} add several constants to avoid magis number violations
+     */
+
+    final Integer TIME_CONSTANT_10 = Integer.valueOf(10);
+    final Integer TIME_CONSTANT_20 = Integer.valueOf(20);
+    final Integer TIME_CONSTANT_30 = Integer.valueOf(30);
+    final Integer TIME_CONSTANT_40 = Integer.valueOf(40);
+
+    /**
      * {@method addCategories()}
      * creates for adding categories for creation in recipe entity. This
      * method inicialize variables for recipes and add it in smallImgList
@@ -301,26 +310,29 @@ public class FillDbController {
         /**
          * {@code time1..time20} describes times for our DB
          */
-        Integer time1 = 10;
-        Integer time2 = 20;
-        Integer time3 = 30;
-        Integer time4 = 40;
-        Integer time5 = 10;
-        Integer time6 = 20;
-        Integer time7 = 30;
-        Integer time8 = 40;
-        Integer time9 = 10;
-        Integer time10 = 20;
-        Integer time11 = 30;
-        Integer time12 = 40;
-        Integer time13 = 10;
-        Integer time14 = 20;
-        Integer time15 = 30;
-        Integer time16 = 40;
-        Integer time17 = 10;
-        Integer time18 = 20;
-        Integer time19 = 30;
-        Integer time20 = 40;
+
+
+
+        Integer time1 = TIME_CONSTANT_10;
+        Integer time2 = TIME_CONSTANT_20;
+        Integer time3 = TIME_CONSTANT_30;
+        Integer time4 = TIME_CONSTANT_40;
+        Integer time5 = TIME_CONSTANT_10;
+        Integer time6 = TIME_CONSTANT_20;
+        Integer time7 = TIME_CONSTANT_30;
+        Integer time8 = TIME_CONSTANT_40;
+        Integer time9 = TIME_CONSTANT_10;
+        Integer time10 = TIME_CONSTANT_20;
+        Integer time11 = TIME_CONSTANT_30;
+        Integer time12 = TIME_CONSTANT_40;
+        Integer time13 = TIME_CONSTANT_10;
+        Integer time14 = TIME_CONSTANT_20;
+        Integer time15 = TIME_CONSTANT_30;
+        Integer time16 = TIME_CONSTANT_40;
+        Integer time17 = TIME_CONSTANT_10;
+        Integer time18 = TIME_CONSTANT_20;
+        Integer time19 = TIME_CONSTANT_30;
+        Integer time20 = TIME_CONSTANT_40;
 
         /**
          * {@code timeList} add values of time in the list
@@ -351,25 +363,25 @@ public class FillDbController {
         /**
          * {@code rec1..rec20} adding information in collection
          */
-
+        int i = 0;
         recipeList = new ArrayList<Recipe>();
-        for (int i = 0; i < 4; i++) {
+        for (; i < 4; i++) {
             recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(0), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
 
-        for (int i = 4; i < 8; i++) {
+        for (; i < 8; i++) {
             recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
 
-        for (int i = 8; i < 12; i++) {
+        for (; i < 12; i++) {
             recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
 
-        for (int i = 12; i < 16; i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(3), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+        for (; i < 16; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2+1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
-        for (int i = 16; i < 20; i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(4), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+        for (; i < 20; i++) {
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2+2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
         }
     }
 

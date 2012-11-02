@@ -1,7 +1,6 @@
 package com.exigen.common.web;
 
 import com.exigen.common.service.CuisineService;
-import com.exigen.common.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
