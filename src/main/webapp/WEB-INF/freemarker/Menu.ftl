@@ -33,16 +33,16 @@
 
 [#--Slider JavaScript--]
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function () {
         $("#slider-range").slider({
             range:true,
-            min:0,
-            max:60,
-            values:[ 0, 60 ],
+            min:6,
+            max:540,
+            values:[ 6, 60 ],
             slide:function (event, ui) {
                 $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 0 ]) % 60, 10) +
                         " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 1 ]) % 60, 10));
-                filterRecipies();
+                filterRecipies(ui.values);
             }
         });
         $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 0) % 60, 10) +
@@ -54,11 +54,10 @@
 
 [#--Time filtering JavaScript--]
 <script type="text/javascript">
-    function filterRecipies() {
-        var slider_values = $("#slider-range").slider("option", "values");
+    function filterRecipies(values) {
         $("#cuisine").find(".btn.recepies_btn").filter(function (index) {
 
-                    if (($(this).find(".time_value").text() >= slider_values[0]) && ($(this).find(".time_value").text() <= slider_values[1]) && ($(this).find(".cat_value").text() == $('#myTab .active a').attr('id') )) {
+                    if (($(this).find(".time_value").text() >= values[0]) && ($(this).find(".time_value").text() <= values[1]) && ($(this).find(".cat_value").text() == $('#myTab .active a').attr('id') )) {
                         $(this).show();
                     }
                     else {
@@ -72,38 +71,35 @@
 
 </script>
 
-<div class="btn-group" data-toggle="buttons-radio">
-    <button class="btn btn-large" value="#breakfast">Завтрак</button>
+<div class="btn-group no-outline" data-toggle="buttons-radio">
+    <button class="btn btn-large no-outline" value="#breakfast">Завтрак</button>
 
-    <button class="btn btn-large" value="#dinner">Обед</button>
-    <button class="btn btn-large" value="#supper">Ужин</button>
+    <button class="btn btn-large no-outline" value="#dinner">Обед</button>
+    <button class="btn btn-large no-outline" value="#supper">Ужин</button>
 </div>
 <div id="hiddens" style="display:none">
 
     <div class="row-fluid">
         <div class="span6" id="menuDrop">
             <div class="block-create-menu droppable" id="breakfast">
-                <h1>Завтрак</h1>
-                <p>Для добавления рецепта перетащите его в эту область</p>
+                <h1>Ваш завтрак</h1>
             </div>
             <div class="block-create-menu droppable" id="dinner">
-                <h1>Обед</h1>
-                <p>Для добавления рецепта перетащите его в эту область</p>
+                <h1>Ваш обед</h1>
             </div>
             <div class="block-create-menu droppable" id="supper">
-                <h1>Ужин</h1>
-                <p>Для добавления рецепта перетащите его в эту область</p>
+                <h1>Ваш ужин</h1>
             </div>
 
         </div>
         <div class="span6 align2">
             <div class="block-create-menu" id="rec">
                 <p>
-                    <label for="amount"><h5>Time range:</h5></label>
-                    <input readonly="readonly" type="input-small" id="amount" style="border: 0; color: #f6931f; font-weight: bold;text-align:center;cursor:default;background-color:#FFFFFF;"/>
+                    <label for="amount"><h5>Время приготовления</h5></label>
+                    <input readonly="readonly" type="input-small" id="amount" class="slider-input"/>
                 </p>
 
-                <div id="slider-range"></div>
+                <div id="slider-range" class="no-outline"></div>
 
                 <div id="cuisine"></div>
 
