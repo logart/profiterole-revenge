@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        filterRecipies();
+        filterRecipies($("#slider-range").slider("option", "values"));
     });
 </script>
 
@@ -24,8 +24,8 @@
     </div>
     <label class="title">${a.title}</label>
 
-    <div class="time_value" style="display: none">${a.time}</div>
-    <div class="cat_value" style="display: none">${a.categories.categoriesId}</div>
+    <div class="time_value no-display">${a.time}</div>
+    <div class="cat_value no-display">${a.categories.categoriesId}</div>
 </div>
 [/#list]
 
@@ -47,7 +47,7 @@
     $('#myTab a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
-        filterRecipies();
+        filterRecipies($("#slider-range").slider("option", "values"));
     })
 </script>
 
@@ -82,8 +82,7 @@
 [#--Dragg-able JavaScript--]
 <script type="text/javascript">
     $(function () {
-        $(".draggable").draggable({ handle:"label", revert:true, helper: "clone", cursor:"move" });
-        $("div, title").disableSelection();
+        $(".draggable").draggable({ cancel: "a.ui-icon", revert: "invalid", helper: "clone", cursor:"move" });
     });
 </script>
 
@@ -93,12 +92,8 @@
     $( ".droppable" ).droppable({
         accept: ".recepies_btn",
         drop: function( event, ui ) {
-            $( this )
-                    .find( "p" )
-                    .html( "" );
             var trash_icon = "<a href='#' title='Delete this recipe' class='ui-icon ui-icon-trash' onclick='$(this).parent().remove(); return false;'>Delete recipe</a>";
             $( this ).append((ui.draggable.clone(true,false)).prepend(trash_icon));
-
 
         }
     });

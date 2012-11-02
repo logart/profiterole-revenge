@@ -98,7 +98,7 @@
 
 }
 
-.droppable > .btn > a.ui-icon.ui-icon-trash{
+.droppable > .btn > a.ui-icon.ui-icon-trash {
     background-position: -98px -129px;
     position: relative;
     top: -23px;
@@ -113,4 +113,29 @@
 .droppable {
     padding: 0.5em;
     margin: 10px;
+}
+
+.slider-input {
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+    background-color: #FFFFFF !important;
+}
+
+.no-display{
+    display: none;
+}
+
+.no-outline {
+    outline: none !important;
+}
+
+a.ui-slider-handle {
+    outline: none !important;
+}
+
+.no-text-decoration{
+    text-decoration: none;
 }
