@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -55,7 +56,18 @@ public class Recipe implements Serializable {
     @JoinColumn(name = "categ_id", nullable = false)
     private Categories categories;
 
+
     /**
+     * {@code ingridients} This field created for add information about
+     *  ingridients in Recipe entity. Ingridiens its a new entity. Was Created in sprint number six
+     *  Its contains field: ingridientId(unique Id in this table), nameOfIngridient(description name of ingridient),
+     *  calories(calories in some ingridient), countOfIngridient(count for some recipe),
+     *  recipe(reference for recipe entity)
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private List<Ingridient> ingridients;
+
+     /**
      * {@code  bigImg} This field to save reference on image for recipe
      */
 
@@ -97,7 +109,7 @@ public class Recipe implements Serializable {
     }
 
     /**
-     * {@methods } its a getters and setters
+     * {@methods } below its a getters and setters
      */
 
     public String getBigImg() {
@@ -164,5 +176,14 @@ public class Recipe implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-}
+
+    public List<Ingridient> getIngridients() {
+        return ingridients;
+    }
+
+    public void setIngridients(List<Ingridient> ingridients) {
+        this.ingridients = ingridients;
+    }
+
+  }
 
