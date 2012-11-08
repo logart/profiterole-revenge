@@ -38,10 +38,10 @@ public interface CategoriesService {
      * {@method removeCategories(Categories categories)}
      * for remove our categories of recipes from DB
      *
-     * @param categ(object of some particular category)
-     * @throws org.springframework.dao.DataAccessException(resource
+     *
+     * @param categoriesId@throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when categ is null)
      */
-    void removeCategories(Categories categ);
+    void removeCategories(Integer categoriesId);
 }
