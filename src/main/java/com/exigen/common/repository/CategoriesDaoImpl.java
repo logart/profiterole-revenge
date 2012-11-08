@@ -56,14 +56,14 @@ public class CategoriesDaoImpl implements CategoriesDao {
      * {@method removeCategories(Categories categories)}
      * for remove our categories of recipes from DB
      *
-     * @param categ(object of some particular category)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when categ is null)
+     * @param categoriesId
      */
     @Override
-    public void removeCategories(Categories categ) {
-        entityManager.remove(categ);
+    public void removeCategories(Integer categoriesId) {
+        entityManager.remove(categoriesId);
     }
 
     /**

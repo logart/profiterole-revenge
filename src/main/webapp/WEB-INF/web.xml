@@ -8,10 +8,12 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <!--Context for cloudfoundry db-->
+        Context for cloudfoundry db
         <param-value>classpath:applicationContext.xml</param-value>
         <!--Context for local mysql db-->
         <!--<param-value>classpath:testContext.xml</param-value>-->
+        <!--Context for file based local h2 db-->
+        <!--<param-value>classpath:testInMemory.xml</param-value>-->
     </context-param>
 
     <listener>
