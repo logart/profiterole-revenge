@@ -42,7 +42,7 @@ public class MenuController {
     /**
      * {@method listRecipesToAjax()} using for mapped ajax queries      *
      *
-     * @return list of recipes in some cuisine and title of that cuisine
+     * @return list of recipes in some cuisine and title of that cuisine.
      */
 
     @RequestMapping(value = {"/recipeListFromAjax"})
