@@ -42,14 +42,15 @@ public class MenuController {
     /**
      * {@method listRecipesToAjax()} using for mapped ajax queries      *
      *
-     * @return list of recipes in some cuisine
+     * @return list of recipes in some cuisine and title of that cuisine
      */
 
     @RequestMapping(value = {"/recipeListFromAjax"})
     @ResponseBody
     public ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
-
-        return new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
+        ModelAndView mav = new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
+        mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId-1).getCuisin());
+        return mav;
     }
 
 }

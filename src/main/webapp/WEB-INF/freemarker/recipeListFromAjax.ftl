@@ -7,7 +7,7 @@
     });
 </script>
 
-<h1>Рецепты</h1>
+<h1>${cuisineTitle}</h1>
 <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#1" id="1">Закуски</a></li>
     <li><a href="#2" id="2">Первое</a></li>
