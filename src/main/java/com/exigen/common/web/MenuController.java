@@ -48,8 +48,9 @@ public class MenuController {
     @RequestMapping(value = {"/recipeListFromAjax"})
     @ResponseBody
     public ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
-
-        return new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
+        ModelAndView mav = new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
+        mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId-1).getCuisin());
+        return mav;
     }
 
 }
