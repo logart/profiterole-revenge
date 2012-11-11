@@ -78,6 +78,13 @@ public class Steps {
      * {@methods } below its a getters and setters
      */
 
+    public Integer getStepId() {
+        return stepId;
+    }
+
+    public void setStepId(Integer stepId) {
+        this.stepId = stepId;
+    }
 
     public Recipe getRecipe() {
         return recipe;

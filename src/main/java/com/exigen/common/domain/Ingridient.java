@@ -69,6 +69,15 @@ public class Ingridient implements Serializable {
     /**
      * {@methods } below its a getters and setters
      */
+
+    public Integer getIngridientId() {
+        return ingridientId;
+    }
+
+    public void setIngridientId(Integer ingridientId) {
+        this.ingridientId = ingridientId;
+    }
+
     public String getNameOfIngridient() {
         return nameOfIngridient;
     }
