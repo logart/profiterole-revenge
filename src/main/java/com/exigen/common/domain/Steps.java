@@ -32,6 +32,25 @@ public class Steps {
     @Column(columnDefinition="mediumtext")
     private String nameOfStep;
 
+    /**
+     * {@code stepNumber} describes the number of some step in this entity. Its showed in our views
+     */
+
+     private Integer stepNumber;
+
+    /**
+     * {@code stepDescription} describes some concretical part of recipe. Its showed in our views
+     */
+
+    private String stepDescription;
+
+    /**
+     * {@code stepImg} describes img for this step. Its showed in our views
+     */
+    @Column(columnDefinition="mediumtext")
+    private String stepImg;
+
+
 
     /**
      * {@code recipe} This field created for add information about
@@ -55,8 +74,11 @@ public class Steps {
      * {@method Steps} its a constructor for adding data in entity
      */
 
-    public Steps(String nameOfStep, Recipe recipe) {
+    public Steps(String nameOfStep, Integer stepNumber, String stepDescription, String stepImg, Recipe recipe) {
         this.nameOfStep = nameOfStep;
+        this.stepNumber = stepNumber;
+        this.stepDescription = stepDescription;
+        this.stepImg = stepImg;
         this.recipe = recipe;
     }
 
@@ -79,5 +101,29 @@ public class Steps {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public Integer getStepNumber() {
+        return stepNumber;
+    }
+
+    public void setStepNumber(Integer stepNumber) {
+        this.stepNumber = stepNumber;
+    }
+
+    public String getStepDescription() {
+        return stepDescription;
+    }
+
+    public void setStepDescription(String stepDescription) {
+        this.stepDescription = stepDescription;
+    }
+
+    public String getStepImg() {
+        return stepImg;
+    }
+
+    public void setStepImg(String stepImg) {
+        this.stepImg = stepImg;
     }
 }
