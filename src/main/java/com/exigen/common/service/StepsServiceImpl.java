@@ -3,7 +3,7 @@ package com.exigen.common.service;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.domain.Steps;
 import com.exigen.common.repository.StepsDao;
-import com.exigen.common.repository.StepsDaoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +16,8 @@ public class StepsServiceImpl implements StepsService {
     /**
      * {@code stepsDao} describes the stepsDao work with DB and Steps entity
      */
-    StepsDao stepsDao=new StepsDaoImpl();
+    @Autowired
+    StepsDao stepsDao;
 
     /**
      * {@inheritDoc}
