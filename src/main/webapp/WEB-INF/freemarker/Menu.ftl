@@ -94,6 +94,7 @@
         </div>
         <div class="span6 align2">
             <div class="block-create-menu" id="rec">
+                <div id="menu-header"><h1>Рецепты</h1></div>
                 <p>
                     <label for="amount"><h5>Время приготовления</h5></label>
                     <input readonly="readonly" type="input-small" id="amount" class="slider-input"/>
@@ -101,7 +102,7 @@
 
                 <div id="slider-range" class="no-outline"></div>
 
-                <div id="cuisine"></div>
+                <div class="content" id="cuisine"></div>
 
 
             </div>

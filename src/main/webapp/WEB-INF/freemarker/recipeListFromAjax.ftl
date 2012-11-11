@@ -3,11 +3,14 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        var text=$(".cuisine_value").text();
+        $("#menu-header h1").html(text);
         filterRecipies($("#slider-range").slider("option", "values"));
     });
 </script>
 
-<h1>${cuisineTitle}</h1>
+<div class="cuisine_value no-display">${cuisineTitle}</div>
+
 <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#1" id="1">Закуски</a></li>
     <li><a href="#2" id="2">Первое</a></li>
@@ -69,10 +72,6 @@
 
 <script>
     $('#cuisine').find('.btn').popover({
-        trigger:'hover'
-    })
-
-    $('.block-create-menu.droppable').find('.btn').popover({
         trigger:'hover',
         placement: 'left'
     })

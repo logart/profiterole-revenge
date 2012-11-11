@@ -93,26 +93,21 @@
 }
 
 .droppable > .btn {
-    margin-bottom: 30px;
+    margin:2px;
     height: 170px;
 
 }
 
 .droppable > .btn > a.ui-icon.ui-icon-trash {
-    background-position: -98px -129px;
-    position: relative;
-    top: -23px;
+    background-position: -98px -130px;
     left: 95px;
+    position: relative;
+    top: -7px;
 }
 
 .draggable {
     height: 150px;
     padding: 0.5em;
-}
-
-.droppable {
-    padding: 0.5em;
-    margin: 10px;
 }
 
 .slider-input {
@@ -138,4 +133,8 @@ a.ui-slider-handle {
 
 .no-text-decoration{
     text-decoration: none;
+}
+
+.content{
+margin-top: 10px;
 }
