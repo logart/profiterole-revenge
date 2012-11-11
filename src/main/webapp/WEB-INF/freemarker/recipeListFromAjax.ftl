@@ -64,8 +64,8 @@
 
 <script type="text/javascript">
     $(".btn[data-toggle=modal]").click(function (e) {
-        lv_target = $(this).attr('data-target')
-        lv_url = $(this).attr('href')
+        var lv_target = $(this).attr('data-target')
+        var lv_url = $(this).attr('href')
         $(lv_target).load(lv_url)
     })
 </script>
@@ -81,31 +81,31 @@
 [#--Dragg-able JavaScript--]
 <script type="text/javascript">
     $(function () {
-        $(".draggable").draggable({ cancel: "a.ui-icon", revert: "invalid", helper: "clone", cursor:"move" });
+        $(".draggable").draggable({ cancel:"a.ui-icon", revert:"invalid", helper:"clone", cursor:"move", containment:"window" });
     });
 </script>
 
 [#--Dropp-able JavaScript--]
 <script type="text/javascript">
-    $(function() {
-    $( ".droppable" ).droppable({
-        accept: ".recepies_btn",
-        drop: function( event, ui ) {
-            var trash_icon = "<a href='#' title='Delete this recipe' class='ui-icon ui-icon-trash' onclick='$(this).parent().remove(); return false;'>Delete recipe</a>";
-            $( this ).append((ui.draggable.clone(true,false)).prepend(trash_icon));
+    $(function () {
+        $(".droppable").droppable({
+            accept:".recepies_btn",
+            drop:function (event, ui) {
+                var trash_icon = "<a href='#' title='Удалить рецепт' class='ui-icon ui-icon-trash' onclick=\"$(this).parent().popover('destroy').remove(); return false;\">Удалить рецепт</a>";
+                var elem = ui.draggable.clone();
+                $(this).append(elem.prepend(trash_icon));
+                elem.popover({
+                    trigger:'hover',
+                    placement:'right'
+                });
+                elem.click(function (e) {
+                    var lv_target = $(this).attr('data-target');
+                    var lv_url = $(this).attr('href');
+                    $(lv_target).load(lv_url);
+                });
 
-        }
-    });
+
+            }
+        });
     });
 </script>
-
-
-
-
-
-
-
-
-
-
-
