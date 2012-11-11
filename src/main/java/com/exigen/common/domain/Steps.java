@@ -25,14 +25,7 @@ public class Steps {
     @GeneratedValue
     private Integer stepId;
 
-    /**
-     * {@code nameOfStep} describes name of step in this entity. Its showed in our views
-     */
-
-    @Column(columnDefinition="mediumtext")
-    private String nameOfStep;
-
-    /**
+     /**
      * {@code stepNumber} describes the number of some step in this entity. Its showed in our views
      */
 
@@ -41,7 +34,7 @@ public class Steps {
     /**
      * {@code stepDescription} describes some concretical part of recipe. Its showed in our views
      */
-
+    @Column(columnDefinition="mediumtext")
     private String stepDescription;
 
     /**
@@ -74,9 +67,8 @@ public class Steps {
      * {@method Steps} its a constructor for adding data in entity
      */
 
-    public Steps(String nameOfStep, Integer stepNumber, String stepDescription, String stepImg, Recipe recipe) {
-        this.nameOfStep = nameOfStep;
-        this.stepNumber = stepNumber;
+    public Steps(Integer stepNumber, String stepDescription, String stepImg, Recipe recipe) {
+         this.stepNumber = stepNumber;
         this.stepDescription = stepDescription;
         this.stepImg = stepImg;
         this.recipe = recipe;
@@ -86,14 +78,6 @@ public class Steps {
      * {@methods } below its a getters and setters
      */
 
-
-    public String getNameOfStep() {
-        return nameOfStep;
-    }
-
-    public void setNameOfStep(String nameOfStep) {
-        this.nameOfStep = nameOfStep;
-    }
 
     public Recipe getRecipe() {
         return recipe;
