@@ -17,7 +17,7 @@ public class StepsServiceImpl implements StepsService {
      * {@code stepsDao} describes the stepsDao work with DB and Steps entity
      */
     @Autowired
-    StepsDao stepsDao;
+    private StepsDao stepsDao;
 
     /**
      * {@inheritDoc}
