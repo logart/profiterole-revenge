@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 public class IngridientServiceImplTest {
 
-    IngridientServiceImpl ingridientService = new IngridientServiceImpl();
+    IngridientServiceImpl ingridient = new IngridientServiceImpl();
 
     Recipe recipe = new Recipe();
 
@@ -27,9 +27,9 @@ public class IngridientServiceImplTest {
 
     @Test
     public void getIngridientService() {
-        ingridientService.setIngridientDao(ingridientDao);
+        ingridient.setIngridientDao(ingridientDao);
         when(ingridientDao.getIngridientsRecipeList(recipe)).thenReturn(null);
-        assertNull(ingridientService.getIngridientsRecipeList(recipe));
+        assertNull(ingridient.getIngridientsRecipeList(recipe));
     }
 
 }
