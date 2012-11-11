@@ -2,6 +2,7 @@ package com.exigen.common.repository;
 
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.domain.Steps;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * {@inheritDoc}
  */
-
+@Repository("stepsDao")
 public class StepsDaoImpl implements StepsDao {
 
     /**
