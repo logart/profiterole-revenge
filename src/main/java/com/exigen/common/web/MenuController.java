@@ -12,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
  * Class  {@code MenuController} creates cuisines and recepies
  * freemarker pages with information about cuisines and recipes
  * with ajax support
- * @DATE July 25, 2012
  * @author Ivan.
+ * @DATE July 25, 2012
  */
 
 @Controller
@@ -49,7 +49,7 @@ public class MenuController {
     @ResponseBody
     public ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
         ModelAndView mav = new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
-        mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId-1).getCuisin());
+        mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId - 1).getCuisin());
         return mav;
     }
 

@@ -15,29 +15,17 @@ import java.util.List;
 public interface RecipeService {
 
     /**
-     * {@method getRecipeCuisineList(Cuisine cuisine)}
-     *
-     * @param cuisine(object of some particular recipe)
-     * @return the list of recipes, where cuisine in Recipe entity =@param).
-     * @throws org.springframework.dao.DataAccessException(resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
-     */
-
-    List<Recipe> getRecipeCuisineList(Cuisine cuisine);
-
-    /**
-     * {@method getOneRecipeList(Integer recipeId)}
+     * {@method getOneRecipe(Integer recipeId)}
      *
      * @param recipeId(unique identificator of some particular recipe)
-     * @return the list of recipes, where Recipe field recipeId equals parameter recipeId( return complete description
+     * @return the one recipe, with a field recipeId that is equals parameter recipeId( return complete description
      *         of the recipe with the steps, ingredients, Pictures.).
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipeId is null, or id has no results in the database)
      */
 
-    List<Recipe> getOneRecipeList(Integer recipeId);
+    Recipe getOneRecipe(Integer recipeId);
 
     /**
      * {@method addRecipe(Recipe recipe)}

@@ -26,21 +26,6 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeDao recipeDao;
 
     /**
-     * {@method getRecipeCuisineList(Cuisine cuisine)}
-     *
-     * @param cuisine(object of some particular recipe)
-     * @return the list of recipes, where cuisine in Recipe entity =@param).
-     * @throws org.springframework.dao.DataAccessException(resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public List<Recipe> getRecipeCuisineList(Cuisine cuisine) {
-        return recipeDao.getRecipeCuisineList(cuisine);
-    }
-
-    /**
      * {@method getOneRecipeList(Integer recipeId)}
      *
      * @param recipeId(unique identificator of some particular recipe)
@@ -52,10 +37,10 @@ public class RecipeServiceImpl implements RecipeService {
      */
 
     @Override
-    @Transactional(readOnly = true)
-    public List<Recipe> getOneRecipeList(Integer recipeId) {
+    @Transactional
+    public Recipe getOneRecipe(Integer recipeId) {
 
-        return recipeDao.getOneRecipeList(recipeId);
+        return recipeDao.getOneRecipe(recipeId);
 
     }
 

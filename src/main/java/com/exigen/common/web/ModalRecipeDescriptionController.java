@@ -37,6 +37,6 @@ public class ModalRecipeDescriptionController {
     public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
 
 
-        return new ModelAndView("modalRecipeDescription", "model", this.recipeService.getOneRecipeList(recipeId));
+        return new ModelAndView("modalRecipeDescription", "model", this.recipeService.getOneRecipe(recipeId));
     }
 }

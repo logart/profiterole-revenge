@@ -17,7 +17,7 @@ import java.io.Serializable;
         @NamedQuery(name = "Recipe.findRecipesFromCuisine",
                 query = "SELECT rp FROM Recipe AS rp WHERE rp.cuisine=:selectedCuisine"),
         @NamedQuery(name = "Recipe.findRecipeById",
-                query = "SELECT rp FROM Recipe AS rp WHERE rp.id=:selectedId")
+                query = "SELECT rp FROM Recipe AS rp WHERE rp.recipeId=:selectedId")
 })
 
 public class Recipe implements Serializable {
