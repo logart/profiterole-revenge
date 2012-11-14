@@ -7,6 +7,7 @@
     });
 </script>
 
+
 <h1>Рецепты</h1>
 <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#1" id="1">Закуски</a></li>
@@ -14,7 +15,7 @@
     <li><a href="#3" id="3">Второе</a></li>
     <li><a href="#4" id="4">Десерты</a></li>
     <li><a href="#5" id="5">Напитки</a></li>
-</ul>
+   </ul>
 
 
 [#list model as a]
@@ -30,12 +31,39 @@
 [/#list]
 
 
+
+
 <div class="modal fade" id="myModal">
 
 </div>
 
 <div style="clear: both;"></div>
 <button class="btn" id="back">Назад к кухням</button>
+
+
+
+
+         <script type="text/javascript">
+                   var btn = '<button class="btn">Готово</button>';
+         $(document).ready(function () {
+                  $(".knopka").html(btn);
+                  $('#ModalBtn').modal(show);
+             });
+         </script>
+
+ <div id="ModalBtn" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+     <h3 id="myModalLabel">Рецепт</h3>
+   </div>
+   <div class="modal-body">
+     <p>информация о ингридиентах и шагах...</p>
+   </div>
+   <div class="modal-footer">
+     <button class="btn btn-primary">Печать</button>
+   </div>
+ </div>
+
 
 <script>
     $(function () {
