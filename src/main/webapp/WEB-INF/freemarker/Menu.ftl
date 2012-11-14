@@ -83,15 +83,21 @@
         <div class="span6" id="menuDrop">
             <div class="block-create-menu droppable" id="breakfast">
                 <h1>Ваш завтрак</h1>
+                  <div class="knopka"  data-toggle="modal" data-target="#ModalBtn"></div>
             </div>
             <div class="block-create-menu droppable" id="dinner">
                 <h1>Ваш обед</h1>
+                <div class="knopka"  data-toggle="modal" data-target="#ModalBtn"></div>
             </div>
             <div class="block-create-menu droppable" id="supper">
                 <h1>Ваш ужин</h1>
+                  <div class="knopka"  data-toggle="modal" data-target="#ModalBtn"></div>
             </div>
 
         </div>
+
+
+
         <div class="span6 align2">
             <div class="block-create-menu" id="rec">
                 <p>
