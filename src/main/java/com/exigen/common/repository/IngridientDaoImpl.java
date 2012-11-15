@@ -2,7 +2,6 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Ingridient;
-import com.exigen.common.domain.Recipe;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -25,9 +24,9 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Ingridient> getIngridientsRecipeList(Recipe recipe) {
-        List<Ingridient> ingridientList = this.entityManager.createQuery("SELECT t FROM Ingridient t WHERE t.recipe.recipeId=:selectedRecipe.recipeId")
-                .setParameter("selectedRecipe", recipe)
+    public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
+        List<Ingridient> ingridientList = this.entityManager.createQuery("SELECT t FROM Ingridient t WHERE t.recipe.recipeId=:selectedRecipeId")
+                .setParameter("selectedRecipeId", recipeId)
                 .getResultList();
 
         return ingridientList;

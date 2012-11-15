@@ -1,7 +1,6 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Ingridient;
-import com.exigen.common.domain.Recipe;
 import com.exigen.common.repository.IngridientDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.List;
 public class IngridientServiceImpl implements IngridientService {
 
     /**
-     * {@code recipeDao} describes the RecipeDao work with DB and Recipe entity
+     * {@code ingridientDao} describes the IngridientDao work with DB and Ingridient entity
      */
     @Autowired
     private IngridientDao ingridientDao;
@@ -29,8 +28,8 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Ingridient> getIngridientsRecipeList(Recipe recipe) {
-        return ingridientDao.getIngridientsRecipeList(recipe);
+    public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
+        return ingridientDao.getIngridientsRecipeList(recipeId);
     }
 
     /**

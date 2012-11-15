@@ -12,8 +12,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "steps")
-public class Steps {
+@Table(name = "step")
+public class Step {
 
     /**
      * The @Id annotation marks a field as a primary key field.
@@ -25,52 +25,50 @@ public class Steps {
     @GeneratedValue
     private Integer stepId;
 
-     /**
+    /**
      * {@code stepNumber} describes the number of some step in this entity. Its showed in our views
      */
 
-     private Integer stepNumber;
+    private Integer stepNumber;
 
     /**
      * {@code stepDescription} describes some concretical part of recipe. Its showed in our views
      */
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String stepDescription;
 
     /**
      * {@code stepImg} describes img for this step. Its showed in our views
      */
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String stepImg;
-
 
 
     /**
      * {@code recipe} This field created for add information about
-     *  recipes in Steps entity. Steps its a new entity. Was Created in sprint number six
-     *  Its contains field: stepId(unique Id in this table), nameOfStep(description name of step),
+     * recipes in Steps entity. Steps its a new entity. Was Created in sprint number six
+     * Its contains field: stepId(unique Id in this table), nameOfStep(description name of step),
      * recipe(reference for recipe entity)
      */
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="recipest_id")
+    @ManyToOne
+    @JoinColumn(name = "recip_id")
     private Recipe recipe;
 
     /**
-     * {@method Steps} its a default constructor for JPA
+     * {@method Step} its a default constructor for JPA
      */
-    public Steps(){
+    public Step() {
 
     }
 
     /**
-     * {@method Steps} its a constructor for adding data in entity
+     * {@method Step} its a constructor for adding data in entity
      */
 
-    public Steps(Integer stepNumber, String stepDescription, String stepImg, Recipe recipe) {
-         this.stepNumber = stepNumber;
+    public Step(Integer stepNumber, String stepDescription, Recipe recipe) {
+        this.stepNumber = stepNumber;
         this.stepDescription = stepDescription;
-        this.stepImg = stepImg;
         this.recipe = recipe;
     }
 

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 public class StepsServiceImplTest {
 
-    private StepsServiceImpl stepsService=new StepsServiceImpl();
+    private StepsServiceImpl stepsService = new StepsServiceImpl();
 
     Recipe recipe = new Recipe();
 
@@ -28,7 +28,7 @@ public class StepsServiceImplTest {
     @Test
     public void getStepsService() {
         stepsService.setStepsDao(stepsDao);
-        when(stepsDao.getStepsRecipeList(recipe)).thenReturn(null);
-        assertNull(stepsDao.getStepsRecipeList(recipe));
+        when(stepsDao.getStepsRecipeList(recipe.getRecipeId())).thenReturn(null);
+        assertNull(stepsDao.getStepsRecipeList(recipe.getRecipeId()));
     }
 }

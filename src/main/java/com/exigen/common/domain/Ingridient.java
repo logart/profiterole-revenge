@@ -32,19 +32,21 @@ public class Ingridient implements Serializable {
      */
     private String nameOfIngridient;
 
-     /**
-     * {@code  calories} this field to describe calories value in particular ingridient.
+    /**
+     * {@code calories} this field to describe calories value in particular ingridient.
      */
     private float calories;
 
     /**
-     * {@code  countOfIngridient} this field to describe quantity of particular ingridient
+     * {@code countOfIngridient} this field to describe quantity of particular ingridient
      * in some recipe
      */
     private int countOfIngridient;
 
+    private String unitOfMeasure;
+
     /**
-     * {@code  recipe} this field its a bidirectional reference on Recipe entity.
+     * {@code recipe} this field its a bidirectional reference on Recipe entity.
      */
     @ManyToOne
     @JoinColumn(name = "recip_id", nullable = false)
@@ -53,17 +55,19 @@ public class Ingridient implements Serializable {
     /**
      * {@method Ingridient} its a default constructor for JPA
      */
-    public Ingridient(){
+    public Ingridient() {
 
     }
 
     /**
      * {@method Ingridient} its a constructor for adding data in entity
      */
-    public Ingridient(String nameOfIngridient, float calories, int countOfIngridient) {
+    public Ingridient(String nameOfIngridient, float calories, int countOfIngridient, String unitOfMeasure, Recipe recipe) {
         this.nameOfIngridient = nameOfIngridient;
         this.calories = calories;
         this.countOfIngridient = countOfIngridient;
+        this.unitOfMeasure = unitOfMeasure;
+        this.recipe = recipe;
     }
 
     /**
