@@ -1,7 +1,6 @@
 package com.exigen.common.repository;
 
-import com.exigen.common.domain.Recipe;
-import com.exigen.common.domain.Steps;
+import com.exigen.common.domain.Step;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,8 +10,8 @@ import java.util.List;
 /**
  * {@inheritDoc}
  */
-@Repository("stepsDao")
-public class StepsDaoImpl implements StepsDao {
+@Repository("stepDao")
+public class StepDaoImpl implements StepDao {
 
     /**
      * {@code entityManager} describes the EntityManager for JPA ORM
@@ -26,9 +25,9 @@ public class StepsDaoImpl implements StepsDao {
      */
 
     @Override
-    public List<Steps> getStepsRecipeList(Recipe recipe) {
-        List<Steps> stepsList = this.entityManager.createQuery("SELECT t FROM Steps t WHERE t.recipe.recipeId=:selectedRecipe.recipeId")
-                .setParameter("selectedRecipe", recipe)
+    public List<Step> getListOfRecipeSteps(Integer recipeId) {
+        List<Step> stepsList = this.entityManager.createQuery("SELECT t FROM Step t WHERE t.recipe.recipeId=:selectedRecipeId")
+                .setParameter("selectedRecipeId", recipeId)
                 .getResultList();
 
         return stepsList;
@@ -39,7 +38,7 @@ public class StepsDaoImpl implements StepsDao {
      */
 
     @Override
-    public void addStep(Steps step) {
+    public void addStep(Step step) {
         entityManager.persist(step);
     }
 
@@ -48,7 +47,7 @@ public class StepsDaoImpl implements StepsDao {
      */
 
     @Override
-    public void removeStep(Steps step) {
+    public void removeStep(Step step) {
         entityManager.remove(step);
 
     }
