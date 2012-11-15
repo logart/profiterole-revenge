@@ -2,7 +2,6 @@ package com.exigen.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 
 /**
@@ -39,7 +38,7 @@ public class Recipe implements Serializable {
     /**
      * {@code description} this field is intended to describe the recipe
      */
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String description;
 
     /**
@@ -56,33 +55,22 @@ public class Recipe implements Serializable {
     @JoinColumn(name = "categ_id", nullable = false)
     private Categories categories;
 
-
     /**
-     * {@code ingridients} This field created for add information about
-     *  ingridients in Recipe entity. Ingridiens its a new entity. Was Created in sprint number six
-     *  Its contains field: ingridientId(unique Id in this table), nameOfIngridient(description name of ingridient),
-     *  calories(calories in some ingridient), countOfIngridient(count for some recipe),
-     *  recipe(reference for recipe entity)
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private List<Ingridient> ingridients;
-
-     /**
-     * {@code  bigImg} This field to save reference on image for recipe
+     * {@code bigImg} This field to save reference on image for recipe
      */
 
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String bigImg;
 
     /**
-     * {@code  smallImg} This field to save reference on image(small) for recipe
+     * {@code smallImg} This field to save reference on image(small) for recipe
      */
 
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String smallImg;
 
     /**
-     * {@code  time} This field to save time of creation for recipe
+     * {@code time} This field to save time of creation for recipe
      */
 
     private Integer time;
@@ -177,13 +165,5 @@ public class Recipe implements Serializable {
         this.description = description;
     }
 
-    public List<Ingridient> getIngridients() {
-        return ingridients;
-    }
-
-    public void setIngridients(List<Ingridient> ingridients) {
-        this.ingridients = ingridients;
-    }
-
-  }
+}
 
