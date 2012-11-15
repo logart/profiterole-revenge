@@ -13,6 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "step")
+@NamedQuery(name="Step.findStepsAboutRecipe", query ="SELECT t FROM Step t WHERE t.recipe.recipeId=:selectedRecipeId")
 public class Step {
 
     /**

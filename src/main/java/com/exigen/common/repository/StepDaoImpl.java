@@ -26,7 +26,7 @@ public class StepDaoImpl implements StepDao {
 
     @Override
     public List<Step> getListOfRecipeSteps(Integer recipeId) {
-        List<Step> stepsList = this.entityManager.createQuery("SELECT t FROM Step t WHERE t.recipe.recipeId=:selectedRecipeId")
+        List<Step> stepsList = this.entityManager.createNamedQuery("Step.findStepsAboutRecipe", Step.class)
                 .setParameter("selectedRecipeId", recipeId)
                 .getResultList();
 
