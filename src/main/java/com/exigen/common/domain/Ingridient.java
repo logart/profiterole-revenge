@@ -13,6 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ingridients")
+@NamedQuery(name="Ingridient.findIngridientsAboutRecipe", query ="SELECT t FROM Ingridient t WHERE t.recipe.recipeId=:selectedRecipeId")
 public class Ingridient implements Serializable {
 
     /**

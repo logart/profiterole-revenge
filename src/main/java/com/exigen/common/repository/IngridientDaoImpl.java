@@ -25,7 +25,7 @@ public class IngridientDaoImpl implements IngridientDao {
      */
     @Override
     public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
-        List<Ingridient> ingridientList = this.entityManager.createQuery("SELECT t FROM Ingridient t WHERE t.recipe.recipeId=:selectedRecipeId")
+        List<Ingridient> ingridientList = this.entityManager.createNamedQuery("Ingridient.findIngridientsAboutRecipe", Ingridient.class)
                 .setParameter("selectedRecipeId", recipeId)
                 .getResultList();
 
