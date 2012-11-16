@@ -15,7 +15,7 @@
     <li><a href="#3" id="3">Второе</a></li>
     <li><a href="#4" id="4">Десерты</a></li>
     <li><a href="#5" id="5">Напитки</a></li>
-   </ul>
+</ul>
 
 
 [#list model as a]
@@ -94,7 +94,7 @@
             accept:".recepies_btn",
             drop:function (event, ui) {
                 var trash_icon = "<a href='#' title='Delete this recipe' class='ui-icon ui-icon-trash' onclick='$(this).parent().remove(); return false;'>Delete recipe</a>";
-                $(this).append((ui.draggable.clone(true, false)).prepend(trash_icon));
+                (ui.draggable.clone(true, false)).prepend(trash_icon).insertAfter($(this).find("h1"));
 
             }
         });

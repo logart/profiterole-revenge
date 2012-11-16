@@ -10,14 +10,13 @@
         });
 
 
-        $('.btn').click(function () {
+        $('.btn.btn-large.no-outline').click(function () {
 
             $('#hiddens').show(500);
 
             var myMeal = $(this).attr("value");
             $('#menuDrop').children().hide();
             $(myMeal).show();
-
 
             var heightArray = $(".block-create-menu").map(
                     function () {
@@ -27,6 +26,10 @@
             $(".block-create-menu").height(maxHeight);
 
         });
+
+//        $(".block-create-menu.droppable > .btn-primary").onclick(function(e){
+//
+//        });
 
     });
 </script>
@@ -83,19 +86,27 @@
         <div class="span6" id="menuDrop">
             <div class="block-create-menu droppable" id="breakfast">
                 <h1>Ваш завтрак</h1>
-                  <div class="knopka"  data-toggle="modal" data-target="#ModalBtn"></div>
+
+                <div class="span12">
+                    <button class="btn no-display">Готово</button>
+                </div>
             </div>
             <div class="block-create-menu droppable" id="dinner">
                 <h1>Ваш обед</h1>
-                <div class="knopka"  data-toggle="modal" data-target="#ModalBtn"></div>
+
+                <div class="span12">
+                    <button class="btn no-display">Готово</button>
+                </div>
             </div>
             <div class="block-create-menu droppable" id="supper">
                 <h1>Ваш ужин</h1>
-                  <div class="knopka"  data-toggle="modal" data-target="#ModalBtn"></div>
+
+                <div class="span12">
+                    <button class="btn no-display">Готово</button>
+                </div>
             </div>
 
         </div>
-
 
 
         <div class="span6 align2">
