@@ -36,8 +36,6 @@ public class CuisineDaoTest {
     }
 
 
-
-
     @Test
     public void addCuisineTest() {
 

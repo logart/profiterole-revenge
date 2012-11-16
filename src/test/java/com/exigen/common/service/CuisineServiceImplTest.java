@@ -14,13 +14,13 @@ public class CuisineServiceImplTest {
     CuisineDao cuisineDao;
 
     @Before
-    public void setup(){
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void testGetCuisine() throws Exception {
-        CuisineServiceImpl cuisineService=new CuisineServiceImpl();
+        CuisineServiceImpl cuisineService = new CuisineServiceImpl();
         cuisineService.setCuisineDao(cuisineDao);
         when(cuisineDao.getCuisine()).thenReturn(null);
         Assert.assertNull(cuisineService.getCuisine());

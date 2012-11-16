@@ -17,7 +17,7 @@ public class CategoriesServiceImplTest {
     CategoriesDao categoriesDao;
 
     @Before
-    public void setup(){
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 

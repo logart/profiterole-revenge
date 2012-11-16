@@ -48,6 +48,7 @@ public class Cuisine implements Serializable {
 
     public Cuisine() {
     }
+
     /**
      * {@method Cuisine} its a constructor for adding data in entity
      */
@@ -58,7 +59,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  getCuisineId()} its a getter
+     * {@method getCuisineId()} its a getter
      */
 
     public Integer getCuisineId() {
@@ -66,7 +67,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  setCuisineId()} its a setter
+     * {@method setCuisineId()} its a setter
      */
 
     public void setCuisineId(Integer cuisineId) {
@@ -74,7 +75,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  getCuisin()} its a getter
+     * {@method getCuisin()} its a getter
      */
 
     public String getCuisin() {
@@ -82,7 +83,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  setCuisin} its a setter
+     * {@method setCuisin} its a setter
      */
 
 
@@ -91,7 +92,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  getRecipes()} its a getter
+     * {@method getRecipes()} its a getter
      */
 
     public List<Recipe> getRecipes() {
@@ -99,7 +100,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  setRecipes} its a setter
+     * {@method setRecipes} its a setter
      */
 
     public void setRecipes(List<Recipe> recipes) {
@@ -107,7 +108,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  getImglink()} its a getter
+     * {@method getImglink()} its a getter
      */
 
     public String getImglink() {
@@ -115,7 +116,7 @@ public class Cuisine implements Serializable {
     }
 
     /**
-     * {@method  setImglink} its a setter
+     * {@method setImglink} its a setter
      */
 
 

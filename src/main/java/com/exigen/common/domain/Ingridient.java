@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ingridients")
-@NamedQuery(name="Ingridient.findIngridientsAboutRecipe", query ="SELECT t FROM Ingridient t WHERE t.recipe.recipeId=:selectedRecipeId")
+@NamedQuery(name = "Ingridient.findIngridientsAboutRecipe", query = "SELECT t FROM Ingridient t WHERE t.recipe.recipeId=:selectedRecipeId")
 public class Ingridient implements Serializable {
 
     /**
@@ -119,11 +119,12 @@ public class Ingridient implements Serializable {
     public void setCountOfIngridient(int countOfIngridient) {
         this.countOfIngridient = countOfIngridient;
     }
-    
-    public void setUnitOfMeasure (String unitOfMeasure){
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
-    public String getUnitOfMeasure (){
+
+    public String getUnitOfMeasure() {
         return unitOfMeasure;
     }
 }
