@@ -11,28 +11,29 @@ public class RecipeTest {
     private Recipe recipe;
 
     @Before
-    public void setRecipe() throws Exception{
-        recipe=new Recipe();
+    public void setRecipe() throws Exception {
+        recipe = new Recipe();
     }
 
     @Test
-    public void testSetAndGetTitle(){
+    public void testSetAndGetTitle() {
         String testTitle = "aTitle";
         assertNull(recipe.getTitle());
         recipe.setTitle(testTitle);
-        assertEquals(testTitle,recipe.getTitle());
+        assertEquals(testTitle, recipe.getTitle());
     }
+
     @After
-    public void testTitle(){
+    public void testTitle() {
         System.out.println("test of title is done");
     }
 
     @Test
-    public void GetSetRecipeId(){
-        Integer test=2;
+    public void GetSetRecipeId() {
+        Integer test = 2;
         assertNull(recipe.getRecipeId());
         recipe.setRecipeId(test);
-        assertEquals(test,recipe.getRecipeId());
+        assertEquals(test, recipe.getRecipeId());
     }
 
 }

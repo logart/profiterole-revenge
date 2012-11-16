@@ -52,6 +52,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
 
         entityManager.persist(categ);
     }
+
     /**
      * {@method removeCategories(Categories categories)}
      * for remove our categories of recipes from DB

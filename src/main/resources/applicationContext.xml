@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
         ">
 
-    <context:annotation-config />
+    <context:annotation-config/>
 
 
     <context:component-scan base-package="com.exigen.common.repository"/>
@@ -22,17 +22,17 @@
     <context:component-scan base-package="com.exigen.common.service"/>
 
     <!-- enable declarative transaction management -->
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
 
     <bean
-    class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+            class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <cloud:data-source id="dataSource" >
-        <cloud:connection properties="charset=utf-8;" />
+    <cloud:data-source id="dataSource">
+        <cloud:connection properties="charset=utf-8;"/>
     </cloud:data-source>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

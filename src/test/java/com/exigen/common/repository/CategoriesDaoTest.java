@@ -25,24 +25,22 @@ public class CategoriesDaoTest {
 
 
     @Before
-    public void setup(){
-        testCategories=new Categories("test");
+    public void setup() {
+        testCategories = new Categories("test");
     }
 
 
-
-
     @Test
-    public void addCategoriesTest(){
+    public void addCategoriesTest() {
 
 
         categoriesDao.addCategories(testCategories);
-        Assert.assertEquals(testCategories,categoriesDao.getCategories().get(0));
+        Assert.assertEquals(testCategories, categoriesDao.getCategories().get(0));
     }
 
 
     @Test
-    public void getCategoriesTest(){
+    public void getCategoriesTest() {
         Assert.assertNotNull(categoriesDao.getCategories());
     }
 
