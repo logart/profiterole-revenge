@@ -2,7 +2,7 @@ package com.exigen.common.service;
 
 
 import com.exigen.common.domain.Recipe;
-import com.exigen.common.repository.StepsDao;
+import com.exigen.common.repository.StepDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -11,14 +11,14 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
-public class StepsServiceImplTest {
+public class StepServiceImplTest {
 
-    private StepsServiceImpl stepsService = new StepsServiceImpl();
+    private StepServiceImpl stepsService = new StepServiceImpl();
 
     Recipe recipe = new Recipe();
 
     @Mock
-    StepsDao stepsDao;
+    StepDao stepDao;
 
     @Before
     public void setup() {
@@ -27,8 +27,8 @@ public class StepsServiceImplTest {
 
     @Test
     public void getStepsService() {
-        stepsService.setStepsDao(stepsDao);
-        when(stepsDao.getStepsRecipeList(recipe.getRecipeId())).thenReturn(null);
-        assertNull(stepsDao.getStepsRecipeList(recipe.getRecipeId()));
+        stepsService.setStepDao(stepDao);
+        when(stepDao.getListOfRecipeSteps(recipe.getRecipeId())).thenReturn(null);
+        assertNull(stepDao.getListOfRecipeSteps(recipe.getRecipeId()));
     }
 }
