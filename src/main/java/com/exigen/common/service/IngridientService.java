@@ -33,7 +33,7 @@ public interface IngridientService {
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when ingridient is null)
      */
-    public void addIngridient(Ingridient ingridient);
+    void addIngridient(Ingridient ingridient);
 
     /**
      * {@method removeIngridient(Ingridient ingridient)}
@@ -44,5 +44,5 @@ public interface IngridientService {
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when ingridient is null)
      */
-    public void removeIngridient(Ingridient ingridient);
+    void removeIngridient(Ingridient ingridient);
 }

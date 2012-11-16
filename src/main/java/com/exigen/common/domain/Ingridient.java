@@ -44,6 +44,11 @@ public class Ingridient implements Serializable {
      */
     private int countOfIngridient;
 
+    /**
+     * {@code unitOfMeasure} this field describes the unit of Measure
+     * of particular ingridient in this entity.
+     */
+
     private String unitOfMeasure;
 
     /**
@@ -113,5 +118,12 @@ public class Ingridient implements Serializable {
 
     public void setCountOfIngridient(int countOfIngridient) {
         this.countOfIngridient = countOfIngridient;
+    }
+    
+    public void setUnitOfMeasure (String unitOfMeasure){
+        this.unitOfMeasure = unitOfMeasure;
+    }
+    public String getUnitOfMeasure (){
+        return unitOfMeasure;
     }
 }

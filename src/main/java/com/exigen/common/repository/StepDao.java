@@ -38,7 +38,7 @@ public interface StepDao {
      * @throws NullPointerException(when step is null)
      */
 
-    public void addStep(Step step);
+    void addStep(Step step);
 
     /**
      * {@method removeStep(Steps step)}
@@ -50,7 +50,7 @@ public interface StepDao {
      * @throws NullPointerException(when step is null)
      */
 
-    public void removeStep(Step step);
+    void removeStep(Step step);
 
 
 }

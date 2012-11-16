@@ -19,7 +19,8 @@
 
 
 [#list model as a]
-<div class="btn draggable recepies_btn" data-content="${a.description}" href="/modalRecipeDescription?recipeId=${a.recipeId}"
+<div class="btn draggable recepies_btn" data-content="${a.description}"
+     href="/modalRecipeDescription?recipeId=${a.recipeId}"
      data-toggle="modal" data-target="#myModal">
     <div class="imgContainer"><span class="pagination-centered"><img src="${a.smallImg}" class="img-rounded"/></span>
     </div>
@@ -30,40 +31,12 @@
 </div>
 [/#list]
 
-
-
-
 <div class="modal fade" id="myModal">
 
 </div>
 
 <div style="clear: both;"></div>
 <button class="btn" id="back">Назад к кухням</button>
-
-
-
-
-         <script type="text/javascript">
-                   var btn = '<button class="btn">Готово</button>';
-         $(document).ready(function () {
-                  $(".knopka").html(btn);
-                  $('#ModalBtn').modal(show);
-             });
-         </script>
-
- <div id="ModalBtn" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-     <h3 id="myModalLabel">Рецепт</h3>
-   </div>
-   <div class="modal-body">
-     <p>информация о ингридиентах и шагах...</p>
-   </div>
-   <div class="modal-footer">
-     <button class="btn btn-primary">Печать</button>
-   </div>
- </div>
-
 
 <script>
     $(function () {
@@ -88,7 +61,7 @@
 </script>
 
 <script type="text/javascript">
-    $(".btn[data-toggle=modal]").click(function (e) {
+    $("#cuisine > .btn[data-toggle=modal]").click(function (e) {
         lv_target = $(this).attr('data-target')
         lv_url = $(this).attr('href')
         $(lv_target).load(lv_url)
@@ -96,13 +69,13 @@
 </script>
 
 <script>
-    $('#cuisine').find('.btn').popover({
+    $('#cuisine > .btn').popover({
         trigger:'hover'
     })
 
-    $('.block-create-menu.droppable').find('.btn').popover({
+    $('.block-create-menu.droppable > .btn').popover({
         trigger:'hover',
-        placement: 'left'
+        placement:'left'
     })
 
 </script>
@@ -110,21 +83,21 @@
 [#--Dragg-able JavaScript--]
 <script type="text/javascript">
     $(function () {
-        $(".draggable").draggable({ cancel: "a.ui-icon", revert: "invalid", helper: "clone", cursor:"move" });
+        $(".draggable").draggable({ cancel:"a.ui-icon", revert:"invalid", helper:"clone", cursor:"move" });
     });
 </script>
 
 [#--Dropp-able JavaScript--]
 <script type="text/javascript">
-    $(function() {
-    $( ".droppable" ).droppable({
-        accept: ".recepies_btn",
-        drop: function( event, ui ) {
-            var trash_icon = "<a href='#' title='Delete this recipe' class='ui-icon ui-icon-trash' onclick='$(this).parent().remove(); return false;'>Delete recipe</a>";
-            $( this ).append((ui.draggable.clone(true,false)).prepend(trash_icon));
+    $(function () {
+        $(".droppable").droppable({
+            accept:".recepies_btn",
+            drop:function (event, ui) {
+                var trash_icon = "<a href='#' title='Delete this recipe' class='ui-icon ui-icon-trash' onclick='$(this).parent().remove(); return false;'>Delete recipe</a>";
+                $(this).append((ui.draggable.clone(true, false)).prepend(trash_icon));
 
-        }
-    });
+            }
+        });
     });
 </script>
 
