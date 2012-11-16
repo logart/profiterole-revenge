@@ -40,23 +40,20 @@
             max:540,
             values:[ 6, 60 ],
             slide:function (event, ui) {
-                $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 0 ]) % 60, 10) +
-                        " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + " : " + parseInt((ui.values[ 1 ]) % 60, 10));
+                $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + ":" + parseInt((ui.values[ 0 ]) % 60, 10) +
+                        " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + ":" + parseInt((ui.values[ 1 ]) % 60, 10));
                 filterRecipies(ui.values);
             }
         });
-        $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 0) % 60, 10) +
-                " - " + parseInt($("#slider-range").slider("values", 1) / 60 % 24, 10) + " : " + parseInt($("#slider-range").slider("values", 1) % 60, 10));
+        $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24, 10) + ":" + parseInt($("#slider-range").slider("values", 0) % 60, 10) +
+                "  -  " + parseInt($("#slider-range").slider("values", 1) / 60 % 24, 10) + ":" + parseInt($("#slider-range").slider("values", 1) % 60, 10));
     });
-
-
 </script>
 
 [#--Time filtering JavaScript--]
 <script type="text/javascript">
     function filterRecipies(values) {
         $("#cuisine").find(".btn.recepies_btn").filter(function (index) {
-
                     if (($(this).find(".time_value").text() >= values[0]) && ($(this).find(".time_value").text() <= values[1]) && ($(this).find(".cat_value").text() == $('#myTab .active a').attr('id') )) {
                         $(this).show();
                     }
@@ -96,14 +93,12 @@
             <div class="block-create-menu" id="rec">
                 <div id="menu-header"><h1>Рецепты</h1></div>
                 <p>
-                    <label for="amount"><h5>Время приготовления</h5></label>
-                    <input readonly="readonly" type="input-small" id="amount" class="slider-input"/>
+                <h5><label for="amount">Время приготовления</label></h5>
+                <input readonly="readonly" type="input" id="amount" class="slider-input"/>
                 </p>
-
                 <div id="slider-range" class="no-outline"></div>
 
                 <div class="content" id="cuisine"></div>
-
 
             </div>
 
