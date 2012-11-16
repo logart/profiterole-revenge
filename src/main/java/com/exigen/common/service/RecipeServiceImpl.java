@@ -19,6 +19,9 @@ import java.util.List;
 @Service("recipeService")
 @Transactional(readOnly = true)
 public class RecipeServiceImpl implements RecipeService {
+
+    private float counterOfCalories=0;
+
     /**
      * {@code recipeDao} describes the RecipeDao work with DB and Recipe entity
      */
@@ -86,6 +89,19 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional
     public void removeRecipe(Recipe recipe) {
         recipeDao.removeRecipe(recipe);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+
+    @Override
+    @Transactional
+    public float CaloriesCalculation(List<Integer> recipesId) {
+        for(int i=0; i<recipesId.size(); i++){
+            counterOfCalories=+(recipeDao.getOneRecipe(recipesId.get(i))).getCalories();
+        }
+        return counterOfCalories;
     }
 
     /**
