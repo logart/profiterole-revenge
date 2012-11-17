@@ -79,7 +79,7 @@ public class Recipe implements Serializable {
      * {@code calories} This field its a value of calories for this recipe
      */
 
-    private float calories;
+    private double calories;
 
     /**
      * {@method Recipe} its a default constructor for JPA
@@ -92,7 +92,7 @@ public class Recipe implements Serializable {
      * {@method Recipe} its a constructor for adding data in entity
      */
 
-    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time) {
+    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time, double calories) {
         this.title = title;
         this.description = description;
         this.cuisine = cuisine;
@@ -100,6 +100,7 @@ public class Recipe implements Serializable {
         this.bigImg = bigImg;
         this.smallImg = smallImg;
         this.time = time;
+        this.calories=calories;
     }
 
     /**
@@ -171,11 +172,11 @@ public class Recipe implements Serializable {
         this.description = description;
     }
 
-    public float getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(float calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 }
