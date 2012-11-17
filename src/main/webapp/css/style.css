@@ -1,9 +1,10 @@
- body{
-     background-image: url('/img/background.jpg');
-     background-attachment: fixed;
-     background-repeat: no-repeat;
-     background-size: cover;
- }
+body {
+    background-image: url('/img/background.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .recipe {
     background-color: white;
     background-color: rgba(255, 255, 255, 0.8);
@@ -15,11 +16,17 @@
 
 }
 
-.img-head{
+.img-head {
     margin: 0;
     height: auto;
     width: 1000px;
 }
+
+.img-cuisine {
+    width: 100px;
+    height: 100px;
+}
+
 .block-create-menu {
     background-color: white;
     margin-bottom: 21px;
@@ -64,10 +71,12 @@
 .btn {
     padding: 4px;
     margin-bottom: 4px;
+    border: none; !important
+    outline: none; !important
 }
 
 .droppable > .btn {
-    margin:2px;
+    margin: 2px;
     height: 170px;
 
 }
@@ -94,7 +103,7 @@
     background-color: #FFFFFF !important;
 }
 
-.no-display{
+.no-display {
     display: none;
 }
 
@@ -106,10 +115,10 @@ a.ui-slider-handle {
     outline: none !important;
 }
 
-.no-text-decoration{
+.no-text-decoration {
     text-decoration: none;
 }
 
-.content{
-margin-top: 10px;
+.content {
+    margin-top: 10px;
 }

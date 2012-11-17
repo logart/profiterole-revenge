@@ -19,7 +19,7 @@ ${scripts!}
 <body>
 <div class="container">
 
-    <a href="/"><img class="img-head" src="<@spring.url'/img/head33.png'/>" alt="Head"/></a>
+    <a href="/"><img class="img-head" src="<@spring.url '/img/head33.png'/>" alt="Head"/></a>
 
     <div class="navbar">
         <div class="navbar-inner">
