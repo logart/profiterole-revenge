@@ -47,4 +47,8 @@ public class IngridientServiceImpl implements IngridientService {
     public void removeIngridient(Ingridient ingridient) {
         ingridientDao.removeIngridient(ingridient);
     }
+
+    public void setIngridientDao(IngridientDao ingridientDao) {
+        this.ingridientDao = ingridientDao;
+    }
 }
