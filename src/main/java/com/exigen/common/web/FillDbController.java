@@ -59,6 +59,7 @@ public class FillDbController {
     private List<String> descriptionList;
     private List<String> titleList;
     private List<Integer> timeList;
+    private List<Double> caloriesList;
     List<List<Ingridient>> listOfIngridientsLists;
     List<List<Step>> listOfStepsLists;
 
@@ -334,6 +335,35 @@ public class FillDbController {
 
     }
 
+    public void addCaloreis() {
+
+        double calories1= 275.5;
+        double calories2=387.9;
+        double calories3=280.9;
+        double calories4=561.3;
+        double calories5=267.4;
+        double calories6=368.5;
+        double calories7=168.6;
+        double calories8=481.2;
+        double calories9=368.3;
+        double calories10=648.9;
+        double calories11=128.9;
+        double calories12=532.1;
+        double calories13=367.91;
+        double calories14=222.7;
+        double calories15=668.3;
+        double calories16=284.3;
+        double calories17=484.224;
+        double calories18=564.87;
+        double calories19=282.5;
+        double calories20=228.89;
+
+        caloriesList=new ArrayList<Double>(Arrays.asList(calories1,calories2,calories3,calories4,calories5,calories6,calories7,calories8,calories9,calories10,calories11,calories12,calories13,calories14,calories15,calories16,calories17,calories18,calories19,calories20));
+
+    }
+
+
+
     /**
      * {@method addRecipes()}
      * creates for adding information into our DB. It works for adding RecipeTitle, RecipeDescription,
@@ -351,6 +381,7 @@ public class FillDbController {
         addBigImg();
         addSmallImg();
         addTime();
+        addCaloreis();
 
         /**
          * {@code rec1..rec20} adding information in collection
@@ -358,22 +389,22 @@ public class FillDbController {
         int i = 0;
         recipeList = new ArrayList<Recipe>();
         for (; i < (2 + 2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(0), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(0), bigImgList.get(i), smallImgList.get(i), timeList.get(i),caloriesList.get(i)));
         }
 
         for (; i < (2 * 2 * 2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(1), bigImgList.get(i), smallImgList.get(i), timeList.get(i),caloriesList.get(i)));
         }
 
         for (; i < (2 * 2 * 2 + 2 * 2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2), bigImgList.get(i), smallImgList.get(i), timeList.get(i),caloriesList.get(i)));
         }
 
         for (; i < (2 * 2 * 2 * 2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2 + 1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2 + 1), bigImgList.get(i), smallImgList.get(i), timeList.get(i),caloriesList.get(i)));
         }
         for (; i < (2 * 2 * 2 * 2 + 2 * 2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2 + 2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
+            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2 + 2), bigImgList.get(i), smallImgList.get(i), timeList.get(i),caloriesList.get(i)));
         }
     }
 
