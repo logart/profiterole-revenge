@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 @Service("ingridientService")
-@Transactional(readOnly = true)
 public class IngridientServiceImpl implements IngridientService {
 
     /**
@@ -28,7 +27,7 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
+     public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
         return ingridientDao.getIngridientsRecipeList(recipeId);
     }
 

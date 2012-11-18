@@ -53,7 +53,7 @@ public class Step {
      */
 
     @ManyToOne
-    @JoinColumn(name = "recip_id")
+    @JoinColumn(name = "recipeForStep_id")
     private Recipe recipe;
 
     /**
