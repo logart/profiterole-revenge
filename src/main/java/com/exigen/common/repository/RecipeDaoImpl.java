@@ -20,26 +20,44 @@ public class RecipeDaoImpl implements RecipeDao {
     private EntityManager entityManager;
 
     /**
-     * {@method getOneRecipe(Integer recipeId)}
+     * {@method getOneRecipeList(Integer recipeId)}
      *
-     * @param recipeId(unique identificator of some particular recipe)
-     * @return the list of recipes, where Recipe field recipeId equals parameter recipeId( return complete description
+     * @param recipeId (unique identificator of some particular recipe)
+     * @return the recipe, where Recipe field recipeId equals parameter recipeId( return complete description
      *         of the recipe with the steps, ingredients, Pictures.).
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipeId is null, or id has no results in the database)
      */
     @Override
-    public Recipe getOneRecipe (Integer recipeId) {
+    public Recipe getOneRecipe(Integer recipeId) {
+        return entityManager.find(Recipe.class, recipeId);
+    }
 
-        return entityManager.find(Recipe.class , recipeId );
+    /**
+     * {@method getRecipeCuisineList(Cuisine cuisine)}
+     *
+     * @param cuisine (object of some particular recipe)
+     * @return the list of recipes, where cuisine in Recipe entity =@param).
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
+     */
+    @Override
+    public List<Recipe> getRecipeCuisineList(Cuisine cuisine) {
+        List<Recipe> results = this.entityManager.createNamedQuery("Recipe.findRecipesFromCuisine")
+                .setParameter("selectedCuisine", cuisine)
+                .getResultList();
+
+
+        return results;
     }
 
     /**
      * {@method addRecipe(Recipe recipe)}
      * for adding information about some particular recipe into DB
      *
-     * @param recipe(object of some particular recipe)
+     * @param recipe (object of some particular recipe)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipe is null)
@@ -53,7 +71,7 @@ public class RecipeDaoImpl implements RecipeDao {
      * {@method removeRecipe(Recipe recipe)}
      * for remove some particular recipe from DB
      *
-     * @param recipe(object of some particular recipe)
+     * @param recipe (object of some particular recipe)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipe is null)
@@ -63,10 +81,10 @@ public class RecipeDaoImpl implements RecipeDao {
         entityManager.remove(recipe);
     }
 
-/**
- * {@method setEntityManager(EntityManager entityManager)}
- * for tests in DAO. Inject EM in this class
- */
+    /**
+     * {@method setEntityManager(EntityManager entityManager)}
+     * for tests in DAO. Inject EM in this class
+     */
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
