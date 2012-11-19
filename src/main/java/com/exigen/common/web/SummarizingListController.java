@@ -1,7 +1,6 @@
 package com.exigen.common.web;
 
 import com.exigen.common.service.IngridientService;
-import com.exigen.common.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +20,6 @@ import java.util.List;
 
 @Controller
 public class SummarizingListController {
-
-    /**
-     * {@code recipeService} describes the RecipeService for inject on this
-     * class
-     */
-
-    @Autowired
-    private RecipeService recipeService;
 
     /**
      * {@code ingridientService} describes the IngridientService for inject on this
