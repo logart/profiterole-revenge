@@ -19,7 +19,8 @@
 </script>
 [#list model as a]
 <div class="btn" href="${a.cuisineId}">
-    <img src="${a.imglink}" height="100" width="100"/><label>${a.cuisin}</label>
+    <img class="img-cuisine" src="${a.imglink}" alt="${a.cuisin}"/>
+    <label>${a.cuisin}</label>
 </div>
 [/#list]
 <div style="clear: both;"></div>
