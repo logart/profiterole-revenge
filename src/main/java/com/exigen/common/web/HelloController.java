@@ -8,16 +8,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Class  {@code FillDbController} creates for mapped empty view
- * @DATE July 25, 2012
+ *
  * @author Ivan.
+ * @DATE July 25, 2012
  */
 @Controller
 public class HelloController {
 
     /**
      * {@method index()} using for mapped empty view
-     * @return empty view name
      *
+     * @return empty view name
      */
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {

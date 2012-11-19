@@ -19,6 +19,9 @@ import java.util.List;
 @Service("recipeService")
 @Transactional(readOnly = true)
 public class RecipeServiceImpl implements RecipeService {
+
+    private Integer counterOfCalories = 0;
+
     /**
      * {@code recipeDao} describes the RecipeDao work with DB and Recipe entity
      */
@@ -26,10 +29,25 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeDao recipeDao;
 
     /**
+     * {@method getRecipeCuisineList(Cuisine cuisine)}
+     *
+     * @param cuisine (object of some particular recipe)
+     * @return the list of recipes, where cuisine in Recipe entity =@param).
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Recipe> getRecipeCuisineList(Cuisine cuisine) {
+        return recipeDao.getRecipeCuisineList(cuisine);
+    }
+
+    /**
      * {@method getOneRecipeList(Integer recipeId)}
      *
-     * @param recipeId(unique identificator of some particular recipe)
-     * @return the list of recipes, where Recipe field recipeId equals parameter recipeId( return complete description
+     * @param recipeId (unique identificator of some particular recipe)
+     * @return the recipe, where Recipe field recipeId equals parameter recipeId( return complete description
      *         of the recipe with the steps, ingredients, Pictures.).
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
@@ -37,7 +55,7 @@ public class RecipeServiceImpl implements RecipeService {
      */
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Recipe getOneRecipe(Integer recipeId) {
 
         return recipeDao.getOneRecipe(recipeId);
@@ -48,7 +66,7 @@ public class RecipeServiceImpl implements RecipeService {
      * {@method addRecipe(Recipe recipe)}
      * for adding information about some particular recipe into DB
      *
-     * @param recipe(object of some particular recipe)
+     * @param recipe (object of some particular recipe)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipe is null)
@@ -62,7 +80,7 @@ public class RecipeServiceImpl implements RecipeService {
      * {@method removeRecipe(Recipe recipe)}
      * for remove some particular recipe from DB
      *
-     * @param recipe(object of some particular recipe)
+     * @param recipe (object of some particular recipe)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipe is null)
@@ -71,6 +89,19 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional
     public void removeRecipe(Recipe recipe) {
         recipeDao.removeRecipe(recipe);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+
+    @Override
+    @Transactional
+    public Integer CaloriesCalculation(List<Integer> recipesId) {
+        for (int i = 0; i < recipesId.size(); i++) {
+            counterOfCalories = +(recipeDao.getOneRecipe(recipesId.get(i))).getCalories();
+        }
+        return counterOfCalories;
     }
 
     /**

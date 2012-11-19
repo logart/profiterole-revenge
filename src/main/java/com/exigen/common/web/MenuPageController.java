@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Class  {@code MenuPageController} creates for mapped "Menu" view
- * @DATE July 25, 2012
+ *
  * @author Ivan.
+ * @DATE July 25, 2012
  */
 
 @Controller

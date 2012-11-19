@@ -1,22 +1,33 @@
 [#ftl]
-
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">${model.title}</h3>
+    <h3 id="myModalLabel">${recipe.title}</h3>
 </div>
 <div class="modal-body">
-    <img src="${model.bigImg}" class="img-rounded"/>
-    <h4>Время приготовления: </h4>
+    <img src="${recipe.bigImg}" class="img-rounded"/>
 
-    <p>${model.time}</p>
-    <h4>Ингридиенты: </h4>
+    <span class="text-justify">
+    <br/>
+    <p><strong>Время приготовления:</strong> ${recipe.time} минут </p>
+    <br/>
+    <p><strong>Ингридиенты: </strong></p>
+    <table class="table table-striped table-bordered table-condensed">
+    [#list ingridient as a]
+        <tr>
+            <td>${a.nameOfIngridient}</td>
+            <td>${a.countOfIngridient}</td>
+            <td>${a.unitOfMeasure}</td>
+        </tr>
+    [/#list]
+    </table>
+    <br/>
+    [#list step as a]
+        <p><strong>Шаг ${a.stepNumber}</strong></p>
 
-    <p>${model.description}</p>
+    <p>${a.stepDescription}</p>
+    [/#list]
+        </span>
 </div>
 <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
     <button class="btn btn-primary">Печать</button>
 </div>
-
-
-

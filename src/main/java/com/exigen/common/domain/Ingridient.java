@@ -120,6 +120,10 @@ public class Ingridient implements Serializable {
         this.countOfIngridient = countOfIngridient;
     }
 
+    public void addCountOfIngridient(int countOfIngridient) {
+        this.countOfIngridient += countOfIngridient;
+    }
+
     public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }

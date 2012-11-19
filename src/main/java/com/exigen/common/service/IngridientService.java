@@ -45,4 +45,6 @@ public interface IngridientService {
      * @throws NullPointerException(when ingridient is null)
      */
     void removeIngridient(Ingridient ingridient);
+
+    List<Ingridient> getAllIngridients(List<Integer> listOfRecipesId);
 }

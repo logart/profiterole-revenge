@@ -49,7 +49,7 @@ public class CuisineDaoImpl implements CuisineDao {
      */
     @Override
     public List<Recipe> getOneCuisineList(Integer cuis) {
-        List<Recipe> results = this.entityManager.createQuery("select t from Recipe t where t.cuisine.cuisineId=:selectedCuis")
+        List<Recipe> results = this.entityManager.createQuery("select t.recipes from Cuisine t where t.cuisineId=:selectedCuis")
                 .setParameter("selectedCuis", cuis)
                 .getResultList();
         return results;

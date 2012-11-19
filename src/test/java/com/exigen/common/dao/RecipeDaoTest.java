@@ -35,34 +35,34 @@ public class RecipeDaoTest {
     private Recipe RecipeForId;
     private Cuisine cuisine;
     private Categories categories;
-    private Integer id=0;
+    private Integer id = 0;
 
     @Before
-    public void setup(){
-        cuisine=new Cuisine("cuisin","link");
-        categories=new Categories("category");
+    public void setup() {
+        cuisine = new Cuisine("cuisin", "link");
+        categories = new Categories("category");
         categoriesDao.addCategories(categories);
         cuisineDao.addCuisine(cuisine);
-        recipe=new Recipe("title","desc",cuisine,categories,"link1","link2",4);
+        recipe = new Recipe("title", "desc", cuisine, categories, "link1", "link2", 4, 10);
     }
 
 
     @Test
-    public void getRecipeTest(){
-        Assert.assertEquals(null,recipeDao.getOneRecipe(0));
+    public void getRecipeTest() {
+        Assert.assertEquals(null, recipeDao.getOneRecipe(0));
     }
 
     @Test
-    public void addRecipeTest(){
+    public void addRecipeTest() {
         recipeDao.addRecipe(recipe);
-        List<Recipe> recipeList=recipeDao.getRecipeCuisineList(cuisine);
-        RecipeForId=recipeList.get(0);
-        id=recipe.getRecipeId();
-        Assert.assertEquals(recipe,recipeDao.getOneRecipe(id));
+        List<Recipe> recipeList = recipeDao.getRecipeCuisineList(cuisine);
+        RecipeForId = recipeList.get(0);
+        id = recipe.getRecipeId();
+        Assert.assertEquals(recipe, recipeDao.getOneRecipe(id));
     }
 
     @Test
-    public void removeRecipeTest(){
+    public void removeRecipeTest() {
         recipeDao.removeRecipe(recipe);
         Assert.assertNull(recipeDao.getOneRecipe(id));
     }
