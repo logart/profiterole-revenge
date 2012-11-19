@@ -49,35 +49,35 @@ public class StepDaoTest {
 
 
     @Before
-    public void setup(){
-        cuisine=new Cuisine("cuisin","link");
+    public void setup() {
+        cuisine = new Cuisine("cuisin", "link");
         cuisineDao.addCuisine(cuisine);
-        categories=new Categories("category");
+        categories = new Categories("category");
 
         categoriesDao.addCategories(categories);
 
-        recipe=new Recipe("title","desc",cuisine,categories,"link1","link2",4);
+        recipe = new Recipe("title", "desc", cuisine, categories, "link1", "link2", 4, 10);
         recipeDao.addRecipe(recipe);
-        step=new Step(1,"step",recipe);
+        step = new Step(1, "step", recipe);
         stepDao.addStep(step);
-        stepList=new ArrayList<Step>();
-        recipeList=new ArrayList<Recipe>();
+        stepList = new ArrayList<Step>();
+        recipeList = new ArrayList<Recipe>();
     }
 
     @Test
-    public void addAndGetStepsTest(){
-        recipeList=recipeDao.getRecipeCuisineList(cuisine);
-        recipe=recipeList.get(0);
-        recipeId=recipe.getRecipeId();
+    public void addAndGetStepsTest() {
+        recipeList = recipeDao.getRecipeCuisineList(cuisine);
+        recipe = recipeList.get(0);
+        recipeId = recipe.getRecipeId();
 
         stepList.add(step);
-        Assert.assertEquals(stepList,stepDao.getListOfRecipeSteps(recipeId));
+        Assert.assertEquals(stepList, stepDao.getListOfRecipeSteps(recipeId));
     }
 
     @Test
-    public void removeStepsTest(){
+    public void removeStepsTest() {
         stepDao.removeStep(step);
-        Assert.assertEquals(stepList,stepDao.getListOfRecipeSteps(recipeId));
+        Assert.assertEquals(stepList, stepDao.getListOfRecipeSteps(recipeId));
     }
 
 }

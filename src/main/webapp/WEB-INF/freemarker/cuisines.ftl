@@ -4,7 +4,8 @@
 
     $(document).ready(function () {
 
-        $('div.btn').click(function () {
+        $('#cuisine > div.btn').click(function () {
+            $(".span12 > button.btn.no-display").show();
             var myCuisine = $(this).attr("href");
 
             $.get("/recipeListFromAjax", {cuisineId:myCuisine},

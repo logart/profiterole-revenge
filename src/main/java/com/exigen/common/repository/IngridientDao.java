@@ -47,6 +47,4 @@ public interface IngridientDao {
      * @throws NullPointerException(when ingridient is null)
      */
     void removeIngridient(Ingridient ingridient);
-
-
 }

@@ -4,7 +4,6 @@ package com.exigen.common.service;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
 
-
 import java.util.List;
 
 /**

@@ -51,6 +51,4 @@ public interface StepDao {
      */
 
     void removeStep(Step step);
-
-
 }

@@ -51,38 +51,37 @@ public class IngridientDaoTest {
     private List<Ingridient> ingridientList;
 
     @Before
-    public void setup(){
-        cuisine=new Cuisine("cuisin","link");
+    public void setup() {
+        cuisine = new Cuisine("cuisin", "link");
         cuisineDao.addCuisine(cuisine);
-        categories=new Categories("category");
+        categories = new Categories("category");
 
         categoriesDao.addCategories(categories);
 
-        recipe=new Recipe("title","desc",cuisine,categories,"link1","link2",4);
+        recipe = new Recipe("title", "desc", cuisine, categories, "link1", "link2", 4, 10);
         recipeDao.addRecipe(recipe);
-        ingridient = new Ingridient("name",5, 12,"unit",recipe);
-        ingridientList=new ArrayList<Ingridient>();
-        recipeList=new ArrayList<Recipe>();
+        ingridient = new Ingridient("name", 5, 12, "unit", recipe);
+        ingridientList = new ArrayList<Ingridient>();
+        recipeList = new ArrayList<Recipe>();
     }
 
     @Test
-    public void addAndGetIngridientsTest(){
-        recipeList=recipeDao.getRecipeCuisineList(cuisine);
-        recipe=recipeList.get(0);
-        recipeId=recipe.getRecipeId();
+    public void addAndGetIngridientsTest() {
+        recipeList = recipeDao.getRecipeCuisineList(cuisine);
+        recipe = recipeList.get(0);
+        recipeId = recipe.getRecipeId();
         ingridientList.add(ingridient);
         ingridientDao.addIngridient(ingridient);
-        Assert.assertEquals(ingridientList,ingridientDao.getIngridientsRecipeList(recipeId));
+        Assert.assertEquals(ingridientList, ingridientDao.getIngridientsRecipeList(recipeId));
 
     }
 
     @Test
-    public void removeIngridientsTest(){
+    public void removeIngridientsTest() {
         ingridientDao.removeIngridient(ingridient);
 
 
-
-        Assert.assertEquals(ingridientList,ingridientDao.getIngridientsRecipeList(recipeId));
+        Assert.assertEquals(ingridientList, ingridientDao.getIngridientsRecipeList(recipeId));
     }
 
 }

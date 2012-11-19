@@ -73,8 +73,8 @@ body {
     margin-bottom: 4px;
 }
 
-.droppable > .btn {
-    margin: 2px;
+.droppable > .recepies_btn {
+    margin-bottom: 30px;
     height: 170px;
 
 }
@@ -89,6 +89,11 @@ body {
 .draggable {
     height: 150px;
     padding: 0.5em;
+}
+
+.droppable {
+    padding: 0.5em;
+    margin: 10px;
 }
 
 .slider-input {
@@ -119,4 +124,20 @@ a.ui-slider-handle {
 
 .content {
     margin-top: 10px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-cener {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-12 {
+    font-size: 12px;
 }

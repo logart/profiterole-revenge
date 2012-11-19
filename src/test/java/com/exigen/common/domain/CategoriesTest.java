@@ -11,25 +11,23 @@ public class CategoriesTest {
 
     @Test
     public void testGetSetCateg() throws Exception {
-        categories=new Categories();
+        categories = new Categories();
 
-     String testCat="category";
+        String testCat = "category";
         assertNull(categories.getCateg());
         categories.setCateg(testCat);
-        assertEquals(testCat,categories.getCateg());
+        assertEquals(testCat, categories.getCateg());
 
     }
 
     @Test
     public void testGetSetId() throws Exception {
-        categories=new Categories();
+        categories = new Categories();
         assertNull(categories.getCategoriesId());
         categories.getCategoriesId();
-        Integer test=1;
+        Integer test = 1;
         categories.setCategoriesId(test);
-        assertEquals(test,categories.getCategoriesId());
+        assertEquals(test, categories.getCategoriesId());
 
     }
-    }
-
-
+}

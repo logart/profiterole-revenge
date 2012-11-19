@@ -17,7 +17,7 @@ import java.io.Serializable;
         @NamedQuery(name = "Recipe.findRecipesFromCuisine",
                 query = "SELECT rp FROM Recipe AS rp WHERE rp.cuisine=:selectedCuisine"),
         @NamedQuery(name = "Recipe.findRecipeById",
-                query = "SELECT rp FROM Recipe AS rp WHERE rp.recipeId=:selectedId")
+                query = "SELECT rp FROM Recipe AS rp WHERE rp.id=:selectedId")
 })
 
 public class Recipe implements Serializable {
@@ -38,7 +38,7 @@ public class Recipe implements Serializable {
     /**
      * {@code description} this field is intended to describe the recipe
      */
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String description;
 
     /**
@@ -56,24 +56,30 @@ public class Recipe implements Serializable {
     private Categories categories;
 
     /**
-     * {@code  bigImg} This field to save reference on image for recipe
+     * {@code bigImg} This field to save reference on image for recipe
      */
 
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String bigImg;
 
     /**
-     * {@code  smallImg} This field to save reference on image(small) for recipe
+     * {@code smallImg} This field to save reference on image(small) for recipe
      */
 
-    @Column(columnDefinition="mediumtext")
+    @Column(columnDefinition = "mediumtext")
     private String smallImg;
 
     /**
-     * {@code  time} This field to save time of creation for recipe
+     * {@code time} This field to save time of creation for recipe
      */
 
     private Integer time;
+
+    /**
+     * {@code calories} This field is a value of calories for this recipe
+     */
+
+    private Integer calories;
 
     /**
      * {@method Recipe} its a default constructor for JPA
@@ -86,7 +92,7 @@ public class Recipe implements Serializable {
      * {@method Recipe} its a constructor for adding data in entity
      */
 
-    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time) {
+    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time, Integer calories) {
         this.title = title;
         this.description = description;
         this.cuisine = cuisine;
@@ -94,10 +100,11 @@ public class Recipe implements Serializable {
         this.bigImg = bigImg;
         this.smallImg = smallImg;
         this.time = time;
+        this.calories = calories;
     }
 
     /**
-     * {@methods } its a getters and setters
+     * {@methods } below its a getters and setters
      */
 
     public String getBigImg() {
@@ -164,5 +171,13 @@ public class Recipe implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-}
 
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
+}

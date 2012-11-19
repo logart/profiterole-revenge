@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Class  {@code MenuController} creates cuisines and recepies
  * freemarker pages with information about cuisines and recipes
  * with ajax support
+ *
  * @author Ivan.
  * @DATE July 25, 2012
  */

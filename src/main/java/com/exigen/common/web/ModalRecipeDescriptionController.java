@@ -55,8 +55,6 @@ public class ModalRecipeDescriptionController {
     private StepService stepService;
 
 
-
-
     /**
      * {@method modalRecipeDescription()} using for mapped ajax queries      *
      *
@@ -68,12 +66,10 @@ public class ModalRecipeDescriptionController {
     @ResponseBody
     public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
 
+        ModelAndView modalModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
+        modalModel.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
+        modalModel.addObject("ingridient", this.ingridientService.getIngridientsRecipeList(recipeId));
 
-        ModelAndView modal_model = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
-        modal_model.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
-        modal_model.addObject("ingridient", this.ingridientService.getIngridientsRecipeList(recipeId));
-
-
-        return modal_model;
+        return modalModel;
     }
 }

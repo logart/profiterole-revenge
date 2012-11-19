@@ -10,7 +10,17 @@
         });
 
 
-        $('.btn').click(function () {
+        $(".span12 > button.btn.no-display").click(function (e) {
+            var id_rec = [];
+            $("#menuDrop").find(".rec_id").filter(function (index) {
+                id_rec.push($(this).text());
+                return true;
+            });
+            lv_url = "/summarizingList?recipesId=" + id_rec;
+            $("#modalForSummarizingList").load(lv_url);
+        });
+
+        $('.btn.btn-large.no-outline').click(function () {
 
             $('#hiddens').show(500);
 
@@ -79,15 +89,34 @@
         <div class="span6" id="menuDrop">
             <div class="block-create-menu droppable" id="breakfast">
                 <h1>Ваш завтрак</h1>
+
+                <div class="span12">
+                    <button class="btn no-display no-outline" data-toggle="modal"
+                            data-target="#modalForSummarizingList">Готово
+                    </button>
+                </div>
             </div>
             <div class="block-create-menu droppable" id="dinner">
                 <h1>Ваш обед</h1>
+
+                <div class="span12">
+                    <button class="btn no-display no-outline" data-toggle="modal"
+                            data-target="#modalForSummarizingList">Готово
+                    </button>
+                </div>
             </div>
             <div class="block-create-menu droppable" id="supper">
                 <h1>Ваш ужин</h1>
-            </div>
 
+                <div class="span12">
+                    <button class="btn no-display no-outline" data-toggle="modal"
+                            data-target="#modalForSummarizingList">Готово
+                    </button>
+                </div>
+            </div>
+            <div class="modal fade" id="modalForSummarizingList"></div>
         </div>
+
         <div class="span6 align2">
             <div class="block-create-menu" id="rec">
                 <div id="menu-header"><h1>Рецепты</h1></div>

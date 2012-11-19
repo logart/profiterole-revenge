@@ -53,7 +53,7 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@method  getCategoriesId()} its a getter
+     * {@method getCategoriesId()} its a getter
      */
 
     public Integer getCategoriesId() {
@@ -61,7 +61,7 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@method  setCategoriesId()} its a setter
+     * {@method setCategoriesId()} its a setter
      */
 
     public void setCategoriesId(Integer categoriesId) {
@@ -69,7 +69,7 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@method  getCateg()} its a getter
+     * {@method getCateg()} its a getter
      */
 
     public String getCateg() {
@@ -77,7 +77,7 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@method  setCateg} its a setter
+     * {@method setCateg} its a setter
      */
 
     public void setCateg(String categ) {
@@ -85,7 +85,7 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@method  getRecipeList()} its a getter
+     * {@method getRecipeList()} its a getter
      */
 
     public List<Recipe> getRecipeList() {
@@ -93,7 +93,7 @@ public class Categories implements Serializable {
     }
 
     /**
-     * {@method  setRecipeList} its a setter
+     * {@method setRecipeList} its a setter
      */
 
 
@@ -101,4 +101,3 @@ public class Categories implements Serializable {
         this.recipeList = recipeList;
     }
 }
-

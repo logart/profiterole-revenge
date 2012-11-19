@@ -11,11 +11,11 @@
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
         ">
 
-    <context:annotation-config />
+    <context:annotation-config/>
 
     <context:component-scan base-package="com.exigen.common"/>
     <!-- enable declarative transaction management -->
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
 
 
     <!-- enable declarative transaction management -->
@@ -29,41 +29,41 @@
 
 
     <bean
-            class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+            class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
     <!--<bean-->
-            <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="location" value="classpath:/hibernate.properties" />-->
+    <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+    <!--<property name="location" value="classpath:/hibernate.properties" />-->
     <!--</bean>-->
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="user" value="profiterole" />
-        <property name="password" value="1234" />
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/profiterole" />
-        <property name="initialPoolSize" value="1" />
-        <property name="maxPoolSize" value="2" />
-        <property name="minPoolSize" value="1" />
-        <property name="acquireIncrement" value="1" />
-        <property name="acquireRetryAttempts" value="0" />
+        <property name="user" value="profiterole"/>
+        <property name="password" value="1234"/>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/profiterole"/>
+        <property name="initialPoolSize" value="1"/>
+        <property name="maxPoolSize" value="2"/>
+        <property name="minPoolSize" value="1"/>
+        <property name="acquireIncrement" value="1"/>
+        <property name="acquireRetryAttempts" value="0"/>
     </bean>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="recipe" />
-        <property name="dataSource" ref="dataSource" />
+        <property name="persistenceUnitName" value="recipe"/>
+        <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
-                <property name="showSql" value="true" />
-                <property name="generateDdl" value="true" />
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+                <property name="showSql" value="true"/>
+                <property name="generateDdl" value="true"/>
             </bean>
         </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
 

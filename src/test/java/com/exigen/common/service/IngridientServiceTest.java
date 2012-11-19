@@ -13,10 +13,10 @@ import static org.mockito.Mockito.when;
 
 public class IngridientServiceTest {
 
-    private IngridientServiceImpl ingridientService=new IngridientServiceImpl();
+    private IngridientServiceImpl ingridientService = new IngridientServiceImpl();
 
 
-    Recipe recipe=new Recipe();
+    Recipe recipe = new Recipe();
 
     @Mock
     IngridientDao ingridientDao;
@@ -32,7 +32,6 @@ public class IngridientServiceTest {
         when(ingridientDao.getIngridientsRecipeList(recipe.getRecipeId())).thenReturn(null);
         Assert.assertNull(ingridientService.getIngridientsRecipeList(recipe.getRecipeId()));
     }
-
 
 
 }
