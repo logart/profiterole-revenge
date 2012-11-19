@@ -156,8 +156,8 @@ public class FillDbController {
         String bigImg20 = "http://eda.2k.ua/content/catalog/kokteyl_mokhito_orig.jpg";
 
         /**
-        * {@code bigImgList} add big images in the list
-        */
+         * {@code bigImgList} add big images in the list
+         */
         bigImgList = new ArrayList<String>(Arrays.asList(bigImg1, bigImg2, bigImg3, bigImg4, bigImg5, bigImg6, bigImg7, bigImg8, bigImg9, bigImg10, bigImg11, bigImg12, bigImg13, bigImg14, bigImg15, bigImg16, bigImg17, bigImg18, bigImg19, bigImg20));
 
     }
@@ -301,26 +301,26 @@ public class FillDbController {
         /**
          * {@code time1..time20} describes times for our DB
          */
-        Integer time1 = 2*2*2+2;
-        Integer time2 = (2*2*2+2)*2;
-        Integer time3 = (2*2*2+2)*(2+1);
-        Integer time4 = (2*2*2+2)*2*2;
-        Integer time5 = 2*2*2+2;
-        Integer time6 = (2*2*2+2)*2;
-        Integer time7 = (2*2*2+2)*(2+1);
-        Integer time8 = (2*2*2+2)*2*2;
-        Integer time9 = 2*2*2+2;
-        Integer time10 = (2*2*2+2)*2;
-        Integer time11 = (2*2*2+2)*(2+1);
-        Integer time12 = (2*2*2+2)*2*2;
-        Integer time13 = 2*2*2+2;
-        Integer time14 = (2*2*2+2)*2;
-        Integer time15 = (2*2*2+2)*(2+1);
-        Integer time16 = (2*2*2+2)*2*2;
-        Integer time17 = 2*2*2+2;
-        Integer time18 = (2*2*2+2)*2;
-        Integer time19 = (2*2*2+2)*(2+1);
-        Integer time20 = (2*2*2+2)*2*2;
+        Integer time1 = 2 * 2 * 2 + 2;
+        Integer time2 = (2 * 2 * 2 + 2) * 2;
+        Integer time3 = (2 * 2 * 2 + 2) * (2 + 1);
+        Integer time4 = (2 * 2 * 2 + 2) * 2 * 2;
+        Integer time5 = 2 * 2 * 2 + 2;
+        Integer time6 = (2 * 2 * 2 + 2) * 2;
+        Integer time7 = (2 * 2 * 2 + 2) * (2 + 1);
+        Integer time8 = (2 * 2 * 2 + 2) * 2 * 2;
+        Integer time9 = 2 * 2 * 2 + 2;
+        Integer time10 = (2 * 2 * 2 + 2) * 2;
+        Integer time11 = (2 * 2 * 2 + 2) * (2 + 1);
+        Integer time12 = (2 * 2 * 2 + 2) * 2 * 2;
+        Integer time13 = 2 * 2 * 2 + 2;
+        Integer time14 = (2 * 2 * 2 + 2) * 2;
+        Integer time15 = (2 * 2 * 2 + 2) * (2 + 1);
+        Integer time16 = (2 * 2 * 2 + 2) * 2 * 2;
+        Integer time17 = 2 * 2 * 2 + 2;
+        Integer time18 = (2 * 2 * 2 + 2) * 2;
+        Integer time19 = (2 * 2 * 2 + 2) * (2 + 1);
+        Integer time20 = (2 * 2 * 2 + 2) * 2 * 2;
 
         /**
          * {@code timeList} add values of time in the list
@@ -351,26 +351,9 @@ public class FillDbController {
         /**
          * {@code rec1..rec20} adding information in collection
          */
-        int i =0;
+        int i = 0;
         recipeList = new ArrayList<Recipe>();
-        for (; i < (2+2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(0), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
-        }
 
-        for (; i < (2*2*2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
-        }
-
-        for (; i < (2*2*2+2*2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
-        }
-
-        for (; i < (2*2*2*2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2+1), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
-        }
-        for (; i < (2*2*2*2+2*2); i++) {
-            recipeList.add(new Recipe(titleList.get(i), descriptionList.get(i), cuisineList.get(1), categoriesList.get(2+2), bigImgList.get(i), smallImgList.get(i), timeList.get(i)));
-        }
     }
 
     @RequestMapping(value = {"/filldb"})
