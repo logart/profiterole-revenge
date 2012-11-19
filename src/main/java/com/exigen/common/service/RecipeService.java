@@ -71,5 +71,5 @@ public interface RecipeService {
      * @throws NullPointerException(when recipe's id has no results in the database)
      */
 
-    Integer CaloriesCalculation(List<Integer> recipesId);
+    Integer caloriesCalculation(List<Integer> recipesId);
 }
