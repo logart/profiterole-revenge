@@ -381,10 +381,10 @@
                         <artifactId>cf-maven-plugin</artifactId>
                         <version>1.0.0.M1</version>
                         <configuration>
-                            <appname>ivan-test-exigen-app</appname>
+                            <appname>ivan-test</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>ivan-test-exigen-app.cloudfoundry.com</url>
+                            <url>ivan-test.cloudfoundry.com</url>
                             <username>vanik1251@mail.ru</username>
                             <password>Qy0oPYgA</password>
                             <memory>512</memory>
