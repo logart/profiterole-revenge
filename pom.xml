@@ -34,6 +34,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.1.0.Final</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
@@ -407,9 +413,9 @@
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
                             <url>oleg-profiterole.cloudfoundry.com</url>
-                            <username>flieriya@gmail.com</username>
-                            <password>omgWTF11</password>
-                            <memory>256</memory>
+                            <username>tonysop000@gmail.com</username>
+                            <password>3KXlQkuG</password>
+                            <memory>512</memory>
                         </configuration>
                     </plugin>
                 </plugins>
