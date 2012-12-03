@@ -103,8 +103,8 @@ $(document).ready(function(){
                   </div></form>
                </div>
                 </div>
-                  <p><button  class="btn" value="#" id="dobavit">Добавить ингридиент</button>
-                                    <button class="btn" value="#" id="ydalit">Удалить ингридиент</button></p>
+                  <p><button  class="btn" value="#" id="adding">Добавить ингридиент</button>
+                                    <button class="btn" value="#" id="deleting">Удалить ингридиент</button></p>
 
 
 
