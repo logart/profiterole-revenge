@@ -136,3 +136,20 @@ a.ui-slider-handle {
 .font-12 {
     font-size: 12px;
 }
+
+.for-adding-recipes {
+     text-align: left;
+     margin-left;
+     height: 500px
+     width: 500px
+ }
+
+
+.error-block {
+        vertical-align:middle;
+      text-align: center;
+      margin-top;
+         width: 100px;
+          height: 100px;
+  }
+}
