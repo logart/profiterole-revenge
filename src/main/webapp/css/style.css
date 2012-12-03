@@ -74,7 +74,7 @@ body {
 }
 
 .droppable > .recepies_btn {
-    margin-bottom: 30px;
+    margin: 2px;
     height: 170px;
 
 }
@@ -89,11 +89,6 @@ body {
 .draggable {
     height: 150px;
     padding: 0.5em;
-}
-
-.droppable {
-    padding: 0.5em;
-    margin: 10px;
 }
 
 .slider-input {
