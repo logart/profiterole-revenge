@@ -54,12 +54,12 @@ $(document).ready(function(){
 
 	var k = $('conress').size() + 1;
 
-	$('#dobavit').click(function() {
+	$('#adding').click(function() {
 		$('<div id=k><p><select class="combobox" style="height: 20px width: 30px"><option value="Морковь">Морковь</option><option value="Лук">Лук</option><option value="Свекла">Свекла</option><option value="Сахар">Сахар</option><option value="Соль">Соль</option></select><form name="Recipename" action="hello" method="post"><input type="text" name="title" style="width: 25px; height: 25px" /> <br/></form><select class="combobox" style="height: 20px width: 30px"><option value="гр">гр</option><option value="мл">мл</option></select></p> </div>').fadeIn('slow').appendTo('.conress');
 		k++;
 	});
 
-	$('#ydalit').click(function() {
+	$('#deleting').click(function() {
 	if(k > 0) {
 		$("#k:last").remove()
 		k--;
