@@ -138,18 +138,18 @@ a.ui-slider-handle {
 }
 
 .for-adding-recipes {
-     text-align: left;
-     margin-left;
-     height: 500px
-     width: 500px
+    text-align: left;
+     margin-left:1px;
+     height: 500px;
+     width: 500px;
  }
 
 
 .error-block {
-        vertical-align:middle;
+      vertical-align:middle;
       text-align: center;
-      margin-top;
-         width: 100px;
-          height: 100px;
+      margin-top:5px;
+      width: 100px;
+      height: 100px;
   }
-}
+
