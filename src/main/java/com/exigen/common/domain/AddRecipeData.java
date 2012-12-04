@@ -20,23 +20,24 @@ public class AddRecipeData implements Serializable {
     /**
      * {@code title} Contains the title of recipe.
      */
-
-    @Size(max = 200, min=5, message = "Название содержит недопустимое количество символов (от 5 до 200).")
-    @Pattern(regexp = "^[а-яА-Яa-zA-Z0-9 \\Q!?,().\"':;%\\E]*$", message = "Название содержит недопустимые символы.")
+    @NotEmpty (message = "Название должно быть указано.")
+    @Size(max = 250, message = "Название содержит недопустимое количество символов (до 250).")
+    @Pattern(regexp = "^[а-яА-Яa-zA-Z0-9 \\Q.,()[]+-*/=\"'\\E]*$", message = "Корректными значениями названия являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\"'')")
     private String title;
 
     /**
      * {@code description} This field is intended to describe the recipe.
      */
 
-    @Size(min=10, message = "Слишком короткое описание.")
-    @Pattern(regexp = "^[а-яА-Яa-zA-Z0-9 \\Q!?,.()-+*&`\"':;%\\E]*$", message = "Название содержит недопустимые символы.")
+    @NotEmpty (message = "Описание должно быть указано.")
+    @Size(max=3000, message = "Длина описания не должна превышать 3000 символов.")
+    @Pattern(regexp = "^[а-яА-Яa-zA-Z0-9\\r\\n \\Q(.,()+-=\"':;[]!?*%<>/\\E]*$", message = "Корректными значениями описания являются большие и маленькие буквы (English, Українська, Русский), цифры, символы((.,()+-=\"':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
     /**
      * {@code cookingTime} This field contains cooking time.
      */
-
+    //   TODO
     @NotEmpty (message = "Время приготовления должно быть указано.")
     @Pattern(regexp = "^[0-9]*$", message = "Время приготовления должно быть целым числом.")
     private String cookingTime;
@@ -59,7 +60,7 @@ public class AddRecipeData implements Serializable {
      */
 
     @NotNull(message = "Должен быть минимум 1 ингридиент.")
-    private List<Ingridient> ingredientList;
+    private String[] ingredientList;
 
     /**
      * {@code ingredientList} This field contains list of steps for meal
@@ -112,11 +113,11 @@ public class AddRecipeData implements Serializable {
         this.category = category;
     }
 
-    public List<Ingridient> getIngredientList() {
+    public String[] getIngredientList() {
         return ingredientList;
     }
 
-    public void setIngredientList(List<Ingridient> ingredientList) {
+    public void setIngredientList(String[] ingredientList) {
         this.ingredientList = ingredientList;
     }
 
