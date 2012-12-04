@@ -38,6 +38,23 @@ body {
     margin-top: 20px;
 }
 
+.error-div {
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.error{
+    color: #ff0000;
+}
+
 .btn-group {
     text-align: center;
 }

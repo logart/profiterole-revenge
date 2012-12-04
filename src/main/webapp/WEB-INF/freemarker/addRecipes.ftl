@@ -1,15 +1,24 @@
 [#ftl]
+[#import "spring.ftl" as spring/]
 [#assign content]
 
 <script>
     $(document).ready(function () {
-
-
         var k = $('conress').size() + 1;
-
-
         $('#adding').click(function () {
-            $('<div id=k><p><select class="combobox" style="height: 20px width: 30px"><option value="Морковь">Морковь</option><option value="Лук">Лук</option><option value="Свекла">Свекла</option><option value="Сахар">Сахар</option><option value="Соль">Соль</option></select><p><input type="text" name="title" style="width: 25px; height: 25px" /></p><br/><select class="combobox" style="height: 20px width: 30px"><option value="гр">гр</option><option value="мл">мл</option></select></p> </div>').fadeIn('slow').appendTo('.conress');
+            $('<div id=k><p><select class="combobox" style="height: 20px width: 30px">' +
+                    '<option value="Морковь">Морковь</option>' +
+                    '<option value="Лук">Лук</option>' +
+                    '<option value="Свекла">Свекла</option>' +
+                    '<option value="Сахар">Сахар</option>' +
+                    '<option value="Соль">Соль</option>' +
+                    '</select><p>' +
+                    '<input type="text" name="ingredientList" style="width: 25px; height: 25px" />' +
+                    '</p><br/>' +
+                    '<select class="combobox" style="height: 20px width: 30px">' +
+                    '<option value="гр">гр</option>' +
+                    '<option value="мл">мл</option>' +
+                    '</select></p> </div>').fadeIn('slow').appendTo('.conress');
             k++;
             return false;
         });
@@ -36,7 +45,11 @@
 
 
         $('#add').click(function () {
-            $('<div id=i><p>Шаг ' + i + '</p><textarea rows="10" cols="15" name="text" ></textarea><INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p><INPUT NAME="userfile" TYPE="file"></p> <p><INPUT TYPE="submit" VALUE="Отправить"></p> </div>').fadeIn('slow').appendTo('.inputs');
+            $('<div id=i><p>Шаг ' + i + '</p>' +
+                    '<textarea rows="10" cols="15" name="text" ></textarea>' +
+                    '<INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>' +
+                    '<INPUT NAME="userfile" TYPE="file"></p> <p><INPUT TYPE="submit" VALUE="Отправить"></p> ' +
+                    '</div>').fadeIn('slow').appendTo('.inputs');
             i++;
             return false;
         });
@@ -55,24 +68,43 @@
 </script>
 
 <script type="text/javascript">
-    function submitform()
-    {
-        document.(#OK).submit();
+    function submitform() {
+        document.(#OK).
+        submit();
     }
 </script>
+    [@spring.bind "addRecipeData.*"/]
+    [#if spring.status.error]
+    <div class="error-div droppable" id="error">
+        [@spring.showErrors '<br>', 'error'/]
+    </div>
 
+    [/#if]
 
+ ${temp }
 <div class="row-fluid " style="height: 1500px">
-    <form id="#OK" action="" method="post" commandName="addingData">
-          <div class="span6" id="menuDrop">
+    <form id="#OK" action="" method="post" commandName="addRecipeData">
+        <div class="span6" id="menuDrop">
             <div class="block-create-menu droppable" id="breakfast" style="height: 1400px">
                 <div class="for-adding-recipes">
 
                     <h1>Создать рецепт</h1>
 
-                    <p>Название*</p> <input type="text" name="title"/> <br/>
-                    <p>Описание</p> <textarea rows="10" cols="45" name="text"></textarea> <br/>
-                    <p>Время приготовления</p> <input type="text" name="time"/> <br/>
+                    <p>Название*</p>
+
+                    [@spring.bind "addRecipeData.title"/]
+                    <input type="text" name="${spring.status.expression}"
+                           value="${spring.status.value?default("")}"/> <br/>
+
+                    <p>Описание</p>
+                    [@spring.bind "addRecipeData.description"/]
+                    <textarea rows="10" cols="45"
+                              name="${spring.status.expression}">${spring.status.value?default("")}</textarea> <br/>
+
+                    <p>Время приготовления</p>
+                    [@spring.bind "addRecipeData.cookingTime"/]
+                    <input type="text" name="${spring.status.expression}"
+                           value="${spring.status.value?default("")}"/> <br/>
 
                     <p>Кухня*</p>
                     <select class="combobox" style="height: 30px; width: 217px">
@@ -93,7 +125,6 @@
                     </select>
 
 
-
                     <p>Категория*</p> <select class="combobox" style="height: 30px; width: 217px">
 
                     <option value="Закуска">Закуска</option>
@@ -112,15 +143,17 @@
                             <div class="conress">
 
 
-                                    <select class="combobox" style="height: 30px; width: 217px">
-                                        <option value="Морковь">Морковь</option>
-                                        <option value="Лук">Лук</option>
-                                        <option value="Свекла">Свекла</option>
-                                        <option value="Сахар">Сахар</option>
-                                        <option value="Соль">Соль</option>
-                                    </select>
-
-                                <p><input type="text" name="title" style="width: 25px; height: 25px"/></p>
+                                <select class="combobox" style="height: 30px; width: 217px">
+                                    <option value="Морковь">Морковь</option>
+                                    <option value="Лук">Лук</option>
+                                    <option value="Свекла">Свекла</option>
+                                    <option value="Сахар">ахар</option>
+                                    <option value="Соль">Соль</option>
+                                </select>
+                                [@spring.bind "addRecipeData.ingredientList"/]
+                                <p>
+                                    <input type="text" name="${spring.status.expression}"
+                                           value="${spring.status.value?default("")}" style="width: 25px; height: 25px"/></p>
 
                                 <select class="combobox" style="height: 30px; width: 217px">
                                     <option value="гр">гр</option>
@@ -138,10 +171,6 @@
                     </div>
 
 
-
-
-
-
                 </div>
             </div>
         </div>
@@ -157,7 +186,9 @@
                             <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
                             <!-- макс. размер -->
                             <p>Имя файла:</p>
+
                             <p><INPUT NAME="userfile" TYPE="file"></p>
+
                             <p><INPUT TYPE="submit" VALUE="Отправить"></p>
                         </div>
                     </div>
@@ -169,7 +200,7 @@
 
             </div>
         </div>
-    <button class="btn btn-large no-outline" id="OK" style="vertical-align:middle">Создать</button>
+        <button class="btn btn-large no-outline" id="OK" style="vertical-align:middle" type="submit">Создать</button>
     </form>
 </div>
 
