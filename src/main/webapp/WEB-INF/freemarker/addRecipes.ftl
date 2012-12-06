@@ -8,15 +8,16 @@
         $('#adding').click(function () {
             $('<div id=k><p><select class="combobox" style="height: 20px width: 30px">' +
                     ' [#list ingridients as c]'+
-                    '<option value="${c}">${c.nameOfIngridient}</option>' +
-                    '[/#list]'+
+                        '<option value="${c}">${c.nameOfIngridient}</option>' +
+                        '[/#list]' +
                     '</select><p>' +
-                    '<input type="text" name="ingredientList" style="width: 25px; height: 25px" />' +
+                    [@spring.bind "addRecipeData.ingredientList"/]
+                    '<input type="text" name="${spring.status.expression}" style="width: 25px; height: 25px" />' +
                     '</p><br/>' +
                     '<select class="combobox" style="height: 20px width: 30px">' +
                     '[#list ingridients as w]'+
-                    '<option value="${w}">${w.unitOfMeasure}</option>' +
-                     '[/#list]'+
+                        '<option value="${w}">${w.unitOfMeasure}</option>' +
+                        '[/#list]' +
                     '</select></p> </div>').fadeIn('slow').appendTo('.conress');
             k++;
             return false;
@@ -45,7 +46,8 @@
 
         $('#add').click(function () {
             $('<div id=i><p>Шаг ' + i + '</p>' +
-                    '<textarea rows="10" cols="15" name="text" ></textarea>' +
+                    [@spring.bind "addRecipeData.stepsList"/]
+                    '<textarea rows="10" cols="15" name="${spring.status.expression}" ></textarea>' +
                     '<INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>' +
                     '<INPUT NAME="userfile" TYPE="file"></p> <p><INPUT TYPE="submit" VALUE="Отправить"></p> ' +
                     '</div>').fadeIn('slow').appendTo('.inputs');
@@ -68,7 +70,8 @@
 
 <script type="text/javascript">
     function submitform() {
-        document.(#OK).
+        document.(#OK
+    ).
         submit();
     }
 </script>
@@ -79,8 +82,6 @@
     </div>
 
     [/#if]
-
- [#--${temp }--]
 <div class="row-fluid " style="height: 1500px">
     <form id="#OK" action="" method="post" commandName="addRecipeData">
         <div class="span6" id="menuDrop">
@@ -110,10 +111,12 @@
                         [#list cuisinesList as a]
                             <option value="${a}">${a.cuisin}</option>
                         [/#list]
-                     </select>
+                    </select>
 
 
-                    <p>Категория*</p> <select class="combobox" style="height: 30px; width: 217px">
+                    <p>Категория*</p>
+                    [@spring.bind "addRecipeData.category"/]
+                    <select class="combobox" style="height: 30px; width: 217px" name="${spring.status.expression}">
 
                     [#list categories as b]
                         <option value="${b}">${b.categ}</option>
@@ -134,10 +137,13 @@
                                         <option value="${c}">${c.nameOfIngridient}</option>
                                     [/#list]
                                 </select>
-                                [@spring.bind "addRecipeData.ingredientList"/]
+
                                 <p>
+                                    [@spring.bind "addRecipeData.ingredientList"/]
                                     <input type="text" name="${spring.status.expression}"
-                                           value="${spring.status.value?default("")}" style="width: 25px; height: 25px"/></p>
+                                           value="${spring.status.value?default("")}"
+                                           style="width: 25px; height: 25px"/>
+                                </p>
 
                                 <select class="combobox" style="height: 30px; width: 217px">
                                     [#list ingridients as d]
@@ -167,7 +173,8 @@
                     <div class="inputs">
                         <div>
                             <p>Шаг 0*</p>
-                            <textarea rows="10" cols="15" name="text"></textarea>
+                            [@spring.bind "addRecipeData.stepsList"/]
+                            <textarea rows="10" cols="15" name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
                             <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
                             <!-- макс. размер -->
                             <p>Имя файла:</p>

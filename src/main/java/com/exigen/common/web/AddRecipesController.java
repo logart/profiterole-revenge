@@ -26,18 +26,12 @@ import java.util.Map;
 @RequestMapping("/addRecipes")
 public class AddRecipesController {
 
-
     @Autowired
 
     private CuisineService cuisineService;
 
-
-
     @Autowired
-
     private CategoriesService categoriesService;
-
-
 
     @Autowired
 
@@ -47,21 +41,18 @@ public class AddRecipesController {
     public String showAddingRecipe(Map model) {
         AddRecipeData data = new AddRecipeData();
         model.put("addRecipeData", data);
-        model.put("temp", "");      //TODO
         model.put("cuisinesList",this.cuisineService.getCuisine());
-
         model.put("categories",this.categoriesService.getCategories());
         model.put("ingridients",this.ingridientService.getAllIngridientsWithOutRecipesInj());
         return "addRecipes";
     }
+
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) {
         model.put("addRecipeData", data);
         model.put("cuisinesList",this.cuisineService.getCuisine());
         model.put("categories",this.categoriesService.getCategories());
         model.put("ingridients",this.ingridientService.getAllIngridientsWithOutRecipesInj());
-
-//        model.put("temp", data.getIngredientList()[0]);//TODO
         if (errors.hasErrors()) {
             return "addRecipes";
         }else
