@@ -36,6 +36,17 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
+    public List<Ingridient> getAllIngridients() {
+        List<Ingridient> results= this.entityManager.createNamedQuery("Ingridient.getAllIngridients",Ingridient.class)
+                .getResultList();
+
+        return results;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addIngridient(Ingridient ingridient) {
         entityManager.persist(ingridient);
     }

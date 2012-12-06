@@ -37,6 +37,14 @@ public class IngridientServiceImpl implements IngridientService {
      * {@inheritDoc}
      */
     @Override
+    public List<Ingridient> getAllIngridientsWithOutRecipesInj() {
+        return ingridientDao.getAllIngridients();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addIngridient(Ingridient ingridient) {
         ingridientDao.addIngridient(ingridient);
     }

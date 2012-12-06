@@ -10,8 +10,6 @@ ${styles!}
 ${scripts!}
     <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/jquery.filedrop.js"></script>
-    <script type="text/javascript" src="js/addingFiles.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <title>Profiterole</title>

@@ -7,17 +7,16 @@
         var k = $('conress').size() + 1;
         $('#adding').click(function () {
             $('<div id=k><p><select class="combobox" style="height: 20px width: 30px">' +
-                    '<option value="Морковь">Морковь</option>' +
-                    '<option value="Лук">Лук</option>' +
-                    '<option value="Свекла">Свекла</option>' +
-                    '<option value="Сахар">Сахар</option>' +
-                    '<option value="Соль">Соль</option>' +
+                    ' [#list ingridients as c]'+
+                    '<option value="${c}">${c.nameOfIngridient}</option>' +
+                    '[/#list]'+
                     '</select><p>' +
                     '<input type="text" name="ingredientList" style="width: 25px; height: 25px" />' +
                     '</p><br/>' +
                     '<select class="combobox" style="height: 20px width: 30px">' +
-                    '<option value="гр">гр</option>' +
-                    '<option value="мл">мл</option>' +
+                    '[#list ingridients as w]'+
+                    '<option value="${w}">${w.unitOfMeasure}</option>' +
+                     '[/#list]'+
                     '</select></p> </div>').fadeIn('slow').appendTo('.conress');
             k++;
             return false;
@@ -81,7 +80,7 @@
 
     [/#if]
 
- ${temp }
+ [#--${temp }--]
 <div class="row-fluid " style="height: 1500px">
     <form id="#OK" action="" method="post" commandName="addRecipeData">
         <div class="span6" id="menuDrop">
@@ -108,30 +107,17 @@
 
                     <p>Кухня*</p>
                     <select class="combobox" style="height: 30px; width: 217px">
-
-                        <option value="Украинская">Украинская</option>
-                        <option value="Русская">Русская</option>
-                        <option value="Японская">Японская</option>
-                        <option value="Китайская">Китайская</option>
-                        <option value="Тайская">Тайская</option>
-                        <option value="Итальянская">Итальянская</option>
-                        <option value="Мексиканская">Мексиканская</option>
-                        <option value="Французкая">Французкая</option>
-                        <option value="Армянская">Армянская</option>
-                        <option value="Индийская">Индийская</option>
-                        <option value="Греческая">Греческая</option>
-                        <option value="Грузинская">Грузинская</option>
-
-                    </select>
+                        [#list cuisinesList as a]
+                            <option value="${a}">${a.cuisin}</option>
+                        [/#list]
+                     </select>
 
 
                     <p>Категория*</p> <select class="combobox" style="height: 30px; width: 217px">
 
-                    <option value="Закуска">Закуска</option>
-                    <option value="Десерт">Десерт</option>
-                    <option value="Первое">Первое</option>
-                    <option value="Второе">Второе</option>
-                    <option value="Напиток">Напиток</option>
+                    [#list categories as b]
+                        <option value="${b}">${b.categ}</option>
+                    [/#list]
 
                 </select>
 
@@ -144,11 +130,9 @@
 
 
                                 <select class="combobox" style="height: 30px; width: 217px">
-                                    <option value="Морковь">Морковь</option>
-                                    <option value="Лук">Лук</option>
-                                    <option value="Свекла">Свекла</option>
-                                    <option value="Сахар">ахар</option>
-                                    <option value="Соль">Соль</option>
+                                    [#list ingridients as c]
+                                        <option value="${c}">${c.nameOfIngridient}</option>
+                                    [/#list]
                                 </select>
                                 [@spring.bind "addRecipeData.ingredientList"/]
                                 <p>
@@ -156,8 +140,9 @@
                                            value="${spring.status.value?default("")}" style="width: 25px; height: 25px"/></p>
 
                                 <select class="combobox" style="height: 30px; width: 217px">
-                                    <option value="гр">гр</option>
-                                    <option value="мл">мл</option>
+                                    [#list ingridients as d]
+                                        <option value="${d}">${d.unitOfMeasure}</option>
+                                    [/#list]
                                 </select>
 
 
