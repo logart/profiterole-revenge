@@ -2,7 +2,9 @@ package com.exigen.common.web;
 
 
 import com.exigen.common.domain.AddRecipeData;
-import com.exigen.common.service.AddRecipeValidator;
+import com.exigen.common.service.CategoriesService;
+import com.exigen.common.service.CuisineService;
+import com.exigen.common.service.IngridientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,17 +26,42 @@ import java.util.Map;
 @RequestMapping("/addRecipes")
 public class AddRecipesController {
 
+
+    @Autowired
+
+    private CuisineService cuisineService;
+
+
+
+    @Autowired
+
+    private CategoriesService categoriesService;
+
+
+
+    @Autowired
+
+    private IngridientService ingridientService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String showAddingRecipe(Map model) {
         AddRecipeData data = new AddRecipeData();
         model.put("addRecipeData", data);
         model.put("temp", "");      //TODO
+        model.put("cuisinesList",this.cuisineService.getCuisine());
+
+        model.put("categories",this.categoriesService.getCategories());
+        model.put("ingridients",this.ingridientService.getAllIngridientsWithOutRecipesInj());
         return "addRecipes";
     }
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) {
         model.put("addRecipeData", data);
-        model.put("temp", data.getIngredientList()[0]);//TODO
+        model.put("cuisinesList",this.cuisineService.getCuisine());
+        model.put("categories",this.categoriesService.getCategories());
+        model.put("ingridients",this.ingridientService.getAllIngridientsWithOutRecipesInj());
+
+//        model.put("temp", data.getIngredientList()[0]);//TODO
         if (errors.hasErrors()) {
             return "addRecipes";
         }else

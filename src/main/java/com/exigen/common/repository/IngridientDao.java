@@ -27,6 +27,16 @@ public interface IngridientDao {
     List<Ingridient> getIngridientsRecipeList(Integer recipeId);
 
     /**
+     * {@method getAllIngridients()}
+     *
+     * @return the list of ingridients.
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when search has no results in the database)
+     */
+    List<Ingridient> getAllIngridients();
+
+    /**
      * {@method addIngridient(Ingridient ingridient)}
      * for adding information about some particular ingridient into DB
      *

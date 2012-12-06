@@ -84,4 +84,9 @@ public class IngridientDaoTest {
         Assert.assertEquals(ingridientList, ingridientDao.getIngridientsRecipeList(recipeId));
     }
 
+    @Test
+    public  void testGetAllIngridients(){
+        Assert.assertNotNull(ingridientDao.getAllIngridients());
+    }
+
 }
