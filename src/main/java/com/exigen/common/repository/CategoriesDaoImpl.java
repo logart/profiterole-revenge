@@ -1,6 +1,7 @@
 package com.exigen.common.repository;
 
 import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Recipe;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -28,7 +29,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
      * {@method getCategories()}
      *
      * @return the list of all categories, when it situated in Categories entity
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
     @Override
@@ -39,13 +40,25 @@ public class CategoriesDaoImpl implements CategoriesDao {
     }
 
     /**
+     * {@method getCategory(Integer id)}
+     * @param id(ID of category)
+     * @return the categorie with id specified in the passed parameter.
+     * @throws org.springframework.dao.DataAccessException (resource
+     *          on cloudfoundry is unavalible, DB is changed)
+     */
+    @Override
+    public Categories getCategory(Integer id) {
+        return this.entityManager.find(Categories.class, id);
+    }
+
+    /**
      * {@method addCategories(Categories categ)}
      * for add info about our categories of recipes into DB
      *
      * @param categ(object of some particular category)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when categ is null)
+     * @throws NullPointerException (when categ is null)
      */
     @Override
     public void addCategories(Categories categ) {
@@ -58,9 +71,9 @@ public class CategoriesDaoImpl implements CategoriesDao {
      * for remove our categories of recipes from DB
      *
      * @param categ(object of some particular category)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when categ is null)
+     * @throws NullPointerException (when categ is null)
      */
     @Override
     public void removeCategories(Categories categ) {
