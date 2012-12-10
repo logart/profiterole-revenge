@@ -1,5 +1,7 @@
 package com.exigen.common.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +30,7 @@ public class Cuisine implements Serializable {
     /**
      * {@code cuisin} describes name of our cuisines
      */
+    @NotEmpty (message = "Поле должно быть указано.")
     private String cuisin;
 
     /**
@@ -56,6 +59,10 @@ public class Cuisine implements Serializable {
     public Cuisine(String cuisin, String imglink) {
         this.cuisin = cuisin;
         this.imglink = imglink;
+    }
+
+    public Cuisine(String cuisin) {
+        this.cuisin = cuisin;
     }
 
     /**

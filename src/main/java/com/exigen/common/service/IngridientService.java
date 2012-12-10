@@ -33,7 +33,7 @@ public interface IngridientService {
      * @throws NullPointerException(when search has no results in the database)
      */
     List<Ingridient> getAllIngridientsWithOutRecipesInj();
-
+    Ingridient getIngridientById(Integer ingridientId);      //TODO
     /**
      * {@method addIngridient(Ingridient ingridient)}
      * for adding information about some particular ingridient into DB

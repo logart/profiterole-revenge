@@ -25,7 +25,16 @@ public interface IngridientDao {
      * @throws NullPointerException(when recipe is null, or has no results in the database)
      */
     List<Ingridient> getIngridientsRecipeList(Integer recipeId);
-
+    /**
+     * {@method getIngridientsRecipeList(Integer recipeId)}
+     *
+     * @param recipeId (ID of some particular recipe)                                    //TODO
+     * @return the list of ingridients, where recipe in Ingridient entity =@param).
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when recipe is null, or has no results in the database)
+     */
+    Ingridient getIngridientById(Integer ingridientId);      //TODO
     /**
      * {@method getAllIngridients()}
      *

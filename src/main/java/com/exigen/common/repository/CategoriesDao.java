@@ -17,19 +17,27 @@ public interface CategoriesDao {
      * {@method getCategories()}
      *
      * @return the list of all categories, when it situated in Categories entity
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
     List<Categories> getCategories();
-
+    /**
+     * {@method getCategory(Integer id)}
+     *
+     * @param id(ID of category)
+     * @return the categorie with id specified in the passed parameter.
+     * @throws org.springframework.dao.DataAccessException (resource
+     *          on cloudfoundry is unavalible, DB is changed)
+     */
+    Categories getCategory(Integer id);
     /**
      * {@method addCategories(Categories categ)}
      * for add info about our categories of recipes into DB
      *
      * @param categ(object of some particular category)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when categ is null)
+     * @throws NullPointerException (when categ is null)
      */
     void addCategories(Categories categ);
 
@@ -38,9 +46,9 @@ public interface CategoriesDao {
      * for remove our categories of recipes from DB
      *
      * @param categ(object of some particular category)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when categ is null)
+     * @throws NullPointerException (when categ is null)
      */
     void removeCategories(Categories categ);
 

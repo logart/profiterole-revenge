@@ -41,6 +41,11 @@ public class IngridientServiceImpl implements IngridientService {
         return ingridientDao.getAllIngridients();
     }
 
+    @Override
+    public Ingridient getIngridientById(Integer ingridientId) {
+        return ingridientDao.getIngridientById(ingridientId);
+    }
+
     /**
      * {@inheritDoc}
      */

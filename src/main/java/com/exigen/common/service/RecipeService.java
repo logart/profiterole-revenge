@@ -1,5 +1,6 @@
 package com.exigen.common.service;
 
+import com.exigen.common.domain.AddRecipeData;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
 
@@ -19,9 +20,9 @@ public interface RecipeService {
      *
      * @param cuisine (object of some particular recipe)
      * @return the list of recipes, where cuisine in Recipe entity =@param).
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when cuisine is null, or id has no results in the database)
+     * @throws NullPointerException (when cuisine is null, or id has no results in the database)
      */
 
     List<Recipe> getRecipeCuisineList(Cuisine cuisine);
@@ -32,9 +33,9 @@ public interface RecipeService {
      * @param recipeId (unique identificator of some particular recipe)
      * @return the recipe, where Recipe field recipeId equals parameter recipeId( return complete description
      *         of the recipe with the steps, ingredients, Pictures.).
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when recipeId is null, or id has no results in the database)
+     * @throws NullPointerException (when recipeId is null, or id has no results in the database)
      */
 
     Recipe getOneRecipe(Integer recipeId);
@@ -44,31 +45,42 @@ public interface RecipeService {
      * for adding information about some particular recipe into DB
      *
      * @param recipe (object of some particular recipe)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when recipe is null)
+     * @throws NullPointerException (when recipe is null)
      */
-    void addRecipe(Recipe recipe);
 
+    void addRecipe(Recipe recipe);
+    /**
+     * {@method addRecipe(AddRecipeData data)}
+     * for adding information about some particular recipe into DB
+     *
+     * @param data (object of some particular recipe, what user added into the view)
+     * @throws org.springframework.dao.DataAccessException (resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when data is null)
+     */
+
+    void addRecipe(AddRecipeData data);
     /**
      * {@method removeRecipe(Recipe recipe)}
      * for remove some particular recipe from DB
      *
      * @param recipe (object of some particular recipe)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when recipe is null)
+     * @throws NullPointerException (when recipe is null)
      */
-    void removeRecipe(Recipe recipe);
 
+    void removeRecipe(Recipe recipe);
     /**
      * {@method CaloriesCalculation(List<Integer> recipesId)}
      *
      * @param recipesId (list of recipes's ID)
      * @return summarizing calories of this recipe.
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when recipe's id has no results in the database)
+     * @throws NullPointerException (when recipe's id has no results in the database)
      */
 
     Integer caloriesCalculation(List<Integer> recipesId);

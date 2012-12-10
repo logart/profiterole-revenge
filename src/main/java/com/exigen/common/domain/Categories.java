@@ -1,5 +1,7 @@
 package com.exigen.common.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,8 +30,8 @@ public class Categories implements Serializable {
     /**
      * {@code categ} describes name of category
      */
+    @NotEmpty(message = "Поле должно быть указано.")
     private String categ;
-
 
     /**
      * {@code recipeList} it's list of recipes in Categories. Realization of a two-way communication between the entities recipes and cuisines

@@ -69,6 +69,12 @@ public class Ingridient implements Serializable {
     public Ingridient() {
 
     }
+    /**
+     * {@method Ingridient} its a constructor for setting name of Ingridient
+     */
+    public Ingridient(String nameOfIngridient) {
+        this.nameOfIngridient = nameOfIngridient;
+    }
 
     /**
      * {@method Ingridient} its a constructor for adding data in entity

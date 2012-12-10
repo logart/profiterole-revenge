@@ -31,6 +31,13 @@ public class IngridientDaoImpl implements IngridientDao {
 
         return ingridientList;
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Ingridient getIngridientById(Integer ingridientId) {
+        return entityManager.find(Ingridient.class, ingridientId);
+    }
 
     /**
      * {@inheritDoc}
