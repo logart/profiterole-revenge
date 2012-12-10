@@ -89,7 +89,7 @@
 
     <form id="#OK" action="" method="post" commandName="addRecipeData" style="height: 1500px">
         <div class="span6" id="menuDrop">
-            <div class="for-adding-recipes">
+
 
                 <p>Название</p>
 
@@ -195,7 +195,7 @@
                     </div>
                     </p>
                 </div>
-            </div>
+
         </div>
 
         <div class="span6 align2">
