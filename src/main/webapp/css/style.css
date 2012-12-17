@@ -104,7 +104,7 @@ body {
 }
 
 .draggable {
-    height: 150px;
+    min-height: 150px;
     padding: 0.5em;
 }
 
@@ -124,6 +124,10 @@ body {
 
 .no-outline {
     outline: none !important;
+}
+
+.break-word{
+    word-wrap:break-word;
 }
 
 a.ui-slider-handle {

@@ -26,7 +26,7 @@
      data-toggle="modal" data-target="#myModal">
     <div class="imgContainer"><span class="pagination-centered"><img src="${a.smallImg}" class="img-rounded"/></span>
     </div>
-    <label class="title">${a.title}</label>
+    <div class="break-word"><label class="title">${a.title}</label></div>
 
     <div class="time_value no-display">${a.time}</div>
     <div class="cat_value no-display">${a.categories.categoriesId}</div>
