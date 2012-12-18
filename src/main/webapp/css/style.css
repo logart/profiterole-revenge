@@ -92,7 +92,7 @@ body {
 
 .droppable > .recepies_btn {
     margin: 2px;
-    height: 170px;
+    min-height: 150px;
 
 }
 
@@ -105,7 +105,7 @@ body {
 
 .draggable {
     min-height: 150px;
-    padding: 0.5em;
+    padding: 2px;
 }
 
 .slider-input {
