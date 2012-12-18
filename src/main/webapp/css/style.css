@@ -1,0 +1,176 @@
+body {
+    background-image: url('/img/background.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.recipe {
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 21px;
+    padding: 21px 27.3px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+
+}
+
+.img-head {
+    margin: 0;
+    height: auto;
+    width: 1000px;
+}
+
+.img-cuisine {
+    width: 100px;
+    height: 100px;
+}
+
+.block-create-menu {
+    background-color: white;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.error-div {
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: center;
+    margin-top: 20px;
+    width: 350px;
+}
+
+.error{
+    color: #ff0000;
+}
+
+.btn-group {
+    text-align: center;
+}
+
+.btn-large {
+    width: 100px;
+}
+
+.imgContainer {
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+.imgContainer img {
+    width: 100px;
+    height: 100px;
+}
+
+.title {
+    width: 100px;
+    cursor: move;
+}
+
+.navbar-inner {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 4px;
+    margin-bottom: 4px;
+}
+
+.droppable > .recepies_btn {
+    margin: 2px;
+    min-height: 150px;
+
+}
+
+.droppable > .btn > a.ui-icon.ui-icon-trash {
+    background-position: -98px -130px;
+    left: 95px;
+    position: relative;
+    top: -7px;
+}
+
+.draggable {
+    min-height: 150px;
+    padding: 2px;
+}
+
+.slider-input {
+    border-color: #FFFFFF;
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+    background-color: #FFFFFF !important;
+}
+
+.no-display {
+    display: none;
+}
+
+.no-outline {
+    outline: none !important;
+}
+
+.break-word{
+    word-wrap:break-word;
+}
+
+a.ui-slider-handle {
+    outline: none !important;
+}
+
+.no-text-decoration {
+    text-decoration: none;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-cener {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.for-adding-recipes {
+    text-align: left;
+     margin-left:1px;
+     height: 500px;
+     width: 500px;
+ }
+
+
+.error-block {
+      vertical-align:middle;
+      text-align: center;
+      margin-top:5px;
+      width: 100px;
+      height: 100px;
+  }
+
