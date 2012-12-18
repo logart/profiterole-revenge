@@ -19,7 +19,10 @@ ${scripts!}
 <body>
 <div class="container">
 
-    <a href="/"><img class="img-head" src="<@spring.url '/img/head33.png'/>" alt="Head"/></a>
+    <img class="img-head" src="<@spring.url '/img/head33.png'/>" alt="Логотип" usemap="#HeadMap"/>
+    <map name="HeadMap">
+        <area shape="poly" alt="Логотип" coords="0,336,14,257,63,188,139,130,237,84,340,58,455,48,562,46,679,72,774,105,856,157,915,235,943,280,950,336" href="/"/>
+    </map>
 
     <div class="navbar">
         <div class="navbar-inner">
