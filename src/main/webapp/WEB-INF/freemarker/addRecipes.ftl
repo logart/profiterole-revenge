@@ -126,6 +126,7 @@
                 <p>Кухня</p>
                 [@spring.bind "addRecipeData.cuisine"/]
                 <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 217px">
+                    <option value=""></option>
                     [#list cuisines as value]
                         <option value="${value.cuisineId}">${value.cuisin}</option>
                     [/#list]
@@ -138,7 +139,7 @@
                 <p>Категория</p>
                 [@spring.bind "addRecipeData.category"/]
                 <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 217px">
-
+                    <option value=""></option>
                     [#list categories as value]
                         <option value="${value.categoriesId}">${value.categ}</option>
                     [/#list]
