@@ -103,7 +103,6 @@
 
     $(".imgContainer img").each(function(){
         var image = $(this);
-        console.log("outerWidth = " + image.getHiddenDimensions().outerWidth + " outerHeight = " + image.getHiddenDimensions().outerHeight);
         if(image.getHiddenDimensions().outerWidth < image.getHiddenDimensions().outerHeight){
             image.height(100);
         }
