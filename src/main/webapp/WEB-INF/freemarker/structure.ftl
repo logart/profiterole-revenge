@@ -8,10 +8,13 @@
     <link rel="stylesheet" type="text/css" href="<@spring.url '/css/style.css'/>" media="screen"/>
 ${styles!}
 ${scripts!}
-    <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/HiddenDimensions.js"></script>
+    <script type="text/javascript" src="/js/Ellipsis.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
+
     <title>Profiterole</title>
 
 </head>
