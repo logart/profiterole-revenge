@@ -26,7 +26,7 @@
      data-toggle="modal" data-target="#myModal">
     <div class="imgContainer"><span class="pagination-centered"><img src="${a.smallImg}" class="img-rounded"/></span>
     </div>
-    <div class="break-word"><label class="title">${a.title}</label></div>
+    <div class="recipe_title"><label class="title">${a.title}</label></div>
 
     <div class="time_value no-display">${a.time}</div>
     <div class="cat_value no-display">${a.categories.categoriesId}</div>
@@ -42,21 +42,18 @@
 <div style="clear: both;"></div>
 <button class="btn" id="back">Назад к кухням</button>
 
-<script>
+
+
+<script type="text/javascript">
     $(function () {
         $('#myTab a:first').tab('show');
     })
-</script>
-
-<script>
     $('#myTab a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
         filterRecipies($("#slider-range").slider("option", "values"));
     })
-</script>
 
-<script type="text/javascript">
     $('#back').click(function () {
         $.get("/menuCuisinesAjax", function (response) {
             $('#cuisine').html(response);
@@ -64,33 +61,24 @@
 
         });
     });
-</script>
 
-<script type="text/javascript">
     $("#cuisine > .btn[data-toggle=modal]").click(function (e) {
         lv_target = $(this).attr('data-target')
         lv_url = $(this).attr('href')
         $(lv_target).load(lv_url)
     })
-</script>
 
-<script>
     $('#cuisine').find('.btn').popover({
         trigger:'hover',
         placement:'left'
     })
 
-</script>
-
-[#--Dragg-able JavaScript--]
-<script type="text/javascript">
+    [#--Dragg-able JavaScript--]
     $(function () {
         $(".draggable").draggable({ cancel:"a.ui-icon", revert:"invalid", helper:"clone", cursor:"move", containment:"window" });
     });
-</script>
 
-[#--Dropp-able JavaScript--]
-<script type="text/javascript">
+    [#--Dropp-able JavaScript--]
     $(function () {
         $(".droppable").droppable({
             accept:".recepies_btn",
@@ -112,4 +100,19 @@
             }
         });
     });
+
+    $(".imgContainer img").each(function(){
+        var image = $(this);
+        console.log("outerWidth = " + image.getHiddenDimensions().outerWidth + " outerHeight = " + image.getHiddenDimensions().outerHeight);
+        if(image.getHiddenDimensions().outerWidth < image.getHiddenDimensions().outerHeight){
+            image.height(100);
+        }
+    });
+    $(".recipe_title label").each(function(){
+        $(this).ellipsis();
+    });
+
+
+
+
 </script>

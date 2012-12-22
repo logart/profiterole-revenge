@@ -67,16 +67,25 @@ body {
     overflow: hidden;
     width: 100px;
     height: 100px;
+    line-height: 100px;
 }
 
 .imgContainer img {
+    vertical-align: middle;
+}
+
+.recipe_title{
+    height: 70px;
+    width: 100px;
 }
 
 .title {
+    height: 70px;
     width: 100px;
     cursor: move;
+    overflow: hidden;
+    word-wrap:break-word;
 }
-
 .navbar-inner {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -90,7 +99,7 @@ body {
 
 .droppable > .recepies_btn {
     margin: 2px;
-    min-height: 150px;
+
 
 }
 
@@ -100,9 +109,8 @@ body {
     position: relative;
     top: -7px;
 }
-
 .draggable {
-    min-height: 150px;
+
     padding: 2px;
 }
 
@@ -124,9 +132,7 @@ body {
     outline: none !important;
 }
 
-.break-word{
-    word-wrap:break-word;
-}
+
 
 a.ui-slider-handle {
     outline: none !important;
