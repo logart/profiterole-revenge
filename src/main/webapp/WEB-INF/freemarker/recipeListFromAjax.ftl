@@ -63,9 +63,13 @@
     });
 
     $("#cuisine > .btn[data-toggle=modal]").click(function (e) {
-        lv_target = $(this).attr('data-target')
-        lv_url = $(this).attr('href')
-        $(lv_target).load(lv_url)
+        lv_target = $(this).attr('data-target');
+        lv_url = $(this).attr('href') ;
+        $(lv_target).load(lv_url, function() {
+            $("#header").show();
+            $("#body").show();
+        });
+
     })
 
     $('#cuisine').find('.btn').popover({
@@ -93,7 +97,10 @@
                 elem.click(function (e) {
                     var lv_target = $(this).attr('data-target');
                     var lv_url = $(this).attr('href');
-                    $(lv_target).load(lv_url);
+                    $(lv_target).load(lv_url, function() {
+                        $("#header").show();
+                        $("#body").show();
+                    });
                 });
 
 
