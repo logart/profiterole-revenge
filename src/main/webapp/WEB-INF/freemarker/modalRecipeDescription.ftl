@@ -1,10 +1,10 @@
 [#ftl]
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<div id="header" class="modal-header" style="display: none;">
+    <button id = "close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">${recipe.title}</h3>
 </div>
-<div class="modal-body">
-    <img src="${recipe.bigImg}" class="img-rounded"/>
+<div id="body" class="modal-body" style="display: none;">
+    <img src="${recipe.bigImg}" class="img-rounded" id = "image"/>
 
     <span class="text-justify">
     <br/>
@@ -31,3 +31,9 @@
 <div class="modal-footer">
     <button class="btn btn-primary">Печать</button>
 </div>
+
+<script type="text/javascript">
+    $("#close").click(function () {
+        $("#image").hide();
+    })
+</script>
