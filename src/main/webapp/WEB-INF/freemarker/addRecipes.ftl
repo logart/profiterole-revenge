@@ -8,7 +8,7 @@
         $('#adding').click(function () {
             $('<div id=k><p>' +
                     '<div>' +
-                    "<a href='#' style='position: relative; background-position: -98px -130px;' title='Удалить ингредиент' class='ui-icon ui-icon-trash' onclick=\"$(this).parent().popover('destroy').remove(); return false;\">Удалить ингредиент</a>" +
+                    "<button style='position: relative; background-position: -98px -130px;' title='Удалить ингредиент' class='ui-icon ui-icon-trash' onclick=\"$(this).parent().popover('destroy').remove(); return false;\">Удалить ингредиент</button>" +
                 [@spring.bind "addRecipeData.ingredientsNameList"/]
                     '<select class="combobox" style="height: 20px width: 30px">' +
                     '<option value=""></option>' +
@@ -40,37 +40,52 @@
 </script>
 
 
-<script>
-    $(document).ready(function () {
-
-
-        var i = 2;
-
-
-        $('#add').click(function () {
-            $('<div id=i><p>Шаг ' + i + '</p>' +
-                    "<a href='#' style='position: relative; background-position: -98px -130px;' title='Удалить шаг' class='ui-icon ui-icon-trash' onclick=\"var $id = $(this).parent().attr('id'); $(this).parent().remove(); while ($id < $('.inputs:last-child').attr('id')) { $id++; $('#'+$id).attr('id', ($id-1)).find('p:first-child').text('Шаг '+($id-1));} return false;\">Удалить шаг</a>" +
-                [@spring.bind "addRecipeData.stepsList"/]
-                    '<textarea rows="10" cols="15" name="${spring.status.expression}" ></textarea>' +
-                    '<INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>' +
-                    ' <p><INPUT NAME="userfile" TYPE="file"></p>' +
-                    '</div>').fadeIn('slow').appendTo('.inputs');
-            i++;
-            return false;
-        });
-
-    });
-
-
-</script>
-
 <script type="text/javascript">
-    function submitform() {
-        document.(#OK
-    ).
-        submit();
-    }
+    $(document).ready(function () {
+        var step = {
+            i: 2,
+            addStep: function (i) {
+                var template = '<div id="step_' + i + '" class="step"><p>Шаг <span class="step_counter">' + i + '</span></p>\
+<button data-stepid="' + i + '" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>\
+\
+<textarea rows="10" cols="15" name="stepsList" ></textarea> \
+<INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>\
+<p><INPUT NAME="userfile" TYPE="file"></p>\
+</div>';
+                $(template).appendTo('.inputs').fadeIn('slow');
+            },
+            deleteStep: function(id) {
+                var self = this;
+                self.i = 2;
+                $('#step_' + id).remove();
+                $('.step').each(function(){
+                    $(this).attr('id','step_' + self.i);
+                    $(this).find('.step_counter').empty().append(self.i);
+                    self.i++;
+                });
+            },
+            init: function () {
+                var self = this;
+                $('#add').click(function (e) {
+                    e.preventDefault();
+                    self.addStep(self.i);
+                    self.i++;
+                });
+                $('.delete_step').live('click', function(e){
+                    e.preventDefault();
+                    var id = $(this).data('stepid');
+                    self.deleteStep(id);
+                });
+
+            }
+        }
+
+        step.init();
+    });
 </script>
+
+
+
 <div class="row-fluid " style="min-height:1500px; ">
     <h1 style="vertical-align:middle; margin-top:5px">Создать рецепт</h1>
 
