@@ -61,6 +61,7 @@
                 $('.step').each(function(){
                     $(this).attr('id','step_' + self.i);
                     $(this).find('.step_counter').empty().append(self.i);
+                    $(this).find(':button').attr('data-stepid', self.i);
                     self.i++;
                 });
             },
