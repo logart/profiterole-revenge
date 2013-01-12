@@ -43,36 +43,36 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var step = {
-            i: 2,
-            addStep: function (i) {
+            i: $(".step").length + 1,
+            addStep:function (i) {
                 var template = '<div id="step_' + i + '" class="step"><p>Шаг <span class="step_counter">' + i + '</span></p>\
 <button data-stepid="' + i + '" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>\
-\
-<textarea rows="10" cols="15" name="stepsList" ></textarea> \
+<textarea class = "stepTextarea" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" ></textarea> \
 <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>\
 <p><INPUT NAME="userfile" TYPE="file"></p>\
 </div>';
                 $(template).appendTo('.inputs').fadeIn('slow');
             },
-            deleteStep: function(id) {
+            deleteStep:function (id) {
                 var self = this;
-                self.i = 2;
+                self.i = 1;
                 $('#step_' + id).remove();
-                $('.step').each(function(){
-                    $(this).attr('id','step_' + self.i);
+                $('.step').each(function () {
+                    $(this).attr('id', 'step_' + self.i);
                     $(this).find('.step_counter').empty().append(self.i);
+                    $(this).find('.stepTextarea').attr("name", "stepsList[" + (self.i - 1) + "]");
                     $(this).find(':button').attr('data-stepid', self.i);
                     self.i++;
                 });
             },
-            init: function () {
+            init:function () {
                 var self = this;
                 $('#add').click(function (e) {
                     e.preventDefault();
                     self.addStep(self.i);
                     self.i++;
                 });
-                $('.delete_step').live('click', function(e){
+                $('.delete_step').live('click', function (e) {
                     e.preventDefault();
                     var id = $(this).data('stepid');
                     self.deleteStep(id);
@@ -84,7 +84,6 @@
         step.init();
     });
 </script>
-
 
 
 <div class="row-fluid " style="min-height:1500px; ">
@@ -130,11 +129,15 @@
 
 
             <p>Кухня</p>
-            [@spring.bind "addRecipeData.cuisine"/]
+            [@spring.bind "addRecipeData.cuisineId"/]
             <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 217px">
                 <option value=""></option>
                 [#list cuisines as value]
-                    <option value="${value.cuisineId}">${value.cuisin}</option>
+                    [#if "${value.cuisineId}" == "${spring.status.value?default(\"\")}"]
+                        <option selected value="${value.cuisineId}">${value.cuisin}</option>
+                    [#else]
+                        <option value="${value.cuisineId}">${value.cuisin}</option>
+                    [/#if]
                 [/#list]
             </select>
             [#if spring.status.error]
@@ -146,11 +149,15 @@
 
 
             <p>Категория</p>
-            [@spring.bind "addRecipeData.category"/]
+            [@spring.bind "addRecipeData.categoryId"/]
             <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 217px">
                 <option value=""></option>
                 [#list categories as value]
-                    <option value="${value.categoriesId}">${value.categ}</option>
+                    [#if "${value.categoriesId}" == "${spring.status.value?default(\"\")}"]
+                        <option selected value="${value.categoriesId}">${value.categ}</option>
+                    [#else]
+                        <option value="${value.categoriesId}">${value.categ}</option>
+                    [/#if]
                 [/#list]
             </select>
             </select>
@@ -227,28 +234,32 @@
             <p><b>Шаги приготовления</b></p>
 
             <div class="dynamic-form">
+                [#assign stepsListSize = addRecipeData.stepsList?size]
+                [#if stepsListSize = 0]
+                    [#assign stepsListSize = 1]
+                [/#if]
                 <div class="inputs">
-                    <div>
-                        <p>Шаг 1</p>
+                    [#list 1..stepsListSize as index]
+                        <div id="step_${index}" class="step">
 
-                        [@spring.bind "addRecipeData.stepsList"/]
-                        <textarea rows="10" cols="45"
-                                  name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
-                        <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
-                        <!-- макс. размер -->
-                        <p>Имя файла:</p>
+                            <p>Шаг <span class="step_counter">${index}</span></p>
+                            <button data-stepid="${index}" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>
+                            [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
+                            <textarea rows="10" cols="45"
+                                      name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
+                            <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
+                            <!-- макс. размер -->
+                            <p>Имя файла:</p>
 
-                        <p><INPUT NAME="userfile" TYPE="file"></p>
+                            <p><INPUT NAME="userfile" TYPE="file"></p>
+                            [#if spring.status.error]
+                                <p>
+                                <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
+                                </p>
+                            [/#if]
+                        </div>
+                    [/#list]
 
-
-                        [#if spring.status.error]
-                            <p>
-
-                            <div class="error-block-big droppable" id="error">Должен быть минимум 1 шаг приготовления.
-                            </div>
-                            </p>
-                        [/#if]
-                    </div>
                 </div>
                 <p>
                     <button class="btn" value="#" id="add">Добавить шаг</button>

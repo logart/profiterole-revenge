@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Class {@code AddRecipeData} is an ordinary recipe defined Java class whose instances
  * can be stored in the database.
@@ -18,7 +20,7 @@ public class AddRecipeData implements Serializable {
     /**
      * {@code title} Contains the title of recipe.
      */
-    @NotEmpty (message = "Поле должно быть указано.")
+    @NotEmpty(message = "Поле должно быть указано.")
     @Size(max = 250, message = "Количество символов не должно превышать 250 символов.")
     @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9 \\Q.,()[]+-*/=\"'\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\"'')")
     private String title;
@@ -27,48 +29,66 @@ public class AddRecipeData implements Serializable {
      * {@code description} This field is intended to describe the recipe.
      */
 
-    @NotEmpty (message = "Поле должно быть указано.")
-    @Size(max=3000, message = "Количество символов не должно превышать 3000 символов.")
+    @NotEmpty(message = "Поле должно быть указано.")
+    @Size(max = 3000, message = "Количество символов не должно превышать 3000 символов.")
     @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"':;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\"':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
     /**
      * {@code cookingTime} This field contains cooking time.
      */
-    @NotEmpty (message = "Поле должно быть указано.")
+    @NotEmpty(message = "Поле должно быть указано.")
     @Pattern(regexp = "^[0-9]*$", message = "Должно быть целым числом.")
     @Min(value = 6, message = "Корректное значение лежит в диапазоне от 6 до 540 (целые).")
     @Max(value = 540, message = "Корректное значение лежит в диапазоне от 6 до 540 (целые).")
     private String cookingTime;
-
+    
+    @NotEmpty(message = "Кухня должна быть указана.")
+    private String cuisineId;
+    @NotEmpty(message = "Категория должна быть указана.")
+    private String categoryId;
+    
     /**
      * {@code cuisine} This field is a reference to the Cuisine entity.
      */
-    @Valid
     private Cuisine cuisine;
-
+    
     /**
      * {@code category} This field is a reference to the Categories entity.
      */
-    @Valid
     private Categories category;
+
+
+    /**
+     * {@code ingredientList} This field contains list of steps for meal
+     */
+    private List<String> stepsList = new ArrayList<String>();
 
     /**
      * {@code ingredientList} This field contains list of ingredients for meal.
      * Ingredients are a references to the Ingridient entity.
      */
-
     private String[] ingredientsNameList;
     private String[] ingredientsCountList;
     private String[] ingredientsTypeList;
-    /**
-     * {@code ingredientList} This field contains list of steps for meal
-     */
+    public String getCuisineId() {
+        return cuisineId;
+    }
 
-    @NotEmpty(message = "Должен быть минимум 1 шаг приготовления.")
-    private String[] stepsList;
+    public void setCuisineId(String cuisineId) {
+        this.cuisineId = cuisineId;
+    }
 
-    public AddRecipeData(){
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+   
+    public AddRecipeData() {
 
     }
 
@@ -136,13 +156,11 @@ public class AddRecipeData implements Serializable {
         this.ingredientsTypeList = ingredientsTypeList;
     }
 
-    public String[] getStepsList() {
+    public List<String> getStepsList() {
         return stepsList;
     }
 
-    public void setStepsList(String[] stepsList) {
+    public void setStepsList(List<String> stepsList) {
         this.stepsList = stepsList;
     }
-
-
 }
