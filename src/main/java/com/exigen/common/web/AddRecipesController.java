@@ -7,6 +7,7 @@ import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Ingridient;
 import com.exigen.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
@@ -37,7 +38,7 @@ public class AddRecipesController {
     private IngridientService ingridientService;
     @Autowired
     private RecipeService recipeService;
-    private AddRecipeDataService addRecipeDataService= new AddRecipeDataService();
+    private AddRecipeDataService addRecipeDataService = new AddRecipeDataService();
     private List<Categories> categories;
     private List<Cuisine> cuisines;
     private List<Ingridient> ingridients;
@@ -51,28 +52,30 @@ public class AddRecipesController {
         validator = new AddRecipeDataValidator();
         model.put("addRecipeData", data);
         model.put("cuisines", cuisines);
-        model.put("categories",categories);
+        model.put("categories", categories);
         model.put("ingridients", ingridients);
         return "addRecipes";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) {
-        categories = this.categoriesService.getCategories();
-        cuisines = this.cuisineService.getCuisine();
-        ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
+        if (categories == null || cuisines == null || ingridients == null) {
+            categories = this.categoriesService.getCategories();
+            cuisines = this.cuisineService.getCuisine();
+            ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
+        }
         validator = new AddRecipeDataValidator();
-        data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategory().getCateg()), categories));
-        data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisine().getCuisin()), cuisines));
+
         ValidationUtils.invokeValidator(validator, data, errors);
         if (errors.hasErrors()) {
             model.put("addRecipeData", data);
             model.put("cuisines", cuisines);
-            model.put("categories",categories);
+            model.put("categories", categories);
             model.put("ingridients", ingridients);
-
             return "addRecipes";
         }
+        data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategory().getCateg()), categories));
+        data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisine().getCuisin()), cuisines));
         recipeService.addRecipe(data);
         return "redirect:success";
     }

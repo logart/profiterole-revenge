@@ -35,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
     private IngridientDao ingridientDao;
 
     @Autowired
-    private StepDao stepDao;//TODO
+    private StepDao stepDao;
     /**
      * {@method getRecipeCuisineList(Cuisine cuisine)}
      *
@@ -118,8 +118,8 @@ public class RecipeServiceImpl implements RecipeService {
         for (Ingridient ingridient : ingridienstList) {
             ingridientDao.addIngridient(ingridient);
         }
-        for (int i = 0; i < data.getStepsList().length; i++){
-            stepDao.addStep(new Step(i+1, data.getStepsList()[i], recipe));
+        for (int i = 0; i < data.getStepsList().size(); i++){
+            stepDao.addStep(new Step(i+1, data.getStepsList().get(i), recipe));
         }
     }
 
