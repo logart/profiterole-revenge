@@ -178,3 +178,9 @@ a.ui-slider-handle {
       height: 100px;
   }
 
+.combobox {
+    height: 30px;
+    width: 117px;
+    font-size: 10px;
+}
+
