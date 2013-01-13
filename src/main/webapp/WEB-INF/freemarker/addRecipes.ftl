@@ -2,41 +2,51 @@
 [#import "spring.ftl" as spring/]
 [#assign content]
 
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
-        var k = $('conress').size() + 2;
-        $('#adding').click(function () {
-            $('<div id=k><p>' +
-                    '<div>' +
-                    "<button style='position: relative; background-position: -98px -130px;' title='Удалить ингредиент' class='ui-icon ui-icon-trash' onclick=\"$(this).parent().popover('destroy').remove(); return false;\">Удалить ингредиент</button>" +
-                [@spring.bind "addRecipeData.ingredientsNameList"/]
-                    '<select class="combobox" style="height: 20px width: 30px">' +
-                    '<option value=""></option>' +
-                    '[#list ingridients as c]'+
-                        '<option value="${c}">${c.nameOfIngridient}</option>' +
-                        '[/#list]' +
-                    '</select><p>' +
-                [@spring.bind "addRecipeData.ingredientsCountList"/]
-                    '<input type="text" name="${spring.status.expression}" style="width: 25px; height: 25px" />' +
-                    '</p><br/>' +
-                [@spring.bind "addRecipeData.ingredientsTypeList"/]
-                    '<select class="combobox" style="height: 20px width: 30px">' +
-                    '<option value=""></option>' +
-                    '<option value="measureOne">гр</option>' +
-                    '<option value="measureTwo">кг</option>' +
-                    '<option value="measureThree">мл</option>' +
-                    '<option value="measureFour">л</option>' +
-                    '<option value="measureFive">шт</option>' +
-                    '<option value="measureSix">зуб</option>' +
-                    '</select></p>' +
-                    '</div>' +
-                    ' </div>').fadeIn('slow').appendTo('.conress');
-            k++;
-            return false;
-        });
+        var ingredient = {
+            k: $(".ingr").length + 1,
+            addStep:function (k) {
+                var temp = '<div id="ingr_' + k + '" class="ingr"><p><button data-ingrid="' + k + '" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon ui-icon-trash delete_ingr"">Удалить ингредиент</button>\
+[@spring.bind "addRecipeData.ingredientsNameList"/]<select class="combobox" style="height: 20px width: 30px">\
+<option value=""></option>[#list ingridients as c]<option value="${c}">${c.nameOfIngridient}</option>[/#list]</select>\
+[@spring.bind "addRecipeData.ingredientsCountList"/]<input type="text" name="${spring.status.expression}" style="width: 25px; height: 25px" /><br/>\
+[@spring.bind "addRecipeData.ingredientsTypeList"/]<select class="combobox" style="height: 20px width: 30px">option value=""></option>\
+<option value="measureOne">гр</option><option value="measureTwo">кг</option><option value="measureThree">мл</option>\
+<option value="measureFour">л</option><option value="measureFive">шт</option><option value="measureSix">зуб</option></select>\
+</div>';
+
+                $(temp).appendTo('.conress').fadeIn('slow');
+            },
+
+            deleteIngr:function (id) {
+                var self = this;
+                self.k = 1;
+                $('#ingr_' + id).remove();
+                $('.ingr').each(function () {
+                    $(this).attr('id', 'ingr_' + self.k);
+                    $(this).find(':button').attr('data-ingrid', self.k);
+                    self.k++;
+                });
+            },
+            init:function () {
+                var self = this;
+                $('#adding').click(function (e) {
+                    e.preventDefault();
+                    self.addStep(self.k);
+                    self.k++;
+                });
+                $('.delete_ingr').live('click', function (e) {
+                    e.preventDefault();
+                    var id = $(this).data('ingrid');
+                    self.deleteIngr(id);
+                });
+
+            }
+        }
+
+        ingredient.init();
     });
-
-
 </script>
 
 
@@ -175,7 +185,7 @@
                     <div class="conress">
 
                         [@spring.bind "addRecipeData.ingredientsNameList"/]
-                        <select class="combobox" style="height: 30px; width: 217px">
+                        <select class="combobox" style="height: 30px; width: 117px">
                             <option value=""></option>
                             [#list ingridients as c]
                                 <option value="${c.ingridientId}">${c.nameOfIngridient}</option>
@@ -188,10 +198,10 @@
                             </p>
                         [/#if]
                         [@spring.bind "addRecipeData.ingredientsCountList"/]
-                        <p>
+
                             <input type="text" name="${spring.status.expression}"
                                    value="${spring.status.value?default("")}" style="width: 25px; height: 25px"/>
-                        </p>
+
                         [#if spring.status.error]
                             <p>
 
@@ -199,7 +209,7 @@
                             </p>
                         [/#if]
                         [@spring.bind "addRecipeData.ingredientsTypeList"/]
-                        <select class="combobox" style="height: 30px; width: 217px">
+                        <select class="combobox" style="height: 30px; width: 117px">
                             <option value=""></option>
                             <option value="measureOne">гр</option>
                             <option value="measureTwo">кг</option>
@@ -262,7 +272,7 @@
 
                 </div>
                 <p>
-                    <button class="btn" value="#" id="add">Добавить шаг</button>
+                    <button class="btn" value="#" id="add" onclick="document.getElementById('#idForBtn').style.visibility=visible">Добавить шаг</button>
                 </p>
 
             </div>
