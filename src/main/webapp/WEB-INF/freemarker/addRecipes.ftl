@@ -7,12 +7,12 @@
         var ingredient = {
             k: $(".ingr").length + 1,
             addStep:function (k) {
-                var temp = '<div id="ingr_' + k + '" class="ingr"><p><button data-ingrid="' + k + '" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon ui-icon-trash delete_ingr"">Удалить ингредиент</button>\
-[@spring.bind "addRecipeData.ingredientsNameList"/]<select class="combobox" style="height: 20px width: 30px">\
+                var temp = '<div id="ingr_' + k + '" class="ingr"><button data-ingrid="' + k + '" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon ui-icon-trash delete_ingr"">Удалить ингредиент</button>\
+[@spring.bind "addRecipeData.ingredientsNameList"/]<select class="combobox" style="height: 30px; width: 217px; margin-right: 3px;">\
 <option value=""></option>[#list ingridients as c]<option value="${c}">${c.nameOfIngridient}</option>[/#list]</select>\
-[@spring.bind "addRecipeData.ingredientsCountList"/]<input type="text" name="${spring.status.expression}" style="width: 25px; height: 25px" /><br/>\
-[@spring.bind "addRecipeData.ingredientsTypeList"/]<select class="combobox" style="height: 20px width: 30px">option value=""></option>\
-<option value="measureOne">гр</option><option value="measureTwo">кг</option><option value="measureThree">мл</option>\
+[@spring.bind "addRecipeData.ingredientsCountList"/]<input type="text" name="${spring.status.expression}" style="width: 25px; height: 25px; font-size: 10px; margin-right: 3px;" />\
+[@spring.bind "addRecipeData.ingredientsTypeList"/]<select class="combobox" style="height: 30px; width: 60px;">option value=""></option>\
+<option value=""></option><option value="measureOne">гр</option><option value="measureTwo">кг</option><option value="measureThree">мл</option>\
 <option value="measureFour">л</option><option value="measureFive">шт</option><option value="measureSix">зуб</option></select>\
 </div>';
 
@@ -57,7 +57,7 @@
             addStep:function (i) {
                 var template = '<div id="step_' + i + '" class="step"><p>Шаг <span class="step_counter">' + i + '</span></p>\
 <button data-stepid="' + i + '" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>\
-<textarea class = "stepTextarea" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" ></textarea> \
+<textarea class = "stepTextarea forinputs" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" ></textarea> \
 <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>\
 <p><INPUT NAME="userfile" TYPE="file"></p>\
 </div>';
@@ -96,18 +96,18 @@
 </script>
 
 
-<div class="row-fluid " style="min-height:1500px; ">
+<div class="row-fluid " style="min-height:1500px;">
     <h1 style="vertical-align:middle; margin-top:5px">Создать рецепт</h1>
 
     <form id="#OK" action="" method="post" commandName="addRecipeData" style="height: 1500px">
         <div class="span6" id="menuDrop">
 
 
-            <p>Название</p>
+            <p><b>Название</b></p>
 
             [@spring.bind "addRecipeData.title"/]
             <input type="text" name="${spring.status.expression}"
-                   value="${spring.status.value?default("")}"/> <br/>
+                   value="${spring.status.value?default("")}" style="width: 315px; font-size: 14px;"/> <br/>
             [#if spring.status.error]
                 <p>
 
@@ -115,9 +115,9 @@
                 </p>
             [/#if]
 
-            <p>Описание</p>
+            <p><b>Описание</b></p>
             [@spring.bind "addRecipeData.description"/]
-            <textarea rows="10" cols="45"
+            <textarea class="forinputs" rows="10" cols="60"
                       name="${spring.status.expression}">${spring.status.value?default("")}</textarea> <br/>
             [#if spring.status.error]
                 <p>
@@ -126,10 +126,11 @@
                 </p>
             [/#if]
 
-            <p>Время приготовления(мин)</p>
+            <b>Время приготовления</b>
+
             [@spring.bind "addRecipeData.cookingTime"/]
             <input type="text" name="${spring.status.expression}"
-                   value="${spring.status.value?default("")}"/> <br/>
+                   value="${spring.status.value?default("")}" style="width: 30px; font-size: 14px;" /> мин
             [#if spring.status.error]
                 <p>
 
@@ -137,10 +138,14 @@
                 </p>
             [/#if]
 
-
-            <p>Кухня</p>
+             <p></p>
+            <b>Кухня</b>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
             [@spring.bind "addRecipeData.cuisineId"/]
-            <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 217px">
+            <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 130px">
                 <option value=""></option>
                 [#list cuisines as value]
                     [#if "${value.cuisineId}" == "${spring.status.value?default(\"\")}"]
@@ -157,10 +162,10 @@
                 </p>
             [/#if]
 
-
-            <p>Категория</p>
+            <p></p>
+            <b>Категория</b>
             [@spring.bind "addRecipeData.categoryId"/]
-            <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 217px">
+            <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 130px">
                 <option value=""></option>
                 [#list categories as value]
                     [#if "${value.categoriesId}" == "${spring.status.value?default(\"\")}"]
@@ -177,15 +182,18 @@
                 <div class="error-div" id="categoryError">[@spring.showErrors '<br>', 'error'/]</div>
                 </p>
             [/#if]
+            <p></p>
 
-            <p><b>Ингредиенты</b></p>
-
+            <b>Ингредиенты</b>
+             <p></p>
             <div id="container">
                 <div class="dynamic-form">
                     <div class="conress">
 
+                        <button id="#" style="position: relative; background-position: -98px -130px;" title="Удалить ингредиент" class="ui-icon ui-icon-trash">Удалить ингредиент</button>
                         [@spring.bind "addRecipeData.ingredientsNameList"/]
-                        <select class="combobox" style="height: 30px; width: 117px">
+
+                        <select class="combobox" style="height: 30px; width: 217px">
                             <option value=""></option>
                             [#list ingridients as c]
                                 <option value="${c.ingridientId}">${c.nameOfIngridient}</option>
@@ -199,8 +207,8 @@
                         [/#if]
                         [@spring.bind "addRecipeData.ingredientsCountList"/]
 
-                            <input type="text" name="${spring.status.expression}"
-                                   value="${spring.status.value?default("")}" style="width: 25px; height: 25px"/>
+                            <input type="text" class="forinputs" name="${spring.status.expression}"
+                                   value="${spring.status.value?default("")}" style="width: 25px; height: 25px; font-size: 14px;"/>
 
                         [#if spring.status.error]
                             <p>
@@ -209,7 +217,7 @@
                             </p>
                         [/#if]
                         [@spring.bind "addRecipeData.ingredientsTypeList"/]
-                        <select class="combobox" style="height: 30px; width: 117px">
+                        <select class="combobox" style="height: 30px; width: 60px">
                             <option value=""></option>
                             <option value="measureOne">гр</option>
                             <option value="measureTwo">кг</option>
@@ -224,13 +232,12 @@
                             <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
                             </p>
                         [/#if]
+
                     </div>
                 </div>
                 <p>
                     <button class="btn" value="#" id="adding">Добавить ингрeдиент</button>
-                <div style="margin-top: 100px;">
-                    <button class="btn btn-large" style="width: :100px;height: 100px;" id="OK">Создать</button>
-                </div>
+
                 </p>
             </div>
 
@@ -255,7 +262,7 @@
                             <p>Шаг <span class="step_counter">${index}</span></p>
                             <button data-stepid="${index}" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>
                             [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
-                            <textarea rows="10" cols="45"
+                            <textarea class="forinputs" rows="10" cols="45"
                                       name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
                             <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
                             <!-- макс. размер -->
@@ -276,7 +283,9 @@
                 </p>
 
             </div>
-
+            <div style="margin-top: 40px;">
+                <button class="btn btn-large" style="width: :100px;height: 60px;" id="OK">Создать</button>
+            </div>
 
         </div>
 
