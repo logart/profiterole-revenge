@@ -191,7 +191,7 @@
                 <div class="dynamic-form">
                     <div class="conress">
                          <div>
-                             <button style='position: relative; background-position: -98px -130px; display: none;' title='Удалить ингредиент' class='ui-icon ui-icon-trash' onclick="$(this).parent().popover('destroy').remove(); return false;">Удалить ингредиент</button>
+                             <button style='position: relative; background-position: -98px -130px;' title='Удалить ингредиент' class='ui-icon ui-icon-trash' onclick="$(this).parent().popover('destroy').remove(); return false;">Удалить ингредиент</button>
                         [@spring.bind "addRecipeData.ingredientsNameList"/]
 
                         <select class="combobox" style="height: 30px; width: 217px">
@@ -261,7 +261,7 @@
                         <div id="step_${index}" class="step">
 
                             <p>Шаг <span class="step_counter">${index}</span></p>
-                            <button data-stepid="${index}" style="position: relative; background-position: -98px -130px; display: none;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>
+                            <button data-stepid="${index}" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>
                             [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
                             <textarea class="forinputs" rows="10" cols="45"
                                       name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
