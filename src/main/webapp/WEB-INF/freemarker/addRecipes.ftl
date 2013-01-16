@@ -35,7 +35,7 @@
                     e.preventDefault();
                     self.addStep(self.k);
                     self.k++;
-                });
+                 });
                 $('.delete_ingr').live('click', function (e) {
                     e.preventDefault();
                     var id = $(this).data('ingrid');
@@ -81,7 +81,7 @@
                     e.preventDefault();
                     self.addStep(self.i);
                     self.i++;
-                });
+                 });
                 $('.delete_step').live('click', function (e) {
                     e.preventDefault();
                     var id = $(this).data('stepid');
@@ -94,6 +94,7 @@
         step.init();
     });
 </script>
+
 
 
 <div class="row-fluid " style="min-height:1500px;">
@@ -189,8 +190,8 @@
             <div id="container">
                 <div class="dynamic-form">
                     <div class="conress">
-
-                        <button id="#" style="position: relative; background-position: -98px -130px;" title="Удалить ингредиент" class="ui-icon ui-icon-trash">Удалить ингредиент</button>
+                         <div>
+                             <button style='position: relative; background-position: -98px -130px; display: none;' title='Удалить ингредиент' class='ui-icon ui-icon-trash' onclick="$(this).parent().popover('destroy').remove(); return false;">Удалить ингредиент</button>
                         [@spring.bind "addRecipeData.ingredientsNameList"/]
 
                         <select class="combobox" style="height: 30px; width: 217px">
@@ -232,7 +233,7 @@
                             <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
                             </p>
                         [/#if]
-
+                         </div>
                     </div>
                 </div>
                 <p>
@@ -260,7 +261,7 @@
                         <div id="step_${index}" class="step">
 
                             <p>Шаг <span class="step_counter">${index}</span></p>
-                            <button data-stepid="${index}" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>
+                            <button data-stepid="${index}" style="position: relative; background-position: -98px -130px; display: none;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>
                             [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
                             <textarea class="forinputs" rows="10" cols="45"
                                       name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
@@ -279,7 +280,7 @@
 
                 </div>
                 <p>
-                    <button class="btn" value="#" id="add" onclick="document.getElementById('#idForBtn').style.visibility=visible">Добавить шаг</button>
+                    <button class="btn" value="#" id="add">Добавить шаг</button>
                 </p>
 
             </div>
