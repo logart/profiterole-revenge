@@ -9,16 +9,16 @@
             addStep:function (k) {
                 var temp = '<div id="ingr_' + k + '" class="ingr"><button data-ingrid="' + k + '" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon ui-icon-trash delete_ingr"">Удалить ингредиент</button>\
                 [@spring.bind "addRecipeData.ingredientsNameList"/]\
-                <select class="combobox ingrName" style="height: 30px; width: 217px; margin-right: 3px;" name="${spring.status.expression}[' + (k - 1) + ']">\
+                <select class="combobox ingrName" style="height: 30px; width: 217px; margin-right: 2px;" name="${spring.status.expression}[' + (k - 1) + ']">\
                     <option value=""></option>\
                     [#list ingredients as c]<option value="${c.ingridientId}">\
                         ${c.nameOfIngridient}</option>\
                     [/#list]\
                 </select>\
                 [@spring.bind "addRecipeData.ingredientsCountList"/]\
-                <input class = "ingrCount" type="text" name="${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px; font-size: 10px; margin-right: 3px;" />\
+                <input class = "ingrCount" type="text" name="${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px; font-size: 10px; margin-right: 1px;" />\
                 [@spring.bind "addRecipeData.ingredientsTypeList"/]\
-                <select class="combobox ingrType" style="height: 30px; width: 60px;" name="${spring.status.expression}[' + (k - 1) + ']">\
+                <select class="combobox ingrType" style="height: 30px; width: 59px;" name="${spring.status.expression}[' + (k - 1) + ']">\
                     <option value=""></option>\
                     <option value="measureOne">гр</option>\
                     <option value="measureTwo">кг</option>\
@@ -232,7 +232,7 @@
                                value="${addRecipeData.ingredientsCountList[current_index - 1]}" style="width: 25px; height: 25px; font-size: 14px;"/>
 
                         [@spring.bind "addRecipeData.ingredientsTypeList[${current_index - 1}]"/]
-                        <select class="combobox ingrType" style="height: 30px; width: 60px" name="${spring.status.expression}">
+                        <select class="combobox ingrType" style="height: 30px; width: 61px" name="${spring.status.expression}">
                             <option selected="" value=""></option>
                             [#if "measureOne" = addRecipeData.ingredientsTypeList[current_index - 1]]
                                 <option selected="" value="measureOne">гр</option>
