@@ -28,7 +28,6 @@ public class AddRecipeData implements Serializable {
     /**
      * {@code description} This field is intended to describe the recipe.
      */
-
     @NotEmpty(message = "Поле должно быть указано.")
     @Size(max = 3000, message = "Количество символов не должно превышать 3000 символов.")
     @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"':;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\"':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
@@ -42,22 +41,28 @@ public class AddRecipeData implements Serializable {
     @Min(value = 6, message = "Корректное значение лежит в диапазоне от 6 до 540 (целые).")
     @Max(value = 540, message = "Корректное значение лежит в диапазоне от 6 до 540 (целые).")
     private String cookingTime;
-    
+
+    /**
+     * {@code cuisineId} This field contains the selected cuisine ID, to obtain appropriate cuisine
+     */
     @NotEmpty(message = "Кухня должна быть указана.")
     private String cuisineId;
+
+    /**
+     * {@code cuisineId} This field contains the selected category ID, to obtain appropriate category
+     */
     @NotEmpty(message = "Категория должна быть указана.")
     private String categoryId;
-    
+
     /**
      * {@code cuisine} This field is a reference to the Cuisine entity.
      */
     private Cuisine cuisine;
-    
+
     /**
      * {@code category} This field is a reference to the Categories entity.
      */
     private Categories category;
-
 
     /**
      * {@code ingredientList} This field contains list of steps for meal
@@ -65,16 +70,23 @@ public class AddRecipeData implements Serializable {
     private List<String> stepsList = new ArrayList<String>();
 
     /**
-     * {@code ingredientList} This field contains list of ingredients for meal.
-     * Ingredients are a references to the Ingridient entity.
+     * {@code ingredientList} This field contains list of names of ingredients for meal
      */
-    private String[] ingredientsNameList;
-    private String[] ingredientsCountList;
-    private String[] ingredientsTypeList;
+    private List<String> ingredientsNameList = new ArrayList<String>();
+
+    /**
+     * {@code ingredientList} This field contains list of counts of ingredients for meal
+     */
+    private List<String> ingredientsCountList = new ArrayList<String>();
+
+    /**
+     * {@code ingredientList} This field contains list of types of ingredients for meal
+     */
+    private List<String> ingredientsTypeList = new ArrayList<String>();
+
     public String getCuisineId() {
         return cuisineId;
     }
-
     public void setCuisineId(String cuisineId) {
         this.cuisineId = cuisineId;
     }
@@ -87,7 +99,6 @@ public class AddRecipeData implements Serializable {
         this.categoryId = categoryId;
     }
 
-   
     public AddRecipeData() {
 
     }
@@ -132,27 +143,31 @@ public class AddRecipeData implements Serializable {
         this.category = category;
     }
 
-    public String[] getIngredientsNameList() {
+    public List<String> getIngredientsNameList() {
         return ingredientsNameList;
     }
 
-    public void setIngredientsNameList(String[] ingredientsNameList) {
+    public void setIngredientsNameList(List<String> ingredientsNameList) {
         this.ingredientsNameList = ingredientsNameList;
     }
 
-    public String[] getIngredientsCountList() {
+    public List<String> getIngredientsCountList() {
         return ingredientsCountList;
     }
 
-    public void setIngredientsCountList(String[] ingredientsCountList) {
+    public void setIngredientsCountList(List<String> ingredientsCountList) {
         this.ingredientsCountList = ingredientsCountList;
     }
 
-    public String[] getIngredientsTypeList() {
+    public void setIngredientsCountList(int index, String ingredientsCountList) {
+        this.ingredientsCountList.set(index, ingredientsCountList);
+    }
+
+    public List<String> getIngredientsTypeList() {
         return ingredientsTypeList;
     }
 
-    public void setIngredientsTypeList(String[] ingredientsTypeList) {
+    public void setIngredientsTypeList(List<String> ingredientsTypeList) {
         this.ingredientsTypeList = ingredientsTypeList;
     }
 

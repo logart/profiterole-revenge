@@ -29,7 +29,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/addRecipes")
 public class AddRecipesController {
-    AddRecipeDataValidator validator;
+    AddRecipeDataValidator validator = new AddRecipeDataValidator();
     @Autowired
     private CuisineService cuisineService;
     @Autowired
@@ -49,11 +49,10 @@ public class AddRecipesController {
         categories = this.categoriesService.getCategories();
         cuisines = this.cuisineService.getCuisine();
         ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
-        validator = new AddRecipeDataValidator();
         model.put("addRecipeData", data);
         model.put("cuisines", cuisines);
         model.put("categories", categories);
-        model.put("ingridients", ingridients);
+        model.put("ingredients", ingridients);
         return "addRecipes";
     }
 
@@ -64,14 +63,12 @@ public class AddRecipesController {
             cuisines = this.cuisineService.getCuisine();
             ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
         }
-        validator = new AddRecipeDataValidator();
-
         ValidationUtils.invokeValidator(validator, data, errors);
         if (errors.hasErrors()) {
             model.put("addRecipeData", data);
             model.put("cuisines", cuisines);
             model.put("categories", categories);
-            model.put("ingridients", ingridients);
+            model.put("ingredients", ingridients);
             return "addRecipes";
         }
         data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategory().getCateg()), categories));
