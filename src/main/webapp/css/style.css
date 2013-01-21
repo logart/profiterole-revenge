@@ -93,7 +93,6 @@ body {
 }
 
 .btn {
-    padding: 4px;
     margin-bottom: 4px;
 }
 
@@ -192,5 +191,9 @@ a.ui-slider-handle {
 
 .padding {
     padding-left: 15px;
+}
+
+.paddingBig {
+    padding-left: 55px;
 }
 

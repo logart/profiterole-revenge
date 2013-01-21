@@ -33,8 +33,16 @@ ${scripts!}
                 <ul class="nav">
                     <li><a href="menu"> Создать меню</a></li>
 
-                    <li><a href="addRecipes">Рецепты</a></li>
-
+                    <li class="dropdown">
+                        <a href="#" class="dropdown" data-toggle="dropdown">
+                            Рецепты
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a href="/allCuisines">Все рецепты</a>
+                            <a href="/addRecipes">Создать рецепт</a>
+                        </ul>
+                    </li>
                     <li><a href="#">О нас</a></li>
                 </ul>
                 <form class="navbar-search pull-right">
