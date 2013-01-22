@@ -33,7 +33,16 @@ public interface IngridientService {
      * @throws NullPointerException(when search has no results in the database)
      */
     List<Ingridient> getAllIngridientsWithOutRecipesInj();
-    Ingridient getIngridientById(Integer ingridientId);      //TODO
+
+    /**
+     * {@method getIngridientById()}
+     * @param ingridientId (ID of some ingredient)
+     * @return the ingridient with id = ingridientId.
+     * @throws org.springframework.dao.DataAccessException(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException(when search has no results in the database)
+     */
+    Ingridient getIngridientById(Integer ingridientId);
     /**
      * {@method addIngridient(Ingridient ingridient)}
      * for adding information about some particular ingridient into DB
