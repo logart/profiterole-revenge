@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class {@code AddRecipeData} is an ordinary recipe defined Java class whose instances
- * can be stored in the database.
+ * Class {@code AddRecipeData} is a class that contains the user's
+ * text data for further validation and added to the database
  *
  * @author Oleg Kalinichenko
  * @date December 02, 2012
