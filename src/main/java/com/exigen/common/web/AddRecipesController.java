@@ -1,13 +1,11 @@
 package com.exigen.common.web;
 
-
 import com.exigen.common.domain.AddRecipeData;
 import com.exigen.common.domain.Categories;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Ingridient;
 import com.exigen.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
@@ -29,7 +27,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/addRecipes")
 public class AddRecipesController {
-    AddRecipeDataValidator validator = new AddRecipeDataValidator();
     @Autowired
     private CuisineService cuisineService;
     @Autowired
@@ -38,7 +35,8 @@ public class AddRecipesController {
     private IngridientService ingridientService;
     @Autowired
     private RecipeService recipeService;
-    private AddRecipeDataService addRecipeDataService = new AddRecipeDataService();
+    @Autowired
+    private AddRecipeDataService addRecipeDataService;
     private List<Categories> categories;
     private List<Cuisine> cuisines;
     private List<Ingridient> ingridients;
@@ -63,7 +61,7 @@ public class AddRecipesController {
             cuisines = this.cuisineService.getCuisine();
             ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
         }
-        ValidationUtils.invokeValidator(validator, data, errors);
+        ValidationUtils.invokeValidator(new AddRecipeDataValidator(), data, errors);
         if (errors.hasErrors()) {
             model.put("addRecipeData", data);
             model.put("cuisines", cuisines);
@@ -71,9 +69,9 @@ public class AddRecipesController {
             model.put("ingredients", ingridients);
             return "addRecipes";
         }
-        data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategory().getCateg()), categories));
-        data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisine().getCuisin()), cuisines));
-        recipeService.addRecipe(data);
+        data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategoryId()), categories));
+        data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisineId()), cuisines));
+        addRecipeDataService.addRecipe(data);
         return "redirect:success";
     }
 

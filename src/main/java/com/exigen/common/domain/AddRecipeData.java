@@ -2,7 +2,6 @@ package com.exigen.common.domain;
 
 import org.hibernate.validator.constraints.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,12 +15,31 @@ import java.util.List;
  * @date December 02, 2012
  */
 public class AddRecipeData implements Serializable {
+    /**
+     * {@code maxStepSize} Contains maximum length of title text
+     */
+    private static final int maxTitleSize = 250;
+
+    /**
+     * {@code maxStepSize} Contains maximum length of description text
+     */
+    private static final int maxDescriptionSize = 3000;
+
+    /**
+     * {@code maxStepSize} Contains maximum value of cooking time
+     */
+    private static final int maxCookingTimeSize = 540;
+
+    /**
+     * {@code maxStepSize} Contains minimum value of cooking time
+     */
+    private static final int minCookingTimeSize = 6;
 
     /**
      * {@code title} Contains the title of recipe.
      */
     @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = 250, message = "Количество символов не должно превышать 250 символов.")
+    @Size(max = maxTitleSize, message = "Количество символов не должно превышать" + maxTitleSize + "символов.")
     @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9 \\Q.,()[]+-*/=\"'\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\"'')")
     private String title;
 
@@ -29,7 +47,7 @@ public class AddRecipeData implements Serializable {
      * {@code description} This field is intended to describe the recipe.
      */
     @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = 3000, message = "Количество символов не должно превышать 3000 символов.")
+    @Size(max = maxDescriptionSize, message = "Количество символов не должно превышать " + maxDescriptionSize + " символов.")
     @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"':;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\"':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
@@ -38,8 +56,8 @@ public class AddRecipeData implements Serializable {
      */
     @NotEmpty(message = "Поле должно быть указано.")
     @Pattern(regexp = "^[0-9]*$", message = "Должно быть целым числом.")
-    @Min(value = 6, message = "Корректное значение лежит в диапазоне от 6 до 540 (целые).")
-    @Max(value = 540, message = "Корректное значение лежит в диапазоне от 6 до 540 (целые).")
+    @Min(value = minCookingTimeSize, message = "Корректное значение лежит в диапазоне от  " + minCookingTimeSize + " до  " + maxDescriptionSize + " (целые).")
+    @Max(value = maxCookingTimeSize, message = "Корректное значение лежит в диапазоне от " + minCookingTimeSize + " до  " + maxDescriptionSize + " (целые).")
     private String cookingTime;
 
     /**
@@ -87,6 +105,7 @@ public class AddRecipeData implements Serializable {
     public String getCuisineId() {
         return cuisineId;
     }
+
     public void setCuisineId(String cuisineId) {
         this.cuisineId = cuisineId;
     }
