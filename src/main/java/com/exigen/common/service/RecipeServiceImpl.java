@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -40,7 +38,7 @@ public class RecipeServiceImpl implements RecipeService {
      * {@method getRecipeCuisineList(Cuisine cuisine)}
      *
      * @param cuisine (object of some particular recipe)
-     * @return the list of recipes, where cuisine in Recipe entity =@param).
+     * @return the list of recipes, where cuisine ikn Recipe entity =@param).
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when cuisine is null, or id has no results in the database)
@@ -82,45 +80,6 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional
     public void addRecipe(Recipe recipe) {
         recipeDao.addRecipe(recipe);
-    }
-
-    /**
-     * {@method removeRecipe(Recipe recipe)}
-     * for remove some particular recipe from DB
-     *
-     * @param data (object of some particular recipe)
-     * @throws org.springframework.dao.DataAccessException (resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when recipe is null)
-     */
-
-    @Transactional
-    public void addRecipe(AddRecipeData data) {
-        List<Ingridient> ingridienstList = new ArrayList<Ingridient>();
-        Recipe recipe = new Recipe();
-        recipe.setTitle(data.getTitle());
-        recipe.setDescription(data.getDescription());
-        recipe.setCuisine(data.getCuisine());
-        recipe.setCategories(data.getCategory());
-        recipe.setSmallImg("http://25.media.tumblr.com/tumblr_m9p3n1vJmZ1rexr16o1_400.jpg");
-        recipe.setBigImg("http://25.media.tumblr.com/tumblr_m9p3n1vJmZ1rexr16o1_400.jpg");
-        recipe.setTime(Integer.parseInt(data.getCookingTime()));
-        recipe.setCalories(1000);
-        recipeDao.addRecipe(recipe);
-//        ingridienstList = new AddRecipeDataService().getIngridientsFromData(data.getIngredientsNameList(), data.getIngredientsCountList(), data.getIngredientsTypeList());
-//        Ingridient ingr_g1 = new Ingridient("Растительное масло", 32, 40, "мл.", recipe);
-//        Ingridient ingr_g2 = new Ingridient("Томатное пюре", 23, 5000, "г", recipe);
-//        Ingridient ingr_g3 = new Ingridient("Соль морская", 2, 30, "г", recipe);
-//        Ingridient ingr_g4 = new Ingridient("Бульон говяжий", 20, 500, "мл.", recipe);
-//        Ingridient ingr_g5 = new Ingridient("Лук репчатый", 2, 2, "шт", recipe);
-//        Ingridient ingr_g6 = new Ingridient("Фасоль красная в собственном соку", 20, 500, "мл.", recipe);
-//        List<Ingridient> list1 = new ArrayList<Ingridient>(Arrays.asList(ingr_g1, ingr_g2, ingr_g3, ingr_g4, ingr_g5, ingr_g6));
-        for (Ingridient ingridient : ingridienstList) {
-            ingridientDao.addIngridient(ingridient);
-        }
-        for (int i = 0; i < data.getStepsList().size(); i++){
-            stepDao.addStep(new Step(i+1, data.getStepsList().get(i), recipe));
-        }
     }
 
     /**

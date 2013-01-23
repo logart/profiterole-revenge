@@ -20,12 +20,12 @@
                 [@spring.bind "addRecipeData.ingredientsTypeList"/]\
                 <select class="combobox ingrType" style="height: 30px; width: 59px;" name="${spring.status.expression}[' + (k - 1) + ']">\
                     <option value=""></option>\
-                    <option value="measureOne">гр</option>\
-                    <option value="measureTwo">кг</option>\
-                    <option value="measureThree">мл</option>\
-                    <option value="measureFour">л</option>\
-                    <option value="measureFive">шт</option>\
-                    <option value="measureSix">зуб</option>\
+                    <option value="гр">гр</option>\
+                    <option value="кг">кг</option>\
+                    <option value="мл">мл</option>\
+                    <option value="л">л</option>\
+                    <option value="шт">шт</option>\
+                    <option value="зуб">зуб</option>\
                 </select>\
                 </div>';
 
@@ -172,7 +172,6 @@
     </select>
     [#if spring.status.error]
         <p>
-
         <div class="error-div" id="cuisineError">[@spring.showErrors '<br>', 'error'/]</div>
         </p>
     [/#if]
@@ -234,40 +233,40 @@
                         [@spring.bind "addRecipeData.ingredientsTypeList[${current_index - 1}]"/]
                         <select class="combobox ingrType" style="height: 30px; width: 61px" name="${spring.status.expression}">
                             <option selected="" value=""></option>
-                            [#if "measureOne" = addRecipeData.ingredientsTypeList[current_index - 1]]
-                                <option selected="" value="measureOne">гр</option>
+                            [#if "гр" = addRecipeData.ingredientsTypeList[current_index - 1]]
+                                <option selected="" value="гр">гр</option>
                             [#else]
-                                <option value="measureOne">гр</option>
+                                <option value="гр">гр</option>
                             [/#if]
 
-                            [#if "measureTwo" = addRecipeData.ingredientsTypeList[current_index - 1]]
-                                <option selected="" value="measureTwo">кг</option>
+                            [#if "кг" = addRecipeData.ingredientsTypeList[current_index - 1]]
+                                <option selected="" value="кг">кг</option>
                             [#else]
-                                <option value="measureTwo">кг</option>
+                                <option value="кг">кг</option>
                             [/#if]
 
-                            [#if "measureThree" = addRecipeData.ingredientsTypeList[current_index - 1]]
-                                <option selected="" value="measureThree">мл</option>
+                            [#if "мл" = addRecipeData.ingredientsTypeList[current_index - 1]]
+                                <option selected="" value="мл">мл</option>
                             [#else]
-                                <option value="measureThree">мл</option>
+                                <option value="мл">мл</option>
                             [/#if]
 
-                            [#if "measureFour" = addRecipeData.ingredientsTypeList[current_index - 1]]
-                                <option selected="" value="measureFour">л</option>
+                            [#if "л" = addRecipeData.ingredientsTypeList[current_index - 1]]
+                                <option selected="" value="л">л</option>
                             [#else]
-                                <option value="measureFour">л</option>
+                                <option value="л">л</option>
                             [/#if]
 
-                            [#if "measureFive" = addRecipeData.ingredientsTypeList[current_index - 1]]
-                                <option selected="" value="measureFive">шт</option>
+                            [#if "шт" = addRecipeData.ingredientsTypeList[current_index - 1]]
+                                <option selected="" value="шт">шт</option>
                             [#else]
-                                <option value="measureFive">шт</option>
+                                <option value="шт">шт</option>
                             [/#if]
 
-                            [#if "measureSix" = addRecipeData.ingredientsTypeList[current_index - 1]]
-                                <option selected="" value="measureSix">зуб</option>
+                            [#if "зуб" = addRecipeData.ingredientsTypeList[current_index - 1]]
+                                <option selected="" value="зуб">зуб</option>
                             [#else]
-                                <option value="measureSix">зуб</option>
+                                <option value="зуб">зуб</option>
                             [/#if]
                         </select>
 

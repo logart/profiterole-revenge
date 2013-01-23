@@ -1,6 +1,5 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.AddRecipeData;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
 
@@ -49,19 +48,8 @@ public interface RecipeService {
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when recipe is null)
      */
-
     void addRecipe(Recipe recipe);
-    /**
-     * {@method addRecipe(AddRecipeData data)}
-     * for adding information about some particular recipe into DB
-     *
-     * @param data (object of some particular recipe, what user added into the view)
-     * @throws org.springframework.dao.DataAccessException (resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when data is null)
-     */
 
-    void addRecipe(AddRecipeData data);
     /**
      * {@method removeRecipe(Recipe recipe)}
      * for remove some particular recipe from DB
