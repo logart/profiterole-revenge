@@ -16,38 +16,38 @@ import java.util.List;
  */
 public class AddRecipeData implements Serializable {
     /**
-     * {@code maxStepSize} Contains maximum length of title text
+     * {@code MAX_TITLE_SIZE} Contains maximum length of title text
      */
-    private static final int maxTitleSize = 250;
+    private static final int MAX_TITLE_SIZE = 250;
 
     /**
-     * {@code maxStepSize} Contains maximum length of description text
+     * {@code MAX_DESCRIPTION_SIZE} Contains maximum length of description text
      */
-    private static final int maxDescriptionSize = 3000;
+    private static final int MAX_DESCRIPTION_SIZE = 3000;
 
     /**
-     * {@code maxStepSize} Contains maximum value of cooking time
+     * {@code MAX_COOKING_TIME_SIZE} Contains maximum value of cooking time
      */
-    private static final int maxCookingTimeSize = 540;
+    private static final int MAX_COOKING_TIME_SIZE = 540;
 
     /**
-     * {@code maxStepSize} Contains minimum value of cooking time
+     * {@code MIN_COOKING_TIME_SIZE} Contains minimum value of cooking time
      */
-    private static final int minCookingTimeSize = 6;
+    private static final int MIN_COOKING_TIME_SIZE = 6;
 
     /**
      * {@code title} Contains the title of recipe.
      */
     @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = maxTitleSize, message = "Количество символов не должно превышать" + maxTitleSize + "символов.")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9 \\Q.,()[]+-*/=\"'\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\"'')")
+    @Size(max = MAX_TITLE_SIZE, message = "Количество символов не должно превышать" + MAX_TITLE_SIZE + "символов.")
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"'\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\"'')", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String title;
 
     /**
      * {@code description} This field is intended to describe the recipe.
      */
     @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = maxDescriptionSize, message = "Количество символов не должно превышать " + maxDescriptionSize + " символов.")
+    @Size(max = MAX_DESCRIPTION_SIZE, message = "Количество символов не должно превышать " + MAX_DESCRIPTION_SIZE + " символов.")
     @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"':;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\"':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
@@ -56,8 +56,8 @@ public class AddRecipeData implements Serializable {
      */
     @NotEmpty(message = "Поле должно быть указано.")
     @Pattern(regexp = "^[0-9]*$", message = "Должно быть целым числом.")
-    @Min(value = minCookingTimeSize, message = "Корректное значение лежит в диапазоне от  " + minCookingTimeSize + " до  " + maxDescriptionSize + " (целые).")
-    @Max(value = maxCookingTimeSize, message = "Корректное значение лежит в диапазоне от " + minCookingTimeSize + " до  " + maxDescriptionSize + " (целые).")
+    @Min(value = MIN_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от  " + MIN_COOKING_TIME_SIZE + " до  " + MAX_DESCRIPTION_SIZE + " (целые).")
+    @Max(value = MAX_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " до  " + MAX_DESCRIPTION_SIZE + " (целые).")
     private String cookingTime;
 
     /**

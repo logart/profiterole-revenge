@@ -14,9 +14,9 @@ import java.util.List;
  * @date December 30,2012
  */
 public interface AddRecipeDataService {
-    public Categories getCategoryFromListByID(Integer id, List<Categories> list);
+    Categories getCategoryFromListByID(Integer id, List<Categories> list);
 
-    public Cuisine getCuisineFromListByID(Integer id, List<Cuisine> list);
+    Cuisine getCuisineFromListByID(Integer id, List<Cuisine> list);
 
-    public void addRecipe(AddRecipeData data);
+    void addRecipe(AddRecipeData data);
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Interface {@code AddRecipeDataServiceImpl} used for add new recipe to DB, and for
+ * Class {@code AddRecipeDataServiceImpl} used for add new recipe to DB, and for
  * editing input data
  *
  * @author Oleg Kalinichenko
