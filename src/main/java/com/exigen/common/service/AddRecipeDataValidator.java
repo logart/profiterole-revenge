@@ -32,14 +32,14 @@ public class AddRecipeDataValidator implements Validator {
     private static final int MAX_STEP_SIZE = 3000;
 
     /**
-     * {@code ingredientsTypeList} Contains name of bean where ingredient's error should be add
+     * {@code INGREDIENTS_TYPE_LIST} Contains name of bean where ingredient's error should be add
      */
-    private static final String ingredientsTypeList = "ingredientsTypeList";
+    private static final String INGREDIENTS_TYPE_LIST = "ingredientsTypeList";
 
     /**
-     * {@code ingredientsTypeList} Contains name of bean where step's error should be add
+     * {@code INGREDIENTS_TYPE_LIST} Contains name of bean where step's error should be add
      */
-    private static final String stepsList = "stepsList";
+    private static final String STEPS_LIST = "stepsList";
 
     /**
      * {@method supports(Class<?> aClass)}
@@ -86,12 +86,12 @@ public class AddRecipeDataValidator implements Validator {
         for (int i = 0; i < stepsList.size(); i++) {
             stepMatcher = stepPattern.matcher(stepsList.get(i));
             if (stepsList.get(i).isEmpty()) {
-                errors.rejectValue(this.stepsList + "[" + i + "]", "emptyStep." + this.stepsList, "Поле не должно быть пустым.");
+                errors.rejectValue(this.STEPS_LIST + "[" + i + "]", "emptyStep." + this.STEPS_LIST, "Поле не должно быть пустым.");
             } else if (stepMatcher.find()) {
-                errors.rejectValue(this.stepsList + "[" + i + "]", "wrongText." + this.stepsList, "Корректными значениями являются большие и маленькие буквы" +
+                errors.rejectValue(this.STEPS_LIST + "[" + i + "]", "wrongText." + this.STEPS_LIST, "Корректными значениями являются большие и маленькие буквы" +
                         " (English, Українська, Русский), цифры, символы (, ( ) + - = “ ” \" ' ‘ ’ : ; [] ! ? * % <> / ).");
             } else if (stepsList.get(i).length() > MAX_STEP_SIZE) {
-                errors.rejectValue(this.stepsList + "[" + i + "]", "tooLong." + this.stepsList, "Размер шага не должен превышать 3000 символов.");
+                errors.rejectValue(this.STEPS_LIST + "[" + i + "]", "tooLong." + this.STEPS_LIST, "Размер шага не должен превышать 3000 символов.");
             }
         }
     }
@@ -122,7 +122,7 @@ public class AddRecipeDataValidator implements Validator {
     private void checkIngredientsName(List<String> namesList, Errors errors) {
         for (int i = 0; i < namesList.size(); i++) {
             if (namesList.get(i).isEmpty()) {
-                errors.rejectValue(this.ingredientsTypeList + "[" + i + "]", "emptyName." + this.ingredientsTypeList, "Выберите название ингридиента.");
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyName." + this.INGREDIENTS_TYPE_LIST, "Выберите название ингридиента.");
             }
         }
     }
@@ -138,7 +138,7 @@ public class AddRecipeDataValidator implements Validator {
     private void checkIngredientsType(List<String> typesList, Errors errors) {
         for (int i = 0; i < typesList.size(); i++) {
             if (typesList.get(i).isEmpty()) {
-                errors.rejectValue(this.ingredientsTypeList + "[" + i + "]", "emptyType." + this.ingredientsTypeList, "Выберите тип измерения ингридиента.");
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyType." + this.INGREDIENTS_TYPE_LIST, "Выберите тип измерения ингридиента.");
             }
         }
     }
@@ -156,9 +156,9 @@ public class AddRecipeDataValidator implements Validator {
         for (int i = 0; i < countsList.size(); i++) {
             ingredientCountMatcher = ingredientCountPattern.matcher(countsList.get(i));
             if (countsList.get(i).isEmpty()) {
-                errors.rejectValue(this.ingredientsTypeList + "[" + i + "]", "emptyCount." + this.ingredientsTypeList, "Введите количество ингридиента.");
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyCount." + this.INGREDIENTS_TYPE_LIST, "Введите количество ингридиента.");
             } else if (ingredientCountMatcher.find()) {
-                errors.rejectValue(this.ingredientsTypeList + "[" + i + "]", "wrongCount." + this.ingredientsTypeList, "Корректными значениями количества ингридиента является целое число.");
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "wrongCount." + this.INGREDIENTS_TYPE_LIST, "Корректными значениями количества ингридиента является целое число.");
             }
         }
     }
@@ -176,10 +176,10 @@ public class AddRecipeDataValidator implements Validator {
      */
     private void checkForEmptyLists(List<String> countsList, List<String> typesList, List<String> namesList, List<String> stepsList, Errors errors) {
         if (countsList.size() == 0 || typesList.size() == 0 || namesList.size() == 0) {
-            errors.rejectValue(this.ingredientsTypeList + "[0]", "zeroIngredients." + this.ingredientsTypeList, "Должен быть хотя бы один ингридиент.");
+            errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[0]", "zeroIngredients." + this.INGREDIENTS_TYPE_LIST, "Должен быть хотя бы один ингридиент.");
         }
         if (stepsList.size() == 0) {
-            errors.rejectValue(this.stepsList + "[0]", "zeroSteps." + this.stepsList, "Должен быть хотя бы один шаг.");
+            errors.rejectValue(this.STEPS_LIST + "[0]", "zeroSteps." + this.STEPS_LIST, "Должен быть хотя бы один шаг.");
         }
     }
 
