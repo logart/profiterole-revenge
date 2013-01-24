@@ -1,7 +1,6 @@
 package com.exigen.common.repository;
 
 import com.exigen.common.domain.Categories;
-import com.exigen.common.domain.Recipe;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

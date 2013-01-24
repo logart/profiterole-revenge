@@ -34,8 +34,6 @@ public class AddRecipesController {
     @Autowired
     private IngridientService ingridientService;
     @Autowired
-    private RecipeService recipeService;
-    @Autowired
     private AddRecipeDataService addRecipeDataService;
     private List<Categories> categories;
     private List<Cuisine> cuisines;

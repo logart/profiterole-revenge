@@ -27,9 +27,9 @@ public class AddRecipeDataValidator implements Validator {
     private Pattern ingredientCountPattern = Pattern.compile("[^0-9]");
 
     /**
-     * {@code maxStepSize} Contains maximum length of step text
+     * {@code MAX_STEP_SIZE} Contains maximum length of step text
      */
-    private static final int maxStepSize = 3000;
+    private static final int MAX_STEP_SIZE = 3000;
 
     /**
      * {@code ingredientsTypeList} Contains name of bean where ingredient's error should be add
@@ -90,7 +90,7 @@ public class AddRecipeDataValidator implements Validator {
             } else if (stepMatcher.find()) {
                 errors.rejectValue(this.stepsList + "[" + i + "]", "wrongText." + this.stepsList, "Корректными значениями являются большие и маленькие буквы" +
                         " (English, Українська, Русский), цифры, символы (, ( ) + - = “ ” \" ' ‘ ’ : ; [] ! ? * % <> / ).");
-            } else if (stepsList.get(i).length() > maxStepSize) {
+            } else if (stepsList.get(i).length() > MAX_STEP_SIZE) {
                 errors.rejectValue(this.stepsList + "[" + i + "]", "tooLong." + this.stepsList, "Размер шага не должен превышать 3000 символов.");
             }
         }

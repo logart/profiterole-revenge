@@ -27,14 +27,6 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private RecipeDao recipeDao;
     /**
-     * {@code ingridientDao} describes the IngridientDao work with DB and Ingridient entity
-     */
-    @Autowired
-    private IngridientDao ingridientDao;
-
-    @Autowired
-    private StepDao stepDao;
-    /**
      * {@method getRecipeCuisineList(Cuisine cuisine)}
      *
      * @param cuisine (object of some particular recipe)
