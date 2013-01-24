@@ -1,9 +1,7 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.*;
-import com.exigen.common.repository.IngridientDao;
 import com.exigen.common.repository.RecipeDao;
-import com.exigen.common.repository.StepDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
