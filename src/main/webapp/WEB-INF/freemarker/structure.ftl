@@ -44,10 +44,35 @@ ${scripts!}
                         </ul>
                     </li>
                     <li><a href="#">О нас</a></li>
-                </ul>
+
+             <!--   </ul> -->
+
+               <!--     <div class="btn-link"
+
+                    <form >
+                     <a href="login">Вход</a></li>
+                     <a href="#"  >Регистрация</a></li>
+                    </form>
+                     </div>
+                      style="text-decoration: underline"
+                      -->
+
+
+                  </ul>
+
+
                 <form class="navbar-search pull-right">
                     <input type="text" class="search-query" placeholder="Поиск недоступен" disabled>
                 </form>
+
+
+            <ul class="btn btn-link pull-right" style="text-decoration: underline">
+                <a href="/registration">Регистрация</a>
+            </ul>
+            <ul  class="btn btn-link pull-right" style="text-decoration: underline">
+                <a href="/login">Вход</a>
+            </ul>
+
             </div>
         </div>
 
