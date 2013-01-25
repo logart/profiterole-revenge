@@ -65,7 +65,7 @@
 <div class="cuisine_value no-display">${cuisineTitle}</div>
 
 <div class="no-display">
-[#list model as a]
+[#list modl as a]
 
     <div class="recipe_on_page btn-link" data-cat_value="${a.categories.categoriesId}" data-content="${a.description}"
          href="/modalRecipeDescription?recipeId=${a.recipeId}" data-toggle="modal"

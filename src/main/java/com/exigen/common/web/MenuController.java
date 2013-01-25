@@ -44,7 +44,7 @@ public class MenuController {
     @RequestMapping(value = {"/cuisinesAjax"})
     public ModelAndView cuisinesAjax() {
 
-        return new ModelAndView("cuisinesAjax", "model", this.cuisineService.getCuisine());
+        return new ModelAndView("cuisinesAjax", "modl", this.cuisineService.getCuisine());
     }
     /**
      * {@method allCuisines()} using for load all cuisines to the page
@@ -73,7 +73,7 @@ public class MenuController {
 
     @RequestMapping(value = {"/recipes"})
     public ModelAndView listRecipes(@RequestParam("cuisineId") Integer cuisineId) {
-        ModelAndView mav = new ModelAndView("recipes", "model", this.cuisineService.getOneCuisine(cuisineId));
+        ModelAndView mav = new ModelAndView("recipes", "modl", this.cuisineService.getOneCuisine(cuisineId));
         mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId - 1).getCuisin());
         return mav;
     }
