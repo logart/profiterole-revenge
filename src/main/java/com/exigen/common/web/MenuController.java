@@ -40,17 +40,22 @@ public class MenuController {
         return new ModelAndView("cuisines", "model", this.cuisineService.getCuisine());
     }
 
+
+    @RequestMapping(value = {"/cuisinesAjax"})
+    public ModelAndView cuisinesAjax() {
+
+        return new ModelAndView("cuisinesAjax", "model", this.cuisineService.getCuisine());
+    }
     /**
      * {@method allCuisines()} using for load all cuisines to the page
      *
      * @return all cuisines list
      */
-    @RequestMapping(value = {"/allCuisines"})
+    @RequestMapping(value = {"/allOfRecipes"})
     public ModelAndView allCuisines() {
 
-        return new ModelAndView("allCuisines", "model", this.cuisineService.getCuisine());
+        return new ModelAndView("allOfRecipes");
     }
-
 
     /**
      * {@method listRecipesToAjax()} using for mapped ajax queries      *
@@ -62,6 +67,13 @@ public class MenuController {
     @ResponseBody
     public ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
         ModelAndView mav = new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
+        mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId - 1).getCuisin());
+        return mav;
+    }
+
+    @RequestMapping(value = {"/recipes"})
+    public ModelAndView listRecipes(@RequestParam("cuisineId") Integer cuisineId) {
+        ModelAndView mav = new ModelAndView("recipes", "model", this.cuisineService.getOneCuisine(cuisineId));
         mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId - 1).getCuisin());
         return mav;
     }

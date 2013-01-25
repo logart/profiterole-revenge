@@ -39,7 +39,7 @@ ${scripts!}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <a href="/allCuisines">Все рецепты</a>
+                            <a href="/allOfRecipes">Все рецепты</a>
                             <a href="/addRecipes">Создать рецепт</a>
                         </ul>
                     </li>
