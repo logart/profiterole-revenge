@@ -46,16 +46,6 @@ public class MenuController {
 
         return new ModelAndView("cuisinesAjax", "modl", this.cuisineService.getCuisine());
     }
-    /**
-     * {@method allCuisines()} using for load all cuisines to the page
-     *
-     * @return all cuisines list
-     */
-    @RequestMapping(value = {"/allOfRecipes"})
-    public ModelAndView allCuisines() {
-
-        return new ModelAndView("allOfRecipes");
-    }
 
     /**
      * {@method listRecipesToAjax()} using for mapped ajax queries      *
