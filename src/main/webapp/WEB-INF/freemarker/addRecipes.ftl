@@ -72,7 +72,7 @@
             addStep:function (i) {
                 var template = '<div id="step_' + i + '" class="step"><p>Шаг <span class="step_counter">' + i + '</span></p>\
                 <button data-stepid="' + i + '" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>\
-                <textarea class = "stepTextarea forinputs" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" ></textarea> \
+                <textarea class = "stepTextarea forinputs" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" maxlength="3000"></textarea> \
                 <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>\
                 <p><INPUT NAME="userfile" TYPE="file"></p>\
                 </div>';
@@ -110,19 +110,16 @@
     });
 </script>
 
-
 <div class="row-fluid " style="min-height:1500px;">
 <h1 style="vertical-align:middle; margin-top:5px">Создать рецепт</h1>
 
 <form id="#OK" action="" method="post" commandName="addRecipeData" style="height: 1500px">
 <div class="span6" id="menuDrop">
-
-
     <p><b>Название</b></p>
 
     [@spring.bind "addRecipeData.title"/]
     <input type="text" name="${spring.status.expression}"
-           value="${spring.status.value?default("")}" style="width: 315px; font-size: 14px;"/> <br/>
+           value="${spring.status.value?default("")}" style="width: 315px; font-size: 14px;" maxlength="250"/> <br>
     [#if spring.status.error]
         <p>
 
@@ -133,7 +130,7 @@
     <p><b>Описание</b></p>
     [@spring.bind "addRecipeData.description"/]
     <textarea class="forinputs" rows="10" cols="60"
-              name="${spring.status.expression}">${spring.status.value?default("")}</textarea> <br/>
+              name="${spring.status.expression}" maxlength="3000">${spring.status.value?default("")}</textarea> <br/>
     [#if spring.status.error]
         <p>
 
@@ -310,7 +307,7 @@
                     </button>
                     [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
                     <textarea class="stepTextarea forinputs" rows="10" cols="45"
-                              name="${spring.status.expression}">${spring.status.value?default("")}</textarea>
+                              name="${spring.status.expression}" maxlength="3000">${spring.status.value?default("")}</textarea>
                     <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
                     <!-- макс. размер -->
                     <p>Имя файла:</p>

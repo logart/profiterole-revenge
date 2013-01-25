@@ -59,6 +59,7 @@ public class AddRecipesController {
             cuisines = this.cuisineService.getCuisine();
             ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
         }
+
         ValidationUtils.invokeValidator(new AddRecipeDataValidator(), data, errors);
         if (errors.hasErrors()) {
             model.put("addRecipeData", data);
