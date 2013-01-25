@@ -1,7 +1,9 @@
-package com.exigen.common.repository;
+package com.exigen.common.dao;
 
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
+import com.exigen.common.repository.CuisineDao;
+import com.exigen.common.repository.RecipeDao;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
