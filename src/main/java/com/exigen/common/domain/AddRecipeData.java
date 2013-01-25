@@ -39,8 +39,8 @@ public class AddRecipeData implements Serializable {
      * {@code title} Contains the title of recipe.
      */
     @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = MAX_TITLE_SIZE, message = "Количество символов не должно превышать" + MAX_TITLE_SIZE + "символов.")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"'\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\"'')", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
+    @Size(max = MAX_TITLE_SIZE, message = "Количество символов не должно превышать " + MAX_TITLE_SIZE + " символов.")
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"“”'‘’\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\" '')", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String title;
 
     /**
@@ -48,7 +48,7 @@ public class AddRecipeData implements Serializable {
      */
     @NotEmpty(message = "Поле должно быть указано.")
     @Size(max = MAX_DESCRIPTION_SIZE, message = "Количество символов не должно превышать " + MAX_DESCRIPTION_SIZE + " символов.")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"':;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\"':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"“”'‘’:;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\" '':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
     /**
@@ -56,8 +56,8 @@ public class AddRecipeData implements Serializable {
      */
     @NotEmpty(message = "Поле должно быть указано.")
     @Pattern(regexp = "^[0-9]*$", message = "Должно быть целым числом.")
-    @Min(value = MIN_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от  " + MIN_COOKING_TIME_SIZE + " до  " + MAX_DESCRIPTION_SIZE + " (целые).")
-    @Max(value = MAX_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " до  " + MAX_DESCRIPTION_SIZE + " (целые).")
+    @Min(value = MIN_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от  " + MIN_COOKING_TIME_SIZE + " до  " + MAX_COOKING_TIME_SIZE + " (целые).")
+    @Max(value = MAX_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " до  " + MAX_COOKING_TIME_SIZE + " (целые).")
     private String cookingTime;
 
     /**
