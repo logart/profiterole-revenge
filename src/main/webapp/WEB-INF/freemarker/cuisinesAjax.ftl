@@ -18,7 +18,7 @@
 
     });
 </script>
-[#list model as a]
+[#list modl as a]
 <div class="btn" href="${a.cuisineId}">
     <img class="img-cuisine" src="${a.imglink}" alt="${a.cuisin}"/>
     <label>${a.cuisin}</label>
