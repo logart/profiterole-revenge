@@ -54,7 +54,7 @@ public class ModalRecipeDescriptionController {
     @Autowired
     private StepService stepService;
 
-    ModelAndView modalModel;
+    private ModelAndView modalModel;
 
 
     /**
