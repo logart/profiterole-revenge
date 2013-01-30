@@ -102,7 +102,7 @@ public class AddRecipeData implements Serializable {
      */
     private List<String> ingredientsTypeList = new ArrayList<String>();
 
-    public static List<String> imagesForStepsList = new ArrayList<String>();
+    private List<String> imagesForStepsList = new ArrayList<String>();
 
     private String imageForRecipeHead;
 
