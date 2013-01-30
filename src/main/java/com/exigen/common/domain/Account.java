@@ -21,8 +21,8 @@ import java.util.Calendar;
 @NamedQuery(name = "Account.findAllUsers", query = "SELECT ac FROM Account ac")
 public class Account implements Serializable {
 
-    private static final int minLength = 3;
-    private static final int maxLength =50;
+    private static final int MINLENGTH = 3;
+    private static final int MAXLENGTH =50;
 
     /**
      * The @Id annotation marks a field as a primary key field.
@@ -44,7 +44,7 @@ public class Account implements Serializable {
      * {@code password} describes password for authentification
      */
     @NotEmpty(message = "Поле должно быть указано.")
-    @Size(min = minLength, max = maxLength)
+    @Size(min = MINLENGTH, max = MAXLENGTH)
     private String password;
 
     /**
