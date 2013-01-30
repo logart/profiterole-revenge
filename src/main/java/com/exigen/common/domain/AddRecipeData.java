@@ -102,6 +102,10 @@ public class AddRecipeData implements Serializable {
      */
     private List<String> ingredientsTypeList = new ArrayList<String>();
 
+    public static List<String> imagesForStepsList = new ArrayList<String>();
+
+    private String imageForRecipeHead;
+
     public String getCuisineId() {
         return cuisineId;
     }
@@ -196,5 +200,21 @@ public class AddRecipeData implements Serializable {
 
     public void setStepsList(List<String> stepsList) {
         this.stepsList = stepsList;
+    }
+
+    public List<String> getImagesForStepsList() {
+        return imagesForStepsList;
+    }
+
+    public void setImagesForStepsList(List<String> imagesForStepsList) {
+        this.imagesForStepsList = imagesForStepsList;
+    }
+
+    public String getImageForRecipeHead() {
+        return imageForRecipeHead;
+    }
+
+    public void setImageForRecipeHead(String imageForRecipeHead) {
+        this.imageForRecipeHead = imageForRecipeHead;
     }
 }
