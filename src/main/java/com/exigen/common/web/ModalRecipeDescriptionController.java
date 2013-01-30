@@ -54,6 +54,8 @@ public class ModalRecipeDescriptionController {
     @Autowired
     private StepService stepService;
 
+    ModelAndView modalModel;
+
 
     /**
      * {@method modalRecipeDescription()} using for mapped ajax queries      *
@@ -66,7 +68,7 @@ public class ModalRecipeDescriptionController {
     @ResponseBody
     public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
 
-        ModelAndView modalModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
+        modalModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
         modalModel.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
         modalModel.addObject("ingridient", this.ingridientService.getIngridientsRecipeList(recipeId));
 
