@@ -5,8 +5,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Class {@code Account} is an ordinary user defined Java class whose instances
@@ -19,7 +19,7 @@ import java.util.Date;
 @Entity
 @Table(name = "accounts")
 @NamedQuery(name = "Account.findAllUsers", query = "SELECT ac FROM Account ac")
-public class Account {
+public class Account implements Serializable {
 
     /**
      * The @Id annotation marks a field as a primary key field.
@@ -28,7 +28,7 @@ public class Account {
      */
     @Id
     @GeneratedValue
-    private Integer userId;
+    private Integer id;
 
 
     /**
@@ -55,7 +55,7 @@ public class Account {
      * {@code maleOrFemale} describes sex of some user
      */
     @Enumerated
-    private MaleOrFemale maleOrFemale;
+    private Gender maleOrFemale;
 
     /**
      * {@code dateOfBirth} describes date of birth of some user
@@ -73,7 +73,7 @@ public class Account {
     /**
      * {@method Account} its a constructor for adding data in entity
      */
-    public Account(String login, String password, String email, MaleOrFemale maleOrFemale, Calendar dateOfBirth) {
+    public Account(String login, String password, String email, Gender maleOrFemale, Calendar dateOfBirth) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -110,11 +110,11 @@ public class Account {
         this.password = password;
     }
 
-    public MaleOrFemale getMaleOrFemale() {
+    public Gender getMaleOrFemale() {
         return maleOrFemale;
     }
 
-    public void setMaleOrFemale(MaleOrFemale maleOrFemale) {
+    public void setMaleOrFemale(Gender maleOrFemale) {
         this.maleOrFemale = maleOrFemale;
     }
 
@@ -126,4 +126,13 @@ public class Account {
     public void setDateOfBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
 }
