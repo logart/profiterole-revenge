@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class ModalRecipeDescriptionControllerTest {
 
     @Mock
-    ModelAndView modalModel;
+    ModelAndView returnModel;
 
     @Mock
     RecipeService recipeService;
@@ -44,7 +44,7 @@ public class ModalRecipeDescriptionControllerTest {
 
       ModalRecipeDescriptionController modalRecipeDescriptionController=new ModalRecipeDescriptionController();
 
-        ReflectionTestUtils.setField(modalRecipeDescriptionController, "modalModel", this.modalModel);
+        ReflectionTestUtils.setField(modalRecipeDescriptionController, "returnModel", this.returnModel);
 
         ReflectionTestUtils.setField(modalRecipeDescriptionController, "recipeService", this.recipeService);
 
@@ -53,7 +53,7 @@ public class ModalRecipeDescriptionControllerTest {
         ReflectionTestUtils.setField(modalRecipeDescriptionController, "stepService", this.stepService);
 
 
-        ModelAndView modelAndView=modalRecipeDescriptionController.modalRecipeDescription(23);
+
 
         Assert.assertNull(modalRecipeDescriptionController.modalRecipeDescription(23).getView());
     }

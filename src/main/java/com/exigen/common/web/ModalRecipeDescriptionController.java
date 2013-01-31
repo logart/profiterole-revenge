@@ -54,7 +54,7 @@ public class ModalRecipeDescriptionController {
     @Autowired
     private StepService stepService;
 
-    private ModelAndView modalModel;
+    private ModelAndView returnModel;
 
 
     /**
@@ -68,10 +68,10 @@ public class ModalRecipeDescriptionController {
     @ResponseBody
     public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
 
-        modalModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
-        modalModel.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
-        modalModel.addObject("ingridient", this.ingridientService.getIngridientsRecipeList(recipeId));
+        returnModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
+        returnModel.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
+        returnModel.addObject("ingridient", this.ingridientService.getIngridientsRecipeList(recipeId));
 
-        return modalModel;
+        return returnModel;
     }
 }
