@@ -115,7 +115,7 @@ public class AddRecipeDataValidator implements Validator {
      * @return the list of all the transmitted elements, where removed
      *         all spaces at the beginning and at the end
      */
-    private List<String> trimList(List<String> list) {
+    public List<String> trimList(List<String> list) {
         for (String string : list) {
             string = string.trim();
         }

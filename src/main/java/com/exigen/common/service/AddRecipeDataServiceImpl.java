@@ -85,7 +85,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param data (object with data what user input)
      * @return returns Recipe with data inputted by the user
      */
-    private Recipe makeRecipe(AddRecipeData data) {
+    public Recipe makeRecipe(AddRecipeData data) {
         Recipe recipe = new Recipe();
         recipe.setTitle(data.getTitle());
         recipe.setDescription(data.getDescription());
@@ -106,7 +106,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param recipe (recipe whose steps are created)
      * @return list of steps
      */
-    private List<Step> makeSteps(AddRecipeData data, Recipe recipe) {
+    public List<Step> makeSteps(AddRecipeData data, Recipe recipe) {
         List<String> stepsList = data.getStepsList();
         List<Step> result = new ArrayList<Step>();
         for (int i = 0; i < stepsList.size(); i++) {
@@ -128,7 +128,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param recipe (recipe whose ingredients are created)
      * @return list of ingredients
      */
-    private List<Ingridient> makeIngredients(AddRecipeData data, Recipe recipe) {
+    public List<Ingridient> makeIngredients(AddRecipeData data, Recipe recipe) {
         List<String> idList = data.getIngredientsNameList();
         List<String> countsList = data.getIngredientsCountList();
         List<String> typesList = data.getIngredientsTypeList();
@@ -154,12 +154,16 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param idList (list with id of selected ingredients)
      * @return summary calories of selected ingredients
      */
-    private Float getCalories(List<String> idList) {
+    public Float getCalories(List<String> idList) {
         float calories = 0;
         for (int i = 0; i < idList.size(); i++) {
             Ingridient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
             calories += temp.getCalories();
         }
         return calories;
+    }
+
+    public void setIngridientService(IngridientService ingridientService1){
+        this.ingridientService=ingridientService1;
     }
 }
