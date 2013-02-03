@@ -1,7 +1,9 @@
 package com.exigen.common.dao;
 
+import com.exigen.common.domain.Categories;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
+import com.exigen.common.repository.CategoriesDao;
 import com.exigen.common.repository.CuisineDao;
 import com.exigen.common.repository.RecipeDao;
 import org.junit.Assert;
@@ -13,6 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,15 +31,22 @@ public class CuisineDaoTest {
     private CuisineDao cuisineDao;
     @Autowired
     private RecipeDao recipeDao;
-
+    @Autowired
+    private CategoriesDao categoriesDao;
 
     private Cuisine testCuisine;
-    private Recipe testRecipe;
 
+    private Categories testCategories;
+
+    private Recipe testRecipe=new Recipe("title","desc",testCuisine,testCategories,"bigimg","smalling",5,5);
+
+    private List<Recipe> recipes=new ArrayList<Recipe>();
 
     @Before
     public void setup() {
         testCuisine = new Cuisine("test", "test");
+        testCategories=new Categories("categ");
+
     }
 
 
@@ -52,5 +64,19 @@ public class CuisineDaoTest {
         Assert.assertNotNull(cuisineDao.getCuisine());
     }
 
+    @Test
+    public void getOneCuisineListTest(){
+        categoriesDao.addCategories(testCategories);
+        cuisineDao.addCuisine(testCuisine);
+        testRecipe.setCategories(testCategories);
+        testRecipe.setCuisine(testCuisine);
+        recipeDao.addRecipe(testRecipe);
+        recipes.add(testRecipe);
+        testCuisine.setRecipes(recipes);
+        cuisineDao.addCuisine(testCuisine);
+        Assert.assertNull(recipeDao.getOneRecipe(testCuisine.getCuisineId()));
+
+
+    }
 
 }
