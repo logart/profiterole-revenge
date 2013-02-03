@@ -38,4 +38,11 @@ public class IngridientTest {
         ingridient.setCountOfIngridient(10);
         assertEquals(10, ingridient.getCountOfIngridient());
     }
+
+    @Test
+    public void testGetSetUnitOfMeasure(){
+     assertNull(ingridient.getUnitOfMeasure());
+        ingridient.setUnitOfMeasure("unit");
+        assertEquals("unit",ingridient.getUnitOfMeasure());
+    }
 }

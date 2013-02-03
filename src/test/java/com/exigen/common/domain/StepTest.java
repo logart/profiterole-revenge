@@ -40,4 +40,11 @@ public class StepTest {
         assertEquals("/img/ukr.jpg", step.getStepImg());
     }
 
+    @Test
+    public void testGetSetStepId(){
+        assertNull(step.getStepId());
+        step.setStepId(5);
+        assertEquals((Object)5,step.getStepId());
+    }
+
 }
