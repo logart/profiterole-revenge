@@ -45,4 +45,11 @@ public class CategoriesDaoTest {
         Assert.assertNotNull(categoriesDao.getCategories());
     }
 
+
+    @Test
+    public void getCategoryTest(){
+        categoriesDao.addCategories(testCategories);
+        Assert.assertNotNull(categoriesDao.getCategory(testCategories.getCategoriesId()));
+        categoriesDao.removeCategories(testCategories);
+    }
 }
