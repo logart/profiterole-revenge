@@ -1791,10 +1791,17 @@ legend + .control-group {
 }
 
 .form-horizontal .control-label {
+     float: left;
+     width: 160px;
+     padding-top: 5px;
+     text-align: right;
+ }
+
+.form-horizontal .control-label-left {
     float: left;
     width: 160px;
     padding-top: 5px;
-    text-align: right;
+    text-align: left;
 }
 
 .form-horizontal .controls {
