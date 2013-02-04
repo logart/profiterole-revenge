@@ -14,6 +14,7 @@ ${scripts!}
     <script type="text/javascript" src="js/HiddenDimensions.js"></script>
     <script type="text/javascript" src="/js/Ellipsis.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
+    <script type="text/javascript" src="/js/jquery.ui.datepicker.js"></script>
 
     <title>Profiterole</title>
 
@@ -43,7 +44,20 @@ ${scripts!}
                             <a href="/addRecipes">Создать рецепт</a>
                         </ul>
                     </li>
-                    <li><a href="/about">О нас</a></li>
+                    <li><a href="#">О нас</a></li>
+
+             <!--   </ul> -->
+
+               <!--     <div class="btn-link"
+
+                    <form >
+                     <a href="login">Вход</a></li>
+                     <a href="#"  >Регистрация</a></li>
+                    </form>
+                     </div>
+                      style="text-decoration: underline"
+                      -->
+
 
                   </ul>
 
