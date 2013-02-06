@@ -64,18 +64,51 @@
     <div class="control-group">
         <div class="control-label-left">Страна</div>
         <div class="controls">
-            <select class="span2" name="country" >
+            <select class="span3" name="country" >
                 <option value=""></option>
                 <option value="Украина">Украина</option>
                 <option value="Россия">Россия</option>
+                <option value="Белорусь">Белорусь</option>
                 <option value="Франция">Франция</option>
                 <option value="Германия">Германия</option>
+                <option value="Испания">Испания</option>
+                <option value="Португалия">Португалия</option>
+                <option value="Италия">Италия</option>
+                <option value="Англия">Англия</option>
+                <option value="Ирландия">Ирландия</option>
+                <option value="Норвегия">Норвегия</option>
+                <option value="Швеция">Швеция</option>
+                <option value="Финляндия">Финляндия</option>
+                <option value="Эстония">Эстония</option>
+                <option value="Латвия">Латвия</option>
+                <option value="Литва">Литва</option>
+                <option value="Бельгия">Бельгия</option>
+                <option value="Нидерланды">Нидерланды</option>
+                <option value="Швейцария">Швейцария</option>
+                <option value="Австрия">Австрия</option>
+                <option value="Чешская Республика">Чешская Республика</option>
+                <option value="Румыния">Румыния</option>
+                <option value="Болгария">Болгария</option>
+                <option value="Греция">Греция</option>
+                <option value="Турция">Турция</option>
+                <option value="Грузия">Грузия</option>
+                <option value="Армения">Армения</option>
+                <option value="Казахстан">Казахстан</option>
+                <option value="Израиль">Израиль</option>
+                <option value="ОАЭ">ОАЭ</option>
+                <option value="Япония">Япония</option>
+                <option value="Индия">Индия</option>
+                <option value="Китай">Китай</option>
+                <option value="США">США</option>
+                <option value="Канада">Канада</option>
+                <option value="Мексика">Мексика</option>
+                <option value="Аргентина">Аргентина</option>
             </select>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="checkbox inline">
+        <label class="checkbox">
             <input type="checkbox" id="confirmRules" name="confirmRules" value="ok">
             Я ознакомился(лась) с
             <a href="/rules" style="text-decoration: underline;" target=" _blank">Правилами и условиями работы на
