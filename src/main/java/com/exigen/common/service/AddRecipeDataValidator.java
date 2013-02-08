@@ -168,11 +168,9 @@ public class AddRecipeDataValidator implements Validator {
             ingredientCountMatcher = ingredientCountPattern.matcher(countsList.get(i));
             if (countsList.get(i).isEmpty()) {
                 errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyCount." + this.INGREDIENTS_TYPE_LIST, "Введите количество ингредиента.");
-            } else if (ingredientCountMatcher.find()) {
-                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "wrongCount." + this.INGREDIENTS_TYPE_LIST, "Корректными значениями количества ингредиента является целое число.");
-            } else {
+            }else {
                 try {
-                    if (Integer.parseInt(countsList.get(i)) < MIN_INGREDIENT_COUNT_VALUE || Integer.parseInt(countsList.get(i)) > MAX_INGREDIENT_COUNT_VALUE) {
+                    if (Float.parseFloat(countsList.get(i).replace(',','.')) < MIN_INGREDIENT_COUNT_VALUE || Float.parseFloat(countsList.get(i).replace(',','.')) > MAX_INGREDIENT_COUNT_VALUE) {
                         errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "wrongValue." + this.INGREDIENTS_TYPE_LIST, "Допустимый диапазон количества от " + MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".");
                     }
                 } catch (Exception ex) {
