@@ -19,7 +19,7 @@ import java.io.Serializable;
         @NamedQuery(name = "Ingridient.getAllIngridients",
                 query = "SELECT i FROM Ingridient i")
 })
-public class Ingridient implements Serializable {
+public class Ingridient implements Serializable, Comparable {
 
     /**
      * {@code ingridientId} its a primary key for this entity
@@ -69,6 +69,7 @@ public class Ingridient implements Serializable {
     public Ingridient() {
 
     }
+
     /**
      * {@method Ingridient} its a constructor for setting name of Ingridient
      */
@@ -141,5 +142,12 @@ public class Ingridient implements Serializable {
 
     public String getUnitOfMeasure() {
         return unitOfMeasure;
+    }
+
+    @Override
+    public int compareTo(Object ingr) {
+        Ingridient otherIngridient = (Ingridient) ingr;
+
+        return this.nameOfIngridient.compareTo(otherIngridient.nameOfIngridient);
     }
 }
