@@ -20,12 +20,10 @@ import java.util.List;
 public class IngridientServiceImpl implements IngridientService {
 
     /**
-     * {@code ingridientDao} describes the IngridientDao work with DB and Ingridient entity
+     * {@code ingredientDao} describes the IngridientDao work with DB and Ingridient entity
      */
     @Autowired
-    private IngridientDao ingridientDao;
-
-    private List<Ingridient> ingridientsSort;
+    private IngridientDao ingredientDao;
 
     /**
      * {@inheritDoc}
@@ -33,7 +31,7 @@ public class IngridientServiceImpl implements IngridientService {
     @Override
     @Transactional(readOnly = true)
     public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
-        return ingridientDao.getIngridientsRecipeList(recipeId);
+        return ingredientDao.getIngridientsRecipeList(recipeId);
     }
 
     /**
@@ -41,14 +39,15 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     public List<Ingridient> getAllIngridientsWithOutRecipesInj() {
-        ingridientsSort = ingridientDao.getAllIngridients();
-        Collections.sort(ingridientsSort);
-        return ingridientsSort;
+        List<Ingridient> ingredientsSort;
+        ingredientsSort = ingredientDao.getAllIngridients();
+        Collections.sort(ingredientsSort);
+        return ingredientsSort;
     }
 
     @Override
     public Ingridient getIngridientById(Integer ingridientId) {
-        return ingridientDao.getIngridientById(ingridientId);
+        return ingredientDao.getIngridientById(ingridientId);
     }
 
     /**
@@ -56,7 +55,7 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     public void addIngridient(Ingridient ingridient) {
-        ingridientDao.addIngridient(ingridient);
+        ingredientDao.addIngridient(ingridient);
     }
 
     /**
@@ -64,11 +63,11 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     public void removeIngridient(Ingridient ingridient) {
-        ingridientDao.removeIngridient(ingridient);
+        ingredientDao.removeIngridient(ingridient);
     }
 
-    public void setIngridientDao(IngridientDao ingridientDao) {
-        this.ingridientDao = ingridientDao;
+    public void setIngredientDao(IngridientDao ingredientDao) {
+        this.ingredientDao = ingredientDao;
     }
 
     @Override

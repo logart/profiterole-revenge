@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class {@code AccountService} used for push object from and in DAO for get and
@@ -16,7 +17,7 @@ import java.util.HashMap;
  */
 @Service
 public class AccountService {
-    private HashMap<String, Account> accounts;
+    private Map<String, Account> accounts;
 
     public AccountService() {
         accounts = new HashMap<String, Account>();
