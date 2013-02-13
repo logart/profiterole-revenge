@@ -4,6 +4,8 @@ import com.exigen.common.web.RegistrationController;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Admin
@@ -15,7 +17,7 @@ public class RegistrationControllerTest {
     @Test
     public void testRegistration() throws Exception {
         RegistrationController registrationController=new RegistrationController();
-        String test=registrationController.registration();
+        String test=registrationController.registration(null);
 
         Assert.assertEquals("registration",test);
 
