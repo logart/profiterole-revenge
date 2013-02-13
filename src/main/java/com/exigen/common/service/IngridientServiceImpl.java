@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -24,6 +25,8 @@ public class IngridientServiceImpl implements IngridientService {
     @Autowired
     private IngridientDao ingridientDao;
 
+    private List<Ingridient> ingridientsSort;
+
     /**
      * {@inheritDoc}
      */
@@ -38,7 +41,9 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     public List<Ingridient> getAllIngridientsWithOutRecipesInj() {
-        return ingridientDao.getAllIngridients();
+        ingridientsSort = ingridientDao.getAllIngridients();
+        Collections.sort(ingridientsSort);
+        return ingridientsSort;
     }
 
     @Override
