@@ -163,9 +163,7 @@ public class AddRecipeDataValidator implements Validator {
      * @param errors(Instance of Errors,where send all errors)
      */
     private void checkIngredientsCount(List<String> countsList, Errors errors) {
-        Matcher ingredientCountMatcher;
         for (int i = 0; i < countsList.size(); i++) {
-            ingredientCountMatcher = ingredientCountPattern.matcher(countsList.get(i));
             if (countsList.get(i).isEmpty()) {
                 errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyCount." + this.INGREDIENTS_TYPE_LIST, "Введите количество ингредиента.");
             }else {

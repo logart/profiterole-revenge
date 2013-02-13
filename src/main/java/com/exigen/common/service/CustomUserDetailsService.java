@@ -28,8 +28,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         Account account = accountService.findByUsername(username);
         if (account != null) {
             return new User(account.getLogin(), account.getPassword(), Collections.singleton(createAuthority(account)));
-        } else
+        } else {
             throw new UsernameNotFoundException("user not found");
+        }
     }
 
     private GrantedAuthority createAuthority(Account account) {

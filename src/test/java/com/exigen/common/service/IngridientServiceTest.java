@@ -41,7 +41,7 @@ public class IngridientServiceTest {
 
     @Test
     public void getIngridientsServiceTest() {
-        ingridientService.setIngridientDao(ingridientDao);
+        ingridientService.setIngredientDao(ingridientDao);
         when(ingridientDao.getIngridientsRecipeList(recipe.getRecipeId())).thenReturn(null);
         Assert.assertNull(ingridientService.getIngridientsRecipeList(recipe.getRecipeId()));
     }
@@ -50,7 +50,7 @@ public class IngridientServiceTest {
     public void getAllIngridientsWithOutRecipesInjTest(){
         ingridients.add(ingridient);
         ingridients.add(ingridientTwo);
-        ingridientService.setIngridientDao(ingridientDao);
+        ingridientService.setIngredientDao(ingridientDao);
         when(ingridientDao.getAllIngridients()).thenReturn(ingridients);
         Assert.assertEquals(ingridients,ingridientDao.getAllIngridients());
     }
@@ -58,14 +58,14 @@ public class IngridientServiceTest {
     @Test
     public void getIngridientByIdTest(){
         when(ingridientDao.getIngridientById(ingridient.getIngridientId())).thenReturn(ingridient);
-        ingridientService.setIngridientDao(ingridientDao);
+        ingridientService.setIngredientDao(ingridientDao);
         Assert.assertEquals(ingridient,ingridientDao.getIngridientById(ingridient.getIngridientId()));
     }
 
     public void getAllIngridientsTest(){
      recipesId.add(recipe.getRecipeId());
         when(ingridientDao.getIngridientsRecipeList(recipesId.get(0))).thenReturn(ingridients);
-        ingridientService.setIngridientDao(ingridientDao);
+        ingridientService.setIngredientDao(ingridientDao);
         Assert.assertEquals(8,ingridientService.getAllIngridients(recipesId).get(0).getCountOfIngridient());
 
     }
