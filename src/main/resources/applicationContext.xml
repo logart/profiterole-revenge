@@ -13,7 +13,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
         ">
-
+    <import resource="classpath:application-security.xml"></import>
+    <import resource="classpath:root-context.xml"></import>
     <context:annotation-config/>
 
 
