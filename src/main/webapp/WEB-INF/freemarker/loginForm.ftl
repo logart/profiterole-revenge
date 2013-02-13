@@ -9,22 +9,20 @@
 
 
 
-<form class="form-horizontal">
+<form class="form-horizontal" action="/j_spring_security_check" method="post">
     <div class="text-cener">
     <div class="control-group">
-     <label class="control-label" for="lo" >Логин</label>
+     <label class="control-label" for="j_username" >Логин</label>
         <div class="controls">
-         <input type="text"  id="lo" placeholder="Введите логин"/>
+         <input type="text"  id = "j_username" name="j_username"/>
         </div>
     </div>
-
     <div class="control-group">
-     <label class="control-label" for="psw">Пароль</label>
+     <label class="control-label" for="j_password">Пароль</label>
         <div class="controls">
-          <input type="password"  id="psw" placeholder="Введите пароль" />
+          <input type="password" id = "j_password" name="j_password"/>
        </div>
     </div>
-
     <div class="control-group">
         <div class="controls">
          <button type="submit" class="btn">Войти</button>

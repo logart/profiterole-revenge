@@ -67,6 +67,10 @@ public class Account implements Serializable {
     private Calendar dateOfBirth;
 
     /**
+     * {@code dateOfBirth} contains the role of some user
+     */
+    private String role = "ROLE_USER";
+    /**
      * {@method Account} its a default constructor for JPA
      */
     public Account() {
@@ -138,4 +142,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

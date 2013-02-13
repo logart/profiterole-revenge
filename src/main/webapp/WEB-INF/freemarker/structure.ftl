@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <#import "spring.ftl" as spring />
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <html>
 <head>
     <link href="<@spring.url '/img/favicon.ico'/>" rel="icon" type="image/x-icon"/>
@@ -41,25 +42,27 @@ ${scripts!}
                         </a>
                         <ul class="dropdown-menu">
                             <a href="/allOfRecipes">Все рецепты</a>
+                        <#--<@security.authorize  access="isAuthenticated()">-->
                             <a href="/addRecipes">Создать рецепт</a>
+                        <#--</@security.authorize>-->
                         </ul>
                     </li>
                     <li><a href="#">О нас</a></li>
 
-             <!--   </ul> -->
+                    <!--   </ul> -->
 
-               <!--     <div class="btn-link"
+                    <!--     <div class="btn-link"
 
-                    <form >
-                     <a href="login">Вход</a></li>
-                     <a href="#"  >Регистрация</a></li>
-                    </form>
-                     </div>
-                      style="text-decoration: underline"
-                      -->
+                  <form >
+                   <a href="login">Вход</a></li>
+                   <a href="#"  >Регистрация</a></li>
+                  </form>
+                   </div>
+                    style="text-decoration: underline"
+                    -->
 
 
-                  </ul>
+                </ul>
 
 
                 <form class="navbar-search pull-right">
@@ -67,12 +70,17 @@ ${scripts!}
                 </form>
 
 
-            <ul class="btn btn-link pull-right" style="text-decoration: underline">
-                <a href="/registration">Регистрация</a>
-            </ul>
-            <ul  class="btn btn-link pull-right" style="text-decoration: underline">
-                <a href="/login">Вход</a>
-            </ul>
+                <ul class="btn btn-link pull-right" style="text-decoration: underline">
+                    <a href="/registration">Регистрация</a>
+                </ul>
+                <ul class="btn btn-link pull-right" style="text-decoration: underline">
+                <@security.authorize  access="!isAuthenticated()">
+                    <a href="/login">Вход</a>
+                </@security.authorize>
+                <@security.authorize  access="isAuthenticated()">
+                    <a href='/j_spring_security_logout'>Выход</a>
+                </@security.authorize>
+                </ul>
 
             </div>
         </div>
