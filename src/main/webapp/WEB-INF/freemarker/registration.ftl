@@ -1,30 +1,56 @@
 [#ftl]
+[#import "spring.ftl" as spring/]
 [#assign content]
 <h1>Регистрация</h1>
 <p>Для регистрации заполните, пожалуйста, следующие поля (<strong>*</strong> - обязательные поля к заполнению):
 </p>
 <br>
-<form class="form-horizontal">
-    <div class="control-group">
-        <label class="control-label-left" for="login">Логин</label>
+<form method="post" commandName="registrationData" class="form-horizontal">
 
-        <div class="controls">
-            <input type="text" id="login" name="login" value=""><strong>*</strong>
-        </div>
+    <div class="control-group">
+       <label class="control-label-left" for="login">Логин</label>
+
+       <div class="controls">
+          [@spring.bind "registrationData.login"/]
+          <input type="text" name="${spring.status.expression}" id="login"
+                 value="${spring.status.value?default("")}" /><strong>*</strong>
+       </div>
+       [#if spring.status.error]
+             <p>
+             <div class="error-div" id="loginError">[@spring.showErrors '<br>', 'error'/]</div>
+             </p>
+       [/#if]
     </div>
+
+
+
     <div class="control-group">
         <label class="control-label-left" for="password">Пароль</label>
 
         <div class="controls">
-            <input type="password" id="password" name="password" value=""><strong>*</strong>
+            [@spring.bind "registrationData.password"/]
+            <input type="password" name="${spring.status.expression}" id="password" value="${spring.status.value?default("")}"/><strong>*</strong>
         </div>
+        [#if spring.status.error]
+            <p>
+            <div class="error-div" id="passwordError">[@spring.showErrors '<br>', 'error'/]</div>
+            </p>
+        [/#if]
     </div>
+
+
     <div class="control-group">
         <label class="control-label-left" for="email">Ваш e-mail</label>
 
         <div class="controls">
-            <input type="text" id="email" name="email" value=""><strong>*</strong>
+            [@spring.bind "registrationData.email"/]
+            <input type="text" name="${spring.status.expression}" id="email" value="${spring.status.value?default("")}"/><strong>*</strong>
         </div>
+        [#if spring.status.error]
+            <p>
+            <div class="error-div" id="emailError">[@spring.showErrors '<br>', 'error'/]</div>
+            </p>
+        [/#if]
     </div>
 
     <div class="control-group">
@@ -40,89 +66,94 @@
                     yearRange: "1900:2025",
                     changeYear: true
                 });
+
             });
         </script>
 
         <div class="controls">
-            <p><input class="span2" type="text" id="datepicker" name="birthdate" value=""/></p>
+            [@spring.bind "registrationData.dateOfBirth"/]
+            <p><input class="span2" type="text" name="${spring.status.expression}" id="datepicker" value="${spring.status.value?default("")}"/></p>
         </div>
+        [#if spring.status.error]
+            <p>
+            <div class="error-div" id="dateOfBirthError">[@spring.showErrors '<br>', 'error'/]</div>
+            </p>
+        [/#if]
+   </div>
 
-    </div>
 
     <div class="control-group">
         <div class="control-label-left" style="padding-top: 5px;">Пол</div>
         <div class="controls">
-            <label class="radio inline">
-                <input type="radio" id="men" name="gender" value="M"/>М
-            </label>
-            <label class="radio inline">
-                <input type="radio" id="women" name="gender" value="W"/>Ж
-            </label>
+          <label class="radio inline" >
+             [#assign gender={"Male":"М","Female":"Ж"}]
+             [@spring.formRadioButtons  "registrationData.maleOrFemale" gender '<br>' '' /]
+           </label>
         </div>
     </div>
+
 
     <div class="control-group">
         <div class="control-label-left">Страна</div>
         <div class="controls">
-            <select class="span3" name="country" >
-                <option value=""></option>
-                <option value="Украина">Украина</option>
-                <option value="Россия">Россия</option>
-                <option value="Белорусь">Белорусь</option>
-                <option value="Франция">Франция</option>
-                <option value="Германия">Германия</option>
-                <option value="Испания">Испания</option>
-                <option value="Португалия">Португалия</option>
-                <option value="Италия">Италия</option>
-                <option value="Англия">Англия</option>
-                <option value="Ирландия">Ирландия</option>
-                <option value="Норвегия">Норвегия</option>
-                <option value="Швеция">Швеция</option>
-                <option value="Финляндия">Финляндия</option>
-                <option value="Эстония">Эстония</option>
-                <option value="Латвия">Латвия</option>
-                <option value="Литва">Литва</option>
-                <option value="Бельгия">Бельгия</option>
-                <option value="Нидерланды">Нидерланды</option>
-                <option value="Швейцария">Швейцария</option>
-                <option value="Австрия">Австрия</option>
-                <option value="Чешская Республика">Чешская Республика</option>
-                <option value="Румыния">Румыния</option>
-                <option value="Болгария">Болгария</option>
-                <option value="Греция">Греция</option>
-                <option value="Турция">Турция</option>
-                <option value="Грузия">Грузия</option>
-                <option value="Армения">Армения</option>
-                <option value="Казахстан">Казахстан</option>
-                <option value="Израиль">Израиль</option>
-                <option value="ОАЭ">ОАЭ</option>
-                <option value="Япония">Япония</option>
-                <option value="Индия">Индия</option>
-                <option value="Китай">Китай</option>
-                <option value="США">США</option>
-                <option value="Канада">Канада</option>
-                <option value="Мексика">Мексика</option>
-                <option value="Аргентина">Аргентина</option>
-            </select>
+            [#assign cont={"":"","Украина":"Украина",
+            "Россия":"Россия",
+            "Франция":"Франция",
+            "Германия":"Германия",
+            "Испания":"Испания",
+            "Португалия":"Португалия",
+            "Италия":"Италия",
+            "Англия":"Англия ",
+            "Ирландия":"Ирландия",
+            "Норвегия":"Норвегия",
+            "Швеция":"Швеция",
+            "Финляндия":"Финляндия",
+            "Эстония":"Эстония",
+            "Латвия":"Латвия",
+            "Литва":"Литва",
+            "Бельгия":"Бельгия",
+            "Нидерланды":"Нидерланды ",
+            "Швейцария":"Швейцария",
+            "Австрия":"Австрия",
+            "Чешская Республика":"Чешская Республика",
+            "Румыния":"Румыния",
+            "Болгария":"Болгария",
+            "Греция":"Греция",
+            "Турция":"Турция",
+            "Грузия":"Грузия",
+            "Армения":"Армения",
+            "Казахстан":"Казахстан",
+            "Израиль":"Израиль",
+            "ОАЭ":"ОАЭ",
+            "Япония":"Япония",
+            "Индия":"Индия",
+            "Китай":"Китай",
+            "США":"США" ,
+            "Канада":"Канада",
+            "Мексика":"Мексика",
+            "Аргентина":"Аргентина"}]
+            [@spring.formSingleSelect  "registrationData.country" cont  "class=\"span2\"" /]
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="checkbox">
-            <input type="checkbox" id="confirmRules" name="confirmRules" value="ok">
+
+       <div class="control-group">
+        <label class="checkbox inline">
+            [@spring.formCheckbox  "registrationData.IamAgree"/]
             Я ознакомился(лась) с
-            <a href="/rules" style="text-decoration: underline;" target=" _blank">Правилами и условиями работы на
-                сайте</a>
+            <a href="/rules" style="text-decoration:underline" target="_blank">Правилами и условиями работы на сайте</a>
             и принимаю их.
-        </label>
+            [#if spring.status.error]
+                <p>
+                <div class="error-div" id="IamAgreeError">[@spring.showErrors '<br>', 'error'/]</div>
+                </p>
+            [/#if]
+         </label>
     </div>
 
     <div style="text-align: center">
-        <button type="submit" class="btn" name="confirmRegistration" value="ok">Зарегистрироваться</button>
+        <button type="submit" class="btn">Зарегистрироваться</button>
     </div>
-
 </form>
-
-
 [/#assign]
 [#include "structure.ftl"/]

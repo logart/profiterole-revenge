@@ -1,8 +1,9 @@
 package com.exigen.common.web;
 
 
-import com.exigen.common.domain.AddRecipeData;
+//import com.exigen.common.domain.AddRecipeData;
 
+import com.exigen.common.domain.RegistrationData;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,12 +30,18 @@ public class RegistrationController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String registration(Map model) {
+        RegistrationData data = new RegistrationData();
+        model.put("registrationData", data);
         return "registration";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processAddingUser(Map model, @ModelAttribute("registrationData") @Valid AddRecipeData data, BindingResult errors) {
+    public String processAddingUser(Map model, @ModelAttribute("registrationData") @Valid RegistrationData data, BindingResult errors) {
+        if (errors.hasErrors()) {
+            model.put("registrationData", data);
+            return "registration";
+        }
 
-        return "registration";
+        return "Menu";
     }
 }
