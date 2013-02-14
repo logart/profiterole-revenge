@@ -23,11 +23,6 @@ public class AddRecipeDataValidator implements Validator {
     private Pattern stepPattern = Pattern.compile("[^а-яА-ЯіІїЇєЄёЁa-zA-Z0-9 \\Q,.()+-=\"“”'‘’:;[]!?*%<>/\\E]");
 
     /**
-     * {@code ingredientCountPattern} Contains pattern for check ingredient's count
-     */
-    private Pattern ingredientCountPattern = Pattern.compile("[^0-9]");
-
-    /**
      * {@code MAX_STEP_SIZE} Contains maximum length of step text
      */
     private static final int MAX_STEP_SIZE = 3000;
