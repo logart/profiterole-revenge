@@ -63,7 +63,7 @@ public class RegistrationData implements Serializable {
     private String country;
 
     @NotEmpty(message = "Для завершения регистрации Вы должны принять Правила и условия работы на сайте.")
-    private String IamAgree;
+    private String iAmAgree;
 
 
 
@@ -121,11 +121,12 @@ public class RegistrationData implements Serializable {
         this.country = country;
     }
 
-    public String getIamAgree() {
-        return IamAgree;
+
+    public String getiAmAgree() {
+        return iAmAgree;
     }
 
-    public void setIamAgree(String IamAgree) {
-        this.IamAgree = IamAgree;
+    public void setiAmAgree(String iAmAgree) {
+        this.iAmAgree = iAmAgree;
     }
 }

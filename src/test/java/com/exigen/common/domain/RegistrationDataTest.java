@@ -52,7 +52,7 @@ public class RegistrationDataTest {
 
     @Test
     public void testSetIamAgree() throws Exception {
-       registrationData.setIamAgree("agree");
-        Assert.assertEquals("agree",registrationData.getIamAgree());
+       registrationData.setiAmAgree("i");
+        Assert.assertEquals("i",registrationData.getiAmAgree());
     }
 }
