@@ -23,13 +23,13 @@ import java.util.Calendar;
  */
 public class RegistrationData implements Serializable {
     
-    private final int minLengthOfLogin=3;
+    private static final int minLengthOfLogin=3;
 
-    private final int maxLengthOfLogin=50;
+    private static final int maxLengthOfLogin=50;
     
-    private final int minLengthOfPass=6;
+    private static final int minLengthOfPass=6;
 
-    private final int maxLengthOfPass=35;
+    private static final int maxLengthOfPass=35;
     
     /**
      * {@code login} describes username
