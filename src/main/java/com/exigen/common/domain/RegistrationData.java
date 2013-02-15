@@ -2,16 +2,14 @@ package com.exigen.common.domain;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
-
 //import javax.persistence.Enumerated;
 //import javax.persistence.Temporal;
 //import javax.persistence.TemporalType;
-import javax.validation.constraints.Past;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Calendar;
+
 //import java.util.Calendar;
 
 /**
