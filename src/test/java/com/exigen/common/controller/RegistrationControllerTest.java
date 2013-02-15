@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,8 +17,9 @@ import java.util.Map;
 public class RegistrationControllerTest {
     @Test
     public void testRegistration() throws Exception {
+        Map map=new TreeMap();
         RegistrationController registrationController=new RegistrationController();
-        String test=registrationController.registration(null);
+        String test=registrationController.registration(map);
 
         Assert.assertEquals("registration",test);
 
