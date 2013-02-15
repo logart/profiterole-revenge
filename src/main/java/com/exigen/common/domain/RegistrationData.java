@@ -23,19 +23,19 @@ import java.util.Calendar;
  */
 public class RegistrationData implements Serializable {
     
-    private static final int minLengthOfLogin=3;
+    private static final int MIN_LENGTH_OF_LOGIN=3;
 
-    private static final int maxLengthOfLogin=50;
+    private static final int MAX_LENGTH_OF_LOGIN=50;
     
-    private static final int minLengthOfPass=6;
+    private static final int MIN_LENGTH_OF_PASS=6;
 
-    private static final int maxLengthOfPass=35;
+    private static final int  MAX_LENGTH_OF_PASS=35;
     
     /**
      * {@code login} describes username
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
-    @Size(min = minLengthOfLogin, max = maxLengthOfLogin, message = "Длина логина должна быть от 3 до 50 символов.")
+    @Size(min = MIN_LENGTH_OF_LOGIN, max = MAX_LENGTH_OF_LOGIN, message = "Длина логина должна быть от 3 до 50 символов.")
     @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
     private String login;
 
@@ -43,7 +43,7 @@ public class RegistrationData implements Serializable {
      * {@code password} describes password for authentification
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
-    @Size(min = minLengthOfPass, max = maxLengthOfPass, message = "Длина пароля должна быть от 6 до 35 символов.")
+    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "Длина пароля должна быть от 6 до 35 символов.")
     @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message =" Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). ")
     private String password;
 
