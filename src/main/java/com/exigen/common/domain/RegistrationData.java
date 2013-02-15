@@ -22,11 +22,20 @@ import java.util.Calendar;
  * To change this template use File | Settings | File Templates.
  */
 public class RegistrationData implements Serializable {
+    
+    private final int minLengthOfLogin=3;
+
+    private final int maxLengthOfLogin=50;
+    
+    private final int minLengthOfPass=6;
+
+    private final int maxLengthOfPass=35;
+    
     /**
      * {@code login} describes username
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
-    @Size(min = 3, max = 50, message = "Длина логина должна быть от 3 до 50 символов.")
+    @Size(min = minLengthOfLogin, max = maxLengthOfLogin, message = "Длина логина должна быть от 3 до 50 символов.")
     @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
     private String login;
 
@@ -34,7 +43,7 @@ public class RegistrationData implements Serializable {
      * {@code password} describes password for authentification
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
-    @Size(min = 6, max = 35, message = "Длина пароля должна быть от 6 до 35 символов.")
+    @Size(min = minLengthOfPass, max = maxLengthOfPass, message = "Длина пароля должна быть от 6 до 35 символов.")
     @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message =" Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). ")
     private String password;
 
