@@ -38,38 +38,37 @@ public class AddRecipeData implements Serializable {
     /**
      * {@code title} Contains the title of recipe.
      */
-    @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = MAX_TITLE_SIZE, message = "Количество символов не должно превышать " + MAX_TITLE_SIZE + " символов.")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"“”'‘’\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(,()[]+-*/=\" '')", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
+    @NotEmpty(message = "Поле не должно быть пустым.")
+    @Size(min=1, max = MAX_TITLE_SIZE, message = "Длина названия рецепта должна быть от 1 до " + MAX_TITLE_SIZE +  "  символов.")
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"“”'‘’\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы ( , () [] + - * / = “ ” ‘ ’ ).", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String title;
 
     /**
      * {@code description} This field is intended to describe the recipe.
      */
-    @NotEmpty(message = "Поле должно быть указано.")
-    @Size(max = MAX_DESCRIPTION_SIZE, message = "Количество символов не должно превышать " + MAX_DESCRIPTION_SIZE + " символов.")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"“”'‘’:;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (English, Українська, Русский), цифры, символы(.,()+-=\" '':;[]!?*%<>/)", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
+    @NotEmpty(message = "Поле не должно быть пустым.")
+    @Size(min=1, max = MAX_DESCRIPTION_SIZE, message = "Длина описания рецепта должна быть от 1 до " + MAX_DESCRIPTION_SIZE + " символов.")
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"“”'‘’:;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (. , () [] + - * / = “ ” ‘ ’ : ; ! ? % <>).", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
     /**
      * {@code cookingTime} This field contains cooking time.
      */
-    @NotEmpty(message = "Поле должно быть указано.")
-    @Pattern(regexp = "^[0-9]*$", message = "Должно быть целым числом.")
-    @Min(value = MIN_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от  " + MIN_COOKING_TIME_SIZE + " до  " + MAX_COOKING_TIME_SIZE + " (целые).")
-    @Max(value = MAX_COOKING_TIME_SIZE, message = "Корректное значение лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " до  " + MAX_COOKING_TIME_SIZE + " (целые).")
+    @NotEmpty(message = "Поле не должно быть пустым.")
+    @Pattern(regexp = "^([6-9])$|^(\\d\\d)$|^([1-4]\\d\\d)$|^(5[0-3]\\d)$|^(540)$", message = " Корректное значение лежит в диапазоне от  " + MIN_COOKING_TIME_SIZE + " до " + MAX_COOKING_TIME_SIZE + " (целые).")
+
     private String cookingTime;
 
     /**
      * {@code cuisineId} This field contains the selected cuisine ID, to obtain appropriate cuisine
      */
-    @NotEmpty(message = "Кухня должна быть указана.")
+    @NotEmpty(message = "Кухня должна быть выбрана.")
     private String cuisineId;
 
     /**
      * {@code cuisineId} This field contains the selected category ID, to obtain appropriate category
      */
-    @NotEmpty(message = "Категория должна быть указана.")
+    @NotEmpty(message = "Категория должна быть выбрана.")
     private String categoryId;
 
     /**
