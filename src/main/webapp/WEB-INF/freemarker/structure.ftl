@@ -52,6 +52,7 @@ ${scripts!}
                 </ul>
 
 
+      <!---- -->
                 <form class="navbar-search pull-right">
                     <input type="text" class="search-query" placeholder="Поиск недоступен" disabled>
                 </form>

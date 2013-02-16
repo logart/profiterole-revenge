@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Created with IntelliJ IDEA.
  * User: lena
  * Date: 05.02.13
- * Time: 20:55
+ * Time: 19:55
  * To change this template use File | Settings | File Templates.
  */
 public class RegistrationData implements Serializable {
