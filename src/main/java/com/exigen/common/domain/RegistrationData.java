@@ -2,15 +2,11 @@ package com.exigen.common.domain;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-//import javax.persistence.Enumerated;
-//import javax.persistence.Temporal;
-//import javax.persistence.TemporalType;
-
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-//import java.util.Calendar;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,7 +29,7 @@ public class RegistrationData implements Serializable {
      * {@code login} describes username
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
-    @Size(min = MIN_LENGTH_OF_LOGIN, max = MAX_LENGTH_OF_LOGIN, message = "Длина логина должна быть от 3 до 50 символов.")
+    @Size(min = MIN_LENGTH_OF_LOGIN, max = MAX_LENGTH_OF_LOGIN, message = "Длина логина должна быть от " + MIN_LENGTH_OF_LOGIN + " до " + MAX_LENGTH_OF_LOGIN + " символов.")
     @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
     private String login;
 
@@ -41,7 +37,7 @@ public class RegistrationData implements Serializable {
      * {@code password} describes password for authentification
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
-    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "Длина пароля должна быть от 6 до 35 символов.")
+    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "Длина пароля должна быть от " + MIN_LENGTH_OF_PASS + " до " + MAX_LENGTH_OF_PASS + " символов.")
     @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message =" Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). ")
     private String password;
 

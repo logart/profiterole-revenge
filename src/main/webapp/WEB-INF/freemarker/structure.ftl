@@ -47,20 +47,7 @@ ${scripts!}
                         <#--</@security.authorize>-->
                         </ul>
                     </li>
-                    <li><a href="#">О нас</a></li>
-
-                    <!--   </ul> -->
-
-                    <!--     <div class="btn-link"
-
-                  <form >
-                   <a href="login">Вход</a></li>
-                   <a href="#"  >Регистрация</a></li>
-                  </form>
-                   </div>
-                    style="text-decoration: underline"
-                    -->
-
+                    <li><a href="about">О нас</a></li>
 
                 </ul>
 

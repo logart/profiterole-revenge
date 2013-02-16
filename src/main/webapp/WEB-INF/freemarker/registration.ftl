@@ -138,14 +138,14 @@
 
 
        <div class="control-group">
-        <label class="checkbox inline">
-            [@spring.formCheckbox  "registrationData.IamAgree"/]
+        <label class="checkbox ">
+            [@spring.formCheckbox  "registrationData.iamAgree"/]
             Я ознакомился(лась) с
             <a href="/rules" style="text-decoration:underline" target="_blank">Правилами и условиями работы на сайте</a>
             и принимаю их.
             [#if spring.status.error]
                 <p>
-                <div class="error-div" id="IamAgreeError">[@spring.showErrors '<br>', 'error'/]</div>
+                <div class="error-div" id="iamAgreeError">[@spring.showErrors '<br>', 'error'/]</div>
                 </p>
             [/#if]
          </label>
