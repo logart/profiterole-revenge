@@ -22,7 +22,7 @@
        [/#if]
     </div>
 
-
+       <!--- -->
 
     <div class="control-group">
         <label class="control-label-left" for="password">Пароль</label>
