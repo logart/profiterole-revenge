@@ -1,6 +1,7 @@
 package com.exigen.common.domain;
 
 import org.hibernate.validator.constraints.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -71,6 +72,11 @@ public class AddRecipeData implements Serializable {
     @NotEmpty(message = "Категория должна быть выбрана.")
     private String categoryId;
 
+
+    private MultipartFile images;
+
+    private List<MultipartFile> files;
+
     /**
      * {@code cuisine} This field is a reference to the Cuisine entity.
      */
@@ -102,6 +108,8 @@ public class AddRecipeData implements Serializable {
     private List<String> ingredientsTypeList = new ArrayList<String>();
 
     private List<String> imagesForStepsList = new ArrayList<String>();
+
+
 
     private String imageForRecipeHead;
 
@@ -216,4 +224,20 @@ public class AddRecipeData implements Serializable {
     public void setImageForRecipeHead(String imageForRecipeHead) {
         this.imageForRecipeHead = imageForRecipeHead;
     }
+
+    public MultipartFile getImages() {
+        return images;
+    }
+
+    public void setImages(MultipartFile images) {
+        this.images = images;
+    }
+
+    public List<MultipartFile> getFiles() {
+       return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+     this.files=files;
+}
 }

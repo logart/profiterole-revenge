@@ -73,8 +73,8 @@
                 var template = '<div id="step_' + i + '" class="step"><p>Шаг <span class="step_counter">' + i + '</span></p>\
                 <button data-stepid="' + i + '" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>\
                 <textarea class = "stepTextarea forinputs" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" maxlength="3000"></textarea> \
-                <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000"> <p>\
-                <p><INPUT NAME="userfile" TYPE="file"></p>\
+                <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000000000000"> <p>\
+                <p><INPUT NAME="files[' + (i - 1) + ']" TYPE="file"></p>\
                 </div>';
                 $(template).appendTo('.inputs').fadeIn('slow');
             },
@@ -113,7 +113,7 @@
 <div class="row-fluid " style="min-height:1500px;">
 <h1 style="vertical-align:middle; margin-top:5px">Создать рецепт</h1>
 
-<form id="#OK" action="" method="post" commandName="addRecipeData" style="height: 1500px">
+<form id="#OK" action="" method="post" commandName="addRecipeData" enctype="multipart/form-data" style="height: 1500px">
 <div class="span6" id="menuDrop">
     <p><b>Название</b></p>
 
@@ -288,7 +288,10 @@
 <div class="span6 align2">
     <p><b>Фотография готового блюда</b></p>
 
-    <p></p>
+
+    [@spring.bind "addRecipeData.images"/]
+    <p><input name="images" type="file"/></p><br>
+
 
     <p><b>Шаги приготовления</b></p>
 
@@ -308,17 +311,17 @@
                     [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
                     <textarea class="stepTextarea forinputs" rows="10" cols="45"
                               name="${spring.status.expression}" maxlength="3000">${spring.status.value?default("")}</textarea>
-                    <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000">
-                    <!-- макс. размер -->
-                    <p>Имя файла:</p>
-
-                    <p><INPUT NAME="userfile" TYPE="file"></p>
                     [#if spring.status.error]
                         <p>
                         <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
                         </p>
                     [/#if]
-                </div>
+                    <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="1000000000000">
+                    <!-- макс. размер -->
+                    <p>Имя файла:</p>
+                    [@spring.bind "addRecipeData.files"/]
+                    <p><INPUT NAME="files[${index-1}]" TYPE="file"></p>
+                   </div>
             [/#list]
 
         </div>

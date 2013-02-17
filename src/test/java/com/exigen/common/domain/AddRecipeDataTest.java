@@ -1,8 +1,13 @@
 package com.exigen.common.domain;
 
 import junit.framework.Assert;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.junit.Test;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,5 +106,21 @@ public class AddRecipeDataTest {
     public void testGetImageForRecipeHead() throws Exception {
        addRecipeData.setImageForRecipeHead("image");
         Assert.assertEquals("image", addRecipeData.getImageForRecipeHead());
+    }
+
+    @Test
+    public void testGetSetMultiPartFile(){
+        MultipartFile mpfile=null;
+        addRecipeData.setImages(mpfile);
+        Assert.assertEquals(mpfile,addRecipeData.getImages());
+    }
+
+    @Test
+    public void testGetSetListMultiPartFile(){
+        MultipartFile mpfile=null;
+        List<MultipartFile> files=new ArrayList<MultipartFile>();
+        files.add(mpfile);
+        addRecipeData.setFiles(files);
+        Assert.assertEquals(files,addRecipeData.getFiles());
     }
 }
