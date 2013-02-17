@@ -46,9 +46,7 @@ public class AddRecipesController {
 
     private List<String> imagesForSteps = new ArrayList<String>();
 
-    private List<MultipartFile> multipartFiles;
-
-    private ImageServiceImpl imageService = new ImageServiceImpl();
+     private ImageServiceImpl imageService = new ImageServiceImpl();
 
     @RequestMapping(method = RequestMethod.GET)
     public String showAddingRecipe(Map model) {
@@ -82,7 +80,7 @@ public class AddRecipesController {
         }
 
 
-        multipartFiles = data.getFiles();
+        List<MultipartFile> multipartFiles = data.getFiles();
 
         for (int i = 0; i < multipartFiles.size(); i++) {
             if (multipartFiles.get(i).isEmpty()) {
