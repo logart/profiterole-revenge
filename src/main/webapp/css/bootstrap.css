@@ -5132,12 +5132,14 @@ input[type="submit"].btn.btn-mini {
 }
 
 .popover-content {
+    word-wrap: break-word;
     padding: 9px 14px;
 }
 
 .popover-content p,
 .popover-content ul,
 .popover-content ol {
+    word-wrap: break-word;
     margin-bottom: 0;
 }
 
