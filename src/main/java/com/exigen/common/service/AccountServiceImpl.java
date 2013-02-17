@@ -22,7 +22,7 @@ import java.util.*;
 @Service
 public class AccountServiceImpl implements AccountService {
     @Autowired
-    AccountDao accountDao;
+    private AccountDao accountDao;
 
     public AccountServiceImpl() {
     }
