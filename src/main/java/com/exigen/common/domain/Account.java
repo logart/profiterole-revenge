@@ -18,11 +18,11 @@ import java.util.Calendar;
  */
 @Entity
 @Table(name = "accounts")
-@NamedQuery(name = "Account.findAllUsers", query = "SELECT ac FROM Account ac")
+@NamedQueries({
+        @NamedQuery(name = "Account.findAllUsers", query = "SELECT ac FROM Account ac"),
+        @NamedQuery(name = "Account.findUserByLogin", query = "SELECT i FROM Account i WHERE i.login LIKE :login")
+})
 public class Account implements Serializable {
-
-    private static final int MINLENGTH = 3;
-    private static final int MAXLENGTH =50;
 
     /**
      * The @Id annotation marks a field as a primary key field.
@@ -37,21 +37,16 @@ public class Account implements Serializable {
     /**
      * {@code login} describes username
      */
-    @NotEmpty(message = "Поле должно быть указано.")
     private String login;
 
     /**
      * {@code password} describes password for authentification
      */
-    @NotEmpty(message = "Поле должно быть указано.")
-    @Size(min = MINLENGTH, max = MAXLENGTH)
     private String password;
 
     /**
      * {@code email} describes email address for some user
      */
-    @NotEmpty(message = "Поле должно быть указано.")
-    @Email
     private String email;
 
     /**
@@ -70,6 +65,7 @@ public class Account implements Serializable {
      * {@code dateOfBirth} contains the role of some user
      */
     private String role = "ROLE_USER";
+
     /**
      * {@method Account} its a default constructor for JPA
      */

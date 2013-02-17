@@ -1,15 +1,16 @@
 package com.exigen.common.web;
 
 
-//import com.exigen.common.domain.AddRecipeData;
-
+import com.exigen.common.service.AccountService;
 import com.exigen.common.domain.RegistrationData;
+import com.exigen.common.service.RegistrationValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -22,7 +23,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
-
+    @Autowired
+    private AccountService accountService;
+    @Autowired
+    private RegistrationValidator registrationValidator;
     /**
      * {@method index()} using for mapped registration form
      *
@@ -37,11 +41,14 @@ public class RegistrationController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingUser(Map model, @ModelAttribute("registrationData") @Valid RegistrationData data, BindingResult errors) {
+        ValidationUtils.invokeValidator(registrationValidator, data, errors);
         if (errors.hasErrors()) {
             model.put("registrationData", data);
             return "registration";
         }
+        accountService.addAccount(data);
 
-        return "Menu";
+        return "redirect:registrationSuccess?user=" + data.getLogin();
     }
+
 }

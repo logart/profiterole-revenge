@@ -37,7 +37,7 @@ public class AccountDaoImplTest {
     }
     @Test
     public void getAllUsers(){
-        Assert.assertNotNull(accountDao.getAllUsers());
+        Assert.assertNotNull(accountDao.getAllAccounts());
     }
 
 }
