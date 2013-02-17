@@ -20,14 +20,15 @@ import java.io.UnsupportedEncodingException;
 
 public class ImageServiceImpl implements ImageService {
 
-    private String response;
+     private static final int NO_MGK=5;
 
     public ImageServiceImpl() {
     }
 
     @Override
-    public String postImage(File userFile) throws UnsupportedEncodingException {
-
+    public String postImage(File userFile) throws IOException {
+        String response;
+        
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost post = new HttpPost("http://www.imageshack.us/upload_api.php");
 
@@ -46,16 +47,10 @@ public class ImageServiceImpl implements ImageService {
         post.addHeader("Keep-Alive", "115");
         post.addHeader("Connection", "keep-alive");
 
-        try {
+
             HttpResponse httpresponse = httpclient.execute(post);
-            this.response = EntityUtils.toString(httpresponse.getEntity(), "UTF-8");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return this.response.substring(response.indexOf("[IMG]")+5, response.indexOf("[/IMG]"));
+            response = EntityUtils.toString(httpresponse.getEntity(), "UTF-8");
+
+        return response.substring(response.indexOf("[IMG]")+NO_MGK, response.indexOf("[/IMG]"));
     }
 }
