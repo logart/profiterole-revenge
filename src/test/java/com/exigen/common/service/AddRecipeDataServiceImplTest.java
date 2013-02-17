@@ -68,8 +68,12 @@ public class AddRecipeDataServiceImplTest {
     public void makeStepsTest() {
         Recipe recipe1 = new Recipe();
         steps.add("step");
+        List<String> images=new ArrayList<String>();
+        images.add("ghf");
         AddRecipeData addRecipeData1 = new AddRecipeData();
         addRecipeData1.setStepsList(steps);
+        addRecipeData1.setImageForRecipeHead("");
+        addRecipeData1.setImagesForStepsList(images);
 
         Assert.assertNotNull(addRecipeDataService.makeSteps(addRecipeData1, recipe));
     }

@@ -12,8 +12,13 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +44,12 @@ public class AddRecipesController {
     private List<Cuisine> cuisines;
     private List<Ingridient> ingridients;
 
+    private List<String> imagesForSteps = new ArrayList<String>();
+
+    private List<MultipartFile> multipartFiles;
+
+    private ImageServiceImpl imageService = new ImageServiceImpl();
+
     @RequestMapping(method = RequestMethod.GET)
     public String showAddingRecipe(Map model) {
         AddRecipeData data = new AddRecipeData();
@@ -53,12 +64,13 @@ public class AddRecipesController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) {
+    public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) throws IOException {
         if (categories == null || cuisines == null || ingridients == null) {
             categories = this.categoriesService.getCategories();
             cuisines = this.cuisineService.getCuisine();
             ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
         }
+
 
         ValidationUtils.invokeValidator(new AddRecipeDataValidator(), data, errors);
         if (errors.hasErrors()) {
@@ -68,6 +80,42 @@ public class AddRecipesController {
             model.put("ingredients", ingridients);
             return "addRecipes";
         }
+
+
+        multipartFiles = data.getFiles();
+
+        for (int i = 0; i < multipartFiles.size(); i++) {
+            if (multipartFiles.get(i).isEmpty()) {
+                imagesForSteps.add("http://img15.imageshack.us/img15/9802/stepav.jpg");
+            } else {
+                File saveFile = new File(multipartFiles.get(i).getOriginalFilename());
+                saveFile.createNewFile();
+                FileOutputStream saveBytes = new FileOutputStream(saveFile);
+                saveBytes.write(multipartFiles.get(i).getBytes());
+                saveBytes.close();
+                imagesForSteps.add(i, imageService.postImage(saveFile));
+            }
+        }
+
+        data.setImagesForStepsList(imagesForSteps);
+
+
+        if (data.getImages().isEmpty()) {
+            data.setImageForRecipeHead("http://imageshack.us/a/img825/4148/98824036.gif");
+        } else {
+
+            File file = new File(data.getImages().getOriginalFilename());
+
+            file.createNewFile();
+
+            FileOutputStream fos = new FileOutputStream(file);
+
+
+            fos.write(data.getImages().getBytes());
+            fos.close();
+            data.setImageForRecipeHead(imageService.postImage(file));
+        }
+
         data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategoryId()), categories));
         data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisineId()), cuisines));
         addRecipeDataService.addRecipe(data);

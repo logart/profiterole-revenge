@@ -91,8 +91,8 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
         recipe.setDescription(data.getDescription());
         recipe.setCuisine(data.getCuisine());
         recipe.setCategories(data.getCategory());
-        recipe.setSmallImg("http://25.media.tumblr.com/tumblr_m9p3n1vJmZ1rexr16o1_400.jpg");
-        recipe.setBigImg("http://25.media.tumblr.com/tumblr_m9p3n1vJmZ1rexr16o1_400.jpg");
+        recipe.setSmallImg(data.getImageForRecipeHead());
+        recipe.setBigImg(data.getImageForRecipeHead());
         recipe.setTime(Integer.parseInt(data.getCookingTime()));
         recipe.setCalories(getCalories(data.getIngredientsNameList()).intValue());
         return recipe;
@@ -109,10 +109,11 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
     public List<Step> makeSteps(AddRecipeData data, Recipe recipe) {
         List<String> stepsList = data.getStepsList();
         List<Step> result = new ArrayList<Step>();
+        List<String> imagesStep=data.getImagesForStepsList();
         for (int i = 0; i < stepsList.size(); i++) {
             Step step = new Step();
             step.setStepDescription(stepsList.get(i));
-            step.setStepImg("");
+            step.setStepImg(imagesStep.get(i));
             step.setStepNumber(i + 1);
             step.setRecipe(recipe);
             result.add(step);

@@ -9,9 +9,10 @@
     <span class="text-justify">
     <br/>
     <p><strong>Время приготовления:</strong> ${recipe.time} минут </p>
-    <p><strong>Описание:</strong> ${recipe.description} </p>
     <br/>
-    <p><strong>Ингредиенты: </strong></p>
+    <p><strong>Описание:</strong> ${recipe.description}</p>
+    <br/>
+    <p><strong>Ингридиенты: </strong></p>
     <table class="table table-striped table-bordered table-condensed">
     [#list ingridient as a]
         <tr>
@@ -25,6 +26,7 @@
     [#list step as a]
         <p><strong>Шаг ${a.stepNumber}</strong></p>
 
+         <p><img src="${a.stepImg}"></p>
     <p style="word-wrap: break-word;">${a.stepDescription}</p>
     [/#list]
         </span>
