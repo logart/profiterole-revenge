@@ -17,7 +17,7 @@ import org.springframework.validation.Validator;
 @Component
 public class RegistrationValidator implements Validator {
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @Override
     public boolean supports(Class<?> aClass) {
