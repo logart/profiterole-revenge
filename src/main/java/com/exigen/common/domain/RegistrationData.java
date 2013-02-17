@@ -28,9 +28,9 @@ public class RegistrationData implements Serializable {
     /**
      * {@code login} describes username
      */
-    @NotEmpty(message = "Поле не должно быть пустым. Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
+    @NotEmpty(message = "Поле не должно быть пустым. Корректными значениями являются большие и маленькие буквы (Английский), цифры, символы (. + - () : ; _ ).")
     @Size(min = MIN_LENGTH_OF_LOGIN, max = MAX_LENGTH_OF_LOGIN, message = "Длина логина должна быть от " + MIN_LENGTH_OF_LOGIN + " до " + MAX_LENGTH_OF_LOGIN + " символов.")
-    @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
+    @Pattern(regexp="^[a-zA-Z0-9\\Q.+-();:_\\E]*$",message = "Корректными значениями являются большие и маленькие буквы (Английский), цифры, символы (. + - () : ; _ ).")
     private String login;
 
     /**
@@ -73,15 +73,6 @@ public class RegistrationData implements Serializable {
     /**
      * {@methods get .. and set..} its a getters and setters
      */
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
     public String getLogin() {
         return login;
     }
@@ -98,6 +89,22 @@ public class RegistrationData implements Serializable {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getMaleOrFemale() {
         return maleOrFemale;
     }
@@ -106,16 +113,6 @@ public class RegistrationData implements Serializable {
         this.maleOrFemale = maleOrFemale;
     }
 
-
-     public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-
     public String getCountry() {
         return country;
     }
@@ -123,7 +120,6 @@ public class RegistrationData implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
-
 
     public String getiAmAgree() {
         return iAmAgree;

@@ -1,35 +1,56 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.Gender;
-import org.springframework.stereotype.Service;
+import com.exigen.common.domain.RegistrationData;
 
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Calendar;
+import java.util.List;
 
 /**
- * Class {@code AccountService} used for push object from and in DAO for get and
- * add objects into DB with helps SpringTransaction and JPA
- *
- * @author Oleg Kalinichenko
- * @date February 5,2013
+ * Created by IntelliJ IDEA.
+ * User: TonySoprano
+ * Date: 18.02.13
+ * Time: 1:06
+ * To change this template use File | Settings | File Templates.
  */
-@Service
-public class AccountService {
-    private Map<String, Account> accounts;
-
-    public AccountService() {
-        accounts = new HashMap<String, Account>();
-        accounts.put("qwe", new Account("qwe", "qwe", "mail1@mail.com", Gender.Female, new GregorianCalendar()));
-        accounts.put("1", new Account("1", "1", "mail2@mail.com", Gender.Female, new GregorianCalendar()));
-    }
-
-    public Account findByUsername(String username) {
-        if (!accounts.containsKey(username)) {
-            return null;
-        }
-        return accounts.get(username);
-    }
-
+public interface AccountService {
+    /**
+     * {@method findByUsername(String username)}
+     *
+     * @param username (unique identificator of some particular user)
+     * @return the user, where Account field login equals parameter login( return complete description
+     *         of with all entity's fields). If user wasn't found, return null.
+     * @throws org.springframework.dao.DataAccessException (resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     */
+    Account findByUsername(String username);
+    /**
+     * {@method addAccount(Account account)}
+     * for adding information about some particular user into DB
+     *
+     * @param account (object of some particular user)
+     * @throws org.springframework.dao.DataAccessException (resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when user is null)
+     */
+    void addAccount(Account account);
+    /**
+     * {@method getAllAccounts()}
+     *
+     * @return list of all users, who registered on site
+     * @throws org.springframework.dao.DataAccessException (resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when search has no results in the database)
+     */
+    List<Account> getAllAccounts();
+    /**
+     * {@method addAccount(RegistrationData data)}
+     * for adding information about some particular user into DB
+     *
+     * @param data (object of some particular user)
+     * @throws org.springframework.dao.DataAccessException (resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when user is null)
+     */
+    void addAccount(RegistrationData data);
 }
