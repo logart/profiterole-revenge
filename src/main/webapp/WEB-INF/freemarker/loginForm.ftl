@@ -8,12 +8,13 @@
     <div class="span3 offset3">
 
 
-        [#if error = true]
-            <div class="error-div" id="passwordError">Вы ввели неверное имя пользователя или неверный пароль</div>
-        [/#if]
+
         <form class="form-horizontal" action="/j_spring_security_check" method="post">
             <div class="text-cener">
                 <div class="control-group">
+                    [#if error = true]
+                        <div class="error-div error" id="passwordOrLoginError">Вы ввели неверный логин и/или пароль</div>
+                    [/#if]
                     <label class="control-label" for="j_username">Логин</label>
 
                     <div class="controls">
