@@ -11,24 +11,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 /**
- * Created by IntelliJ IDEA.
- * User: TonySoprano
- * Date: 16.02.13
- * Time: 16:29
- * To change this template use File | Settings | File Templates.
+ * Class  {@code RegistrationSuccessController} creates for mapped "registrationSuccess" view
+ *
+ * @author Oleg Kalinichenko.
+ * @DATE February 16, 2013
  */
 @Controller
 @RequestMapping("/registrationSuccess")
 public class RegistrationSuccessController {
+    /**
+     * {@code accountService} Contains implementation of AccountService interface
+     */
     @Autowired
     private AccountService accountService;
 
+    /**
+     * {@method registrationSuccess()} using for mapped added account
+     *
+     * @return information about added account if account exist,
+     *         else redirect to main page
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String registrationSuccess(Map model, @RequestParam("user") String user) {
         Account account = accountService.findByUsername(user);
-        if(account != null){
+        if (account != null) {
             model.put("user", account.getLogin());
-        }else{
+        } else {
             return "redirect:";
         }
         return "registrationSuccess";

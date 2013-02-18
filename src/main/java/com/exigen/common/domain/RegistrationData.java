@@ -9,11 +9,11 @@ import java.io.Serializable;
 
 
 /**
- * Created with IntelliJ IDEA.
- * User: lena
- * Date: 05.02.13
- * Time: 19:55
- * To change this template use File | Settings | File Templates.
+ * Class {@code RegistrationData} is a class that contains the user's
+ * account data what he input in view form
+ *
+ * @author Lena
+ * @date February 05, 2013
  */
 public class RegistrationData implements Serializable {
     

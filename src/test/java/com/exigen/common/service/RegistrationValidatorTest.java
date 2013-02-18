@@ -24,16 +24,12 @@ public class RegistrationValidatorTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    Account account=new Account();
-
-
-
-
+    private Account account = new Account();
 
     @Test
     public void testSupports() throws Exception {
 
-     when(registrationValidator.supports(account.getClass())).thenReturn(true);
-        Assert.assertEquals(true,registrationValidator.supports(account.getClass()));
+        when(registrationValidator.supports(account.getClass())).thenReturn(true);
+        Assert.assertEquals(true, registrationValidator.supports(account.getClass()));
     }
 }
