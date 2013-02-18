@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-public class IngridientServiceTest {
+public class IngridientServiceImplTest {
 
     private IngridientServiceImpl ingridientService = new IngridientServiceImpl();
 

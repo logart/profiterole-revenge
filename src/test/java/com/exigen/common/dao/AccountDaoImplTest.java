@@ -27,17 +27,35 @@ public class AccountDaoImplTest {
 
     @Before
     public void setup() {
-        account=new Account("login","password","vasya-pupkin@gmail.com", Gender.Male,new GregorianCalendar(2012,12,21));
+        account = new Account("login", "password", "vasya-pupkin@gmail.com", Gender.Male, new GregorianCalendar(2012, 12, 21));
     }
 
     @Test
-    public void addAccount(){
+    public void addAccount() {
         accountDao.addAccount(account);
-        Assert.assertEquals(account,accountDao.getOneAccount(account.getId()));
+        Assert.assertEquals(account, accountDao.getOneAccount(account.getId()));
+    }
+
+    @Test
+    public void getOneAccountById() {
+        accountDao.addAccount(account);
+        Assert.assertEquals(account, accountDao.getOneAccount(account.getId()));
+    }
+
+    @Test
+    public void getOneAccountByLogin() {
+        accountDao.addAccount(account);
+        Assert.assertEquals(account, accountDao.getAccountByLogin(account.getLogin()));
     }
     @Test
-    public void getAllUsers(){
+    public void getAllUsers() {
         Assert.assertNotNull(accountDao.getAllAccounts());
     }
 
+    @Test
+    public void removeAccount() {
+        accountDao.addAccount(account);
+        accountDao.removeAccount(account);
+        Assert.assertNull(accountDao.getOneAccount(account.getId()));
+    }
 }

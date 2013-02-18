@@ -20,7 +20,7 @@ public class AddRecipeDataValidator implements Validator {
     /**
      * {@code stepPattern} Contains pattern for check steps
      */
-    private Pattern stepPattern = Pattern.compile("[^а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n\\Q,.()+-=\"“”'‘’:;[]!?*%<>/\\E]");
+    private Pattern stepPattern = Pattern.compile("[^а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q,.()+-=\"“”'‘’:;[]!?*%<>/\\E]");
 
     /**
      * {@code MAX_STEP_SIZE} Contains maximum length of step text
