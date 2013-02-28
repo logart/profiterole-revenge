@@ -1,9 +1,9 @@
 package com.exigen.common.web;
 
 import com.exigen.common.domain.AddRecipeData;
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Ingridient;
+import com.exigen.common.domain.Ingredient;
 import com.exigen.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,9 +40,9 @@ public class AddRecipesController {
     private IngridientService ingridientService;
     @Autowired
     private AddRecipeDataService addRecipeDataService;
-    private List<Categories> categories;
+    private List<Category> categories;
     private List<Cuisine> cuisines;
-    private List<Ingridient> ingridients;
+    private List<Ingredient> ingredients;
 
     private List<String> imagesForSteps = new ArrayList<String>();
 
@@ -53,20 +53,20 @@ public class AddRecipesController {
         AddRecipeData data = new AddRecipeData();
         categories = this.categoriesService.getCategories();
         cuisines = this.cuisineService.getCuisine();
-        ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
+        ingredients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
         model.put("addRecipeData", data);
         model.put("cuisines", cuisines);
         model.put("categories", categories);
-        model.put("ingredients", ingridients);
+        model.put("ingredients", ingredients);
         return "addRecipes";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) throws IOException {
-        if (categories == null || cuisines == null || ingridients == null) {
+        if (categories == null || cuisines == null || ingredients == null) {
             categories = this.categoriesService.getCategories();
             cuisines = this.cuisineService.getCuisine();
-            ingridients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
+            ingredients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
         }
 
 
@@ -75,7 +75,7 @@ public class AddRecipesController {
             model.put("addRecipeData", data);
             model.put("cuisines", cuisines);
             model.put("categories", categories);
-            model.put("ingredients", ingridients);
+            model.put("ingredients", ingredients);
             return "addRecipes";
         }
 

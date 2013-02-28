@@ -178,7 +178,7 @@
     [@spring.bind "addRecipeData.categoryId"/]
     <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 130px">
         <option value=""></option>
-        [#list categories as value]
+        [#list category as value]
             [#if "${value.categoriesId}" == "${spring.status.value?default(\"\")}"]
                 <option selected value="${value.categoriesId}">${value.categ}</option>
             [#else]

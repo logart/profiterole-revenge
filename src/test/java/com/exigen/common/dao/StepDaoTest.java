@@ -1,6 +1,6 @@
 package com.exigen.common.dao;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.domain.Step;
@@ -41,7 +41,7 @@ public class StepDaoTest {
 
     private Recipe recipe;
     private Cuisine cuisine;
-    private Categories categories;
+    private Category category;
     private Step step;
     private Integer recipeId;
     private List<Recipe> recipeList;
@@ -52,13 +52,13 @@ public class StepDaoTest {
     public void setup() {
         cuisine = new Cuisine("cuisin", "link");
         cuisineDao.addCuisine(cuisine);
-        categories = new Categories("category");
+        category = new Category("category");
 
-        categoriesDao.addCategories(categories);
+        categoriesDao.addCategories(category);
 
-        recipe = new Recipe("title", "desc", cuisine, categories, "link1", "link2", 4, 10);
+        recipe = new Recipe("title", "desc", cuisine, category, "link1", "link2", 4);
         recipeDao.addRecipe(recipe);
-        step = new Step(1, "step", recipe);
+        step = new Step(1, "step");
         stepDao.addStep(step);
         stepList = new ArrayList<Step>();
         recipeList = new ArrayList<Recipe>();
@@ -68,7 +68,7 @@ public class StepDaoTest {
     public void addAndGetStepsTest() {
         recipeList = recipeDao.getRecipeCuisineList(cuisine);
         recipe = recipeList.get(0);
-        recipeId = recipe.getRecipeId();
+        recipeId = recipe.getId();
 
         stepList.add(step);
         Assert.assertEquals(stepList, stepDao.getListOfRecipeSteps(recipeId));

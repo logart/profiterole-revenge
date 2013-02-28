@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Interface {@code CategoriesDao} used for get, add and remove objects
- * from Categories entity with helps JPA
+ * from Category entity with helps JPA
  *
  * @author Ulyana Kucheryavaya
  * @date June 21,2012

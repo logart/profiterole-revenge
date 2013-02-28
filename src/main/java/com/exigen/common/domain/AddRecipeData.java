@@ -83,9 +83,9 @@ public class AddRecipeData implements Serializable {
     private Cuisine cuisine;
 
     /**
-     * {@code category} This field is a reference to the Categories entity.
+     * {@code category} This field is a reference to the Category entity.
      */
-    private Categories category;
+    private Category category;
 
     /**
      * {@code ingredientList} This field contains list of steps for meal
@@ -165,11 +165,11 @@ public class AddRecipeData implements Serializable {
         this.cuisine = cuisine;
     }
 
-    public Categories getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

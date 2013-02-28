@@ -1,13 +1,9 @@
 package com.exigen.common.domain;
 
 import junit.framework.Assert;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +53,7 @@ public class AddRecipeDataTest {
 
     @Test
     public void testGetCategory() throws Exception {
-        Categories category=new Categories();
+        Category category=new Category();
         addRecipeData.setCategory(category);
         Assert.assertEquals(category,addRecipeData.getCategory());
     }

@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.repository.CategoriesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,21 +20,21 @@ import java.util.List;
 public class CategoriesServiceImpl implements CategoriesService {
     /**
      * {@code categoriesDao} describes the CategoriesDao for work with
-     * DB and Categories entity
+     * DB and Category entity
      */
     @Autowired
     private CategoriesDao categoriesDao;
 
     /**
-     * {@method getCategories()}
+     * {@method getCategory()}
      *
-     * @return the list of all categories, when it situated in Categories entity
+     * @return the list of all category, when it situated in Category entity
      * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Categories> getCategories() {
+    public List<Category> getCategories() {
         return categoriesDao.getCategories();
     }
 
@@ -47,13 +47,13 @@ public class CategoriesServiceImpl implements CategoriesService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Categories getCategory(Integer id) {
+    public Category getCategory(Integer id) {
         return categoriesDao.getCategory(id);
     }
 
     /**
-     * {@method addCategories(Categories categ)}
-     * for add info about our categories of recipes into DB
+     * {@method addCategories(Category categ)}
+     * for add info about our category of recipes into DB
      *
      * @param categ(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
@@ -61,13 +61,13 @@ public class CategoriesServiceImpl implements CategoriesService {
      * @throws NullPointerException (when categ is null)
      */
     @Transactional
-    public void addCategories(Categories categ) {
+    public void addCategories(Category categ) {
         categoriesDao.addCategories(categ);
     }
 
     /**
-     * {@method removeCategories(Categories categories)}
-     * for remove our categories of recipes from DB
+     * {@method removeCategories(Category category)}
+     * for remove our category of recipes from DB
      *
      * @param categ(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
@@ -75,7 +75,7 @@ public class CategoriesServiceImpl implements CategoriesService {
      * @throws NullPointerException (when categ is null)
      */
     @Transactional
-    public void removeCategories(Categories categ) {
+    public void removeCategories(Category categ) {
         categoriesDao.removeCategories(categ);
     }
 

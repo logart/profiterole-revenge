@@ -1,6 +1,6 @@
 package com.exigen.common.repository;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Class {@code CategoriesDao} used for get, add and remove objects
- * from Categories entity with helps JPA
+ * from Category entity with helps JPA
  *
  * @author Sergey
  * @date July 17,2012
@@ -25,15 +25,15 @@ public class CategoriesDaoImpl implements CategoriesDao {
     private EntityManager entityManager;
 
     /**
-     * {@method getCategories()}
+     * {@method getCategory()}
      *
-     * @return the list of all categories, when it situated in Categories entity
+     * @return the list of all categories, when it situated in Category entity
      * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
     @Override
-    public List<Categories> getCategories() {
-        List<Categories> results = this.entityManager.createQuery("select t from Categories t")
+    public List<Category> getCategories() {
+        List<Category> results = this.entityManager.createQuery("select t from Categories t")
                 .getResultList();
         return results;
     }
@@ -46,12 +46,12 @@ public class CategoriesDaoImpl implements CategoriesDao {
      *          on cloudfoundry is unavalible, DB is changed)
      */
     @Override
-    public Categories getCategory(Integer id) {
-        return this.entityManager.find(Categories.class, id);
+    public Category getCategory(Integer id) {
+        return this.entityManager.find(Category.class, id);
     }
 
     /**
-     * {@method addCategories(Categories categ)}
+     * {@method addCategories(Category categ)}
      * for add info about our categories of recipes into DB
      *
      * @param categ(object of some particular category)
@@ -60,13 +60,13 @@ public class CategoriesDaoImpl implements CategoriesDao {
      * @throws NullPointerException (when categ is null)
      */
     @Override
-    public void addCategories(Categories categ) {
+    public void addCategories(Category categ) {
 
         entityManager.persist(categ);
     }
 
     /**
-     * {@method removeCategories(Categories categories)}
+     * {@method removeCategories(Category categories)}
      * for remove our categories of recipes from DB
      *
      * @param categ(object of some particular category)
@@ -75,7 +75,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
      * @throws NullPointerException (when categ is null)
      */
     @Override
-    public void removeCategories(Categories categ) {
+    public void removeCategories(Category categ) {
         entityManager.remove(categ);
     }
 

@@ -31,9 +31,9 @@ public class RecipeTest {
     @Test
     public void GetSetRecipeId() {
         Integer test = 2;
-        assertNull(recipe.getRecipeId());
-        recipe.setRecipeId(test);
-        assertEquals(test, recipe.getRecipeId());
+        assertNull(recipe.getId());
+        recipe.setId(test);
+        assertEquals(test, recipe.getId());
     }
 
     @Test
@@ -44,30 +44,23 @@ public class RecipeTest {
     }
 
     @Test
-    public void getSetCaloriesTest(){
-        assertNull(recipe.getCalories());
-        recipe.setCalories(6);
-        assertEquals((Object) 6, recipe.getCalories());
-    }
-
-    @Test
     public void getSetTimeTest(){
-        recipe.setTime(6);
-        assertEquals(6.0,recipe.getTime(), 0);
+        recipe.setTimeOfCooking(6);
+        assertEquals(6.0,recipe.getTimeOfCooking(), 0);
     }
 
     @Test
     public void getSetBigImgTest(){
-        assertNull(recipe.getBigImg());
-        recipe.setBigImg("bigImg");
-        assertEquals("bigImg", recipe.getBigImg());
+        assertNull(recipe.getBigImage());
+        recipe.setBigImage("bigImg");
+        assertEquals("bigImg", recipe.getBigImage());
     }
     
     @Test
     public void getSetSmallImgTest(){
-        assertNull(recipe.getSmallImg());
-        recipe.setSmallImg("smallImg");
-        assertEquals("smallImg", recipe.getSmallImg());
+        assertNull(recipe.getSmallImage());
+        recipe.setSmallImage("smallImg");
+        assertEquals("smallImg", recipe.getSmallImage());
     }
 
     @Test
@@ -80,9 +73,9 @@ public class RecipeTest {
     
     @Test
     public void getSetCategories(){
-        Categories categories=new Categories();
-        assertNull(recipe.getCategories());
-        recipe.setCategories(categories);
-        assertEquals(categories,recipe.getCategories());
+        Category category =new Category();
+        assertNull(recipe.getCategory());
+        recipe.setCategory(category);
+        assertEquals(category,recipe.getCategory());
     }
 }

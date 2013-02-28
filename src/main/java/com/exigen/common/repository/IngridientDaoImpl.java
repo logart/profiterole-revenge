@@ -1,7 +1,7 @@
 package com.exigen.common.repository;
 
 
-import com.exigen.common.domain.Ingridient;
+import com.exigen.common.domain.Ingredient;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -24,27 +24,27 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Ingridient> getIngridientsRecipeList(Integer recipeId) {
-        List<Ingridient> ingridientList = this.entityManager.createNamedQuery("Ingridient.findIngridientsAboutRecipe", Ingridient.class)
+    public List<Ingredient> getIngridientsRecipeList(Integer recipeId) {
+        List<Ingredient> ingredientList = this.entityManager.createNamedQuery("Ingredient.findIngredientsAboutRecipe", Ingredient.class)
                 .setParameter("selectedRecipeId", recipeId)
                 .getResultList();
 
-        return ingridientList;
+        return ingredientList;
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public Ingridient getIngridientById(Integer ingridientId) {
-        return entityManager.find(Ingridient.class, ingridientId);
+    public Ingredient getIngridientById(Integer ingridientId) {
+        return entityManager.find(Ingredient.class, ingridientId);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<Ingridient> getAllIngridients() {
-        List<Ingridient> results= this.entityManager.createNamedQuery("Ingridient.getAllIngridients",Ingridient.class)
+    public List<Ingredient> getAllIngridients() {
+        List<Ingredient> results= this.entityManager.createNamedQuery("Ingredient.getAllIngredients",Ingredient.class)
                 .getResultList();
 
         return results;
@@ -54,15 +54,15 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public void addIngridient(Ingridient ingridient) {
-        entityManager.persist(ingridient);
+    public void addIngridient(Ingredient ingredient) {
+        entityManager.persist(ingredient);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeIngridient(Ingridient ingridient) {
-        entityManager.remove(ingridient);
+    public void removeIngridient(Ingredient ingredient) {
+        entityManager.remove(ingredient);
     }
 }
