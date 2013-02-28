@@ -1,6 +1,6 @@
 package com.exigen.common.dao;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.repository.CategoriesDao;
@@ -34,16 +34,16 @@ public class RecipeDaoTest {
     private Recipe recipe;
     private Recipe RecipeForId;
     private Cuisine cuisine;
-    private Categories categories;
+    private Category category;
     private Integer id = 0;
 
     @Before
     public void setup() {
         cuisine = new Cuisine("cuisin", "link");
-        categories = new Categories("category");
-        categoriesDao.addCategories(categories);
+        category = new Category("category");
+        categoriesDao.addCategories(category);
         cuisineDao.addCuisine(cuisine);
-        recipe = new Recipe("title", "desc", cuisine, categories, "link1", "link2", 4, 10);
+        recipe = new Recipe("title", "desc", cuisine, category, "link1", "link2", 4);
     }
 
 
@@ -57,7 +57,7 @@ public class RecipeDaoTest {
         recipeDao.addRecipe(recipe);
         List<Recipe> recipeList = recipeDao.getRecipeCuisineList(cuisine);
         RecipeForId = recipeList.get(0);
-        id = recipe.getRecipeId();
+        id = recipe.getId();
         Assert.assertEquals(recipe, recipeDao.getOneRecipe(id));
     }
 

@@ -1,13 +1,13 @@
 package com.exigen.common.repository;
 
 
-import com.exigen.common.domain.Ingridient;
+import com.exigen.common.domain.Ingredient;
 
 import java.util.List;
 
 /**
  * Interface {@code IngridientDao} used for get, add and remove objects
- * from Ingridient entity with helps JPA
+ * from Ingredient entity with helps JPA
  *
  * @author Ivan Guravel
  * @date November 6,2012
@@ -19,22 +19,22 @@ public interface IngridientDao {
      * {@method getIngridientsRecipeList(Integer recipeId)}
      *
      * @param recipeId (ID of some particular recipe)
-     * @return the list of ingridients, where recipe in Ingridient entity =@param).
+     * @return the list of ingridients, where recipe in Ingredient entity =@param).
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipe is null, or has no results in the database)
      */
-    List<Ingridient> getIngridientsRecipeList(Integer recipeId);
+    List<Ingredient> getIngridientsRecipeList(Integer recipeId);
     /**
      * {@method getIngridientsRecipeList(Integer recipeId)}
      *
      * @param recipeId (ID of some particular recipe)                                    //TODO
-     * @return the list of ingridients, where recipe in Ingridient entity =@param).
+     * @return the list of ingridients, where recipe in Ingredient entity =@param).
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when recipe is null, or has no results in the database)
      */
-    Ingridient getIngridientById(Integer ingridientId);      //TODO
+    Ingredient getIngridientById(Integer ingridientId);      //TODO
     /**
      * {@method getAllIngridients()}
      *
@@ -43,27 +43,27 @@ public interface IngridientDao {
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when search has no results in the database)
      */
-    List<Ingridient> getAllIngridients();
+    List<Ingredient> getAllIngridients();
 
     /**
-     * {@method addIngridient(Ingridient ingridient)}
-     * for adding information about some particular ingridient into DB
+     * {@method addIngridient(Ingredient ingredient)}
+     * for adding information about some particular ingredient into DB
      *
-     * @param ingridient (object of some particular ingridient)
+     * @param ingredient (object of some particular ingredient)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when ingridient is null)
      */
-    void addIngridient(Ingridient ingridient);
+    void addIngridient(Ingredient ingredient);
 
     /**
-     * {@method removeIngridient(Ingridient ingridient)}
-     * for remove some particular ingridient from DB
+     * {@method removeIngridient(Ingredient ingredient)}
+     * for remove some particular ingredient from DB
      *
-     * @param ingridient (object of some particular recipe)
+     * @param ingredient (object of some particular recipe)
      * @throws org.springframework.dao.DataAccessException(resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException(when ingridient is null)
      */
-    void removeIngridient(Ingridient ingridient);
+    void removeIngridient(Ingredient ingredient);
 }

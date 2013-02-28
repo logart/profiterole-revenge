@@ -7,58 +7,53 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Class {@code Recipe} is an ordinary user defined Java class whose instances
+ * Class {@code Category} is an ordinary category defined Java class whose instances
  * can be stored in the database.
  *
  * @author Ivan
  * @date Feb 24,2013
  */
 @Entity
-@Table(name = "cuisines")
-public class Cuisine implements Serializable {
+@Table(name = "categories")
+public class Category implements Serializable {
 
     /**
-     * {@code id} contains id of cuisine
+     * {@code id} contains id of category
      */
     @Id
     @GeneratedValue
     private Integer id;
 
     /**
-     * {@code name} describes name of our cuisines
+     * {@code name} describes name of category
      */
+    @NotEmpty(message = "Поле должно быть указано.")
     private String name;
 
     /**
-     * {@code imglink} describes reference for images
-     */
-    private String image;
-
-
-    /**
-     * {@code recipes} it's list of recipes in Cuisine.
+     * {@code recipeList} it's list of recipes in category.
      * Realization of a two-way communication between the entities recipes and cuisines
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuisine")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Recipe> recipeList;
 
     /**
-     * {@method Cuisine} its a default constructor for JPA
+     * {@method Category} its a default constructor for JPA
      */
-    public Cuisine() {
+    public Category() {
     }
 
     /**
-     * {@method Cuisine} its a constructor for adding data in entity
+     * {@method Category} its a constructor for adding data in entity
      */
-    public Cuisine(String name, String image) {
+    public Category(String name) {
         this.name = name;
-        this.image = image;
     }
 
     /**
-     * {@methods get.. and set..} its a getters and setters
+     * {@methods get .. and set..} its a getters and setters
      */
+
     public Integer getId() {
         return id;
     }
@@ -73,14 +68,6 @@ public class Cuisine implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public List<Recipe> getRecipeList() {

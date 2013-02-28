@@ -1,8 +1,6 @@
 package com.exigen.common.service;
 
 
-import com.exigen.common.domain.AddRecipeData;
-import com.exigen.common.domain.Ingridient;
 import junit.framework.Assert;
 import org.junit.Test;
 

@@ -10,7 +10,7 @@ import java.util.Calendar;
  * who registered in Profiterole
  *
  * @author Ivan
- * @date Jan 30,2013
+ * @date Feb 24,2013
  */
 @Entity
 @Table(name = "accounts")
@@ -21,44 +21,41 @@ import java.util.Calendar;
 public class Account implements Serializable {
 
     /**
-     * The @Id annotation marks a field as a primary key field.
-     * The @GeneratedValue annotation specifies that the primary key is automatically
-     * allocated by DB.
+     * {@code id} contains id of account
      */
     @Id
     @GeneratedValue
     private Integer id;
 
-
     /**
-     * {@code login} describes username
+     * {@code login} contains user's login
      */
     private String login;
 
     /**
-     * {@code password} describes password for authentification
+     * {@code password} contains password for authentication
      */
     private String password;
 
     /**
-     * {@code email} describes email address for some user
+     * {@code email} contains email address
      */
     private String email;
 
     /**
-     * {@code maleOrFemale} describes sex of some user
+     * {@code maleOrFemale} contains gender of user
      */
     @Enumerated
     private Gender maleOrFemale;
 
     /**
-     * {@code dateOfBirth} describes date of birth of some user
+     * {@code dateOfBirth} contains date of birth of user
      */
     @Temporal(value = TemporalType.DATE)
     private Calendar dateOfBirth;
 
     /**
-     * {@code dateOfBirth} contains the role of some user
+     * {@code dateOfBirth} contains the role of user
      */
     private String role = "ROLE_USER";
 

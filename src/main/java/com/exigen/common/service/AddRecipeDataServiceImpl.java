@@ -24,19 +24,20 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
     private StepService stepService;
 
     /**
-     * {@method getCategoryFromListByID(Integer id, List<Categories> list)}
+     * {@method getCategoryFromListByID(Integer id, List<Category> list)}
      *
      * @param id   (Id of category what should be founded)
-     * @param list (list of categories where should be founded category by id)
+     * @param list (list of category where should be founded category by id)
      * @return If the list includes a category with a specified id return that category,
      *         else return null
      */
-    public Categories getCategoryFromListByID(Integer id, List<Categories> list) {
-        for (Categories c : list) {
-            if (c.getCategoriesId() == id) {
-                return c;
-            }
-        }
+    public Category getCategoryFromListByID(Integer id, List<Category> list) {    //TODO
+//        for (Category c : list) {
+//            if (c.getCategoriesId() == id) {
+//                return c;
+//            }
+//        }
+//        return null;
         return null;
     }
 
@@ -48,12 +49,13 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @return If the list includes a cuisine with a specified id return that cuisine,
      *         else return null
      */
-    public Cuisine getCuisineFromListByID(Integer id, List<Cuisine> list) {
-        for (Cuisine c : list) {
-            if (c.getCuisineId() == id) {
-                return c;
-            }
-        }
+    public Cuisine getCuisineFromListByID(Integer id, List<Cuisine> list) {  //TODO
+//        for (Cuisine c : list) {
+//            if (c.getCuisineId() == id) {
+//                return c;
+//            }
+//        }
+//        return null;
         return null;
     }
 
@@ -66,11 +68,11 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      */
     public void addRecipe(AddRecipeData data) {
         Recipe recipe = makeRecipe(data);
-        List<Ingridient> ingridienstList = makeIngredients(data, recipe);
+        List<Ingredient> ingridienstList = makeIngredients(data, recipe);
         List<Step> stepList = makeSteps(data, recipe);
         recipeService.addRecipe(recipe);
-        for (Ingridient ingridient : ingridienstList) {
-            ingridientService.addIngridient(ingridient);
+        for (Ingredient ingredient : ingridienstList) {
+            ingridientService.addIngridient(ingredient);
         }
         for (Step step : stepList) {
             stepService.addStep(step);
@@ -85,17 +87,19 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param data (object with data what user input)
      * @return returns Recipe with data inputted by the user
      */
-    public Recipe makeRecipe(AddRecipeData data) {
-        Recipe recipe = new Recipe();
-        recipe.setTitle(data.getTitle());
-        recipe.setDescription(data.getDescription());
-        recipe.setCuisine(data.getCuisine());
-        recipe.setCategories(data.getCategory());
-        recipe.setSmallImg(data.getImageForRecipeHead());
-        recipe.setBigImg(data.getImageForRecipeHead());
-        recipe.setTime(Integer.parseInt(data.getCookingTime()));
-        recipe.setCalories(getCalories(data.getIngredientsNameList()).intValue());
-        return recipe;
+    public Recipe makeRecipe(AddRecipeData data) {         //TODO
+//        Recipe recipe = new Recipe();
+//        recipe.setTitle(data.getTitle());
+//        recipe.setDescription(data.getDescription());
+//        recipe.setCuisine(data.getCuisine());
+//        recipe.setCategory(data.getCategory());
+//        recipe.setSmallImg(data.getImageForRecipeHead());
+//        recipe.setBigImg(data.getImageForRecipeHead());
+//        recipe.setTime(Integer.parseInt(data.getCookingTime()));
+//        recipe.setCalories(getCalories(data.getIngredientsNameList()).intValue());
+//        return recipe;
+        return null;
+
     }
 
     /**
@@ -106,19 +110,20 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param recipe (recipe whose steps are created)
      * @return list of steps
      */
-    public List<Step> makeSteps(AddRecipeData data, Recipe recipe) {
-        List<String> stepsList = data.getStepsList();
-        List<Step> result = new ArrayList<Step>();
-        List<String> imagesStep=data.getImagesForStepsList();
-        for (int i = 0; i < stepsList.size(); i++) {
-            Step step = new Step();
-            step.setStepDescription(stepsList.get(i));
-            step.setStepImg(imagesStep.get(i));
-            step.setStepNumber(i + 1);
-            step.setRecipe(recipe);
-            result.add(step);
-        }
-        return result;
+    public List<Step> makeSteps(AddRecipeData data, Recipe recipe) {     //TODO
+//        List<String> stepsList = data.getStepsList();
+//        List<Step> result = new ArrayList<Step>();
+//        List<String> imagesStep=data.getImagesForStepsList();
+//        for (int i = 0; i < stepsList.size(); i++) {
+//            Step step = new Step();
+//            step.setStepDescription(stepsList.get(i));
+//            step.setStepImg(imagesStep.get(i));
+//            step.setStepNumber(i + 1);
+//            step.setRecipe(recipe);
+//            result.add(step);
+//        }
+//        return result;
+        return null;
     }
 
     /**
@@ -129,23 +134,24 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param recipe (recipe whose ingredients are created)
      * @return list of ingredients
      */
-    public List<Ingridient> makeIngredients(AddRecipeData data, Recipe recipe) {
-        List<String> idList = data.getIngredientsNameList();
-        List<String> countsList = data.getIngredientsCountList();
-        List<String> typesList = data.getIngredientsTypeList();
-        List<Ingridient> result = new ArrayList<Ingridient>();
-        for (int i = 0; i < idList.size(); i++) {
-            Ingridient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
-            Ingridient ingredient = new Ingridient();
-
-            ingredient.setCountOfIngridient(Integer.parseInt(countsList.get(i)));
-            ingredient.setNameOfIngridient(temp.getNameOfIngridient());
-            ingredient.setUnitOfMeasure(typesList.get(i));
-            ingredient.setCalories(temp.getCalories());
-            ingredient.setRecipe(recipe);
-            result.add(ingredient);
-        }
-        return result;
+    public List<Ingredient> makeIngredients(AddRecipeData data, Recipe recipe) {         //TODO
+//        List<String> idList = data.getIngredientsNameList();
+//        List<String> countsList = data.getIngredientsCountList();
+//        List<String> typesList = data.getIngredientsTypeList();
+//        List<Ingredient> result = new ArrayList<Ingredient>();
+//        for (int i = 0; i < idList.size(); i++) {
+//            Ingredient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
+//            Ingredient ingredient = new Ingredient();
+//
+//            ingredient.setCountOfIngridient(Integer.parseInt(countsList.get(i)));
+//            ingredient.setNameOfIngridient(temp.getNameOfIngridient());
+//            ingredient.setUnitOfMeasure(typesList.get(i));
+//            ingredient.setCalories(temp.getCalories());
+//            ingredient.setRecipe(recipe);
+//            result.add(ingredient);
+//        }
+//        return result;
+        return null;
     }
 
     /**
@@ -158,7 +164,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
     public Float getCalories(List<String> idList) {
         float calories = 0;
         for (int i = 0; i < idList.size(); i++) {
-            Ingridient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
+            Ingredient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
             calories += temp.getCalories();
         }
         return calories;

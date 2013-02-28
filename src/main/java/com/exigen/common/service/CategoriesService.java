@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ import java.util.List;
 public interface CategoriesService {
 
     /**
-     * {@method getCategories()}
+     * {@method getCategory()}
      *
-     * @return the list of all categories, when it situated in Categories entity
+     * @return the list of all category, when it situated in Category entity
      * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
-    List<Categories> getCategories();
+    List<Category> getCategories();
 
     /**
      * {@method getCategory(Integer id)}
@@ -30,26 +30,26 @@ public interface CategoriesService {
      * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
-    Categories getCategory(Integer id);
+    Category getCategory(Integer id);
     /**
-     * {@method addCategories(Categories categ)}
-     * for add info about our categories of recipes into DB
+     * {@method addCategories(Category categ)}
+     * for add info about our category of recipes into DB
      *
      * @param categ(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when categ is null)
      */
-    void addCategories(Categories categ);
+    void addCategories(Category categ);
 
     /**
-     * {@method removeCategories(Categories categories)}
-     * for remove our categories of recipes from DB
+     * {@method removeCategories(Category category)}
+     * for remove our category of recipes from DB
      *
      * @param categ(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when categ is null)
      */
-    void removeCategories(Categories categ);
+    void removeCategories(Category categ);
 }

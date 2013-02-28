@@ -1,9 +1,9 @@
 package com.exigen.common.dao;
 
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Ingridient;
+import com.exigen.common.domain.Ingredient;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.repository.CategoriesDao;
 import com.exigen.common.repository.CuisineDao;
@@ -42,26 +42,26 @@ public class IngridientDaoTest {
     private RecipeDao recipeDao;
 
 
-    private Ingridient ingridient;
+    private Ingredient ingredient;
     private Recipe recipe;
     private Cuisine cuisine;
-    private Categories categories;
+    private Category category;
     private Integer recipeId;
     private List<Recipe> recipeList;
-    private List<Ingridient> ingridientList;
+    private List<Ingredient> ingredientList;
 
     @Before
     public void setup() {
         cuisine = new Cuisine("cuisin", "link");
         cuisineDao.addCuisine(cuisine);
-        categories = new Categories("category");
+        category = new Category("category");
 
-        categoriesDao.addCategories(categories);
+        categoriesDao.addCategories(category);
 
-        recipe = new Recipe("title", "desc", cuisine, categories, "link1", "link2", 4, 10);
+        recipe = new Recipe("title", "desc", cuisine, category, "link1", "link2", 4);
         recipeDao.addRecipe(recipe);
-        ingridient = new Ingridient("name", 5, 12, "unit", recipe);
-        ingridientList = new ArrayList<Ingridient>();
+        ingredient = new Ingredient("name", 5);
+        ingredientList = new ArrayList<Ingredient>();
         recipeList = new ArrayList<Recipe>();
     }
 
@@ -69,19 +69,19 @@ public class IngridientDaoTest {
     public void addAndGetIngridientsTest() {
         recipeList = recipeDao.getRecipeCuisineList(cuisine);
         recipe = recipeList.get(0);
-        recipeId = recipe.getRecipeId();
-        ingridientList.add(ingridient);
-        ingridientDao.addIngridient(ingridient);
-        Assert.assertEquals(ingridientList, ingridientDao.getIngridientsRecipeList(recipeId));
+        recipeId = recipe.getId();
+        ingredientList.add(ingredient);
+        ingridientDao.addIngridient(ingredient);
+        Assert.assertEquals(ingredientList, ingridientDao.getIngridientsRecipeList(recipeId));
 
     }
 
     @Test
     public void removeIngridientsTest() {
-        ingridientDao.removeIngridient(ingridient);
+        ingridientDao.removeIngridient(ingredient);
 
 
-        Assert.assertEquals(ingridientList, ingridientDao.getIngridientsRecipeList(recipeId));
+        Assert.assertEquals(ingredientList, ingridientDao.getIngridientsRecipeList(recipeId));
     }
 
     @Test

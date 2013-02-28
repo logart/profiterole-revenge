@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.repository.CategoriesDao;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -17,7 +17,7 @@ public class CategoriesServiceImplTest {
     @Mock
     CategoriesDao categoriesDao;
 
-    Categories categories=new Categories();
+    Category category =new Category();
 
     @Before
     public void setup() {
@@ -39,7 +39,7 @@ public class CategoriesServiceImplTest {
         CategoriesServiceImpl categoriesService = new CategoriesServiceImpl();
         categoriesService.setCategoriesDao(categoriesDao);
 
-        when(categoriesDao.getCategory(23)).thenReturn(categories);
-        Assert.assertEquals(categories,categoriesService.getCategory(23));
+        when(categoriesDao.getCategory(23)).thenReturn(category);
+        Assert.assertEquals(category,categoriesService.getCategory(23));
     }
 }

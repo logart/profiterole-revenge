@@ -14,7 +14,7 @@
     <br/>
     <p><strong>Ингридиенты: </strong></p>
     <table class="table table-striped table-bordered table-condensed">
-    [#list ingridient as a]
+    [#list ingredient as a]
         <tr>
             <td>${a.nameOfIngridient}</td>
             <td>${a.countOfIngridient}</td>

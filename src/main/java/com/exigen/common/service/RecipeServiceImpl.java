@@ -94,9 +94,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional
     public Integer caloriesCalculation(List<Integer> recipesId) {
         Integer counterOfCalories = 0;
-        for (int i = 0; i < recipesId.size(); i++) {
-            counterOfCalories = +(recipeDao.getOneRecipe(recipesId.get(i))).getCalories();
-        }
+//        for (int i = 0; i < recipesId.size(); i++) {     //TODO
+//            counterOfCalories = +(recipeDao.getOneRecipe(recipesId.get(i))).getCalories();
+//        }
         return counterOfCalories;
     }
 

@@ -28,7 +28,7 @@ public class StepServiceImplTest {
     @Test
     public void getStepsService() {
         stepsService.setStepDao(stepDao);
-        when(stepDao.getListOfRecipeSteps(recipe.getRecipeId())).thenReturn(null);
-        assertNull(stepDao.getListOfRecipeSteps(recipe.getRecipeId()));
+        when(stepDao.getListOfRecipeSteps(recipe.getId())).thenReturn(null);
+        assertNull(stepDao.getListOfRecipeSteps(recipe.getId()));
     }
 }

@@ -3,7 +3,6 @@ package com.exigen.common.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 /**
  * Class {@code Recipe} is an ordinary user defined Java class whose instances
  * can be stored in the database.
@@ -12,7 +11,7 @@ import java.io.Serializable;
  * @date July 17,2012
  */
 @Entity
-@Table(name = "recipe")
+@Table(name = "recipes")
 @NamedQueries({
         @NamedQuery(name = "Recipe.findRecipesFromCuisine",
                 query = "SELECT rp FROM Recipe AS rp WHERE rp.cuisine=:selectedCuisine"),
@@ -21,14 +20,13 @@ import java.io.Serializable;
 })
 
 public class Recipe implements Serializable {
+
     /**
-     * The @Id annotation marks a field as a primary key field.
-     * The @GeneratedValue annotation specifies that the primary key is automatically
-     * allocated by DB.
+     * {@code id} its a primary key for this entity
      */
     @Id
     @GeneratedValue
-    private Integer recipeId;
+    private Integer id;
 
     /**
      * {@code title} describes name of recipe in this entity. Its showed in our views
@@ -45,41 +43,36 @@ public class Recipe implements Serializable {
      * {@code cuisine} This field is a reference to the Cuisine entity
      */
     @ManyToOne
-    @JoinColumn(name = "cuis_id", nullable = false)
+    @JoinColumn(name = "cuisineId", nullable = false)
     private Cuisine cuisine;
 
     /**
-     * {@code categories} This field is a reference to the Categories entity
+     * {@code category} This field is a reference to the Category entity
      */
     @ManyToOne
-    @JoinColumn(name = "categ_id", nullable = false)
-    private Categories categories;
+    @JoinColumn(name = "categoryId", nullable = false)
+    private Category category;
 
     /**
      * {@code bigImg} This field to save reference on image for recipe
      */
 
     @Column(columnDefinition = "mediumtext")
-    private String bigImg;
+    private String bigImage;
 
     /**
      * {@code smallImg} This field to save reference on image(small) for recipe
      */
 
     @Column(columnDefinition = "mediumtext")
-    private String smallImg;
+    private String smallImage;
 
     /**
      * {@code time} This field to save time of creation for recipe
      */
 
-    private Integer time;
+    private Integer timeOfCooking;
 
-    /**
-     * {@code calories} This field is a value of calories for this recipe
-     */
-
-    private Integer calories;
 
     /**
      * {@method Recipe} its a default constructor for JPA
@@ -89,55 +82,29 @@ public class Recipe implements Serializable {
     }
 
     /**
-     * {@method Recipe} its a constructor for adding data in entity
+     * {@methods Recipe} its a constructors for adding data in entity
      */
 
-    public Recipe(String title, String description, Cuisine cuisine, Categories categories, String bigImg, String smallImg, Integer time, Integer calories) {
+    public Recipe(String title, String description, Cuisine cuisine, Category category,
+                  String bigImage, String smallImage, Integer timeOfCooking) {
         this.title = title;
         this.description = description;
         this.cuisine = cuisine;
-        this.categories = categories;
-        this.bigImg = bigImg;
-        this.smallImg = smallImg;
-        this.time = time;
-        this.calories = calories;
+        this.category = category;
+        this.bigImage = bigImage;
+        this.smallImage = smallImage;
+        this.timeOfCooking = timeOfCooking;
     }
 
     /**
      * {@methods } below its a getters and setters
      */
-
-    public String getBigImg() {
-        return bigImg;
+    public Integer getId() {
+        return id;
     }
 
-    public void setBigImg(String bigImg) {
-        this.bigImg = bigImg;
-    }
-
-    public String getSmallImg() {
-        return smallImg;
-    }
-
-    public void setSmallImg(String smallImg) {
-        this.smallImg = smallImg;
-    }
-
-    public float getTime() {
-        return time;
-    }
-
-    public void setTime(Integer time) {
-        this.time = time;
-    }
-
-    public Integer getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(Integer recipeId) {
-        this.recipeId = recipeId;
-
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -148,22 +115,6 @@ public class Recipe implements Serializable {
         this.title = title;
     }
 
-    public Cuisine getCuisine() {
-        return cuisine;
-    }
-
-    public void setCuisine(Cuisine cuisine) {
-        this.cuisine = cuisine;
-    }
-
-    public Categories getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Categories categories) {
-        this.categories = categories;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -172,12 +123,43 @@ public class Recipe implements Serializable {
         this.description = description;
     }
 
-    public Integer getCalories() {
-        return calories;
+    public Cuisine getCuisine() {
+        return cuisine;
     }
 
-    public void setCalories(Integer calories) {
-        this.calories = calories;
+    public void setCuisine(Cuisine cuisine) {
+        this.cuisine = cuisine;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getBigImage() {
+        return bigImage;
+    }
+
+    public void setBigImage(String bigImage) {
+        this.bigImage = bigImage;
+    }
+
+    public String getSmallImage() {
+        return smallImage;
+    }
+
+    public void setSmallImage(String smallImage) {
+        this.smallImage = smallImage;
+    }
+
+    public Integer getTimeOfCooking() {
+        return timeOfCooking;
+    }
+
+    public void setTimeOfCooking(Integer timeOfCooking) {
+        this.timeOfCooking = timeOfCooking;
+    }
 }

@@ -29,7 +29,7 @@
     <div class="recipe_title"><label class="title">${a.title}</label></div>
 
     <div class="time_value no-display">${a.time}</div>
-    <div class="cat_value no-display">${a.categories.categoriesId}</div>
+    <div class="cat_value no-display">${a.category.categoriesId}</div>
     <div class="rec_id no-display">${a.recipeId}</div>
     <div class="rec_cal no-display">${a.calories}</div>
 </div>

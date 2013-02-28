@@ -1,6 +1,6 @@
 package com.exigen.common.dao;
 
-import com.exigen.common.domain.Categories;
+import com.exigen.common.domain.Category;
 import com.exigen.common.repository.CategoriesDao;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,12 +22,12 @@ public class CategoriesDaoTest {
 
     @Autowired
     private CategoriesDao categoriesDao;
-    private Categories testCategories;
+    private Category testCategory;
 
 
     @Before
     public void setup() {
-        testCategories = new Categories("test");
+        testCategory = new Category("test");
     }
 
 
@@ -35,8 +35,8 @@ public class CategoriesDaoTest {
     public void addCategoriesTest() {
 
 
-        categoriesDao.addCategories(testCategories);
-        Assert.assertEquals(testCategories, categoriesDao.getCategories().get(0));
+        categoriesDao.addCategories(testCategory);
+        Assert.assertEquals(testCategory, categoriesDao.getCategories().get(0));
     }
 
 
@@ -48,8 +48,8 @@ public class CategoriesDaoTest {
 
     @Test
     public void getCategoryTest(){
-        categoriesDao.addCategories(testCategories);
-        Assert.assertNotNull(categoriesDao.getCategory(testCategories.getCategoriesId()));
-        categoriesDao.removeCategories(testCategories);
+        categoriesDao.addCategories(testCategory);
+        Assert.assertNotNull(categoriesDao.getCategory(testCategory.getId()));
+        categoriesDao.removeCategories(testCategory);
     }
 }

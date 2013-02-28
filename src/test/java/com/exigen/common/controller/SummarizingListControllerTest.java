@@ -1,6 +1,6 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.domain.Ingridient;
+import com.exigen.common.domain.Ingredient;
 import com.exigen.common.service.IngridientService;
 import com.exigen.common.web.SummarizingListController;
 import junit.framework.Assert;
@@ -33,11 +33,11 @@ public class SummarizingListControllerTest {
         List<Integer> idList=new ArrayList<Integer>();
         idList.add(1);
 
-        Ingridient ingridient=new Ingridient();
+        Ingredient ingredient =new Ingredient();
 
-        List<Ingridient> ingridients=new ArrayList<Ingridient>();
+        List<Ingredient> ingredients =new ArrayList<Ingredient>();
 
-        ingridients.add(ingridient);
+        ingredients.add(ingredient);
 
 
 
@@ -45,7 +45,7 @@ public class SummarizingListControllerTest {
 
         ReflectionTestUtils.setField(summarizingListController, "ingridientService", this.ingridientService);
 
-        when(ingridientService.getAllIngridients(idList)).thenReturn(ingridients);
+        when(ingridientService.getAllIngridients(idList)).thenReturn(ingredients);
 
         ModelAndView modelAndView=summarizingListController.summarizingListController(idList);
 
