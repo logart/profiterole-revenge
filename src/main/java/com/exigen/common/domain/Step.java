@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Class {@code Steps} is an entity, what contains steps of recipes
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "steps")
 @NamedQuery(name = "Step.findStepsAboutRecipe", query = "SELECT t FROM Step t WHERE t.recipe.recipeId=:selectedRecipeId")
-public class Step {
+public class Step implements Serializable {
 
     /**
      * {@code id} its a primary key for this entity
@@ -25,13 +26,13 @@ public class Step {
     /**
      * {@code stepNumber} describes the number of some step in this entity. Its showed in our views
      */
-
+    @Column(nullable = false)
     private Integer number;
 
     /**
      * {@code stepDescription} describes some concretical part of recipe. Its showed in our views
      */
-    @Column(columnDefinition = "mediumtext")
+    @Column(columnDefinition = "mediumtext", nullable = false)
     private String description;
 
     /**
@@ -45,7 +46,7 @@ public class Step {
      * in some recipe
      */
     @ManyToOne
-    @JoinColumn(name = "recipeId")
+    @JoinColumn(name = "recipeId", nullable = false)
     private Recipe recipe;
 
     /**
@@ -58,6 +59,13 @@ public class Step {
     public Step(Integer number, String description) {
         this.number = number;
         this.description = description;
+    }
+
+    public Step(Integer number, String description, String image, Recipe recipe) {
+        this.number = number;
+        this.description = description;
+        this.image = image;
+        this.recipe = recipe;
     }
 
     /**

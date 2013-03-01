@@ -1,9 +1,7 @@
 package com.exigen.common.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Class {@code Measure} is an entity what describe all available measures
@@ -13,7 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "measures")
-public class Measure {
+public class Measure implements Serializable {
 
     /**
      * {@code id} its a primary key for this entity
@@ -25,6 +23,7 @@ public class Measure {
     /**
      * {@code title} its a field what contains title of measure
      */
+    @Column(unique=true, nullable=false)
     private String title;
 
     /**
@@ -32,6 +31,10 @@ public class Measure {
      */
     public Measure() {
 
+    }
+
+    public Measure(String title) {
+        this.title = title;
     }
 
     /**

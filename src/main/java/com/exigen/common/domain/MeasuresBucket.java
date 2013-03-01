@@ -1,6 +1,8 @@
 package com.exigen.common.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Class {@code MeasuresBucket} is an entity what describe
  * relationship between measures of measurement
@@ -10,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "measuresBucket")
-public class MeasuresBucket {
+public class MeasuresBucket implements Serializable{
 
     /**
      * {@code id} its a primary key for this entity
@@ -23,14 +25,14 @@ public class MeasuresBucket {
      * {@code id} its a field what contains measure
      */
     @ManyToOne
-    @JoinColumn(name = "measureId")
+    @JoinColumn(name = "measureId", nullable = false)
     private Measure measure;
 
     /**
      * {@code id} its a field what contains ingredient
      */
     @ManyToOne
-    @JoinColumn(name = "ingredientId")
+    @JoinColumn(name = "ingredientId", nullable = false)
     private Ingredient ingredient;
 
     /**
@@ -44,6 +46,13 @@ public class MeasuresBucket {
     public MeasuresBucket() {
 
     }
+
+    public MeasuresBucket(Measure measure, Ingredient ingredient, int gramEquals) {
+        this.measure = measure;
+        this.ingredient = ingredient;
+        this.gramEquals = gramEquals;
+    }
+
     /**
      * {@methods } below its a getters and setters
      */
