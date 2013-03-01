@@ -92,8 +92,8 @@ public class Ingredient implements Serializable, Comparable {
     }
 
     @Override
-    public int compareTo(Object ingr) {
-        Ingredient otherIngredient = (Ingredient) ingr;
+    public int compareTo(Object ingredient) {
+        Ingredient otherIngredient = (Ingredient) ingredient;
         return this.name.compareTo(otherIngredient.name);
     }
 }

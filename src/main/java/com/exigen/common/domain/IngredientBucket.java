@@ -1,6 +1,7 @@
 package com.exigen.common.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Class {@code IngredientBucket} is an entity what describe how many of some ingredient
@@ -11,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ingredientsBucket")
-public class IngredientBucket {
+public class IngredientBucket implements Serializable {
 
     /**
      * {@code id} its a primary key for this entity
@@ -24,7 +25,7 @@ public class IngredientBucket {
      * {@code ingredient} this field contains ingredient
      */
     @ManyToOne
-    @JoinColumn(name = "ingredientId")
+    @JoinColumn(name = "ingredientId", nullable = false)
     private Ingredient ingredient;
 
     /**
@@ -38,7 +39,7 @@ public class IngredientBucket {
      * of particular ingredient in this entity.
      */
     @ManyToOne
-    @JoinColumn(name = "measureId")
+    @JoinColumn(name = "measureId", nullable = false)
     private Measure measure;
 
     /**
@@ -46,7 +47,7 @@ public class IngredientBucket {
      * this ingredient
      */
     @ManyToOne
-    @JoinColumn(name = "recipeId")
+    @JoinColumn(name = "recipeId", nullable = false)
     private Recipe recipe;
 
     /**
@@ -56,8 +57,11 @@ public class IngredientBucket {
 
     }
 
-    public IngredientBucket(Ingredient ingredient, int countOfIngridient, String unitOfMeasure) {
-
+    public IngredientBucket(Ingredient ingredient, float countOfIngredient, Measure measure, Recipe recipe) {
+        this.ingredient = ingredient;
+        this.countOfIngredient = countOfIngredient;
+        this.measure = measure;
+        this.recipe = recipe;
     }
 
     /**

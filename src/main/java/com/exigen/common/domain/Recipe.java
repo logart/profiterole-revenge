@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Class {@code Recipe} is an ordinary user defined Java class whose instances
@@ -70,9 +71,19 @@ public class Recipe implements Serializable {
     /**
      * {@code time} This field to save time of creation for recipe
      */
-
     private Integer timeOfCooking;
 
+    /**
+     * {@code ingredients} it's list of ingredient's buckets in recipe.
+     */
+    @OneToMany(mappedBy = "recipe")
+    private List<IngredientBucket> ingredients;
+
+    /**
+     * {@code steps} it's list of steps in recipe.
+     */
+    @OneToMany(mappedBy = "recipe")
+    private List<Step> steps;
 
     /**
      * {@method Recipe} its a default constructor for JPA
