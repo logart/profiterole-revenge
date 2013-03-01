@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Class {@code Ingredient} is an ordinary user defined Java class whose instances
@@ -39,6 +40,13 @@ public class Ingredient implements Serializable, Comparable {
      * {@code calories} this field to describe calories value in particular ingredient for 100gr.
      */
     private int calories;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    private List<MeasuresBucket> measuresBucketList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    private List<IngredientBucket> ingredientBucketList;
+
 
     /**
      * {@method Ingredient} its a default constructor for JPA
