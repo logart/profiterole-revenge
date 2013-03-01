@@ -39,9 +39,9 @@ public class IngredientBucket implements Serializable {
      * of particular ingredient in this entity.
      */
     @ManyToOne
-    @JoinColumn(name = "measureId", nullable = false)
-    private Measure measure;
-
+    @JoinColumn(name = "measureBucketId", nullable = false)
+//    private Measure measure;
+      private MeasuresBucket   measuresBucket;
     /**
      * {@code recipe} this field contains recipe, what have got
      * this ingredient
@@ -57,10 +57,18 @@ public class IngredientBucket implements Serializable {
 
     }
 
-    public IngredientBucket(Ingredient ingredient, float countOfIngredient, Measure measure, Recipe recipe) {
+ /*   public IngredientBucket(Ingredient ingredient, float countOfIngredient, Measure measure, Recipe recipe) {
         this.ingredient = ingredient;
         this.countOfIngredient = countOfIngredient;
         this.measure = measure;
+        this.recipe = recipe;
+    }
+ */
+
+    public IngredientBucket(Ingredient ingredient, float countOfIngredient, MeasuresBucket measuresBucket, Recipe recipe) {
+        this.ingredient = ingredient;
+        this.countOfIngredient = countOfIngredient;
+        this.measuresBucket = measuresBucket;
         this.recipe = recipe;
     }
 
@@ -91,12 +99,21 @@ public class IngredientBucket implements Serializable {
         this.countOfIngredient = countOfIngredient;
     }
 
-    public Measure getMeasure() {
+/*    public Measure getMeasure() {
         return measure;
     }
 
     public void setMeasure(Measure measure) {
         this.measure = measure;
+    }
+ */
+
+    public MeasuresBucket getMeasuresBucket() {
+        return measuresBucket;
+    }
+
+    public void setMeasuresBucket(MeasuresBucket measuresBucket) {
+        this.measuresBucket = measuresBucket;
     }
 
     public Recipe getRecipe() {
