@@ -44,7 +44,12 @@ public class AccountDaoImpl implements AccountDao {
      */
     @Override
     public Account getAccountByLogin(String login) {
-        return this.entityManager.createNamedQuery("Account.findUserByLogin", Account.class).setParameter("login", login).getSingleResult();
+        Account user = this.entityManager.createNamedQuery("Account.findUserByLogin", Account.class).setParameter("login",
+                login).getSingleResult();
+        if (user == null){
+            return null;
+        }
+        return user;
     }
 
     /**
