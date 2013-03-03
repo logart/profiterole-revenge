@@ -33,7 +33,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
      */
     @Override
     public List<Category> getCategories() {
-        List<Category> results = this.entityManager.createQuery("select t from Categories t")
+        List<Category> results = this.entityManager.createQuery("select t from categories t")
                 .getResultList();
         return results;
     }
@@ -54,29 +54,29 @@ public class CategoriesDaoImpl implements CategoriesDao {
      * {@method addCategories(Category categ)}
      * for add info about our categories of recipes into DB
      *
-     * @param categ(object of some particular category)
+     * @param category(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when categ is null)
      */
     @Override
-    public void addCategories(Category categ) {
+    public void addCategories(Category category) {
 
-        entityManager.persist(categ);
+        entityManager.persist(category);
     }
 
     /**
      * {@method removeCategories(Category categories)}
      * for remove our categories of recipes from DB
      *
-     * @param categ(object of some particular category)
+     * @param category(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when categ is null)
      */
     @Override
-    public void removeCategories(Category categ) {
-        entityManager.remove(categ);
+    public void removeCategories(Category category) {
+        entityManager.remove(category);
     }
 
     /**
