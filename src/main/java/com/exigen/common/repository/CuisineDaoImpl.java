@@ -33,13 +33,13 @@ public class CuisineDaoImpl implements CuisineDao {
      */
     @Override
     public List<Cuisine> getCuisine() {
-        List<Cuisine> results = this.entityManager.createQuery("select t from Cuisine t ")
+        List<Cuisine> results = this.entityManager.createQuery("select c from cuisines c ")
                 .getResultList();
         return results;
     }
 
     /**
-     * {@method getOneCuisineList(Cuisine cuis)}
+     * {@method getOneCuisineRecipesList(Cuisine cuis)}
      *
      * @return the list of recipes, when it situated in this Cuisine.
      * @throws org.springframework.dao.DataAccessException (resource
@@ -48,9 +48,9 @@ public class CuisineDaoImpl implements CuisineDao {
      *                                   no one object in database)
      */
     @Override
-    public List<Recipe> getOneCuisineList(Integer cuis) {
-        List<Recipe> results = this.entityManager.createQuery("select t.recipes from Cuisine t where t.cuisineId=:selectedCuis")
-                .setParameter("selectedCuis", cuis)
+    public List<Recipe> getOneCuisineRecipesList(Integer cuisineId) {
+        List<Recipe> results = this.entityManager.createQuery("select r.title from recipes r where r.cuisineId=:selectedCuisine")
+                .setParameter("selectedCuisine", cuisineId)
                 .getResultList();
         return results;
     }
