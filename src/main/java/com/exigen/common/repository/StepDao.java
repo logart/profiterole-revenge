@@ -21,9 +21,9 @@ public interface StepDao {
      *
      * @param recipeId (ID of some particular recipe)
      * @return the list of steps, where recipe in Steps entity ==@param).
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when recipe is null, or has no results in the database)
+     * @throws NullPointerException (when recipe is null, or has no results in the database)
      */
 
     List<Step> getListOfRecipeSteps(Integer recipeId);
@@ -33,9 +33,9 @@ public interface StepDao {
      * for adding information about some particular step into DB
      *
      * @param step (object of some particular step)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when step is null)
+     * @throws NullPointerException (when step is null)
      */
 
     void addStep(Step step);
@@ -45,9 +45,9 @@ public interface StepDao {
      * for remove some particular step from DB
      *
      * @param step (object of some particular step)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when step is null)
+     * @throws NullPointerException (when step is null)
      */
 
     void removeStep(Step step);

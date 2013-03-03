@@ -40,7 +40,7 @@ public class CuisineServiceImplTest {
         recipeList.add(recipe);
         CuisineServiceImpl cuisineService = new CuisineServiceImpl();
         cuisineService.setCuisineDao(cuisineDao);
-        when(cuisineDao.getOneCuisineList(10)).thenReturn(recipeList);
+        when(cuisineDao.getOneCuisineRecipesList(10)).thenReturn(recipeList);
         Assert.assertEquals(recipeList, cuisineService.getOneCuisine(10));
     }
 }

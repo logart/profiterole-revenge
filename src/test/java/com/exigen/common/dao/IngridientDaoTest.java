@@ -7,7 +7,7 @@ import com.exigen.common.domain.Ingredient;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.repository.CategoriesDao;
 import com.exigen.common.repository.CuisineDao;
-import com.exigen.common.repository.IngridientDao;
+import com.exigen.common.repository.IngredientDao;
 import com.exigen.common.repository.RecipeDao;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import java.util.List;
 public class IngridientDaoTest {
 
     @Autowired
-    private IngridientDao ingridientDao;
+    private IngredientDao ingredientDao;
 
     @Autowired
     private CuisineDao cuisineDao;
@@ -71,22 +71,22 @@ public class IngridientDaoTest {
         recipe = recipeList.get(0);
         recipeId = recipe.getId();
         ingredientList.add(ingredient);
-        ingridientDao.addIngridient(ingredient);
-        Assert.assertEquals(ingredientList, ingridientDao.getIngridientsRecipeList(recipeId));
+        ingredientDao.addIngredient(ingredient);
+        Assert.assertEquals(ingredientList, ingredientDao.getIngredientsRecipeList(recipeId));
 
     }
 
     @Test
     public void removeIngridientsTest() {
-        ingridientDao.removeIngridient(ingredient);
+        ingredientDao.removeIngredient(ingredient);
 
 
-        Assert.assertEquals(ingredientList, ingridientDao.getIngridientsRecipeList(recipeId));
+        Assert.assertEquals(ingredientList, ingredientDao.getIngredientsRecipeList(recipeId));
     }
 
     @Test
     public  void testGetAllIngridients(){
-        Assert.assertNotNull(ingridientDao.getAllIngridients());
+        Assert.assertNotNull(ingredientDao.getAllIngredients());
     }
 
 }

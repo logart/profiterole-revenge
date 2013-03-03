@@ -1,12 +1,11 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Ingredient;
-import com.exigen.common.repository.IngridientDao;
+import com.exigen.common.repository.IngredientDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,10 +19,10 @@ import java.util.List;
 public class IngridientServiceImpl implements IngridientService {
 
     /**
-     * {@code ingredientDao} describes the IngridientDao work with DB and Ingredient entity
+     * {@code ingredientDao} describes the IngredientDao work with DB and Ingredient entity
      */
     @Autowired
-    private IngridientDao ingredientDao;
+    private IngredientDao ingredientDao;
 
     /**
      * {@inheritDoc}
@@ -31,7 +30,7 @@ public class IngridientServiceImpl implements IngridientService {
     @Override
     @Transactional(readOnly = true)
     public List<Ingredient> getIngridientsRecipeList(Integer recipeId) {
-        return ingredientDao.getIngridientsRecipeList(recipeId);
+        return ingredientDao.getIngredientsRecipeList(recipeId);
     }
 
     /**
@@ -40,14 +39,14 @@ public class IngridientServiceImpl implements IngridientService {
     @Override
     public List<Ingredient> getAllIngridientsWithOutRecipesInj() {
         List<Ingredient> ingredientsSort;
-        ingredientsSort = ingredientDao.getAllIngridients();
+        ingredientsSort = ingredientDao.getAllIngredients();
         Collections.sort(ingredientsSort);
         return ingredientsSort;
     }
 
     @Override
     public Ingredient getIngridientById(Integer ingridientId) {
-        return ingredientDao.getIngridientById(ingridientId);
+        return ingredientDao.getIngredientById(ingridientId);
     }
 
     /**
@@ -55,7 +54,7 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     public void addIngridient(Ingredient ingredient) {
-        ingredientDao.addIngridient(ingredient);
+        ingredientDao.addIngredient(ingredient);
     }
 
     /**
@@ -63,10 +62,10 @@ public class IngridientServiceImpl implements IngridientService {
      */
     @Override
     public void removeIngridient(Ingredient ingredient) {
-        ingredientDao.removeIngridient(ingredient);
+        ingredientDao.removeIngredient(ingredient);
     }
 
-    public void setIngredientDao(IngridientDao ingredientDao) {
+    public void setIngredientDao(IngredientDao ingredientDao) {
         this.ingredientDao = ingredientDao;
     }
 
@@ -74,7 +73,7 @@ public class IngridientServiceImpl implements IngridientService {
     public List<Ingredient> getAllIngridients(List<Integer> listOfRecipesId) {
 //        List<Ingredient> allIngridientsList = new ArrayList<Ingredient>();
 //        for (Integer recipeId : listOfRecipesId) {
-//            allIngridientsList.addAll(getIngridientsRecipeList(recipeId));
+//            allIngridientsList.addAll(getIngredientsRecipeList(recipeId));
 //        }
 //        for (int i = 0; i < allIngridientsList.size() - 1; i++) {
 //            int l = 0;

@@ -39,7 +39,7 @@ public class CuisineServiceImpl implements CuisineService {
     }
 
     /**
-     * {@method getOneCuisineList(Cuisine cuis)}
+     * {@method getOneCuisineRecipesList(Cuisine cuis)}
      *
      * @return the list of recipes, when it situated in this Cuisine.
      * @throws org.springframework.dao.DataAccessException(resource
@@ -50,7 +50,7 @@ public class CuisineServiceImpl implements CuisineService {
     @Override
     @Transactional(readOnly = true)
     public List<Recipe> getOneCuisine(Integer cuis) {
-        return cuisineDao.getOneCuisineList(cuis);
+        return cuisineDao.getOneCuisineRecipesList(cuis);
     }
 
     /**

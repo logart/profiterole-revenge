@@ -12,7 +12,7 @@ import java.util.List;
  * {@inheritDoc}
  */
 @Repository("ingridientDao")
-public class IngridientDaoImpl implements IngridientDao {
+public class IngredientDaoImpl implements IngredientDao {
 
     /**
      * {@code entityManager} describes the EntityManager for JPA ORM
@@ -24,7 +24,7 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Ingredient> getIngridientsRecipeList(Integer recipeId) {
+    public List<Ingredient> getIngredientsRecipeList(Integer recipeId) {
         List<Ingredient> ingredientList = this.entityManager.createNamedQuery("Ingredient.findIngredientsAboutRecipe", Ingredient.class)
                 .setParameter("selectedRecipeId", recipeId)
                 .getResultList();
@@ -35,7 +35,7 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public Ingredient getIngridientById(Integer ingridientId) {
+    public Ingredient getIngredientById(Integer ingridientId) {
         return entityManager.find(Ingredient.class, ingridientId);
     }
 
@@ -43,7 +43,7 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Ingredient> getAllIngridients() {
+    public List<Ingredient> getAllIngredients() {
         List<Ingredient> results= this.entityManager.createNamedQuery("Ingredient.getAllIngredients",Ingredient.class)
                 .getResultList();
 
@@ -54,7 +54,7 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public void addIngridient(Ingredient ingredient) {
+    public void addIngredient(Ingredient ingredient) {
         entityManager.persist(ingredient);
     }
 
@@ -62,7 +62,7 @@ public class IngridientDaoImpl implements IngridientDao {
      * {@inheritDoc}
      */
     @Override
-    public void removeIngridient(Ingredient ingredient) {
+    public void removeIngredient(Ingredient ingredient) {
         entityManager.remove(ingredient);
     }
 }
