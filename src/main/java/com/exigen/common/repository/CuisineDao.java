@@ -20,30 +20,30 @@ public interface CuisineDao {
      * {@method getCuisine()}
      *
      * @return the list of all cuisines, when it situated in Cuisine entity
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *          on cloudfoundry is unavalible, DB is changed)
      */
     List<Cuisine> getCuisine();
 
     /**
-     * {@method getOneCuisineList(Cuisine cuis)}
+     * {@method getOneCuisineRecipesList(Cuisine cuisineId)}
      *
      * @return the list of recipes, when it situated in this Cuisine.
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when cuis is null, or parameter cuis is does not match
+     * @throws NullPointerException (when cuis is null, or parameter cuis is does not match
      *                                   no one object in database)
      */
-    List<Recipe> getOneCuisineList(Integer cuis);
+    List<Recipe> getOneCuisineRecipesList(Integer cuisineId);
 
     /**
      * {@method addCuisine(Cuisine cuisine)}
      * for add info about our cuisines into DB
      *
      * @param cuisine(object of some particular cuisine)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when cuisine is null)
+     * @throws NullPointerException (when cuisine is null)
      */
     void addCuisine(Cuisine cuisine);
 
@@ -52,9 +52,9 @@ public interface CuisineDao {
      * for remove our cuisines from DB
      *
      * @param cuisine(object of some particular cuisine)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when cuisine is null)
+     * @throws NullPointerException (when cuisine is null)
      */
     void removeCuisine(Cuisine cuisine);
 }
