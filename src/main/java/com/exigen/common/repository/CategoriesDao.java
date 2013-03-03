@@ -34,22 +34,22 @@ public interface CategoriesDao {
      * {@method addCategories(Category categ)}
      * for add info about our categories of recipes into DB
      *
-     * @param categ(object of some particular category)
+     * @param category(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when categ is null)
      */
-    void addCategories(Category categ);
+    void addCategories(Category category);
 
     /**
      * {@method removeCategories(Category categories)}
      * for remove our categories of recipes from DB
      *
-     * @param categ(object of some particular category)
+     * @param category(object of some particular category)
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when categ is null)
      */
-    void removeCategories(Category categ);
+    void removeCategories(Category category);
 
 }
