@@ -499,5 +499,27 @@
             </build>
         </profile>
 
+        <profile>
+            <id>vsam-profiterole</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>vsam-profiterole.cloudfoundry.com</url>
+                            <username>volodymyr.samokhval@gmail.com</username>
+                            <password>ingu6HA</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 </project>

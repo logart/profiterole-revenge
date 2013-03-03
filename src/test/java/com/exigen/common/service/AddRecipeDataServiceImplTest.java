@@ -58,7 +58,7 @@ public class AddRecipeDataServiceImplTest {    //TODO
 //    public void getCaloriesTest() {
 //        List<String> idList = new ArrayList<String>();
 //        idList.add(0, "1");
-//        when(ingridientService.getIngridientById(Integer.parseInt(idList.get(0)))).thenReturn(ingredient);
+//        when(ingridientService.getIngredientById(Integer.parseInt(idList.get(0)))).thenReturn(ingredient);
 //        addRecipeDataService.setIngridientService(ingridientService);
 //        Assert.assertEquals(ingredient.getCalories(), addRecipeDataService.getCalories(idList));
 //

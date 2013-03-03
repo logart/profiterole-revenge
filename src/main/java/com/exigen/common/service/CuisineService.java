@@ -25,7 +25,7 @@ public interface CuisineService {
     List<Cuisine> getCuisine();
 
     /**
-     * {@method getOneCuisineList(Cuisine cuis)}
+     * {@method getOneCuisineRecipesList(Cuisine cuis)}
      *
      * @return the list of recipes, when it situated in this Cuisine.
      * @throws org.springframework.dao.DataAccessException(resource

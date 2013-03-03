@@ -140,7 +140,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
 //        List<String> typesList = data.getIngredientsTypeList();
 //        List<Ingredient> result = new ArrayList<Ingredient>();
 //        for (int i = 0; i < idList.size(); i++) {
-//            Ingredient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
+//            Ingredient temp = ingridientService.getIngredientById(Integer.parseInt(idList.get(i)));
 //            Ingredient ingredient = new Ingredient();
 //
 //            ingredient.setCountOfIngridient(Integer.parseInt(countsList.get(i)));

@@ -1,20 +1,6 @@
 package com.exigen.common.service;
 
 
-import com.exigen.common.domain.Ingredient;
-import com.exigen.common.domain.Recipe;
-import com.exigen.common.repository.IngridientDao;
-import junit.framework.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.when;
-
 public class IngridientServiceImplTest {         //TODO
 
 //    private IngridientServiceImpl ingridientService = new IngridientServiceImpl();
@@ -32,7 +18,7 @@ public class IngridientServiceImplTest {         //TODO
 //
 //
 //    @Mock
-//    IngridientDao ingridientDao;
+//    IngredientDao ingridientDao;
 //
 //    @Before
 //    public void setup() {
@@ -42,8 +28,8 @@ public class IngridientServiceImplTest {         //TODO
 //    @Test
 //    public void getIngridientsServiceTest() {
 //        ingridientService.setIngredientDao(ingridientDao);
-//        when(ingridientDao.getIngridientsRecipeList(recipe.getRecipeId())).thenReturn(null);
-//        Assert.assertNull(ingridientService.getIngridientsRecipeList(recipe.getRecipeId()));
+//        when(ingridientDao.getIngredientsRecipeList(recipe.getRecipeId())).thenReturn(null);
+//        Assert.assertNull(ingridientService.getIngredientsRecipeList(recipe.getRecipeId()));
 //    }
 //
 //    @Test
@@ -51,22 +37,22 @@ public class IngridientServiceImplTest {         //TODO
 //        ingredients.add(ingredient);
 //        ingredients.add(ingredientTwo);
 //        ingridientService.setIngredientDao(ingridientDao);
-//        when(ingridientDao.getAllIngridients()).thenReturn(ingredients);
-//        Assert.assertEquals(ingredients,ingridientDao.getAllIngridients());
+//        when(ingridientDao.getAllIngredients()).thenReturn(ingredients);
+//        Assert.assertEquals(ingredients,ingridientDao.getAllIngredients());
 //    }
 //
 //    @Test
 //    public void getIngridientByIdTest(){
-//        when(ingridientDao.getIngridientById(ingredient.getIngridientId())).thenReturn(ingredient);
+//        when(ingridientDao.getIngredientById(ingredient.getIngridientId())).thenReturn(ingredient);
 //        ingridientService.setIngredientDao(ingridientDao);
-//        Assert.assertEquals(ingredient,ingridientDao.getIngridientById(ingredient.getIngridientId()));
+//        Assert.assertEquals(ingredient,ingridientDao.getIngredientById(ingredient.getIngridientId()));
 //    }
 //
 //    public void getAllIngridientsTest(){
 //     recipesId.add(recipe.getRecipeId());
-//        when(ingridientDao.getIngridientsRecipeList(recipesId.get(0))).thenReturn(ingredients);
+//        when(ingridientDao.getIngredientsRecipeList(recipesId.get(0))).thenReturn(ingredients);
 //        ingridientService.setIngredientDao(ingridientDao);
-//        Assert.assertEquals(8,ingridientService.getAllIngridients(recipesId).get(0).getCountOfIngridient());
+//        Assert.assertEquals(8,ingridientService.getAllIngredients(recipesId).get(0).getCountOfIngridient());
 //
 //    }
 
