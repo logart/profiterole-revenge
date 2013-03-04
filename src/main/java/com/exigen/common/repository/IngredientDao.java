@@ -18,16 +18,6 @@ public interface IngredientDao {
     /**
      * {@method getIngredientsRecipeList(Integer recipeId)}
      *
-     * @param recipeId (ID of some particular recipe)
-     * @return the list of ingridients, where recipe in Ingredient entity =@param).
-     * @throws org.springframework.dao.DataAccessException (resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when recipe is null, or has no results in the database)
-     */
-    List<Ingredient> getIngredientsRecipeList(Integer recipeId);
-    /**
-     * {@method getIngredientsRecipeList(Integer recipeId)}
-     *
      * @param ingridientId (ID of some particular recipe)
      * @return the list of ingridients, where recipe in Ingredient entity =@param).
      * @throws org.springframework.dao.DataAccessException (resource

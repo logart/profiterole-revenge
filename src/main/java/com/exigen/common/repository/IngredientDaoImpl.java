@@ -24,17 +24,6 @@ public class IngredientDaoImpl implements IngredientDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Ingredient> getIngredientsRecipeList(Integer recipeId) {
-        List<Ingredient> ingredientList = this.entityManager.createNamedQuery("Ingredient.findIngredientsAboutRecipe", Ingredient.class)
-                .setParameter("selectedRecipeId", recipeId)
-                .getResultList();
-
-        return ingredientList;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Ingredient getIngredientById(Integer ingridientId) {
         return entityManager.find(Ingredient.class, ingridientId);
     }
