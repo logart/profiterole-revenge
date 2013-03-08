@@ -35,7 +35,7 @@ public class MeasureDaoImpl implements MeasureDao{
      */
     @Override
     public List<Measure> getAllMeasure() {
-        return this.entityManager.createQuery("select m from measures m").getResultList();
+        return this.entityManager.createQuery("select m from Measure m").getResultList();
     }
 
     /**
