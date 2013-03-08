@@ -1,6 +1,6 @@
 package com.exigen.common.web;
 
-import com.exigen.common.service.IngridientService;
+import com.exigen.common.service.IngredientBucketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ public class SummarizingListController {
      */
 
     @Autowired
-    private IngridientService ingridientService;
+    private IngredientBucketService ingredientBucketService;
 
     /**
      * {@method summarizingListController()} using for mapped ajax queries      *
@@ -38,6 +38,7 @@ public class SummarizingListController {
     @RequestMapping(value = {"/summarizingList"})
     @ResponseBody
     public ModelAndView summarizingListController(@RequestParam("recipesId") List<Integer> recipesId) {
-        return new ModelAndView("summarizingList", "model", this.ingridientService.getAllIngridients(recipesId));
+        return new ModelAndView("summarizingList", "model", this.ingredientBucketService
+                .getAllIngredientBuckets(recipesId));
     }
 }
