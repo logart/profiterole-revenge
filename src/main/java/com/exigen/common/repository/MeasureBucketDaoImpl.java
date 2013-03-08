@@ -38,8 +38,8 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public MeasuresBucket getMeasureBucketByIngredientIdMeasureId(Integer ingredientId, Integer measureId) {
-        MeasuresBucket result = (MeasuresBucket) this.entityManager.createQuery("SELECT mb FROM measuresBucket mb " +
-                "WHERE mb.ingredientId=:selectedIngredient AND mb.measureId=:selectedMeasure").setParameter
+        MeasuresBucket result = (MeasuresBucket) this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+                "WHERE mb.ingredient.id=:selectedIngredient AND mb.measure.id=:selectedMeasure").setParameter
                 ("selectedIngredient", ingredientId).setParameter("selectedMeasure", measureId).getSingleResult();
         return result;
     }
@@ -55,8 +55,8 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public List<MeasuresBucket> getMeasuresBucketListByIngredientId(Integer ingredientId) {
-        List<MeasuresBucket> results = this.entityManager.createQuery("SELECT mb FROM measuresBucket mb " +
-                "WHERE mb.ingredientId=:selectedIngredient").setParameter("selectedIngredient",
+        List<MeasuresBucket> results = this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+                "WHERE mb.ingredient.id=:selectedIngredient").setParameter("selectedIngredient",
                 ingredientId).getResultList();
         return results;
     }
@@ -72,8 +72,8 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public List<MeasuresBucket> getMeasuresBucketListByMeasureId(Integer measureId) {
-        return this.entityManager.createQuery("SELECT mb FROM measuresBucket mb " +
-                "WHERE mb.ingredientId=:selectedMeasure").setParameter("selectedMeasure",
+        return this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+                "WHERE mb.ingredient.id=:selectedMeasure").setParameter("selectedMeasure",
                 measureId).getResultList();
     }
 
