@@ -1,7 +1,7 @@
 package com.exigen.common.web;
 
 
-import com.exigen.common.service.IngridientService;
+import com.exigen.common.service.IngredientBucketService;
 import com.exigen.common.service.RecipeService;
 import com.exigen.common.service.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class ModalRecipeDescriptionController {
 
 
     @Autowired
-    private IngridientService ingridientService;
+    private IngredientBucketService ingredientBucketService;
 
 
     /**
@@ -69,7 +69,7 @@ public class ModalRecipeDescriptionController {
         ModelAndView returnModel;
         returnModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
         returnModel.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
-        returnModel.addObject("ingridient", this.ingridientService.getIngridientsRecipeList(recipeId));
+        returnModel.addObject("ingredient", this.ingredientBucketService.getIngredientBucketRecipeList(recipeId));
 
         return returnModel;
     }
