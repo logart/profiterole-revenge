@@ -37,7 +37,7 @@ public class AddRecipesController {
     @Autowired
     private CategoriesService categoriesService;
     @Autowired
-    private IngridientService ingridientService;
+    private IngredientService ingredientService;
     @Autowired
     private AddRecipeDataService addRecipeDataService;
     private List<Category> categories;
@@ -53,7 +53,7 @@ public class AddRecipesController {
         AddRecipeData data = new AddRecipeData();
         categories = this.categoriesService.getCategories();
         cuisines = this.cuisineService.getCuisine();
-        ingredients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
+        ingredients = this.ingredientService.getAllIngredientsSortedList();
         model.put("addRecipeData", data);
         model.put("cuisines", cuisines);
         model.put("categories", categories);
@@ -66,7 +66,7 @@ public class AddRecipesController {
         if (categories == null || cuisines == null || ingredients == null) {
             categories = this.categoriesService.getCategories();
             cuisines = this.cuisineService.getCuisine();
-            ingredients = this.ingridientService.getAllIngridientsWithOutRecipesInj();
+            ingredients = this.ingredientService.getAllIngredientsSortedList();
         }
 
 
