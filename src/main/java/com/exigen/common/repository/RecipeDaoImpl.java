@@ -72,9 +72,9 @@ public class RecipeDaoImpl implements RecipeDao {
      * for remove some particular recipe from DB
      *
      * @param recipe (object of some particular recipe)
-     * @throws org.springframework.dao.DataAccessException(resource
+     * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException(when recipe is null)
+     * @throws NullPointerException (when recipe is null)
      */
     @Override
     public void removeRecipe(Recipe recipe) {
