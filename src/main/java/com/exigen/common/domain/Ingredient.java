@@ -15,8 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "ingredients")
 @NamedQueries({
-        @NamedQuery(name = "Ingredient.findIngredientsAboutRecipe",
-                query = "SELECT t FROM Ingredient t WHERE t.recipe.id=:selectedRecipeId"),
         @NamedQuery(name = "Ingredient.getAllIngredients",
                 query = "SELECT i FROM Ingredient i")
 })
