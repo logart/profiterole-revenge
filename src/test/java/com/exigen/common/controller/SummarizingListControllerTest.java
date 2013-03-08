@@ -1,7 +1,7 @@
 package com.exigen.common.controller;
 
 import com.exigen.common.domain.Ingredient;
-import com.exigen.common.service.IngridientService;
+import com.exigen.common.service.IngredientService;
 import com.exigen.common.web.SummarizingListController;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class SummarizingListControllerTest {
 
     @Mock
-    IngridientService ingridientService;
+    IngredientService ingredientService;
 
     @Before
     public void setup() {
@@ -43,9 +43,9 @@ public class SummarizingListControllerTest {
 
         SummarizingListController summarizingListController=new SummarizingListController();
 
-        ReflectionTestUtils.setField(summarizingListController, "ingridientService", this.ingridientService);
+        ReflectionTestUtils.setField(summarizingListController, "ingridientService", this.ingredientService);
 
-        when(ingridientService.getAllIngridients(idList)).thenReturn(ingredients);
+        when(ingredientService.getAllIngredientsSortedList()).thenReturn(ingredients);
 
         ModelAndView modelAndView=summarizingListController.summarizingListController(idList);
 

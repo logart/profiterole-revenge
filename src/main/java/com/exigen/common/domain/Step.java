@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "steps")
-@NamedQuery(name = "Step.findStepsAboutRecipe", query = "SELECT t FROM Step t WHERE t.recipe.recipeId=:selectedRecipeId")
+@NamedQuery(name = "Step.findStepsAboutRecipe", query = "SELECT t FROM Step t WHERE t.recipe.id=:selectedRecipeId")
 public class Step implements Serializable {
 
     /**

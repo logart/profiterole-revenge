@@ -2,7 +2,7 @@ package com.exigen.common.controller;
 
 import com.exigen.common.service.CategoriesService;
 import com.exigen.common.service.CuisineService;
-import com.exigen.common.service.IngridientService;
+import com.exigen.common.service.IngredientService;
 import com.exigen.common.web.AddRecipesController;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -24,7 +24,7 @@ public class AddRecipesControllerTest {
     private CategoriesService categoriesService;
 
     @Mock
-    private IngridientService ingridientService;
+    private IngredientService ingredientService;
 
     @Before
     public void setup() {
@@ -36,10 +36,10 @@ public class AddRecipesControllerTest {
     public void testShowAddingRecipe() throws Exception {
         when(cuisineService.getCuisine()).thenReturn(null);
         when(categoriesService.getCategories()).thenReturn(null);
-        when(ingridientService.getAllIngridientsWithOutRecipesInj()).thenReturn(null);
+        when(ingredientService.getAllIngredientsSortedList()).thenReturn(null);
 
         AddRecipesController addRecipesController=new AddRecipesController();
-        ReflectionTestUtils.setField(addRecipesController,"ingridientService", this.ingridientService);
+        ReflectionTestUtils.setField(addRecipesController,"ingridientService", this.ingredientService);
         ReflectionTestUtils.setField(addRecipesController,"cuisineService",this.cuisineService);
         ReflectionTestUtils.setField(addRecipesController, "categoriesService", this.categoriesService);
         String test=addRecipesController.showAddingRecipe(new TreeMap());
