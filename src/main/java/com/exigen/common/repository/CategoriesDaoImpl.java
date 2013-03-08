@@ -33,7 +33,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
      */
     @Override
     public List<Category> getCategories() {
-        List<Category> results = this.entityManager.createQuery("select t from categories t")
+        List<Category> results = this.entityManager.createQuery("select c from Category c")
                 .getResultList();
         return results;
     }
