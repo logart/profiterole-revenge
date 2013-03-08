@@ -19,7 +19,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
     @Autowired
     private RecipeService recipeService;
     @Autowired
-    private IngridientService ingridientService;
+    private IngredientService ingredientService;
     @Autowired
     private StepService stepService;
 
@@ -72,7 +72,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
         List<Step> stepList = makeSteps(data, recipe);
         recipeService.addRecipe(recipe);
         for (Ingredient ingredient : ingridienstList) {
-            ingridientService.addIngridient(ingredient);
+            ingredientService.addIngredient(ingredient);
         }
         for (Step step : stepList) {
             stepService.addStep(step);
@@ -164,13 +164,13 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
     public Float getCalories(List<String> idList) {
         float calories = 0;
         for (int i = 0; i < idList.size(); i++) {
-            Ingredient temp = ingridientService.getIngridientById(Integer.parseInt(idList.get(i)));
+            Ingredient temp = ingredientService.getIngredientById(Integer.parseInt(idList.get(i)));
             calories += temp.getCalories();
         }
         return calories;
     }
 
-    public void setIngridientService(IngridientService ingridientService1){
-        this.ingridientService=ingridientService1;
+    public void setIngridientService(IngredientService ingridientService1){
+        this.ingredientService=ingridientService1;
     }
 }
