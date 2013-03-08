@@ -33,7 +33,7 @@ public class CuisineDaoImpl implements CuisineDao {
      */
     @Override
     public List<Cuisine> getCuisine() {
-        List<Cuisine> results = this.entityManager.createQuery("select c from cuisines c ")
+        List<Cuisine> results = this.entityManager.createQuery("select c from Cuisine c")
                 .getResultList();
         return results;
     }
@@ -49,7 +49,7 @@ public class CuisineDaoImpl implements CuisineDao {
      */
     @Override
     public List<Recipe> getOneCuisineRecipesList(Integer cuisineId) {
-        List<Recipe> results = this.entityManager.createQuery("select r.title from recipes r where r.cuisineId=:selectedCuisine")
+        List<Recipe> results = this.entityManager.createQuery("select r.title from Recipe r where r.cuisine=:selectedCuisine")
                 .setParameter("selectedCuisine", cuisineId)
                 .getResultList();
         return results;
