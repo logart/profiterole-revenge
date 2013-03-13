@@ -9,6 +9,7 @@
             var myCuisine = $(this).attr("href");
 
             $.get("/recipes", {cuisineId:myCuisine},
+//            $.get("/recipes", {id:myCuisine},
                     function (response) {
                         $('#cuisine').html(response);
                     });
@@ -19,9 +20,9 @@
     });
 </script>
 [#list modl as a]
-<div class="btn" href="${a.cuisineId}">
-    <img class="img-cuisine" src="${a.imglink}" alt="${a.cuisin}"/>
-    <label>${a.cuisin}</label>
+<div class="btn" href="${a.id}">
+    <img class="img-cuisine" src="${a.image}" alt="${a.name}"/>
+    <label>${a.name}</label>
 </div>
 [/#list]
 <div style="clear: both;"></div>
