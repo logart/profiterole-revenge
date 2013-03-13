@@ -61,10 +61,16 @@ public class Step implements Serializable {
         this.description = description;
     }
 
-    public Step(Integer number, String description, String image, Recipe recipe) {
+    public Step(Integer number, String description,  Recipe recipe) {
         this.number = number;
         this.description = description;
+        this.recipe = recipe;
+    }
+
+    public Step(String description, String image, Integer number, Recipe recipe) {
+        this.description = description;
         this.image = image;
+        this.number = number;
         this.recipe = recipe;
     }
 
