@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,13 +78,15 @@ public class Recipe implements Serializable {
      * {@code ingredients} it's list of ingredient's buckets in recipe.
      */
     @OneToMany(mappedBy = "recipe")
-    private List<IngredientBucket> ingredients;
+    private List<IngredientBucket> ingredients = new ArrayList<IngredientBucket>();
 
     /**
      * {@code steps} it's list of steps in recipe.
      */
     @OneToMany(mappedBy = "recipe")
-    private List<Step> steps;
+    private List<Step> steps = new ArrayList<Step>();
+
+
 
     /**
      * {@method Recipe} its a default constructor for JPA
@@ -172,5 +175,21 @@ public class Recipe implements Serializable {
 
     public void setTimeOfCooking(Integer timeOfCooking) {
         this.timeOfCooking = timeOfCooking;
+    }
+
+    public List<IngredientBucket> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<IngredientBucket> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
 }
