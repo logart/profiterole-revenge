@@ -8,7 +8,6 @@
             $(".span12 > button.btn.no-display").show();
             var myCuisine = $(this).attr("href");
             $.get("/recipeListFromAjax", {cuisineId:myCuisine},
-//            $.get("/recipeListFromAjax", {id:myCuisine},
                     function (response) {
                         $('#cuisine').html(response);
                     });

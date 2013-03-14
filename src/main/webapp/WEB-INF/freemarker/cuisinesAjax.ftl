@@ -9,7 +9,6 @@
             var myCuisine = $(this).attr("href");
 
             $.get("/recipes", {cuisineId:myCuisine},
-//            $.get("/recipes", {id:myCuisine},
                     function (response) {
                         $('#cuisine').html(response);
                     });
