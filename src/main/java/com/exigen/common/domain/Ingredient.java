@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,10 +41,10 @@ public class Ingredient implements Serializable, Comparable {
     private int calories;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
-    private List<MeasuresBucket> measuresBucketList;
+    private List<MeasuresBucket> measuresBucketList = new ArrayList<MeasuresBucket>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
-    private List<IngredientBucket> ingredientBucketList;
+//       @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredientId")
+//      private List<IngredientBucket> ingredientBucketList = new ArrayList<IngredientBucket>();
 
 
     /**
@@ -95,6 +96,14 @@ public class Ingredient implements Serializable, Comparable {
 
     public void setCalories(int calories) {
         this.calories = calories;
+    }
+
+    public List<MeasuresBucket> getMeasuresBucketList() {
+        return measuresBucketList;
+    }
+
+    public void setMeasuresBucketList(List<MeasuresBucket> measuresBucketList) {
+        this.measuresBucketList = measuresBucketList;
     }
 
     @Override
