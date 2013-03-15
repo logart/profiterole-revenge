@@ -59,8 +59,14 @@ ${scripts!}
 
 
                 <ul class="btn btn-link pull-right" style="text-decoration: underline">
+                    <@security.authorize  access="!isAuthenticated()">
                     <a href="/registration">Регистрация</a>
-                </ul>
+                    </@security.authorize>
+                    <@security.authorize  access="isAuthenticated()">
+                    <a href="/profile">Профайл</a>
+                    </@security.authorize>
+                    </ul>
+
                 <ul class="btn btn-link pull-right" style="text-decoration: underline">
                 <@security.authorize  access="!isAuthenticated()">
                     <a href="/login">Вход</a>
