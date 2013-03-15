@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Class  {@code ProfileController} is used to handle
  *  requests for profile information view
- * @autor Victoria Ganzha.
+ * @autor Victoria Ganzha
  * @Date 12.03.13
  *
  */
@@ -35,7 +35,7 @@ public class ProfileController{
     /**
      * {@method viewProfile() for authentication user }
      *
-     * @return information about profile
+     * @return  information about profile
      */
 
     @RequestMapping(method = RequestMethod.GET)
