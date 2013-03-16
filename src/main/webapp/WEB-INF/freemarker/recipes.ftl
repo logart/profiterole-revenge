@@ -67,8 +67,8 @@
 <div class="no-display">
 [#list modl as a]
 
-    <div class="recipe_on_page btn-link" data-cat_value="${a.category.categoriesId}" data-content="${a.description}"
-         href="/modalRecipeDescription?recipeId=${a.recipeId}" data-toggle="modal"
+    <div class="recipe_on_page btn-link" data-cat_value="${a.category.id}" data-content="${a.description}"
+         href="/modalRecipeDescription?recipeId=${a.id}" data-toggle="modal"
          data-target="#myModal">${a.title}</div>
 
 [/#list]
