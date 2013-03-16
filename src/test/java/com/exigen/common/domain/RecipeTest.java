@@ -1,0 +1,81 @@
+package com.exigen.common.domain;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+public class RecipeTest {
+    private Recipe recipe;
+
+    @Before
+    public void setRecipe() throws Exception {
+        recipe = new Recipe();
+    }
+
+    @Test
+    public void testSetAndGetTitle() {
+        String testTitle = "aTitle";
+        assertNull(recipe.getTitle());
+        recipe.setTitle(testTitle);
+        assertEquals(testTitle, recipe.getTitle());
+    }
+
+    @After
+    public void testTitle() {
+        System.out.println("test of title is done");
+    }
+
+    @Test
+    public void GetSetRecipeId() {
+        Integer test = 2;
+        assertNull(recipe.getId());
+        recipe.setId(test);
+        assertEquals(test, recipe.getId());
+    }
+
+    @Test
+    public void getSetDescriptionTest(){
+        assertNull(recipe.getDescription());
+        recipe.setDescription("desc");
+        assertEquals("desc",recipe.getDescription());
+    }
+
+    @Test
+    public void getSetTimeTest(){
+        recipe.setTimeOfCooking(6);
+        assertEquals(6.0,recipe.getTimeOfCooking(), 0);
+    }
+
+    @Test
+    public void getSetBigImgTest(){
+        assertNull(recipe.getBigImage());
+        recipe.setBigImage("bigImg");
+        assertEquals("bigImg", recipe.getBigImage());
+    }
+    
+    @Test
+    public void getSetSmallImgTest(){
+        assertNull(recipe.getSmallImage());
+        recipe.setSmallImage("smallImg");
+        assertEquals("smallImg", recipe.getSmallImage());
+    }
+
+    @Test
+    public void getSetCuisineTest(){
+        Cuisine cuisine=new Cuisine();
+        assertNull(recipe.getCuisine());
+        recipe.setCuisine(cuisine);
+        assertEquals(cuisine,recipe.getCuisine());
+    }
+    
+    @Test
+    public void getSetCategories(){
+        Category category =new Category();
+        assertNull(recipe.getCategory());
+        recipe.setCategory(category);
+        assertEquals(category,recipe.getCategory());
+    }
+}
