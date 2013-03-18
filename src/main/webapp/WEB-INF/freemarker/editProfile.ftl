@@ -12,7 +12,7 @@
        <div class="controls">
           [@spring.bind "editProfileData.login"/]
           <input type="text" name="${spring.status.expression}" id="login"
-                 value="${spring.status.value?default("")}"/>
+                 value="${spring.status.value?default("")}" readonly/>
        </div>
        [#if spring.status.error]
              <p>
