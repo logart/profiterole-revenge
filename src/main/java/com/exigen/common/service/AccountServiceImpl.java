@@ -1,6 +1,7 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Account;
+import com.exigen.common.domain.EditProfileData;
 import com.exigen.common.domain.Gender;
 import com.exigen.common.domain.RegistrationData;
 import com.exigen.common.repository.AccountDao;
@@ -10,7 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Class {@code AccountService} used for push object from and in DAO for get and
@@ -70,6 +72,17 @@ public class AccountServiceImpl implements AccountService {
         account.setDateOfBirth(getCalendar(data.getDateOfBirth()));
         account.setCountry(data.getCountry());
         accountDao.addAccount(account);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateAccount(EditProfileData data) {
+        Account account = findByUsername(data.getLogin());
+        account.setPassword(data.getPassword());
+        account.setEmail(data.getEmail());
+        accountDao.updateAccount(account);
     }
 
     /**

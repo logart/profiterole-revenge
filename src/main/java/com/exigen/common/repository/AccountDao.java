@@ -63,6 +63,18 @@ public interface AccountDao {
     void addAccount(Account account);
 
     /**
+     * {@method updateAccount(Account account)}
+     * for updating information about some particular user in DB
+     *
+     * @param account (object of some particular user)
+     * @throws org.springframework.dao.DataAccessException
+     *                              (resource
+     *                              on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when user is null)
+     */
+    void updateAccount(Account account);
+
+    /**
      * {@method removeAccount(Account account)}
      * for remove some particular account from DB
      *
