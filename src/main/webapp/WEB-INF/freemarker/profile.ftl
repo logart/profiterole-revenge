@@ -71,7 +71,7 @@
     <div class="control-group">
             <div class="control-label-left">Страна</div>
             <div class="controls">
-                     <input class="span2" type="text" name="" id="country"
+                      <input class="span2" type="text" name="" id="country"
                                             value="${account.country?default("")}"/>
 
             </div>
