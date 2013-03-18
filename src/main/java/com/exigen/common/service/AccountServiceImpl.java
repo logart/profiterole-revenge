@@ -68,6 +68,7 @@ public class AccountServiceImpl implements AccountService {
             account.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
         }
         account.setDateOfBirth(getCalendar(data.getDateOfBirth()));
+        account.setCountry(data.getCountry());
         accountDao.addAccount(account);
     }
 
