@@ -30,7 +30,7 @@ public class AllAccountsControllerTest {
 
     Calendar calendar=new GregorianCalendar(2010, 11, 03);
 
-    Account account=new Account("log","pwd","ololo@gmailcom", Gender.Female,calendar);
+    Account account=new Account("log","pwd","ololo@gmailcom", Gender.Female,calendar, "Ukraine");
     List<Account> list=new ArrayList<Account>(){};
     @Test
     public void testAllAccounts() throws Exception {

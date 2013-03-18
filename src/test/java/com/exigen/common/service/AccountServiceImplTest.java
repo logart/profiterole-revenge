@@ -24,7 +24,7 @@ public class AccountServiceImplTest {
 
     Calendar calendar = new GregorianCalendar(2010, 11, 03);
 
-    Account account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar);
+    Account account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar, "Ukraine");
 
     AccountServiceImpl accountService;
     List<Account> list = new ArrayList<Account>();

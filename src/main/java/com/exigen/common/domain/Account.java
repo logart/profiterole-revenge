@@ -49,6 +49,12 @@ public class Account implements Serializable {
     private Gender maleOrFemale;
 
     /**
+     * {@code  country} contains name of country
+     */
+
+    private String country;
+
+    /**
      * {@code dateOfBirth} contains date of birth of user
      */
     @Temporal(value = TemporalType.DATE)
@@ -69,12 +75,13 @@ public class Account implements Serializable {
     /**
      * {@method Account} its a constructor for adding data in entity
      */
-    public Account(String login, String password, String email, Gender maleOrFemale, Calendar dateOfBirth) {
+    public Account(String login, String password, String email, Gender maleOrFemale, Calendar dateOfBirth, String country) {
         this.login = login;
         this.password = password;
         this.email = email;
         this.maleOrFemale = maleOrFemale;
         this.dateOfBirth = dateOfBirth;
+        this.country = country;
     }
 
 
@@ -123,6 +130,14 @@ public class Account implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getCountry(){
+        return country;
+    }
+
+    public void setCountry(String country){
+        this.country = country;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -138,4 +153,6 @@ public class Account implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
+
+
 }
