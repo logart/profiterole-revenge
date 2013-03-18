@@ -27,7 +27,7 @@ public class AccountDaoImplTest {
 
     @Before
     public void setup() {
-        account = new Account("login", "password", "vasya-pupkin@gmail.com", Gender.Male, new GregorianCalendar(2012, 12, 21));
+        account = new Account("login", "password", "vasya-pupkin@gmail.com", Gender.Male, new GregorianCalendar(2012, 12, 21), "Ukraine");
     }
 
     @Test

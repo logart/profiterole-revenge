@@ -28,7 +28,7 @@ public class CustomUserDetailsServiceTest {
     
     Calendar calendar=new GregorianCalendar(2010, 11, 03);
     
-    Account account=new Account("log","pwd","ololo@gmailcom", Gender.Female,calendar);
+    Account account=new Account("log","pwd","ololo@gmailcom", Gender.Female,calendar, "Ukraine");
 
     @Before
     public void setup() {
