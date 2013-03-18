@@ -65,6 +65,15 @@ public class AccountDaoImpl implements AccountDao {
      * {@inheritDoc}
      */
     @Override
+    @Transactional
+    public void updateAccount(Account account) {
+        entityManager.merge(account);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void removeAccount(Account account) {
         entityManager.remove(account);
     }

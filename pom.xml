@@ -551,6 +551,35 @@
             </build>
         </profile>
 
+        <profile>
+            <id>tolik-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>tolik-test.cloudfoundry.com</url>
+                            <username>sivner777@gmail.com</username>
+                            <password>wkOy9DIj</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- <version>2.14</version>
+   -->                  <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
     </profiles>
 </project>
