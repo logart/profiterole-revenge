@@ -2,7 +2,7 @@ package com.exigen.common.web;
 
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.EditProfileData;
+import com.exigen.common.domain.AccountData;
 import com.exigen.common.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -35,11 +36,15 @@ public class EditProfileController {
     @RequestMapping(method = RequestMethod.GET)
     public String registration(Map model) {
         Account account =  accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        EditProfileData data = new EditProfileData();
+        AccountData data = new AccountData();
         if (account != null) {
             data.setLogin(account.getLogin());
             data.setEmail(account.getEmail());
-            data.setPassword(account.getPassword()) ;
+            data.setPassword(account.getPassword());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            data.setDateOfBirth(sdf.format(account.getDateOfBirth().getTime()));
+            data.setMaleOrFemale(account.getMaleOrFemale().name()) ;
+            data.setCountry(account.getCountry());
 
             model.put("editProfileData", data);
         } else {
@@ -49,7 +54,7 @@ public class EditProfileController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processAddingUser(Map model, @ModelAttribute("editProfileData") @Valid EditProfileData data, BindingResult errors) {
+    public String processAddingUser(Map model, @ModelAttribute("editProfileData") @Valid AccountData data, BindingResult errors) {
         if (errors.hasErrors()) {
             model.put("editProfileData", data);
             return "editProfile";
