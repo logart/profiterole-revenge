@@ -1,7 +1,7 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.EditProfileData;
+import com.exigen.common.domain.AccountData;
 import com.exigen.common.domain.RegistrationData;
 
 import java.util.List;
@@ -62,14 +62,14 @@ public interface AccountService {
     void addAccount(RegistrationData data);
 
     /**
-     * {@method updateAccount(EditProfileData data)}
+     * {@method updateAccount(AccountData data)}
      * for updating information about some particular user in DB
      *
-     * @param data (object of EditProfileData)
+     * @param data (object of AccountData)
      * @throws org.springframework.dao.DataAccessException
      *                              (resource
      *                              on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when user is null)
      */
-    void updateAccount(EditProfileData data);
+    void updateAccount(AccountData data);
 }

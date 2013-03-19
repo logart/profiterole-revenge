@@ -1,7 +1,7 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.EditProfileData;
+import com.exigen.common.domain.AccountData;
 import com.exigen.common.domain.Gender;
 import com.exigen.common.domain.RegistrationData;
 import com.exigen.common.repository.AccountDao;
@@ -78,10 +78,15 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
     @Override
-    public void updateAccount(EditProfileData data) {
+    public void updateAccount(AccountData data) {
         Account account = findByUsername(data.getLogin());
         account.setPassword(data.getPassword());
         account.setEmail(data.getEmail());
+        if (data.getMaleOrFemale() != null) {
+            account.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
+        }
+        account.setDateOfBirth(getCalendar(data.getDateOfBirth()));
+        account.setCountry(data.getCountry());
         accountDao.updateAccount(account);
     }
 
