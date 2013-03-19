@@ -14,7 +14,7 @@
     <br/>
     <p><strong>Ингридиенты: </strong></p>
     <table class="table table-striped table-bordered table-condensed">
-    [#list ingredient as a]
+    [#list recipe.ingredients as a]
         <tr>
             <td>${a.ingredient.name}</td>
             <td>${a.countOfIngredient}</td>
@@ -23,7 +23,7 @@
     [/#list]
     </table>
     <br/>
-    [#list step as a]
+    [#list recipe.steps as a]
         <p><strong>Шаг ${a.number}</strong></p>
 
          <p><img src="${a.image}"></p>
