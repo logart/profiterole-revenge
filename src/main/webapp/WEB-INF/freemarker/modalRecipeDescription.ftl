@@ -4,7 +4,7 @@
     <h3 id="myModalLabel" style="word-wrap: break-word;">${recipe.title}</h3>
 </div>
 <div id="body" class="modal-body" style="display: none;">
-    <img src="${recipe.bigImg}" class="img-rounded" id="image"/>
+    <img src="${recipe.bigImage}" class="img-rounded" id="image"/>
 
     <span class="text-justify">
     <br/>
@@ -14,11 +14,11 @@
     <br/>
     <p><strong>Ингридиенты: </strong></p>
     <table class="table table-striped table-bordered table-condensed">
-    [#list ingredientBucket as a]
+    [#list ingredient as a]
         <tr>
             <td>${a.ingredient.name}</td>
-            <td>${a.countOfIngridient}</td>
-            <td>${a.measuresBucket.measure.name}</td>
+            <td>${a.countOfIngredient}</td>
+            <td>${a.measuresBucket.measure.title}</td>
         </tr>
     [/#list]
     </table>

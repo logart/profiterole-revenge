@@ -522,6 +522,28 @@
         </profile>
 
         <profile>
+            <id>lena-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M4</version>
+                        <configuration>
+                            <appname>lena-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>lena-test.cloudfoundry.com</url>
+                            <username>vev77777@gmail.com</username>
+                            <password>Qwerty87</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
             <id>gioia-test</id>
                 <build>
                    <plugins>
