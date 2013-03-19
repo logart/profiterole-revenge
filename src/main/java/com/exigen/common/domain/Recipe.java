@@ -1,5 +1,8 @@
 package com.exigen.common.domain;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,13 +80,15 @@ public class Recipe implements Serializable {
     /**
      * {@code ingredients} it's list of ingredient's buckets in recipe.
      */
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<IngredientBucket> ingredients = new ArrayList<IngredientBucket>();
 
     /**
      * {@code steps} it's list of steps in recipe.
      */
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Step> steps = new ArrayList<Step>();
 
 

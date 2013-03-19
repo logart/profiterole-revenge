@@ -68,9 +68,6 @@ public class ModalRecipeDescriptionController {
     public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
         ModelAndView returnModel;
         returnModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
-        returnModel.addObject("step", this.stepService.getListOfRecipeSteps(recipeId));
-        returnModel.addObject("ingredient", this.ingredientBucketService.getIngredientBucketRecipeList(recipeId));
-
         return returnModel;
     }
 }
