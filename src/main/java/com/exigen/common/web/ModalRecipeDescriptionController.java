@@ -36,27 +36,6 @@ public class ModalRecipeDescriptionController {
 
 
     /**
-     * {@code ingridientService} describes the IngridientService for inject on this
-     * class
-     */
-
-
-    @Autowired
-    private IngredientBucketService ingredientBucketService;
-
-
-    /**
-     * {@code stepService} describes the StepService for inject on this
-     * class
-     */
-
-
-    @Autowired
-    private StepService stepService;
-
-
-
-    /**
      * {@method modalRecipeDescription()} using for mapped ajax queries
      *
      * @return description of some recipe in modal window
