@@ -1,6 +1,5 @@
 package com.exigen.common.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
