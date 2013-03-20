@@ -13,7 +13,7 @@ public class CategoryTest {
     private Category category;
 
     @Test
-    public void testGetSetCateg() throws Exception {
+    public void testGetSetName() throws Exception {
         category = new Category();
 
         String testCat = "category";
