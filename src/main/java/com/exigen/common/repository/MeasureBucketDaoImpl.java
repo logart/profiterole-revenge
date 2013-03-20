@@ -1,9 +1,8 @@
 package com.exigen.common.repository;
 
-import com.exigen.common.domain.IngredientBucket;
+
 import com.exigen.common.domain.MeasuresBucket;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
