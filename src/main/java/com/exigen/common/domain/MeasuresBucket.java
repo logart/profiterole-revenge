@@ -19,7 +19,7 @@ public class MeasuresBucket implements Serializable{
      */
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     /**
      * {@code id} its a field what contains measure
@@ -38,7 +38,7 @@ public class MeasuresBucket implements Serializable{
     /**
      * {@code id} its a field what contains how many grams contains a measure
      */
-    private int gramEquals;
+    private Integer gramEquals;
 
     /**
      * {@methods MeasuresBucket} its a constructors for adding data in entity
@@ -47,7 +47,7 @@ public class MeasuresBucket implements Serializable{
 
     }
 
-    public MeasuresBucket(Measure measure, Ingredient ingredient, int gramEquals) {
+    public MeasuresBucket(Measure measure, Ingredient ingredient, Integer gramEquals) {
         this.measure = measure;
         this.ingredient = ingredient;
         this.gramEquals = gramEquals;
@@ -57,7 +57,7 @@ public class MeasuresBucket implements Serializable{
      * {@methods } below its a getters and setters
      */
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -81,7 +81,7 @@ public class MeasuresBucket implements Serializable{
         this.ingredient = ingredient;
     }
 
-    public int getGramEquals() {
+    public Integer getGramEquals() {
         return gramEquals;
     }
 
