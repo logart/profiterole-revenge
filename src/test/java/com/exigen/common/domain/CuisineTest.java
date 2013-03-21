@@ -32,7 +32,7 @@ public class CuisineTest {
         Cuisine cuisine = new Cuisine();
         assertNull(cuisine.getImage());
         String image = "Cuisine";
-        cuisine.setName(image);
+        cuisine.setImage(image);
         Assert.assertEquals(image, cuisine.getImage());
     }
 
