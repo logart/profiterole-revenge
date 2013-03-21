@@ -18,7 +18,7 @@ public class Measure implements Serializable {
      */
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     /**
      * {@code title} its a field what contains title of measure
@@ -40,11 +40,11 @@ public class Measure implements Serializable {
     /**
      * {@methods } below its a getters and setters
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
