@@ -19,7 +19,7 @@ public class IngredientBucket implements Serializable {
      */
     @Id
     @GeneratedValue
-    private int id;
+    private Integer  id;
 
     /**
      * {@code ingredient} this field contains ingredient
@@ -32,7 +32,7 @@ public class IngredientBucket implements Serializable {
      * {@code countOfIngridient} this field to describe quantity of particular ingredient
      * in some recipe
      */
-    private float countOfIngredient;
+    private Float countOfIngredient;
 
     /**
      * {@code unitOfMeasure} this field contains the unit of measure
@@ -75,7 +75,7 @@ public class IngredientBucket implements Serializable {
     /**
      * {@methods } below its a getters and setters
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -91,7 +91,7 @@ public class IngredientBucket implements Serializable {
         this.ingredient = ingredient;
     }
 
-    public float getCountOfIngredient() {
+    public Float getCountOfIngredient() {
         return countOfIngredient;
     }
 
