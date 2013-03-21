@@ -40,8 +40,16 @@ public class ProfileController{
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewProfile(Map model){
+        if (SecurityContextHolder.getContext() != null && SecurityContextHolder.getContext().getAuthentication() != null) {
         Account account =  accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+
         model.put("account", account);
+
+        } else{
+
+            return "redirect:";
+        }
+
         return "profile";
 
     }
