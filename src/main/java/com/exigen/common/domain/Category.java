@@ -50,6 +50,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    public Category(String name, List<Recipe> recipeList) {
+        this.name = name;
+        this.recipeList = recipeList;
+    }
+
     /**
      * {@methods get .. and set..} its a getters and setters
      */
