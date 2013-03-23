@@ -31,7 +31,7 @@
     <div class="time_value no-display">${a.timeOfCooking}</div>
     <div class="cat_value no-display">${a.category.id}</div>
     <div class="rec_id no-display">${a.id}</div>
-    <!--div class="rec_cal no-display">{a.calories}</div-->
+    <div class="rec_cal no-display">${a.calories}</div>
 </div>
 [/#list]
 
