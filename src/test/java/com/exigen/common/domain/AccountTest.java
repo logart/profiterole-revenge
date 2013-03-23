@@ -52,4 +52,18 @@ public class AccountTest {
         account.setMaleOrFemale(Gender.Female);
         assertEquals(Gender.Female,account.getMaleOrFemale());
     }
+
+    @Test
+    public void getSetCountry(){
+        assertNull(account.getCountry());
+        account.setCountry("Болгария");
+        assertEquals("Болгария",account.getCountry());
+    }
+
+    @Test
+    public void getSetRole(){
+        assertEquals(account.getRole(),"ROLE_USER");
+        account.setRole("User");
+        assertEquals("User",account.getRole());
+    }
 }
