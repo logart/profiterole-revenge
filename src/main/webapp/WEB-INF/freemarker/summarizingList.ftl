@@ -32,9 +32,9 @@
         <table class="table table-striped table-bordered table-condensed font-12">
         [#list model as a]
             <tr>
-                <td>${a.nameOfIngridient}</td>
-                <td>${a.countOfIngridient}</td>
-                <td>${a.unitOfMeasure}</td>
+                <td>${a.ingredient.name}</td>
+                <td>${a.countOfIngredient}</td>
+                <td>${a.measuresBucket.measure.title}</td>
             </tr>
         [/#list]
         </table>
@@ -81,7 +81,7 @@
         });
 
         $("#breakfast").find("div.rec_cal").filter(function (index) {
-            br_cal += parseInt($(this).text(), 10);
+            br_cal += parseInt($(this).text().replace(/\s+/g, ''), 10);
             return true;
         });
         $("#br_kkal").text(br_cal);
