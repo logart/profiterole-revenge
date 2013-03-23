@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -96,7 +98,39 @@ public class IngredientBucketServiceImpl implements IngredientBucketService {
      */
 
     public List<IngredientBucket> getAllIngredientBuckets(List<Integer> listOfRecipesId) {
-        return ingredientBucketDao.getAllIngredientBuckets(listOfRecipesId);
+
+        HashMap<Integer, Integer> numberOfRecipe = new HashMap<Integer, Integer>();
+        Integer itemId;
+        IngredientBucket ib;
+        for (Integer i : listOfRecipesId) {
+
+            itemId = numberOfRecipe.get(i);
+            numberOfRecipe.put(i, itemId == null ? 1 : ++itemId);
+        }
+
+        List<IngredientBucket> results = ingredientBucketDao.getAllIngredientBuckets(listOfRecipesId);
+
+        for (IngredientBucket i : results) {
+            itemId = i.getRecipe().getId();
+            if (numberOfRecipe.containsKey(itemId)) {
+                i.setCountOfIngredient(i.getCountOfIngredient() * numberOfRecipe.get(itemId));
+            }
+        }
+
+        HashMap<Integer, IngredientBucket> numberOfIngredient = new HashMap<Integer, IngredientBucket>();
+
+        for (IngredientBucket i : results) {
+            itemId = i.getIngredient().getId();
+            ib = numberOfIngredient.get(itemId);
+            if (ib == null) {
+                numberOfIngredient.put(itemId, i);
+            } else {
+                ib.setCountOfIngredient(ib.getCountOfIngredient() + i.getCountOfIngredient());
+                numberOfIngredient.put(itemId, ib);
+            }
+        }
+
+        return new LinkedList<IngredientBucket>(numberOfIngredient.values());
     }
 
     /**
