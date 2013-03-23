@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -77,5 +80,25 @@ public class RecipeTest {
         assertNull(recipe.getCategory());
         recipe.setCategory(category);
         assertEquals(category,recipe.getCategory());
+    }
+
+    @Test
+    public void getSetIngredients(){
+        IngredientBucket ingredientBucket = new IngredientBucket();
+        List<IngredientBucket> ingredientBucketList = new ArrayList<IngredientBucket>();
+        ingredientBucketList.add(ingredientBucket);
+        assertEquals(true, recipe.getIngredients().isEmpty());
+        recipe.setIngredients(ingredientBucketList);
+        assertEquals(ingredientBucketList,recipe.getIngredients());
+    }
+
+    @Test
+    public void getSetStep(){
+        Step step = new Step();
+        List<Step> stepList = new ArrayList<Step>();
+        stepList.add(0,step);
+        assertEquals(true, recipe.getSteps().isEmpty());
+        recipe.setSteps(stepList);
+        assertEquals(stepList,recipe.getSteps());
     }
 }
