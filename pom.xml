@@ -174,6 +174,13 @@
             <version>0.8.1</version>
         </dependency>
 
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
         <!--Test-->
 
         <dependency>
@@ -545,29 +552,30 @@
 
         <profile>
             <id>gioia-test</id>
-                <build>
-                   <plugins>
-                      <plugin>
-                          <groupId>org.cloudfoundry</groupId>
-                          <artifactId>cf-maven-plugin</artifactId>
-                          <version>1.0.0.M1</version>
-                          <configuration>
-                              <appname>gioia-test</appname>
-                              <server>mycloudfoundry-instance</server>
-                              <target>http://api.cloudfoundry.com</target>
-                              <url>gioia-test.cloudfoundry.com</url>
-                              <username>victoriafull@gmail.com</username>
-                              <password>NaYf0apZ</password>
-                              <memory>512</memory>
-                          </configuration>
-                      </plugin>
-                      <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-surefire-plugin</artifactId>
-                       <!-- <version>2.14</version>
-  -->                  <configuration>
-                       <skipTests>true</skipTests>
-                       </configuration>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>gioia-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>gioia-test.cloudfoundry.com</url>
+                            <username>victoriafull@gmail.com</username>
+                            <password>NaYf0apZ</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- <version>2.14</version>
+                        -->
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

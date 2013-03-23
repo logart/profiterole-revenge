@@ -1,5 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:cloud="http://schema.cloudfoundry.org/spring"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -37,6 +38,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
+    <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="default"/>
+    <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="measures"/>
 
     <cloud:data-source id="dataSource">
         <cloud:connection properties="charset=utf-8;"/>

@@ -48,6 +48,17 @@ public interface MeasureBucketDao {
     List<MeasuresBucket> getMeasuresBucketListByMeasureId(Integer measureId);
 
     /**
+     * {@method getMeasuresBucketListById(Integer measureBucketId)}
+     *
+     * @param measureBucketId
+     * @return the object of MeasuresBucket, where MeasuresBucket id =@param).
+     * @throws org.springframework.dao.DataAccessException
+     *                              (resource on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when measureBucketId is null, or has no results in the database)
+     */
+    MeasuresBucket getMeasuresBucketListById(Integer measureBucketId);
+
+    /**
      * {@method addMeasuresBucket(MeasuresBucket measuresBucket)}
      * add the object of MeasuresBucket for DB.
      *

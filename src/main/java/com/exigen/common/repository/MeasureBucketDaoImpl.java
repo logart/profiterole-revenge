@@ -77,6 +77,16 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MeasuresBucket getMeasuresBucketListById(Integer measureBucketId) {
+        return (MeasuresBucket) this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+                "WHERE mb.id=:selectedId").setParameter("selectedId",
+                measureBucketId).getSingleResult();
+    }
+
+    /**
      * {@method addMeasuresBucket(MeasuresBucket measuresBucket)}
      * add the object of MeasuresBucket for DB.
      *
