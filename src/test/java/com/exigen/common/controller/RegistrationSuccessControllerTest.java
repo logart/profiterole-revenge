@@ -37,12 +37,22 @@ public class RegistrationSuccessControllerTest {
 
     List<Account> list=new ArrayList<Account>(){};
     @Test
-    public void testRegistrationSuccess() throws Exception {
-     RegistrationSuccessController registrationSuccessController=new RegistrationSuccessController();
+         public void testRegistrationSuccess() throws Exception {
+        RegistrationSuccessController registrationSuccessController=new RegistrationSuccessController();
         when(accountService.findByUsername("user")).thenReturn(account);
         ReflectionTestUtils.setField(registrationSuccessController, "accountService", this.accountService);
         Map map=new TreeMap();
         String u="user";
         Assert.assertNotNull(registrationSuccessController.registrationSuccess(map,u));
-        }
+    }
+
+    @Test
+    public void testRegistrationSuccessAccountNull() throws Exception {
+        RegistrationSuccessController registrationSuccessController=new RegistrationSuccessController();
+        when(accountService.findByUsername("user")).thenReturn(null);
+        ReflectionTestUtils.setField(registrationSuccessController, "accountService", this.accountService);
+        Map map=new TreeMap();
+        String u="user";
+        Assert.assertEquals("redirect:", registrationSuccessController.registrationSuccess(map,u));
+    }
 }
