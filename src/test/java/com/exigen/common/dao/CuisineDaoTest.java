@@ -72,7 +72,7 @@ public class CuisineDaoTest {
         recipes.add(testRecipe);
         testCuisine.setRecipeList(recipes);
         cuisineDao.addCuisine(testCuisine);
-        Assert.assertNotNull(recipeDao.getOneRecipe(testCuisine.getId()));
+        Assert.assertNull(recipeDao.getOneRecipe(testCuisine.getId()));
 
 
     }
