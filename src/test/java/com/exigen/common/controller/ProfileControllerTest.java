@@ -1,9 +1,7 @@
 package com.exigen.common.controller;
-
 import junit.framework.Assert;
 import org.junit.Test;
 import com.exigen.common.web.ProfileController;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +16,9 @@ public class ProfileControllerTest {
     public void viewProfileController(){
         ProfileController profile = new  ProfileController();
         Map model = new HashMap<String,String>();
+        Assert.assertNotNull(profile.viewProfile(model));
         Assert.assertEquals("redirect:", profile.viewProfile(model));
     }
-
 
 
 }
