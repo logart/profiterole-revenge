@@ -16,8 +16,8 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-    @RunWith(MockitoJUnitRunner.class)
-    public class CategoriesServiceImplTest {
+@RunWith(MockitoJUnitRunner.class)
+public class CategoriesServiceImplTest {
 
 
     @Mock
@@ -42,16 +42,16 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-    public void testGetCategory(){
+    public void testGetCategory() {
         categoriesService = new CategoriesServiceImpl();
         categoriesService.setCategoriesDao(categoriesDao);
 
         when(categoriesDao.getCategory(23)).thenReturn(category);
-        Assert.assertEquals(category,categoriesService.getCategory(23));
+        Assert.assertEquals(category, categoriesService.getCategory(23));
     }
 
     @Test
-    public void testAddCategory(){
+    public void testAddCategory() {
         categoriesService = new CategoriesServiceImpl();
         categoriesService.setCategoriesDao(categoriesDao);
         Category category1 = new Category("Закуски");
@@ -59,13 +59,13 @@ import static org.mockito.Mockito.when;
         verify(categoriesDao).addCategories(category1);
     }
 
-        @Test
-        public void testRemoveCategory(){
-            categoriesService = new CategoriesServiceImpl();
-            categoriesService.setCategoriesDao(categoriesDao);
-            Category category1 = new Category("Закуски");
-            category1.setId(1);
-            categoriesDao.removeCategories(category1);
-            verify(categoriesDao).removeCategories(category1);
-        }
+    @Test
+    public void testRemoveCategory() {
+        categoriesService = new CategoriesServiceImpl();
+        categoriesService.setCategoriesDao(categoriesDao);
+        Category category1 = new Category("Закуски");
+        category1.setId(1);
+        categoriesDao.removeCategories(category1);
+        verify(categoriesDao).removeCategories(category1);
+    }
 }

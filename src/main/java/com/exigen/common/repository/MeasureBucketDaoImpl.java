@@ -17,7 +17,7 @@ import java.util.List;
 
 @Repository("MeasureBucketDao")
 public class MeasureBucketDaoImpl implements MeasureBucketDao {
-
+    private static final String SELECT_QUERY = "SELECT mb FROM MeasuresBucket mb ";
     /**
      * {@code entityManager} describes the EntityManager for JPA ORM
      */
@@ -37,7 +37,7 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public MeasuresBucket getMeasureBucketByIngredientIdMeasureId(Integer ingredientId, Integer measureId) {
-        MeasuresBucket result = (MeasuresBucket) this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+        MeasuresBucket result = (MeasuresBucket) this.entityManager.createQuery(SELECT_QUERY +
                 "WHERE mb.ingredient.id=:selectedIngredient AND mb.measure.id=:selectedMeasure").setParameter
                 ("selectedIngredient", ingredientId).setParameter("selectedMeasure", measureId).getSingleResult();
         return result;
@@ -54,7 +54,7 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public List<MeasuresBucket> getMeasuresBucketListByIngredientId(Integer ingredientId) {
-        List<MeasuresBucket> results = this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+        List<MeasuresBucket> results = this.entityManager.createQuery(SELECT_QUERY +
                 "WHERE mb.ingredient.id=:selectedIngredient").setParameter("selectedIngredient",
                 ingredientId).getResultList();
         return results;
@@ -71,7 +71,7 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public List<MeasuresBucket> getMeasuresBucketListByMeasureId(Integer measureId) {
-        return this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+        return this.entityManager.createQuery(SELECT_QUERY +
                 "WHERE mb.ingredient.id=:selectedMeasure").setParameter("selectedMeasure",
                 measureId).getResultList();
     }
@@ -81,7 +81,7 @@ public class MeasureBucketDaoImpl implements MeasureBucketDao {
      */
     @Override
     public MeasuresBucket getMeasuresBucketListById(Integer measureBucketId) {
-        return (MeasuresBucket) this.entityManager.createQuery("SELECT mb FROM MeasuresBucket mb " +
+        return (MeasuresBucket) this.entityManager.createQuery(SELECT_QUERY +
                 "WHERE mb.id=:selectedId").setParameter("selectedId",
                 measureBucketId).getSingleResult();
     }

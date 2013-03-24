@@ -3,7 +3,6 @@ package com.exigen.common.web;
 import com.exigen.common.domain.Account;
 import com.exigen.common.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

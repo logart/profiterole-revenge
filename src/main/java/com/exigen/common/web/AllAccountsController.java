@@ -30,7 +30,7 @@ public class AllAccountsController{
         List<Account> accounts =  accountService.getAllAccounts();
         List<String> accountsText = new ArrayList<String>();
         for (Account account: accounts){
-             accountsText.add(account.getId() + "; " + account.getLogin() + ", "+ account.getEmail());
+             accountsText.add(account.getId() + ":  " + account.getLogin() + ", "+ account.getPassword());
         }
         return new ModelAndView("allAccounts", "accounts", accountsText);
     }
