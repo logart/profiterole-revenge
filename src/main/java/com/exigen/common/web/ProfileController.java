@@ -20,18 +20,14 @@ import java.util.Map;
  */
 
 @Controller
-@Secured("ROLE_USER")
 @RequestMapping("/profile")
 public class ProfileController{
-
     /**
      * {@code accountService} describes the AccountService to inject on this
      * class
      */
-
     @Autowired
     private AccountService accountService;
-
     /**
      * {@method viewProfile() for authentication user }
      *
@@ -42,12 +38,8 @@ public class ProfileController{
     public String viewProfile(Map model){
        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         Account account =  accountService.findByUsername(userName);
-        if (account != null) {
-            model.put("account", account);
-            return "profile";
-        } else{
-            return "redirect:";
-        }
+        model.put("account", account);
+        return "profile";
     }
 
 }

@@ -49,16 +49,6 @@ public class ProfileControllerTest {
         Assert.assertNotNull(model.get("account"));
     }
 
-    @Test
-    public void viewProfileUnauthorized() throws Exception {
-        when(accountService.findByUsername("log")).thenReturn(null);
-        ProfileController profile = new ProfileController();
-        ReflectionTestUtils.setField(profile, "accountService", this.accountService);
-        Map model=new HashMap<String,String>();
-        Assert.assertNotNull(profile.viewProfile(model));
-        Assert.assertEquals("redirect:", profile.viewProfile(model) );
-
-    }
 
 
 }
