@@ -23,7 +23,7 @@ public class MeasuresOfIngredientsController {
      * class
      */
     @Autowired
-    MeasureBucketService measureBucketService;
+    private MeasureBucketService measureBucketService;
 
     /**
      * {@method getMeasures()} using for get id and names of measures of ingredient
