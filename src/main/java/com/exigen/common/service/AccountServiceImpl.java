@@ -112,4 +112,19 @@ public class AccountServiceImpl implements AccountService {
         return cal;
 
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public AccountData accountDataFromAccount(Account account){
+        AccountData data = new AccountData();
+        data.setLogin(account.getLogin());
+        data.setEmail(account.getEmail());
+        data.setPassword(account.getPassword());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        data.setDateOfBirth((account.getDateOfBirth()!=null)?sdf.format(account.getDateOfBirth().getTime()):null);
+        data.setMaleOrFemale((account.getMaleOrFemale()!=null)?account.getMaleOrFemale().name():null) ;
+        data.setCountry(account.getCountry());
+        return data;
+    }
 }

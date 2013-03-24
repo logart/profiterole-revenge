@@ -11,6 +11,7 @@
         <form-login login-page="/login" authentication-failure-url="/login-error"/>
 		<intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/addRecipes" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/editProfile" access="hasRole('ROLE_USER')" />
 	</http>
 
     <authentication-manager>

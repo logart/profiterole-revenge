@@ -72,4 +72,17 @@ public interface AccountService {
      * @throws NullPointerException (when user is null)
      */
     void updateAccount(AccountData data);
+
+    /**
+     * {@method accountDataFromAccount(Account account)}
+     * for getting accountData object from account
+     *
+     * @param account (object of Account)
+     * @throws org.springframework.dao.DataAccessException
+     *                              (resource
+     *                              on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when account is null)
+     */
+    AccountData accountDataFromAccount(Account account);
+
 }
