@@ -35,23 +35,10 @@ public class EditProfileControllerTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-
-        SecurityContextHolder.clearContext();
     }
 
     @Test
-    public void testEditingProfileUnauthorized() throws Exception {
-        when(accountService.findByUsername("test")).thenReturn(new Account());
-
-        EditProfileController profile = new EditProfileController();
-        ReflectionTestUtils.setField(profile, "accountService", this.accountService);
-        Map model=new TreeMap();
-        Assert.assertNotNull(profile.editingProfile(model));
-        Assert.assertEquals("redirect:", profile.editingProfile(model) );
-    }
-
-    @Test
-    public void testEditingProfileAuthorized() throws Exception {
+    public void testEditingProfile() throws Exception {
         User user = new User("test","pass", AuthorityUtils.createAuthorityList("ROLE_USER"));
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,null);
         SecurityContextHolder.getContext().setAuthentication(authentication);

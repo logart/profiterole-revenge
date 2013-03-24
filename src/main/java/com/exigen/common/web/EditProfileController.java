@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -35,21 +34,10 @@ public class EditProfileController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String editingProfile(Map model) {
-        if (  SecurityContextHolder.getContext().getAuthentication() != null) {
-            Account account = accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-            AccountData data = new AccountData();
-            data.setLogin(account.getLogin());
-            data.setEmail(account.getEmail());
-            data.setPassword(account.getPassword());
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            data.setDateOfBirth((account.getDateOfBirth()!=null)?sdf.format(account.getDateOfBirth().getTime()):null);
-            data.setMaleOrFemale((account.getMaleOrFemale()!=null)?account.getMaleOrFemale().name():null) ;
-            data.setCountry(account.getCountry());
+        Account account = accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        AccountData data = accountService.accountDataFromAccount(account);
 
-            model.put("editProfileData", data);
-        } else {
-            return "redirect:";
-        }
+        model.put("editProfileData", data);
         return "editProfile";
     }
 
