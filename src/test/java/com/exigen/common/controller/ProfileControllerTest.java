@@ -33,12 +33,9 @@ public class ProfileControllerTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-
         User user = new User(account.getLogin(), account.getPassword(), Collections.singleton(new SimpleGrantedAuthority(account.getRole())));
-
         TestingAuthenticationToken authToken = new TestingAuthenticationToken(user, account.getPassword());
         authToken.setAuthenticated(true);
-
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
 
@@ -50,6 +47,17 @@ public class ProfileControllerTest {
         Map model = new HashMap<String,String>();
         Assert.assertEquals("profile", profile.viewProfile(model));
         Assert.assertNotNull(model.get("account"));
+    }
+
+    @Test
+    public void viewProfileUnauthorized() throws Exception {
+        when(accountService.findByUsername("log")).thenReturn(null);
+        ProfileController profile = new ProfileController();
+        ReflectionTestUtils.setField(profile, "accountService", this.accountService);
+        Map model=new HashMap<String,String>();
+        Assert.assertNotNull(profile.viewProfile(model));
+        Assert.assertEquals("redirect:", profile.viewProfile(model) );
+
     }
 
 
