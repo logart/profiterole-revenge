@@ -38,7 +38,7 @@ public class RegistrationValidatorTest {
     }
 
     @Test
-    public void testValidate() throws Exception {
+    public void testValidateUserExists() throws Exception {
         RegistrationValidator registrationValidator = new RegistrationValidator() ;
         ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
@@ -47,6 +47,10 @@ public class RegistrationValidatorTest {
         RegistrationData registrationData = new RegistrationData() ;
         registrationValidator.validate(registrationData , result );
 
+        when(accountService.findByUsername(anyString())).thenReturn(null);
+        registrationValidator.validate(registrationData , result );
+
         verify(result).rejectValue(anyString(),anyString(),anyString()) ;
     }
+
 }
