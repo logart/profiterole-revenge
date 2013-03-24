@@ -26,6 +26,8 @@ import java.util.List;
 
 public class Recipe implements Serializable {
 
+    private static final int CALORIES_COEFFICIENT = 100;
+
     /**
      * {@code id} its a primary key for this entity
      */
@@ -198,10 +200,9 @@ public class Recipe implements Serializable {
 
     public int getCalories() {
         int calories = 0;
-        int caloriesCoefficient = 100;
         for (IngredientBucket ib : ingredients) {
             calories += (int) (ib.getCountOfIngredient() * ib.getIngredient().getCalories() * ib.getMeasuresBucket()
-                    .getGramEquals() / caloriesCoefficient);
+                    .getGramEquals() / CALORIES_COEFFICIENT);
 
         }
         return calories;
