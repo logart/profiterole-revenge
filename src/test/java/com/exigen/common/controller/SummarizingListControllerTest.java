@@ -1,7 +1,7 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.domain.Ingredient;
-import com.exigen.common.service.IngredientService;
+import com.exigen.common.domain.IngredientBucket;
+import com.exigen.common.service.IngredientBucketService;
 import com.exigen.common.web.SummarizingListController;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -12,6 +12,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -20,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class SummarizingListControllerTest {
 
     @Mock
-    IngredientService ingredientService;
+    IngredientBucketService ingredientBucketService;
 
     @Before
     public void setup() {
@@ -30,26 +31,26 @@ public class SummarizingListControllerTest {
     @Test
     public void testSummarizingListController() throws Exception {
 
-        List<Integer> idList=new ArrayList<Integer>();
+        List<Integer> idList = new ArrayList<Integer>();
         idList.add(1);
 
-        Ingredient ingredient =new Ingredient();
+        IngredientBucket ingredientBucket = new IngredientBucket();
 
-        List<Ingredient> ingredients =new ArrayList<Ingredient>();
+        List<IngredientBucket> ingredients = new LinkedList<IngredientBucket>();
 
-        ingredients.add(ingredient);
+        ingredients.add(ingredientBucket);
 
 
+        SummarizingListController summarizingListController = new SummarizingListController();
 
-        SummarizingListController summarizingListController=new SummarizingListController();
+        ReflectionTestUtils.setField(summarizingListController, "ingredientBucketService",
+                this.ingredientBucketService);
 
-        ReflectionTestUtils.setField(summarizingListController, "ingridientService", this.ingredientService);
+        when(ingredientBucketService.getAllIngredientBuckets(idList)).thenReturn(ingredients);
 
-        when(ingredientService.getAllIngredientsSortedList()).thenReturn(ingredients);
+        ModelAndView modelAndView = summarizingListController.summarizingListController(idList);
 
-        ModelAndView modelAndView=summarizingListController.summarizingListController(idList);
+        Assert.assertEquals("summarizingList", modelAndView.getViewName());
 
-        Assert.assertEquals("summarizingList",modelAndView.getViewName());
-        
-      }
+    }
 }
