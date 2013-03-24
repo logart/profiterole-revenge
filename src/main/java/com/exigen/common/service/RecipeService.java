@@ -61,15 +61,4 @@ public interface RecipeService {
      */
 
     void removeRecipe(Recipe recipe);
-    /**
-     * {@method CaloriesCalculation(List<Integer> recipesId)}
-     *
-     * @param recipesId (list of recipes's ID)
-     * @return summarizing calories of this recipe.
-     * @throws org.springframework.dao.DataAccessException (resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when recipe's id has no results in the database)
-     */
-
-    Integer caloriesCalculation(List<Integer> recipesId);
 }
