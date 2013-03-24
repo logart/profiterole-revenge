@@ -101,4 +101,20 @@ public class RecipeTest {
         recipe.setSteps(stepList);
         assertEquals(stepList,recipe.getSteps());
     }
+
+    @Test
+    public void testGetCalories(){
+        List<IngredientBucket> ingredientBucketList = new ArrayList<IngredientBucket>();
+        Ingredient ingredient = new Ingredient();
+        ingredient.setCalories(100);
+        MeasuresBucket measuresBucket = new MeasuresBucket();
+        measuresBucket.setGramEquals(1);
+        IngredientBucket ingredientBucket1 = new IngredientBucket();
+        ingredientBucket1.setCountOfIngredient(100);
+        ingredientBucket1.setIngredient(ingredient);
+        ingredientBucket1.setMeasuresBucket(measuresBucket);
+        ingredientBucketList.add(ingredientBucket1);
+        recipe.setIngredients(ingredientBucketList);
+        assertEquals(100, recipe.getCalories());
+    }
 }

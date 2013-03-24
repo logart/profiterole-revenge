@@ -78,11 +78,6 @@ public class Recipe implements Serializable {
     private Integer timeOfCooking;
 
     /**
-     * {@code time} This field to calculate calories for recipe and not save
-     */
-    @Transient
-    private int calories;
-    /**
      * {@code ingredients} it's list of ingredient's buckets in recipe.
      */
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
@@ -95,7 +90,6 @@ public class Recipe implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Step> steps = new ArrayList<Step>();
-
 
     /**
      * {@method Recipe} its a default constructor for JPA
@@ -203,12 +197,13 @@ public class Recipe implements Serializable {
     }
 
     public int getCalories() {
-        this.calories = 0;
+        int calories = 0;
+        int caloriesCoefficient = 100;
         for (IngredientBucket ib : ingredients) {
-            this.calories += (int) (ib.getCountOfIngredient() * ib.getIngredient().getCalories() * ib.getMeasuresBucket()
-                    .getGramEquals() / 100);
+            calories += (int) (ib.getCountOfIngredient() * ib.getIngredient().getCalories() * ib.getMeasuresBucket()
+                    .getGramEquals() / caloriesCoefficient);
 
         }
-        return this.calories;
+        return calories;
     }
 }
