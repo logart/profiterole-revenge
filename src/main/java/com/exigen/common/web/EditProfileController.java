@@ -29,21 +29,21 @@ public class EditProfileController {
     @Autowired
     private AccountService accountService;
     /**
-     * {@method index()} using for mapped registration form
+     * {@method index()} using for mapped editProfile form
      *
-     * @return registration form view name
+     * @return editProfile form view name
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String registration(Map model) {
-        Account account =  accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        AccountData data = new AccountData();
-        if (account != null) {
+    public String editingProfile(Map model) {
+        if (  SecurityContextHolder.getContext().getAuthentication() != null) {
+            Account account = accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+            AccountData data = new AccountData();
             data.setLogin(account.getLogin());
             data.setEmail(account.getEmail());
             data.setPassword(account.getPassword());
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            data.setDateOfBirth(sdf.format(account.getDateOfBirth().getTime()));
-            data.setMaleOrFemale(account.getMaleOrFemale().name()) ;
+            data.setDateOfBirth((account.getDateOfBirth()!=null)?sdf.format(account.getDateOfBirth().getTime()):null);
+            data.setMaleOrFemale((account.getMaleOrFemale()!=null)?account.getMaleOrFemale().name():null) ;
             data.setCountry(account.getCountry());
 
             model.put("editProfileData", data);
@@ -54,14 +54,12 @@ public class EditProfileController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processAddingUser(Map model, @ModelAttribute("editProfileData") @Valid AccountData data, BindingResult errors) {
+    public String processEditingProfile(Map model, @ModelAttribute("editProfileData") @Valid AccountData data, BindingResult errors) {
         if (errors.hasErrors()) {
             model.put("editProfileData", data);
             return "editProfile";
         }
-
         accountService.updateAccount(data);
-
         return "redirect:profile";
     }
 
