@@ -103,7 +103,7 @@ public class AccountServiceImpl implements AccountService {
      */
     private Calendar getCalendar(String date) {
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.mm.yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
             cal.setTime(sdf.parse(date));
         } catch (ParseException e) {
