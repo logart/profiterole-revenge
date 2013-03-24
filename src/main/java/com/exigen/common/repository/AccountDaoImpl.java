@@ -46,9 +46,6 @@ public class AccountDaoImpl implements AccountDao {
     public Account getAccountByLogin(String login) {
         Account user = this.entityManager.createNamedQuery("Account.findUserByLogin", Account.class).setParameter("login",
                 login).getSingleResult();
-        if (user == null){
-            return null;
-        }
         return user;
     }
 

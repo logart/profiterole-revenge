@@ -53,6 +53,14 @@ public class AccountDaoImplTest {
     }
 
     @Test
+    public void updateAccount() {
+        accountDao.addAccount(account);
+        account.setLogin("newName");
+        accountDao.updateAccount(account);
+        Assert.assertEquals("newName",accountDao.getOneAccount(account.getId()).getLogin());
+    }
+
+    @Test
     public void removeAccount() {
         accountDao.addAccount(account);
         accountDao.removeAccount(account);
