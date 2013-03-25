@@ -363,7 +363,7 @@
                             <target>http://api.cloudfoundry.com</target>
                             <url>profiterole-test.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
-                            <password>Qwaszx12345@</password>
+                            <password>445566</password>
                             <memory>256</memory>
                         </configuration>
                     </plugin>
@@ -386,7 +386,7 @@
                             <target>http://api.cloudfoundry.com</target>
                             <url>profiterole-production.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
-                            <password>Qwaszx12345@</password>
+                            <password>445566</password>
                             <memory>256</memory>
                         </configuration>
                     </plugin>
