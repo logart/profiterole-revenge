@@ -5,22 +5,26 @@ import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Ingredient;
 import com.exigen.common.domain.Recipe;
-import com.exigen.common.repository.CategoriesDao;
-import com.exigen.common.repository.CuisineDao;
-import com.exigen.common.repository.IngredientDao;
-import com.exigen.common.repository.RecipeDao;
+import com.exigen.common.repository.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,7 +32,8 @@ import java.util.List;
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
 public class IngredientDaoTest {
-
+    @Mock
+    private EntityManager entityManager;
     @Autowired
     private IngredientDao ingredientDao;
 
@@ -63,25 +68,7 @@ public class IngredientDaoTest {
         ingredient = new Ingredient("name", 5);
         ingredientList = new ArrayList<Ingredient>();
         recipeList = new ArrayList<Recipe>();
-    }
-
-    //@Test
-    //public void addAndGetIngridientsTest() {
-    //    recipeList = recipeDao.getRecipeCuisineList(cuisine);
-    //    recipe = recipeList.get(0);
-    //    recipeId = recipe.getId();
-    //    ingredientList.add(ingredient);
-    //    ingredientDao.addIngredient(ingredient);
-    //    Assert.assertEquals(ingredientList, ingredientDao.getIngredientById(recipeId));
-
-    //}
-
-    @Test
-    public void removeIngridientsTest() {
-        ingredientDao.removeIngredient(ingredient);
-
-
-        Assert.assertEquals(ingredient, ingredientDao.getIngredientById(recipeId));
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -89,4 +76,19 @@ public class IngredientDaoTest {
         Assert.assertNotNull(ingredientDao.getAllIngredients());
     }
 
+    @Test
+    public void removeIngredientTest() {
+        ingredientDao = new IngredientDaoImpl();
+        ReflectionTestUtils.setField(ingredientDao, "entityManager", entityManager);
+        ingredientDao.removeIngredient(ingredient);
+        verify(entityManager, times(1)).remove(ingredient);
+    }
+
+    @Test
+    public void addIngredientTest() {
+        ingredientDao = new IngredientDaoImpl();
+        ReflectionTestUtils.setField(ingredientDao, "entityManager", entityManager);
+        ingredientDao.addIngredient(ingredient);
+        verify(entityManager, times(1)).persist(ingredient);
+    }
 }

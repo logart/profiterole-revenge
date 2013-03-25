@@ -15,55 +15,55 @@ import static org.mockito.Mockito.when;
 
 public class AddRecipeDataServiceImplTest {    //TODO
 
-//    AddRecipeDataServiceImpl addRecipeDataService = new AddRecipeDataServiceImpl();
-//
-//    Category category = new Category();
-//    Integer id = category.getCategoriesId();
-//
-//    List<Category> categoryList = new ArrayList<Category>();
-//
-//    Cuisine cuisine = new Cuisine();
-//
-//    List<Cuisine> cuisineList = new ArrayList<Cuisine>();
-//
-//    Recipe recipe = new Recipe();
-//
-//    Ingredient ingredient = new Ingredient("name", 4, 6, "unit", recipe);
-//
-//    List<String> steps = new ArrayList<String>();
-//
-//    @Mock
-//    IngridientService ingridientService;
-//
-//    @Before
-//    public void setup() {
-//        MockitoAnnotations.initMocks(this);
-//    }
-//
-//
-//    @Test
-//    public void getCategoryFromListByIDTest() {
-//        categoryList.add(0, category);
-//        Assert.assertEquals(category, addRecipeDataService.getCategoryFromListByID(id, categoryList));
-//    }
-//
-//    @Test
-//    public void getCuisineFromListByIDTest() {
-//        id = cuisine.getCuisineId();
-//        cuisineList.add(cuisine);
-//        Assert.assertEquals(cuisine, addRecipeDataService.getCuisineFromListByID(id, cuisineList));
-//    }
-//
+    AddRecipeDataServiceImpl addRecipeDataService = new AddRecipeDataServiceImpl();
+
+    Category category = new Category();
+    Integer id = category.getId();
+
+    List<Category> categoryList = new ArrayList<Category>();
+
+    Cuisine cuisine = new Cuisine();
+
+    List<Cuisine> cuisineList = new ArrayList<Cuisine>();
+
+    Recipe recipe = new Recipe();
+
+    Ingredient ingredient = new Ingredient("name", 4);
+
+    List<String> steps = new ArrayList<String>();
+
+    @Mock
+    IngredientService ingredientService;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+
+    @Test
+    public void getCategoryFromListByIDTest() {
+        categoryList.add(0, category);
+        Assert.assertEquals(category, addRecipeDataService.getCategoryFromListByID(id, categoryList));
+    }
+
+    @Test
+    public void getCuisineFromListByIDTest() {
+        id = cuisine.getId();
+        cuisineList.add(cuisine);
+        Assert.assertEquals(cuisine, addRecipeDataService.getCuisineFromListByID(id, cuisineList));
+    }
+
 //    @Test
 //    public void getCaloriesTest() {
 //        List<String> idList = new ArrayList<String>();
 //        idList.add(0, "1");
-//        when(ingridientService.getIngredientById(Integer.parseInt(idList.get(0)))).thenReturn(ingredient);
-//        addRecipeDataService.setIngridientService(ingridientService);
+//        when(ingredientService.getIngredientById(Integer.parseInt(idList.get(0)))).thenReturn(ingredient);
+//        addRecipeDataService.setIngridientService(ingredientService);
 //        Assert.assertEquals(ingredient.getCalories(), addRecipeDataService.getCalories(idList));
 //
 //    }
-//
+
 //    @Test
 //    public void makeStepsTest() {
 //        Recipe recipe1 = new Recipe();
