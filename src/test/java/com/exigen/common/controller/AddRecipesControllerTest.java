@@ -25,6 +25,7 @@ public class AddRecipesControllerTest {
 
     @Mock
     private IngredientService ingredientService;
+    private AddRecipesController addRecipesController = new AddRecipesController();
 
     @Before
     public void setup() {
@@ -38,11 +39,11 @@ public class AddRecipesControllerTest {
         when(categoriesService.getCategories()).thenReturn(null);
         when(ingredientService.getAllIngredientsSortedList()).thenReturn(null);
 
-        AddRecipesController addRecipesController=new AddRecipesController();
-        ReflectionTestUtils.setField(addRecipesController,"ingridientService", this.ingredientService);
-        ReflectionTestUtils.setField(addRecipesController,"cuisineService",this.cuisineService);
+
+        ReflectionTestUtils.setField(addRecipesController, "ingredientService", this.ingredientService);
+        ReflectionTestUtils.setField(addRecipesController, "cuisineService", this.cuisineService);
         ReflectionTestUtils.setField(addRecipesController, "categoriesService", this.categoriesService);
-        String test=addRecipesController.showAddingRecipe(new TreeMap());
+        String test = addRecipesController.showAddingRecipe(new TreeMap());
         Assert.assertEquals("addRecipes", test);
     }
 }

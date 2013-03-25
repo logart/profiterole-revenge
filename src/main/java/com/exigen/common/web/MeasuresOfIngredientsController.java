@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.Map;
 
 /**
@@ -31,9 +32,8 @@ public class MeasuresOfIngredientsController {
      * @return map, where key is id of measure, and value is name of measure
      */
     @RequestMapping(value = "/getMeasures", method = RequestMethod.GET)
-    public
     @ResponseBody
-    Map<Integer, String> getMeasures(@RequestParam Integer ingredientId) {
+    public Map<Integer, String> getMeasures(@RequestParam Integer ingredientId) {
         return measureBucketService.getMeasuresBucketMapByIngredientId(ingredientId);
     }
 }
