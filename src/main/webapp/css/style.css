@@ -197,3 +197,12 @@ a.ui-slider-handle {
     padding-left: 25px;
 }
 
+.rec_count{
+    margin-left: 10px;
+    width:20px;
+    margin-right: 10px;
+}
+
+.plus_btn .minus_btn{
+    width:20px;
+}
