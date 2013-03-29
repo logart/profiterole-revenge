@@ -13,7 +13,8 @@
         $(".span12 > button.btn.no-display").click(function (e) {
             var id_rec = [];
             $("#menuDrop").find(".rec_id").filter(function (index) {
-                id_rec.push($(this).text());
+                var count = $(this).parent().find(".rec_count").val();
+                for(var i=0;i<count;i++)id_rec.push($(this).text());
                 return true;
             });
             lv_url = "/summarizingList?recipesId=" + id_rec;
