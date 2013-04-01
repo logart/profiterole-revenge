@@ -2,9 +2,9 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountPasswordResetData;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -49,6 +49,28 @@ public class AccountDaoImpl implements AccountDao {
         return user;
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Account getAccountByEmail(String email) {
+        Account user = this.entityManager.createNamedQuery("Account.findUserByEmail", Account.class).setParameter("email",
+                email).getSingleResult();
+        return user;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AccountPasswordResetData getAccountPasswordResetDataByHash(String hash) {
+        AccountPasswordResetData resetData = this.entityManager.createNamedQuery("AccountPasswordResetData.findByHash",AccountPasswordResetData.class).setParameter("hash",
+                hash).getSingleResult();
+        return resetData;
+    }
+
+
     /**
      * {@inheritDoc}
      */
@@ -73,5 +95,16 @@ public class AccountDaoImpl implements AccountDao {
     @Override
     public void removeAccount(Account account) {
         entityManager.remove(account);
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     */
+
+    @Override
+    @Transactional
+    public void addAccountPasswordReset(AccountPasswordResetData accountPasswordResetData){
+        entityManager.persist(accountPasswordResetData);
     }
 }

@@ -50,5 +50,10 @@ public class RegistrationValidator implements Validator {
         if (account != null) {
             errors.rejectValue("login", "loginAlreadyExist.login", "Пользователь с таким логином уже существует.");
         }
+        String email = data.getEmail();
+        account = accountService.findByEmail(email);
+        if ( account != null){
+            errors.rejectValue("email", "emailAlreadyExist.email", "Пользователь с таким e-mail уже существует.");
+        }
     }
 }

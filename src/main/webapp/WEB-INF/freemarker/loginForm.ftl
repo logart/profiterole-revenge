@@ -10,7 +10,7 @@
 
 
         <form class="form-horizontal" action="/j_spring_security_check" method="post">
-            <div class="text-cener">
+            <div class="text-center">
                 <div class="control-group">
                     [#if error = true]
                         <div class="error-div error" id="passwordOrLoginError">Вы ввели неверный логин и/или пароль</div>
@@ -28,6 +28,15 @@
                         <input type="password" id="j_password" name="j_password"/>
                     </div>
                 </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                         <ul class="btn btn-link pull-left" style="text-decoration: underline">
+							<a href="/forgotPassword">Забыли&nbsp;пароль?</a>
+						</ul>
+                    </div>
+                </div>
+
                 <div class="control-group">
                     <div class="controls">
                         <button type="submit" class="btn">Войти</button>

@@ -16,7 +16,8 @@ import java.util.Calendar;
 @Table(name = "accounts")
 @NamedQueries({
         @NamedQuery(name = "Account.findAllUsers", query = "SELECT ac FROM Account ac"),
-        @NamedQuery(name = "Account.findUserByLogin", query = "SELECT i FROM Account i WHERE i.login LIKE :login")
+        @NamedQuery(name = "Account.findUserByLogin", query = "SELECT i FROM Account i WHERE i.login LIKE :login"),
+        @NamedQuery(name = "Account.findUserByEmail", query = "SELECT i FROM Account i WHERE i.email = :email")
 })
 public class Account implements Serializable {
 
@@ -40,6 +41,7 @@ public class Account implements Serializable {
     /**
      * {@code email} contains email address
      */
+    @Column (unique = true)
     private String email;
 
     /**

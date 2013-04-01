@@ -1,18 +1,17 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountData;
-import com.exigen.common.domain.Gender;
-import com.exigen.common.domain.RegistrationData;
+import com.exigen.common.domain.*;
 import com.exigen.common.repository.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Service;
-
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+
 
 /**
  * Class {@code AccountService} used for push object from and in DAO for get and
@@ -23,6 +22,7 @@ import java.util.List;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
+
     @Autowired
     private AccountDao accountDao;
 
@@ -37,6 +37,18 @@ public class AccountServiceImpl implements AccountService {
         try {
             return accountDao.getAccountByLogin(username);
         } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Account findByEmail(String email){
+        try {
+            return accountDao.getAccountByEmail(email);
+        }  catch (EmptyResultDataAccessException ex){
             return null;
         }
     }
@@ -126,5 +138,26 @@ public class AccountServiceImpl implements AccountService {
         data.setMaleOrFemale((account.getMaleOrFemale()!=null)?account.getMaleOrFemale().name():null) ;
         data.setCountry(account.getCountry());
         return data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+
+    public void resetUserPassword(String email) throws Exception {
+        SecureRandom r = new SecureRandom();
+        byte[] randomBytes = new byte[128];
+        r.nextBytes(randomBytes);
+        String hash = String.valueOf(Hex.encode(randomBytes));
+        AccountPasswordResetData resetData = accountDao.getAccountPasswordResetDataByHash(hash);
+        if (resetData != null){
+            throw new Exception();
+        }  else {
+            resetData = new AccountPasswordResetData();
+            resetData.setHash(hash);
+            resetData.setAccount(accountDao.getAccountByEmail(email));
+            accountDao.addAccountPasswordReset(resetData);
+        }
+
     }
 }
