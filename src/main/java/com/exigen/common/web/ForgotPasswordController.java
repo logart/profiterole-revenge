@@ -2,6 +2,7 @@ package com.exigen.common.web;
 
 import com.exigen.common.service.ForgotPasswordValidator;
 import com.exigen.common.service.AccountService;
+import com.exigen.common.service.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -34,6 +35,11 @@ public class ForgotPasswordController {
     @Autowired
     private ForgotPasswordValidator forgotPasswordValidator;
 
+    /**
+     *
+     * @param  "email"
+     */
+
     @RequestMapping (method = RequestMethod.GET)
     public String forgotPassword(Map model){
         model.put("email", "");
@@ -49,8 +55,7 @@ public class ForgotPasswordController {
         }
         try {
             accountService.resetUserPassword(email);
-        }
-        catch(Exception ex) {
+        } catch(ServiceException ex){
             return "redirect:";
         }
         return "forgotPassword";

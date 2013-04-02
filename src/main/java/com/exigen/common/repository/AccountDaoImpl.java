@@ -21,6 +21,7 @@ public class AccountDaoImpl implements AccountDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     /**
      * {@inheritDoc}
      */
