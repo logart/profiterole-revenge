@@ -1,0 +1,615 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.exigen.practice</groupId>
+    <artifactId>profiterole</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <repositories>
+        <repository>
+            <id>org.springframework.maven.milestone</id>
+            <name>Spring Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <name>Profiterole Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <spring.version>
+            3.1.1.RELEASE
+        </spring.version>
+        <org.slf4j-version>1.6.6</org.slf4j-version>
+    </properties>
+
+
+    <dependencies>
+        <!-- Spring framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.1.0.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <!-- Exclude Commons Logging in favor of SLF4j -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+            <optional>false</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>3.1.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.1.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.1.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.19</version>
+        </dependency>
+        <!-- Logging-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${org.slf4j-version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${org.slf4j-version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- MySQL database driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.1.4.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.cloudfoundry</groupId>
+            <artifactId>cloudfoundry-runtime</artifactId>
+            <version>0.8.1</version>
+        </dependency>
+
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
+        <!--Test-->
+
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.168</version>
+        </dependency>
+
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.8.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.portlet</groupId>
+            <artifactId>portlet-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+        <!-- JSTL for c: tag -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>profiterole</finalName>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.10</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>9999</stopPort>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <formats>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repository.springframework.maven.milestone</id>
+            <name>Spring Framework Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!--Test-server profile-->
+    <profiles>
+        <profile>
+            <id>profiterole-test-server</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>profiterole-test.cloudfoundry.com</url>
+                            <username>logart2007@gmail.com</username>
+                            <password>445566</password>
+                            <memory>256</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--Production server profile-->
+        <profile>
+            <id>profiterole-production-server</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole-production</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>profiterole-production.cloudfoundry.com</url>
+                            <username>logart2007@gmail.com</username>
+                            <password>445566</password>
+                            <memory>256</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--Profile for current development project version-->
+        <profile>
+            <id>profiterole-development-server</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole-development</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>profiterole-development.cloudfoundry.com</url>
+                            <username>flieriya@gmail.com</username>
+                            <password>omgWTF11</password>
+                            <memory>256</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--Profiles for developers private servers-->
+        <profile>
+            <id>dima-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>dima-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>dimyc-pikyc.cloudfoundry.com</url>
+                            <username>flieriya@gmail.com</username>
+                            <password>omgWTF11</password>
+                            <memory>256</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>ulya-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>ulya-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>ulita.cloudfoundry.com</url>
+                            <username>flieriya@gmail.com</username>
+                            <password>omgWTF11</password>
+                            <memory>256</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>ivan-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>ivan-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>ivan-test.cloudfoundry.com</url>
+                            <username>vanik1251@mail.ru</username>
+                            <password>Qy0oPYgA</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>oleg-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>oleg-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>oleg-profiterole.cloudfoundry.com</url>
+                            <username>tonysop000@gmail.com</username>
+                            <password>3KXlQkuG</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>vsam-profiterole</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>vsam-profiterole.cloudfoundry.com</url>
+                            <username>volodymyr.samokhval@gmail.com</username>
+                            <password>ingu6HA</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>lena-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M4</version>
+                        <configuration>
+                            <appname>lena-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>lena-test.cloudfoundry.com</url>
+                            <username>vev77777@gmail.com</username>
+                            <password>Qwerty87</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>gioia-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>gioia-test</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>gioia-test.cloudfoundry.com</url>
+                            <username>victoriafull@gmail.com</username>
+                            <password>NaYf0apZ</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- <version>2.14</version>
+                        -->
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>tolik-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M1</version>
+                        <configuration>
+                            <appname>profiterole</appname>
+                            <server>mycloudfoundry-instance</server>
+                            <target>http://api.cloudfoundry.com</target>
+                            <url>tolik-test.cloudfoundry.com</url>
+                            <username>sivner777@gmail.com</username>
+                            <password>wkOy9DIj</password>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- <version>2.14</version>
+   -->                  <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+</project>
