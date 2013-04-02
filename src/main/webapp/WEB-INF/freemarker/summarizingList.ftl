@@ -47,61 +47,39 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
-        var br_mas = [];
-        var br_mas_counts = [];
-        var dn_mas = [];
-        var dn_mas_counts = [];
-        var sp_mas = [];
-        var sp_mas_counts = [];
         var br_cal = 0;
         var dn_cal = 0;
         var sp_cal = 0;
 
         $("#breakfast").find("label.title").filter(function (index) {
-            br_mas.push($(this).text());
-            br_mas_counts.push ($(this).parent().parent().find("input.rec_count").val());
+            var name = $(this).text();
+            var count = $(this).parent().parent().find("input.rec_count").val();
+            var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
+            $("#br_sum").append("<tr><td>" + name + "</td><td><nobr>X " + count + "</nobr></td></tr>");
+            br_cal += cal * count;
             return true;
-        });
-
-        $.each(br_mas, function (index, value) {
-            $("#br_sum").append("<tr><td>" + this + "</td><td><nobr>X "+ br_mas_counts[index] + "</nobr></td></tr>");
         });
 
         $("#dinner").find("label.title").filter(function (index) {
-            dn_mas.push($(this).text());
-            dn_mas_counts.push ($(this).parent().parent().find("input.rec_count").val());
+            var name = $(this).text();
+            var count = $(this).parent().parent().find("input.rec_count").val();
+            var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
+            $("#dn_sum").append("<tr><td>" + name + "</td><td><nobr>X " + count + "</nobr></td></tr>");
+            dn_cal += cal * count;
             return true;
-        });
-        $.each(dn_mas, function (index, value) {
-            $("#dn_sum").append("<tr><td>" + this + "</td><td><nobr>X "+ dn_mas_counts[index] + "</nobr></td></tr>");
         });
 
         $("#supper").find("label.title").filter(function (index) {
-            sp_mas.push($(this).text());
-            sp_mas_counts.push ($(this).parent().parent().find("input.rec_count").val());
+            var name = $(this).text();
+            var count = $(this).parent().parent().find("input.rec_count").val();
+            var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
+            $("#sp_sum").append("<tr><td>" + name + "</td><td><nobr>X " + count + "</nobr></td></tr>");
+            sp_cal += cal * count;
             return true;
-        });
-        $.each(sp_mas, function (index, value) {
-            $("#sp_sum").append("<tr><td>" + this + "</td><td><nobr>X "+ sp_mas_counts[index] + "</nobr></td></tr>");
         });
 
-        $("#breakfast").find("div.rec_cal").filter(function (index) {
-            br_cal += parseInt($(this).text().replace(/\s+/g, ''), 10)* $(this).parent().find("input.rec_count").val();
-            return true;
-        });
         $("#br_kkal").text(br_cal);
-
-        $("#dinner").find("div.rec_cal").filter(function (index) {
-            dn_cal += parseInt($(this).text().replace(/\s+/g, ''), 10) * $(this).parent().find("input.rec_count").val();
-            return true;
-        });
         $("#dn_kkal").text(dn_cal);
-
-        $("#supper").find("div.rec_cal").filter(function (index) {
-            sp_cal += parseInt($(this).text().replace(/\s+/g, ''), 10)* $(this).parent().find("input.rec_count").val();
-            return true;
-        });
         $("#sp_kkal").text(sp_cal);
 
         $("#itogo_kkal").text(br_cal + dn_cal + sp_cal);
