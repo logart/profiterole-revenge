@@ -26,6 +26,8 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountDao accountDao;
 
+    public static final int HASH_SIZE = 32;
+
     public AccountServiceImpl() {
     }
 
@@ -141,23 +143,35 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
+     *  generate Hash code
+     * @return   hash
+     */
+    private String generateHash(int size){
+        SecureRandom r = new SecureRandom();
+        byte[] randomBytes = new byte[size];
+        r.nextBytes(randomBytes);
+        String hash = String.valueOf(Hex.encode(randomBytes));
+        return hash;
+    }
+
+    /**
      * {@inheritDoc}
      */
 
-    public void resetUserPassword(String email) throws Exception {
-        SecureRandom r = new SecureRandom();
-        byte[] randomBytes = new byte[128];
-        r.nextBytes(randomBytes);
-        String hash = String.valueOf(Hex.encode(randomBytes));
-        AccountPasswordResetData resetData = accountDao.getAccountPasswordResetDataByHash(hash);
+    public void resetUserPassword(String email) throws ServiceException{
+        AccountPasswordResetData resetData = null;
+        try{
+            resetData = accountDao.getAccountPasswordResetDataByHash(generateHash(HASH_SIZE));
+        }  catch (EmptyResultDataAccessException ex){
+            // No record found. proceeding with registration of pass reset
+        }
         if (resetData != null){
-            throw new Exception();
+            throw new ServiceException();
         }  else {
             resetData = new AccountPasswordResetData();
-            resetData.setHash(hash);
+            resetData.setHash(generateHash(HASH_SIZE));
             resetData.setAccount(accountDao.getAccountByEmail(email));
             accountDao.addAccountPasswordReset(resetData);
         }
-
     }
 }
