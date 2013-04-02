@@ -1,5 +1,6 @@
 package com.exigen.common.repository;
 
+
 import com.exigen.common.domain.Account;
 import com.exigen.common.domain.AccountPasswordResetData;
 import java.util.List;

@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * Class  {@code AccountPasswordResetData} is used to reset
  *  password for user
- * @author or Victoria Ganzha
+ * @author Victoria Ganzha
  * Date 29.03.13
  *
  */
@@ -17,6 +17,8 @@ import java.io.Serializable;
         @NamedQuery(name = "AccountPasswordResetData.findByHash", query = "SELECT h FROM AccountPasswordResetData h WHERE hash = :hash")
 })
 public class AccountPasswordResetData  implements Serializable {
+
+
     /**
      * {@code id} contains id of account
      */
