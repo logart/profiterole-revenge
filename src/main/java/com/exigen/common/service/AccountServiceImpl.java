@@ -150,8 +150,7 @@ public class AccountServiceImpl implements AccountService {
         SecureRandom r = new SecureRandom();
         byte[] randomBytes = new byte[size];
         r.nextBytes(randomBytes);
-        String hash = String.valueOf(Hex.encode(randomBytes));
-        return hash;
+        return String.valueOf(Hex.encode(randomBytes));
     }
 
     /**
