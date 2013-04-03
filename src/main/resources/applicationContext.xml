@@ -16,6 +16,7 @@
         ">
     <import resource="classpath:application-security.xml"></import>
     <import resource="classpath:root-context.xml"></import>
+    <import resource="classpath:spring-mail.xml"></import>
     <context:annotation-config/>
 
 
