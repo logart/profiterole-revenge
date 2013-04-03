@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +28,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountDao accountDao;
+
+    @Autowired
+    private SendMailService sendMailService;
+
 
     public static final int HASH_SIZE = 32;
 
@@ -157,8 +164,9 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
 
-    public void resetUserPassword(String email) throws ServiceException{
+    public void resetUserPassword(String email) throws ServiceException,  IOException, MessagingException {
         AccountPasswordReset accountPasswordReset = null;
+        Account account = new Account();
         try{
             accountPasswordReset = accountDao.getAccountPasswordResetByHash(generateHash(HASH_SIZE));
         }  catch (EmptyResultDataAccessException ex){
@@ -169,8 +177,14 @@ public class AccountServiceImpl implements AccountService {
         }  else {
             accountPasswordReset = new AccountPasswordReset();
             accountPasswordReset.setHash(generateHash(HASH_SIZE));
-            accountPasswordReset.setAccount(accountDao.getAccountByEmail(email));
+            account = accountDao.getAccountByEmail(email);
+            accountPasswordReset.setAccount(account);
             accountDao.addAccountPasswordReset(accountPasswordReset);
+            sendMailService.sendMail(accountPasswordReset.getHash(),account.getLogin(),email);
         }
+    }
+
+    public void setSendMailService(SendMailService sendMailService){
+        this.sendMailService = sendMailService;
     }
 }
