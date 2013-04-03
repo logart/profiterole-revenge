@@ -158,19 +158,19 @@ public class AccountServiceImpl implements AccountService {
      */
 
     public void resetUserPassword(String email) throws ServiceException{
-        AccountPasswordResetData resetData = null;
+        AccountPasswordReset accountPasswordReset = null;
         try{
-            resetData = accountDao.getAccountPasswordResetDataByHash(generateHash(HASH_SIZE));
+            accountPasswordReset = accountDao.getAccountPasswordResetByHash(generateHash(HASH_SIZE));
         }  catch (EmptyResultDataAccessException ex){
             // No record found. proceeding with registration of pass reset
         }
-        if (resetData != null){
+        if (accountPasswordReset != null){
             throw new ServiceException();
         }  else {
-            resetData = new AccountPasswordResetData();
-            resetData.setHash(generateHash(HASH_SIZE));
-            resetData.setAccount(accountDao.getAccountByEmail(email));
-            accountDao.addAccountPasswordReset(resetData);
+            accountPasswordReset = new AccountPasswordReset();
+            accountPasswordReset.setHash(generateHash(HASH_SIZE));
+            accountPasswordReset.setAccount(accountDao.getAccountByEmail(email));
+            accountDao.addAccountPasswordReset(accountPasswordReset);
         }
     }
 }

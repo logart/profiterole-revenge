@@ -2,7 +2,7 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountPasswordResetData;
+import com.exigen.common.domain.AccountPasswordReset;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
@@ -56,19 +56,17 @@ public class AccountDaoImpl implements AccountDao {
      */
     @Override
     public Account getAccountByEmail(String email) {
-        Account user = this.entityManager.createNamedQuery("Account.findUserByEmail", Account.class).setParameter("email",
+        return this.entityManager.createNamedQuery("Account.findUserByEmail", Account.class).setParameter("email",
                 email).getSingleResult();
-        return user;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public AccountPasswordResetData getAccountPasswordResetDataByHash(String hash) {
-        AccountPasswordResetData resetData = this.entityManager.createNamedQuery("AccountPasswordResetData.findByHash",AccountPasswordResetData.class).setParameter("hash",
-                hash).getSingleResult();
-        return resetData;
+    public AccountPasswordReset getAccountPasswordResetByHash(String hash) {
+        return this.entityManager.createNamedQuery("AccountPasswordReset.findByHash",AccountPasswordReset.class).setParameter("hash",
+                 hash).getSingleResult();
     }
 
 
@@ -105,7 +103,7 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     @Transactional
-    public void addAccountPasswordReset(AccountPasswordResetData accountPasswordResetData){
-        entityManager.persist(accountPasswordResetData);
+    public void addAccountPasswordReset(AccountPasswordReset accountPasswordReset){
+        entityManager.persist(accountPasswordReset);
     }
 }

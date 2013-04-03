@@ -48,6 +48,18 @@ public class AccountServiceImplTest {
     }
 
     @Test
+    public void FindByEmailTest() {
+        accountService = new AccountServiceImpl();
+        String correctEmail = "ololo@gmailcom";
+        String wrongEmail = "o@gmailcom";
+        when(accountDao.getAccountByEmail(account.getEmail())).thenReturn(account);
+        when(accountDao.getAccountByEmail(wrongEmail)).thenThrow(new EmptyResultDataAccessException(1));
+        ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
+        Assert.assertEquals(account, accountService.findByEmail(correctEmail));
+        Assert.assertNull(accountService.findByEmail(wrongEmail));
+    }
+
+    @Test
     public void GetAllAccountsTest() {
         accountService = new AccountServiceImpl();
         list.add(account);

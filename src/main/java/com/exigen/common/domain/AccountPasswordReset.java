@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Class  {@code AccountPasswordResetData} is used to reset
+ * Class  {@code AccountPasswordReset} is used to reset
  *  password for user
  * @author Victoria Ganzha
  * Date 29.03.13
@@ -14,9 +14,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "account_pass_reset")
 @NamedQueries({
-        @NamedQuery(name = "AccountPasswordResetData.findByHash", query = "SELECT h FROM AccountPasswordResetData h WHERE hash = :hash")
+        @NamedQuery(name = "AccountPasswordReset.findByHash", query = "SELECT h FROM AccountPasswordReset h WHERE hash = :hash")
 })
-public class AccountPasswordResetData  implements Serializable {
+public class AccountPasswordReset implements Serializable {
 
 
     /**

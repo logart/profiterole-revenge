@@ -53,4 +53,20 @@ public class RegistrationValidatorTest {
         verify(result).rejectValue(anyString(),anyString(),anyString()) ;
     }
 
+    @Test
+    public void testValidateEmailExists() throws Exception {
+        RegistrationValidator registrationValidator = new RegistrationValidator() ;
+        ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
+        BindingResult result = mock(BindingResult.class);
+
+        when(accountService.findByEmail(anyString())).thenReturn(new Account());
+        RegistrationData registrationData = new RegistrationData() ;
+        registrationValidator.validate(registrationData , result );
+
+        when(accountService.findByEmail(anyString())).thenReturn(null);
+        registrationValidator.validate(registrationData , result );
+
+        verify(result).rejectValue(anyString(),anyString(),anyString()) ;
+    }
+
 }
