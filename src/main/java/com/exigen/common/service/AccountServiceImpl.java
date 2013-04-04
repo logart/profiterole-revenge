@@ -7,8 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -164,7 +162,7 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
 
-    public void resetUserPassword(String email) throws ServiceException,  IOException, MessagingException {
+    public void resetUserPassword(String email) throws ServiceException {
         AccountPasswordReset accountPasswordReset = null;
         Account account = new Account();
         try{
