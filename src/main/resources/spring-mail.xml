@@ -33,8 +33,8 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<value>
 			<![CDATA[
 				Dear  %s,
-				To continue the registration, please, go to the
-				http://lena-test.cloudfoundry.com/editprofile?hashcode=%s
+                To continue the registration, please, go to the
+                %s
 			]]>
 		</value>
 	</property>
