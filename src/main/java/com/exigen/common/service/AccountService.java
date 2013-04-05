@@ -3,10 +3,6 @@ package com.exigen.common.service;
 import com.exigen.common.domain.Account;
 import com.exigen.common.domain.AccountData;
 import com.exigen.common.domain.RegistrationData;
-import freemarker.template.TemplateException;
-
-import javax.mail.MessagingException;
-import java.io.IOException;
 import java.util.List;
 
 /**
