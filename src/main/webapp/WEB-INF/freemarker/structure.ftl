@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="<@spring.url '/css/bootstrap.css'/>" media="screen"/>
     <link rel="stylesheet" type="text/css" href="<@spring.url '/css/style.css'/>" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="<@spring.url '/css/print.css'/>" media="print"/>
 ${styles!}
 ${scripts!}
     <script type="text/javascript" src="js/jquery-1.8.3.js"></script>

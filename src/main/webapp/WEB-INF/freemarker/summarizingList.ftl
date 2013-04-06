@@ -1,5 +1,5 @@
 [#ftl]
-<div class="modal-header">
+<div class="modal-header noprint">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h4 id="myModalLabel">Итого</h4>
 </div>
@@ -38,11 +38,12 @@
             </tr>
         [/#list]
         </table>
-    <br/>
-        </span>
+        <br/>
+    </span>
 </div>
-<div class="modal-footer">
-    <button class="btn btn-primary">Печать</button>
+<div class="modal-footer noprint">
+    <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
+    <button class="btn btn-success">Добавить</button>
 </div>
 
 <script type="text/javascript">
@@ -55,7 +56,7 @@
             var name = $(this).text();
             var count = $(this).parent().parent().find("input.rec_count").val();
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
-            $("#br_sum").append("<tr><td>" + name + "</td><td><nobr>X " + count + "</nobr></td></tr>");
+            $("#br_sum").append("<tr><td>" + name + "</td><td><nobr>x " + count + "</nobr></td></tr>");
             br_cal += cal * count;
             return true;
         });
@@ -64,7 +65,7 @@
             var name = $(this).text();
             var count = $(this).parent().parent().find("input.rec_count").val();
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
-            $("#dn_sum").append("<tr><td>" + name + "</td><td><nobr>X " + count + "</nobr></td></tr>");
+            $("#dn_sum").append("<tr><td>" + name + "</td><td><nobr>x " + count + "</nobr></td></tr>");
             dn_cal += cal * count;
             return true;
         });
@@ -73,7 +74,7 @@
             var name = $(this).text();
             var count = $(this).parent().parent().find("input.rec_count").val();
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
-            $("#sp_sum").append("<tr><td>" + name + "</td><td><nobr>X " + count + "</nobr></td></tr>");
+            $("#sp_sum").append("<tr><td>" + name + "</td><td><nobr>x " + count + "</nobr></td></tr>");
             sp_cal += cal * count;
             return true;
         });
@@ -85,4 +86,15 @@
         $("#itogo_kkal").text(br_cal + dn_cal + sp_cal);
 
     });
+</script>
+
+<script type="text/javascript">
+    function printBlock(printedBlock){
+        printUnit = $(printedBlock).html();
+        $('div.container').addClass('noprint');
+        $('body').append('<div class="toprint">' + printUnit + '</div>');
+        window.print();
+        $('div.container').removeClass('noprint');
+        $('.toprint').remove();
+    }
 </script>
