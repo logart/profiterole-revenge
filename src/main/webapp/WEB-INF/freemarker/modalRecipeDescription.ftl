@@ -1,5 +1,5 @@
 [#ftl]
-<div id="header" class="modal-header" style="display: none;">
+<div id="header" class="modal-header noprint" style="display: none;">
     <button id="close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel" style="word-wrap: break-word;">${recipe.title}</h3>
 </div>
@@ -22,7 +22,6 @@
         </tr>
     [/#list]
     </table>
-    <br/>
     [#list recipe.steps as a]
         <p><strong>Шаг ${a.number}</strong></p>
 
@@ -31,12 +30,24 @@
     [/#list]
         </span>
 </div>
-<div class="modal-footer">
-    <button class="btn btn-primary">Печать</button>
+<div class="modal-footer noprint">
+    <button class="btn btn-primary pull-left " onclick="printBlock('#myModal')">Печать</button>
+    <button class="btn btn-success">Добавить</button>
 </div>
 
 <script type="text/javascript">
     $("#close").click(function () {
         $("#image").hide();
     })
+</script>
+
+<script type="text/javascript">
+    function printBlock(printedBlock){
+        printUnit = $(printedBlock).html();
+        $('div.container').addClass('noprint');
+        $('body').append('<div class="toprint">' + printUnit + '</div>');
+        window.print();
+        $('div.container').removeClass('noprint');
+        $('.toprint').remove();
+    }
 </script>
