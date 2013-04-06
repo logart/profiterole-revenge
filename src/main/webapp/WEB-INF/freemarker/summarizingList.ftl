@@ -43,7 +43,6 @@
 </div>
 <div class="modal-footer noprint">
     <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
-    <button class="btn btn-success">Добавить</button>
 </div>
 
 <script type="text/javascript">
