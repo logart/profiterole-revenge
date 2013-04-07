@@ -106,4 +106,16 @@ public class AccountDaoImpl implements AccountDao {
     public void addAccountPasswordReset(AccountPasswordReset accountPasswordReset){
         entityManager.persist(accountPasswordReset);
     }
+
+    /**
+     *
+     * {@inheritDoc}
+     */
+
+    @Override
+    @Transactional
+    public void removeAccountPasswordReset(AccountPasswordReset accountPasswordReset){
+        AccountPasswordReset managedAccountPasswordReset = entityManager.merge(accountPasswordReset);
+        entityManager.remove(managedAccountPasswordReset);
+    }
 }

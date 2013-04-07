@@ -182,4 +182,14 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public void changeForgottenUserPassword(String hash, String newPassword) {
+        AccountPasswordReset accountPasswordReset = accountDao.getAccountPasswordResetByHash(hash);
+        Account account = accountPasswordReset.getAccount();
+        account.setPassword(newPassword);
+        accountDao.updateAccount(account);
+        accountDao.removeAccountPasswordReset(accountPasswordReset) ;
+    }
 }
