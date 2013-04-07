@@ -18,7 +18,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		
 	</bean>
 	
-	<bean id="sendMailService" class="com.exigen.common.service.SendMailService">
+	<bean id="sendMailService" class="com.exigen.common.service.SendMailServiceImpl">
 		<property name="mailSender" ref="mailSender" />
 		<property name="simpleMailMessage" ref="customeMailMessage" />
 	</bean>

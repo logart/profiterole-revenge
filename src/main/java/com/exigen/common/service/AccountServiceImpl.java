@@ -182,7 +182,4 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
-    public void setSendMailService(SendMailService sendMailService){
-        this.sendMailService = sendMailService;
-    }
 }
