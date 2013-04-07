@@ -21,14 +21,15 @@ import java.util.Map;
 
 
 /**
- * Class {@code SendMailService}  used for send mail massage
+ * Class {@code SendMailServiceImpl}  used for send mail massage
  *
  * @author Elena Vasilkovich
  * @date April 5,2013
  *
  */
-@Service("sendMailService")
-public class SendMailService {
+//@Service("SendMailService")
+@Service
+public class SendMailServiceImpl implements SendMailService{
     /**
      * {@code mailSender} describes the JavaMailSender to inject on this
      * class
@@ -67,14 +68,7 @@ public class SendMailService {
     public void setMailSender(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
-    /**
-     * {@method setRequest(HttpServletRequest request)}
-     * Inject in this class
-     *
-     */
-    public void setRequest(HttpServletRequest request) {
-        this.request = request;
-    }
+
     /**
      * {@method sendMail(String hash, String login, String email)}
      * for send mail message
@@ -84,7 +78,7 @@ public class SendMailService {
      * @param email (object of the Account.email)
      *
      */
-    public void sendMail(String hash, String login, String email) {
+    public void sendMail(String hash, String login, String email)  {
 
         StringBuffer requestURL = request.getRequestURL();
         requestURL.delete(requestURL.lastIndexOf("forgotPassword"), requestURL.length());
