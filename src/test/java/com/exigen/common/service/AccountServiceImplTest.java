@@ -1,7 +1,9 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountData;
 import com.exigen.common.domain.Gender;
+import com.exigen.common.domain.RegistrationData;
 import com.exigen.common.repository.AccountDao;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -10,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.util.ReflectionTestUtils;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -72,6 +75,27 @@ public class AccountServiceImplTest {
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
         accountService.addAccount(account);
         verify(accountDao, times(1)).addAccount(account);
+    }
+
+    @Test
+    public void testAddAccountByRegistrationData() {
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        RegistrationData registrationData = new RegistrationData();
+        registrationData.setDateOfBirth("01.01.2010");
+        accountService.addAccount(registrationData);
+        verify(accountDao, times(1)).addAccount((Account) anyObject());
+    }
+
+    @Test
+    public void testUpdateAccount() {
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
+        AccountData accountData = new AccountData();
+        accountData.setDateOfBirth("01.01.2010");
+        accountService.updateAccount(accountData);
+        verify(accountDao, times(1)).updateAccount((Account) anyObject());
     }
 
     @Test
