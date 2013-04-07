@@ -56,7 +56,8 @@ public class ForgotPasswordController {
         try {
             accountService.resetUserPassword(email);
         } catch(ServiceException ex){
-            return "redirect:";  }
+            return "redirect:";
+        }
 
         return "successSendMail";
 

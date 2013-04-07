@@ -54,11 +54,25 @@ public class ForgotPasswordControllerTest {
         when(forgotPasswordValidator.supports(String.class)).thenReturn(true);
 
         Assert.assertEquals("successSendMail", forgotPasswordController.forgotPassword(model, email, result));
+    }
+
+    @Test
+    public void testForgotPasswordException(){
+        ForgotPasswordController forgotPasswordController = new ForgotPasswordController();
+        ReflectionTestUtils.setField(forgotPasswordController, "accountService", this.accountService);
+        ReflectionTestUtils.setField(forgotPasswordController, "forgotPasswordValidator", this.forgotPasswordValidator);
+        Map model = new TreeMap();
+        String email = "ggg@g.com";
+        BindingResult result = mock(BindingResult.class);
+        when(result.hasErrors()).thenReturn(false);
+        when(forgotPasswordValidator.supports(String.class)).thenReturn(true);
         try {
-            verify(this.accountService).resetUserPassword(anyString()) ;
+            doThrow(new ServiceException()).when(this.accountService).resetUserPassword(anyString());
         } catch (ServiceException e) {
-            e.printStackTrace();
+        e.printStackTrace();
         }
+        Assert.assertEquals("redirect:", forgotPasswordController.forgotPassword(model, email, result));
+
     }
 
     @Test

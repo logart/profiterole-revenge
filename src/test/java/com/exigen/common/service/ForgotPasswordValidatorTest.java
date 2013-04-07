@@ -9,9 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.BindingResult;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * author Ganzha Victoria
@@ -30,8 +28,12 @@ public class ForgotPasswordValidatorTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
-    public void testSupports() throws Exception {
+    public void testSupports() {
         ForgotPasswordValidator passwordValidator = new ForgotPasswordValidator();
         Assert.assertFalse(passwordValidator.supports(Object.class));
         Assert.assertTrue(passwordValidator.supports(String.class));
@@ -40,7 +42,19 @@ public class ForgotPasswordValidatorTest {
     /**
      * @throws Exception
      */
+    @Test
+    public void testValidateEmailNotNull() throws Exception {
+        ForgotPasswordValidator passwordValidator = new ForgotPasswordValidator() ;
+        BindingResult result = mock(BindingResult.class);
+        String email = null;
+        passwordValidator.validate(email, result);
+        Assert.assertFalse(result.hasErrors());
+    }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void testValidateEmailExists() throws Exception {
         ForgotPasswordValidator passwordValidator = new ForgotPasswordValidator() ;
