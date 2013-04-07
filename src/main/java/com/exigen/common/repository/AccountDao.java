@@ -113,4 +113,12 @@ public interface AccountDao {
      */
     void addAccountPasswordReset(AccountPasswordReset accountPasswordReset);
 
+    /**
+     * removeAccountPasswordReset(AccountPasswordReset accountPasswordReset)
+     * for remove information about hash and some particular user from DB
+     * after use it in changing forgotten password process
+     *
+     * @param accountPasswordReset (object of AccountPasswordReset)
+     */
+    void removeAccountPasswordReset(AccountPasswordReset accountPasswordReset);
 }

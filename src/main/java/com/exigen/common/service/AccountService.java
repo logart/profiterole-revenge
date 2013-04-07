@@ -93,9 +93,21 @@ public interface AccountService {
     AccountData accountDataFromAccount(Account account);
 
     /**
+     * {@method changeForgottenUserPassword(String hash, String newPassword)}
+     * for changing password in account, that given by hash from AccountPasswordReset
+     *
+     * @param hash (string with hash)
+     * @param newPassword (string with newPassword)
+     * @throws org.springframework.dao.DataAccessException
+     *                              (resource
+     *                              on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException (when AccountPasswordReset is null)
+     */
+    void changeForgottenUserPassword(String hash, String newPassword) ;
+
+    /**
      * {@method resetUserPassword(String email)}
      * @param email (unique identificator of some particular user)
      */
     void resetUserPassword(String email) throws ServiceException;
-
 }
