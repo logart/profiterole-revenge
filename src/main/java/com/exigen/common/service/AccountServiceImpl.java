@@ -31,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
     private SendMailService sendMailService;
 
 
-    public static final int HASH_SIZE = 32;
+        public static final int HASH_SIZE = 32;
 
     public AccountServiceImpl() {
     }
@@ -151,7 +151,7 @@ public class AccountServiceImpl implements AccountService {
      *  generate Hash code
      * @return   hash
      */
-    private String generateHash(int size){
+    public String generateHash(int size){
         SecureRandom r = new SecureRandom();
         byte[] randomBytes = new byte[size];
         r.nextBytes(randomBytes);
@@ -164,7 +164,7 @@ public class AccountServiceImpl implements AccountService {
 
     public void resetUserPassword(String email) throws ServiceException {
         AccountPasswordReset accountPasswordReset = null;
-        Account account = new Account();
+        Account account;
         try{
             accountPasswordReset = accountDao.getAccountPasswordResetByHash(generateHash(HASH_SIZE));
         }  catch (EmptyResultDataAccessException ex){

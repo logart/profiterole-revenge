@@ -1,7 +1,6 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountData;
 import com.exigen.common.domain.Gender;
 import com.exigen.common.repository.AccountDao;
 import junit.framework.Assert;
@@ -11,15 +10,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.util.ReflectionTestUtils;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 public class AccountServiceImplTest {
@@ -29,6 +24,9 @@ public class AccountServiceImplTest {
     private Account account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar, "Ukraine");
     private AccountServiceImpl accountService;
     private List<Account> list = new ArrayList<Account>();
+
+    private static final int HASH_SIZE = 32;
+
 
     @Before
     public void setup() {
@@ -85,5 +83,12 @@ public class AccountServiceImplTest {
         Assert.assertNull(accountService.accountDataFromAccount(account).getMaleOrFemale());
         Assert.assertNull(accountService.accountDataFromAccount(account).getDateOfBirth());
     }
+
+   @Test
+    public void generateHashTest(){
+        accountService = new AccountServiceImpl();
+        Assert.assertTrue(accountService.generateHash(AccountServiceImpl.HASH_SIZE).length() >= AccountServiceImpl.HASH_SIZE);
+   }
+
 
 }
