@@ -27,7 +27,7 @@ import java.util.Map;
  * @date April 5,2013
  *
  */
-//@Service("SendMailService")
+
 @Service
 public class SendMailServiceImpl implements SendMailService{
     /**
@@ -51,7 +51,8 @@ public class SendMailServiceImpl implements SendMailService{
     @Autowired
     private HttpServletRequest request;
 
-
+    private Configuration   cfg;
+    private Template temp;
     /**
      * {@method setSimpleMailMessage(SimpleMailMessage simpleMailMessage)}
      * Inject in this class
@@ -92,12 +93,12 @@ public class SendMailServiceImpl implements SendMailService{
         datamodel.put("commonURL",commonURL);
         datamodel.put("login",login);
 
-        Configuration   cfg = new Configuration();
+        cfg = new Configuration();
 
         cfg.setServletContextForTemplateLoading(request.getSession().getServletContext(),"WEB-INF/freemarker");
 
         try {
-            Template temp = cfg.getTemplate("mail.ftl");
+            temp = cfg.getTemplate("mail.ftl");
             StringWriter writer = new StringWriter();
             temp.process(datamodel,writer);
 
