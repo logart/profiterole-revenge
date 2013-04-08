@@ -6,6 +6,7 @@ import com.exigen.common.domain.AccountPasswordReset;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -65,8 +66,12 @@ public class AccountDaoImpl implements AccountDao {
      */
     @Override
     public AccountPasswordReset getAccountPasswordResetByHash(String hash) {
+        try{
         return this.entityManager.createNamedQuery("AccountPasswordReset.findByHash",AccountPasswordReset.class).setParameter("hash",
                  hash).getSingleResult();
+        } catch(NoResultException e){
+            return null;
+        }
     }
 
 
