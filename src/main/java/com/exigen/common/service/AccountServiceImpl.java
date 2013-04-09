@@ -163,13 +163,9 @@ public class AccountServiceImpl implements AccountService {
      */
 
     public void resetUserPassword(String email) throws ServiceException {
-        AccountPasswordReset accountPasswordReset = null;
+        AccountPasswordReset accountPasswordReset;
         Account account;
-        try{
             accountPasswordReset = accountDao.getAccountPasswordResetByHash(generateHash(HASH_SIZE));
-        }  catch (EmptyResultDataAccessException ex){
-            // No record found. proceeding with registration of pass reset
-        }
         if (accountPasswordReset != null){
             throw new ServiceException();
         }  else {

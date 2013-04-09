@@ -22,7 +22,7 @@ public class AccountServiceImplTest {
     @Mock
     private AccountDao accountDao;
     private Calendar calendar = new GregorianCalendar(2010, 11, 03);
-    private Account account;
+    private Account  account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar, "Ukraine");
     private AccountServiceImpl accountService;
     private List<Account> list = new ArrayList<Account>();
     private AccountPasswordReset accountPasswordReset;
@@ -32,10 +32,6 @@ public class AccountServiceImplTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar, "Ukraine");
-        accountPasswordReset = new AccountPasswordReset();
-        accountPasswordReset.setAccount(account);
-        accountPasswordReset.setHash("1234567890");
     }
 
     @Test
@@ -124,6 +120,13 @@ public class AccountServiceImplTest {
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
         when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(new AccountPasswordReset());
         accountService.resetUserPassword("");
+
+    }
+
+    @Test
+    public void resetUserPasswordServiceNullTest()throws Exception{
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
         when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(null);
         Assert.assertNull(accountDao.getAccountPasswordResetByHash(anyString()));
         accountPasswordReset = new AccountPasswordReset();
@@ -132,19 +135,7 @@ public class AccountServiceImplTest {
         accountPasswordReset.setAccount(account);
         accountDao.addAccountPasswordReset(accountPasswordReset);
         verify(accountDao, times(1)).addAccountPasswordReset((AccountPasswordReset)anyObject());
-   }
-    @Test
-    public void changeForgottenUserPasswordTest(){
-        accountService = new AccountServiceImpl();
-        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
-        when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(accountPasswordReset);
-        Assert.assertEquals(account, accountPasswordReset.getAccount() );
-        account.setEmail("ol@gmailcom");
-        accountDao.updateAccount(account);
-        verify(accountDao, times(1)).updateAccount((Account) anyObject());
-        accountDao.removeAccountPasswordReset(accountPasswordReset);
-        verify(accountDao, times(1)).removeAccountPasswordReset((AccountPasswordReset) anyObject());
-
     }
+
 
 }
