@@ -10,7 +10,15 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 
 public class AccountTest {
-    private Account account=new Account();;
+    private Account account=new Account();
+
+    @Test
+    public void getSetId(){
+        assertNull(account.getId());
+        Integer test = 1;
+        account.setId(test);
+        assertEquals(test,account.getId());
+    }
 
     @Test
     public void getSetLogin(){
