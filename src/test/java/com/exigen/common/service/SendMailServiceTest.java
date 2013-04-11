@@ -11,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -61,8 +60,10 @@ public class SendMailServiceTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        when(simpleMailMessage.getText()).thenReturn(new String("Dear %s To continue %s"));
         sendMailService.sendMail("123456789", "User", "user@user.com");
-        verify(mailSender, never()).send((MimeMessage) anyObject());
+        verify(mailSender, times(1)).send((SimpleMailMessage) anyObject());
     }
 
 }
