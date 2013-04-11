@@ -70,6 +70,14 @@ public class SendMailServiceImpl implements SendMailService{
         this.mailSender = mailSender;
     }
 
+    public void setCfg(Configuration   cfg) {
+        this.cfg = cfg;
+
+    }
+    public void setTemp(Template temp) {
+        this.temp = temp;
+    }
+
     /**
      * {@method sendMail(String hash, String login, String email)}
      * for send mail message
@@ -112,16 +120,26 @@ public class SendMailServiceImpl implements SendMailService{
             helper.setText(writer.toString(),true);
             mailSender.send(message1);
         }
-        catch (MessagingException e) {
-            throw new MailParseException(e);
+
+        catch (IOException e ) {
+            otherSendMail(login,responseURL,email);
         }
         catch (TemplateException e ) {
-
+            otherSendMail(login,responseURL,email);
         }
-        catch (IOException e ) {
-
+        catch (MessagingException e) {
+            otherSendMail(login,responseURL,email);
         }
 
     }
 
+
+    private  void otherSendMail(String login,String responseURL,String email){
+
+        SimpleMailMessage message1 = new SimpleMailMessage(simpleMailMessage);
+		message1.setText(String.format(simpleMailMessage.getText(),login,responseURL));
+        message1.setTo(email);
+        mailSender.send(message1);
+
+    }
 }
