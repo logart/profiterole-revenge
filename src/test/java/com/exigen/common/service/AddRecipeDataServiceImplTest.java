@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-public class AddRecipeDataServiceImplTest {    //TODO
+public class AddRecipeDataServiceImplTest {
 
     AddRecipeDataServiceImpl addRecipeDataService = new AddRecipeDataServiceImpl();
 

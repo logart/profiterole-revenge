@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-public class RecipeServiceImplTest {        //TODO
+public class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService=new RecipeServiceImpl();
 
