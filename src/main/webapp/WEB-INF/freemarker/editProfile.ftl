@@ -82,10 +82,10 @@
     <div class="control-group">
         <div class="control-label-left" style="padding-top: 5px;">Пол</div>
         <div class="controls">
-            <label class="radio inline" >
+            <div class="radio_gender" >
                 [#assign gender={"Male":"М","Female":"Ж"}]
-             [@spring.formRadioButtons  "editProfileData.maleOrFemale" gender '<br>' '' /]
-            </label>
+             [@spring.formRadioButtons  "editProfileData.maleOrFemale" gender ' ' '' /]
+            </div>
         </div>
     </div>
 
