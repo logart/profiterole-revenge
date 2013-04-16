@@ -1126,6 +1126,14 @@ textarea::-webkit-input-placeholder {
     color: #999999;
 }
 
+.radio_gender label{
+    display: inline;
+    padding-right: 16px;
+}
+
+.radio_gender input[type="radio"]{
+    margin: 0 0 0;
+}
 .radio,
 .checkbox {
     min-height: 18px;
