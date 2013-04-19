@@ -2,6 +2,7 @@ package com.exigen.common.domain;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,6 +24,8 @@ import java.util.List;
         @NamedQuery(name = "Recipe.findRecipeById",
                 query = "SELECT rp FROM Recipe AS rp WHERE rp.id=:selectedId")
 })
+// This annotation tells hibernate search that this class has to be indexed
+@Indexed
 
 public class Recipe implements Serializable {
 
@@ -38,12 +41,14 @@ public class Recipe implements Serializable {
     /**
      * {@code title} describes name of recipe in this entity. Its showed in our views
      */
+    @Field(index= Index.YES,analyze = Analyze.YES,store = Store.NO)
     private String title;
 
     /**
      * {@code description} this field is intended to describe the recipe
      */
     @Column(columnDefinition = "mediumtext")
+    @Field(index= Index.YES,analyze = Analyze.YES,store = Store.NO)
     private String description;
 
     /**
