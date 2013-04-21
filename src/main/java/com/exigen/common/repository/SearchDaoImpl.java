@@ -35,13 +35,10 @@ public class SearchDaoImpl implements SearchDao {
      *
      */
     @PostConstruct
-    public void postConstruct() {
-        try{
+    public void postConstruct() throws InterruptedException{
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
         fullTextEntityManager.createIndexer().startAndWait();
-        } catch(InterruptedException e){
-            throw  new RuntimeException (e);
-        }
+
     }
 
     /**
