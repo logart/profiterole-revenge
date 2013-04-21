@@ -4,10 +4,12 @@ import com.exigen.common.domain.Recipe;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Repository;
+
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ import java.util.List;
  */
 
 @Repository("searchDao")
-public class SearchDaoImpl implements SearchDao, InitializingBean {
+public class SearchDaoImpl implements SearchDao {
 
     private static final String[] FIELD_NAMES = new String[]{"title", "description"};
 
@@ -30,12 +32,16 @@ public class SearchDaoImpl implements SearchDao, InitializingBean {
 
     /**
      * for indexing db with every update and restart
-     * @throws Exception
+     *
      */
-    @Override
-    public void afterPropertiesSet() throws Exception {
+    @PostConstruct
+    public void postConstruct() {
+        try{
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
         fullTextEntityManager.createIndexer().startAndWait();
+        } catch(InterruptedException e){
+            throw  new RuntimeException (e);
+        }
     }
 
     /**
@@ -57,11 +63,11 @@ public class SearchDaoImpl implements SearchDao, InitializingBean {
                 .matching(searchTerm)
                 .createQuery();
 
-        javax.persistence.Query persistenceQuery =
+        Query persistenceQuery =
                 fullTextEntityManager.createFullTextQuery(query, Recipe.class);
 
-        List<Recipe> result = persistenceQuery.getResultList();
-        return result;
+
+        return persistenceQuery.getResultList();
 
     }
 
