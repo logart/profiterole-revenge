@@ -292,13 +292,6 @@
             <version>4.1.1.Final</version>
         </dependency>
 
-        <!-- Infinispan integration: -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-infinispan</artifactId>
-            <version>4.1.1.Final</version>
-        </dependency>
-
     </dependencies>
 
 <build>
