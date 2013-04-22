@@ -13,11 +13,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Class  {class SearchDaoImp} is used for
+ * Class  {@code SearchDaoImp} is used for
  * search recipe on the index
+ *
  * @author Victoria Ganzha
- * date 17.04.13
+ * @date 17.04.13
  */
+
 
 @Repository("searchDao")
 public class SearchDaoImpl implements SearchDao {
@@ -31,20 +33,29 @@ public class SearchDaoImpl implements SearchDao {
     private EntityManager entityManager;
 
     /**
-     * for indexing db with every update and restart
+     * {@method doIndexing() }
+     * for indexing recipe with every update and restart
      *
      */
-    @PostConstruct
-    public void postConstruct() throws InterruptedException{
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-        fullTextEntityManager.createIndexer().startAndWait();
 
+    @PostConstruct
+    public void doIndexing(){
+        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+        try{
+        fullTextEntityManager.createIndexer().startAndWait();
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     /**
-     * method for indexing entity and search recipe
-     * param searchTerm
-     * return result of search
+     * {@method searchRecipe ( final String searchTerm) }
+     * for indexing entity and search recipe on index
+     *
+     * @param searchTerm
+     * @return the list of find recipes
+     *
      */
     @Override
     public List<Recipe> searchRecipe ( final String searchTerm) {

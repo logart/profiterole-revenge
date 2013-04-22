@@ -4,17 +4,19 @@ import com.exigen.common.domain.Recipe;
 import java.util.List;
 
 /**
- * Interface  {interface SearchDao} is used for
+ * Interface  {@code SearchDao} is used for
  * search recipe on the index
  * @author Victoria Ganzha
- * date 17.04.13
+ * @date 17.04.13
  */
 public interface SearchDao {
 
     /**
-     * method for indexing entity and search recipe
-     * param searchTerm
-     * return result of search
+     *  {@method searchRecipe ( final String searchTerm)}
+     *  for search recipe on index
+     * @param searchTerm
+     * @return for indexing entity and search recipe on index
+     *
      */
 
     List<Recipe> searchRecipe ( final String searchTerm);
