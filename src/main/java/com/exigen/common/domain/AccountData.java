@@ -25,6 +25,8 @@ public class AccountData implements Serializable {
 
     private static final int MAX_LENGTH_OF_LOGIN=50;
 
+    private static final int MAX_LENGTH_OF_EMAIL=250;
+
     /**
      * {@code login} describes username
      */
@@ -45,6 +47,7 @@ public class AccountData implements Serializable {
      * {@code email} describes email address
      */
     @NotEmpty(message = "Поле не должно быть пустым.")
+    @Size(max = MAX_LENGTH_OF_EMAIL,message = "Длина e-mail должна быть не больше 250 символов")
     @Email (message = "Введите корректный e-mail.")
     private String email;
 
