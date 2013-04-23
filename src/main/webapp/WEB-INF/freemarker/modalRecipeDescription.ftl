@@ -33,7 +33,7 @@
 <div class="modal-footer noprint">
     <button class="btn btn-primary pull-left " onclick="printBlock('#myModal')">Печать</button>
 
-    <button class="btn btn-success" style="display: none;" onclick="addButtonClick(${recipe.id})">Добавить</button>
+    <button class="btn btn-success" style="display: none;" data-dismiss="modal" onclick="addButtonClick(${recipe.id})">Добавить</button>
 </div>
 
 <script type="text/javascript">
@@ -48,7 +48,6 @@
         var elem = $("div .rec_id").filter(function (index) {
             return ($(this).text() == "${recipe.id}")&&($(this).parent().find(".rec_count").length==0);}).parent();
         addToMenuByCloning(elem,$(".droppable:visible"));
-        $('#myModal').trigger('reveal:close');
     }
 
 </script>
