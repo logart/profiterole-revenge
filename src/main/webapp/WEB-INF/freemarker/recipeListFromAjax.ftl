@@ -86,55 +86,7 @@
         $(".droppable").droppable({
             accept: ".recepies_btn",
             drop: function (event, ui) {
-                var trash_icon = "<a href='#' title='Удалить рецепт' class='ui-icon ui-icon-trash' onclick=\"" +
-                        "$(this).parent().popover('destroy').remove(); return false;\">Удалить рецепт</a>";
-                var counter = "<input type='test' class='rec_count' value=1>";
-                var minus_btn = "<input type='button' class='minus_count' value='-' onclick='" +
-                        "var $input = $(this).parent().find(\".rec_count\");" +
-                        "var val=parseInt($input.val());" +
-                        "$input.val((val>1)? val - 1:val);return false;'>";
-                var plus_btn = "<input type='button' class='plus_count' value='+' onclick='" +
-                        "var $input = $(this).parent().find(\".rec_count\");" +
-                        "$input.val(parseInt($input.val()) + 1);return false;'>";
-
-                var elem = ui.draggable.clone();
-
-                var already_exist_marker = false;
-                $("#menuDrop").find("div:visible").find(".rec_id").filter(function (index) {
-                    if ($(this).text() == elem.find(".rec_id").text()) {
-                        var val = $(this).parent().find(".rec_count").val();
-                        $(this).parent().find(".rec_count").val(++val);
-                        already_exist_marker = true;
-                    }
-                    ;
-                    return true;
-                });
-
-                if (!already_exist_marker) {
-
-                    elem.append(minus_btn);
-                    elem.append(counter);
-                    elem.append(plus_btn);
-
-                    elem.find("input").click(function (event) {
-                        event.stopPropagation();
-                    });
-
-                    (elem.prepend(trash_icon)).insertAfter($(this).find("h1"));
-                    elem.popover({
-                        trigger: 'hover',
-                        placement: 'right'
-                    });
-                    elem.click(function (e) {
-                        var lv_target = $(this).attr('data-target');
-                        var lv_url = $(this).attr('href');
-                        $(lv_target).load(lv_url, function () {
-                            $("#header").show();
-                            $("#body").show();
-                        });
-                    });
-                }
-
+                addToMenuByCloning(ui.draggable, $(this));
             }
         });
     });
@@ -149,5 +101,54 @@
         $(this).ellipsis();
     });
 
+    function addToMenuByCloning(clonableElement, droppedTo){
+            var trash_icon = "<a href='#' title='Удалить рецепт' class='ui-icon ui-icon-trash' onclick=\"" +
+                    "$(this).parent().popover('destroy').remove(); return false;\">Удалить рецепт</a>";
+            var counter = "<input type='test' class='rec_count' value=1>";
+            var minus_btn = "<input type='button' class='minus_count' value='-' onclick='" +
+                    "var $input = $(this).parent().find(\".rec_count\");" +
+                    "var val=parseInt($input.val());" +
+                    "$input.val((val>1)? val - 1:val);return false;'>";
+            var plus_btn = "<input type='button' class='plus_count' value='+' onclick='" +
+                    "var $input = $(this).parent().find(\".rec_count\");" +
+                    "$input.val(parseInt($input.val()) + 1);return false;'>";
 
+            var elem = clonableElement.clone();
+
+            var already_exist_marker = false;
+            $("#menuDrop").find("div:visible").find(".rec_id").filter(function (index) {
+                if ($(this).text() == elem.find(".rec_id").text()) {
+                    var val = $(this).parent().find(".rec_count").val();
+                    $(this).parent().find(".rec_count").val(++val);
+                    already_exist_marker = true;
+                }
+                ;
+                return true;
+            });
+
+            if (!already_exist_marker) {
+
+                elem.append(minus_btn);
+                elem.append(counter);
+                elem.append(plus_btn);
+
+                elem.find("input").click(function (event) {
+                    event.stopPropagation();
+                });
+
+                (elem.prepend(trash_icon)).insertAfter(droppedTo.find("h1"));
+                elem.popover({
+                    trigger: 'hover',
+                    placement: 'right'
+                });
+                elem.click(function (e) {
+                    var lv_target = $(this).attr('data-target');
+                    var lv_url = $(this).attr('href');
+                    $(lv_target).load(lv_url, function () {
+                        $("#header").show();
+                        $("#body").show();
+                    });
+                });
+            }
+    }
 </script>

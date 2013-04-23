@@ -32,8 +32,31 @@
 </div>
 <div class="modal-footer noprint">
     <button class="btn btn-primary pull-left " onclick="printBlock('#myModal')">Печать</button>
-    <button class="btn btn-success">Добавить</button>
+
+    <button class="btn btn-success" style="display: none;" onclick="addButtonClick(${recipe.id})">Добавить</button>
 </div>
+
+<script type="text/javascript">
+    $("div .rec_id").filter(function (index) {
+        if($(this).text() == "${recipe.id}"){
+            $("div.modal-footer > button.btn-success").css('display', 'inline-block') ;
+            return true;
+        }
+        return false;
+    });
+    function addButtonClick(id){
+        var elem = $("div .rec_id").filter(function (index) {
+            return ($(this).text() == "${recipe.id}")&&($(this).parent().find(".rec_count").length==0);}).parent();
+        addToMenuByCloning(elem,$(".droppable:visible"));
+        $('#myModal').trigger('reveal:close');
+    }
+
+</script>
+
+<script type="text/javascript">
+
+</script>
+
 
 <script type="text/javascript">
     $("#close").click(function () {
