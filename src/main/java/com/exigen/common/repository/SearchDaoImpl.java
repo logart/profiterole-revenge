@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Class  {@code SearchDaoImp} is used for
@@ -26,6 +27,8 @@ public class SearchDaoImpl implements SearchDao {
 
     private static final String[] FIELD_NAMES = new String[]{"title", "description"};
 
+    protected static final Logger LOG = Logger.getLogger(SearchDaoImpl.class.getName());
+
     /**
      * {@code entityManager} describes the EntityManager for JPA ORM
      */
@@ -40,12 +43,14 @@ public class SearchDaoImpl implements SearchDao {
 
     @PostConstruct
     public void doIndexing(){
+
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
         try{
         fullTextEntityManager.createIndexer().startAndWait();
+            LOG.info("indexing is successful");
         }
         catch (InterruptedException e){
-            e.printStackTrace();
+            LOG.warning("InterruptedException when trying to indexing recipe");
         }
     }
 
