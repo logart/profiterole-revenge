@@ -54,8 +54,9 @@ ${scripts!}
 
 
       <!---- -->
-                <form class="navbar-search pull-right">
-                    <input type="text" class="search-query" placeholder="Поиск недоступен" disabled>
+                <form action="/searchResults" method="POST" class="navbar-search pull-right">
+                    <input type="text" class="search-query" placeholder="Нажмите для поиска" name="searchUnit"
+                           value="">
                 </form>
 
 

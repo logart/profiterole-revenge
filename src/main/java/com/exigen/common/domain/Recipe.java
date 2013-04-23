@@ -1,8 +1,12 @@
 package com.exigen.common.domain;
 
+import org.apache.solr.analysis.LowerCaseFilterFactory;
+import org.apache.solr.analysis.SnowballPorterFilterFactory;
+import org.apache.solr.analysis.StandardTokenizerFactory;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Parameter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,6 +30,14 @@ import java.util.List;
 })
 // This annotation tells hibernate search that this class has to be indexed
 @Indexed
+@AnalyzerDef(name = "customanalyzer",
+        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+        filters = {
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+                        @Parameter(name = "language", value = "Russian")
+                })
+        })
 
 public class Recipe implements Serializable {
 
@@ -41,14 +53,16 @@ public class Recipe implements Serializable {
     /**
      * {@code title} describes name of recipe in this entity. Its showed in our views
      */
-    @Field(index= Index.YES,analyze = Analyze.YES,store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
+    @Field(index= Index.YES,store = Store.NO)
     private String title;
 
     /**
      * {@code description} this field is intended to describe the recipe
      */
     @Column(columnDefinition = "mediumtext")
-    @Field(index= Index.YES,analyze = Analyze.YES,store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
+    @Field(index= Index.YES,store = Store.NO)
     private String description;
 
     /**
