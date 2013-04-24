@@ -226,6 +226,15 @@ a.ui-slider-handle {
     margin-right: 10px;
 }
 
-.plus_btn .minus_btn{
+.plus_btn, .minus_btn{
     width:20px;
+}
+
+.recepies_btn {
+    position: relative;
+}
+.imgMarkersContainer {
+    position: absolute;
+    top: -10px;
+    left: -2px;
 }

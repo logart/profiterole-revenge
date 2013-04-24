@@ -21,17 +21,27 @@
 
 
 [#list model as a]
-<div class="btn draggable recepies_btn" data-content="${a.description}"
-     href="/modalRecipeDescription?recipeId=${a.id}"
+[#--[#list model?keys as a]--]
+<div class="btn draggable recepies_btn" data-content="${a.recipe.description}"
+     href="/modalRecipeDescription?recipeId=${a.recipe.id}"
      data-toggle="modal" data-target="#myModal">
-    <div class="imgContainer"><span class="pagination-centered"><img src="${a.smallImage}" class="img-rounded"/></span>
-    </div>
-    <div class="recipe_title"><label class="title">${a.title}</label></div>
 
-    <div class="time_value no-display">${a.timeOfCooking}</div>
-    <div class="cat_value no-display">${a.category.id}</div>
-    <div class="rec_id no-display">${a.id}</div>
-    <div class="rec_cal no-display">${a.calories}</div>
+    <div class="imgMarkersContainer">
+        [#list  a.markers?keys as b]
+            <img src="${a.markers[b]}" />
+        [/#list]
+    </div>
+
+    <div class="imgContainer"><span class="pagination-centered"><img src="${a.recipe.smallImage}" class="img-rounded"/></span>
+    </div>
+    <div class="recipe_title"><label class="title">${a.recipe.title}  </label></div>
+
+
+
+    <div class="time_value no-display">${a.recipe.timeOfCooking}</div>
+    <div class="cat_value no-display">${a.recipe.category.id}</div>
+    <div class="rec_id no-display">${a.recipe.id}</div>
+    <div class="rec_cal no-display">${a.recipe.calories}</div>
 </div>
 [/#list]
 
