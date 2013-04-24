@@ -26,9 +26,9 @@ public class CategoryTest {
     @Test
     public void testGetSetId() throws Exception {
         category = new Category();
-        assertNull(category.getId());
+        assertEquals(0,category.getId());
         category.getId();
-        Integer test = 1;
+        int test = 1;
         category.setId(test);
         assertEquals(test, category.getId());
 
