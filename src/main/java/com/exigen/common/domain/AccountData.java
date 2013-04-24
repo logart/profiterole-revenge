@@ -16,6 +16,10 @@ import java.io.Serializable;
  * @date Mar 13, 2013
  */
 public class AccountData implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
     private static final int MIN_LENGTH_OF_PASS=6;
 

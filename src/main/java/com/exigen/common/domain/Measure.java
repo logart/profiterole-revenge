@@ -12,6 +12,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "measures")
 public class Measure implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * {@code id} its a primary key for this entity

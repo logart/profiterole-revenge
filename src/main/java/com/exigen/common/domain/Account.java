@@ -20,6 +20,10 @@ import java.util.Calendar;
         @NamedQuery(name = "Account.findUserByEmail", query = "SELECT i FROM Account i WHERE i.email = :email")
 })
 public class Account implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * {@code id} contains id of account
