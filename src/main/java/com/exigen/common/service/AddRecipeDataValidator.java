@@ -113,8 +113,8 @@ public class AddRecipeDataValidator implements Validator {
      *         all spaces at the beginning and at the end
      */
     public List<String> trimList(List<String> list) {
-        for (String string : list) {
-            string = string.trim();
+        for (int i =0; i < list.size(); i++) {
+            list.set(i, list.get(i).trim());
         }
         return list;
     }
