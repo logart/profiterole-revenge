@@ -17,6 +17,10 @@ import java.util.List;
  */
 public class AddRecipeData implements Serializable {
     /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * {@code MAX_TITLE_SIZE} Contains maximum length of title text
      */
     private static final int MAX_TITLE_SIZE = 250;
@@ -73,9 +77,9 @@ public class AddRecipeData implements Serializable {
     private String categoryId;
 
 
-    private MultipartFile images;
+    private transient MultipartFile images;
 
-    private List<MultipartFile> files;
+    private transient List<MultipartFile> files;
 
     /**
      * {@code cuisine} This field is a reference to the Cuisine entity.
@@ -90,24 +94,24 @@ public class AddRecipeData implements Serializable {
     /**
      * {@code ingredientList} This field contains list of steps for meal
      */
-    private List<String> stepsList = new ArrayList<String>();
+    private transient List<String> stepsList = new ArrayList<String>();
 
     /**
      * {@code ingredientList} This field contains list of names of ingredients for meal
      */
-    private List<String> ingredientsNameList = new ArrayList<String>();
+    private transient List<String> ingredientsNameList = new ArrayList<String>();
 
     /**
      * {@code ingredientList} This field contains list of counts of ingredients for meal
      */
-    private List<String> ingredientsCountList = new ArrayList<String>();
+    private transient List<String> ingredientsCountList = new ArrayList<String>();
 
     /**
      * {@code ingredientList} This field contains list of types of ingredients for meal
      */
-    private List<String> ingredientsTypeList = new ArrayList<String>();
+    private transient List<String> ingredientsTypeList = new ArrayList<String>();
 
-    private List<String> imagesForStepsList = new ArrayList<String>();
+    private transient List<String> imagesForStepsList = new ArrayList<String>();
 
 
 
@@ -209,7 +213,7 @@ public class AddRecipeData implements Serializable {
         this.stepsList = stepsList;
     }
 
-    public List<String> getImagesForStepsList() {
+    public  List<String> getImagesForStepsList() {
         return imagesForStepsList;
     }
 
