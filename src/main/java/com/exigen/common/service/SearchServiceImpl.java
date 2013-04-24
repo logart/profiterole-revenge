@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Interface {@code SearchServiceImpl} use for show search results
+ * Class {@code SearchServiceImpl} use for show search results
  *
  * @author Volodymyr Samokhval
  * @date April 20,2013
