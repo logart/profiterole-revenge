@@ -39,7 +39,7 @@ body {
 }
 
 .block-search-results {
-    display: table;
+    display: block;
     background-color: white;
     margin-bottom: 21px;
     padding: 14px;
@@ -100,7 +100,7 @@ body {
 }
 
 .title-search {
-    width: 615px;
+    width: 600px;
     word-wrap:break-word;
 }
 

@@ -37,12 +37,11 @@ public class SearchController {
     @RequestMapping(value = {"/searchResults", "/searchNoResults"})
     public ModelAndView searchResults(@RequestParam("searchUnit") String searchingUnit) {
 
-        searchingUnit = searchingUnit.trim();
-        if (searchingUnit == null || searchingUnit.isEmpty()){
+        if (searchingUnit == null || searchingUnit.trim().isEmpty()){
             return new ModelAndView("searchNoResults");
         }
         List<Recipe> foundedResults = this.searchService.getFoundedRecipesList(searchingUnit);
-        if (foundedResults.isEmpty() || foundedResults == null){
+        if (foundedResults == null || foundedResults.isEmpty()){
             return new ModelAndView("searchNoResults");
         }
         return new ModelAndView("searchResults", "model", foundedResults);

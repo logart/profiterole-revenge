@@ -422,7 +422,7 @@
                     <plugin>
                         <groupId>org.cloudfoundry</groupId>
                         <artifactId>cf-maven-plugin</artifactId>
-                        <version>1.0.0.M1</version>
+                        <version>1.0.0.M4</version>
                         <configuration>
                             <appname>profiterole-development</appname>
                             <server>mycloudfoundry-instance</server>
@@ -533,7 +533,7 @@
                     <plugin>
                         <groupId>org.cloudfoundry</groupId>
                         <artifactId>cf-maven-plugin</artifactId>
-                        <version>1.0.0.M1</version>
+                        <version>1.0.0.M4</version>
                         <configuration>
                             <appname>profiterole</appname>
                             <server>mycloudfoundry-instance</server>
