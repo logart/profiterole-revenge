@@ -22,7 +22,7 @@ public class Category implements Serializable {
      */
     @Id
     @GeneratedValue
-    private Integer id;
+    private int id;
 
     /**
      * {@code name} describes name of category
