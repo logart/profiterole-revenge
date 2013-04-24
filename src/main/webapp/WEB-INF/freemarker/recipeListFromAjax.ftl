@@ -22,7 +22,13 @@
 
 [#list model as a]
 [#--[#list model?keys as a]--]
-<div class="btn draggable recepies_btn" data-content="${a.recipe.description}"
+<div class="btn draggable recepies_btn" data-content="
+[#if a.recipe.description?length &lt; 250]
+${a.recipe.description}
+[#else]
+${a.recipe.description?substring(0,250)} ...
+[/#if]
+"
      href="/modalRecipeDescription?recipeId=${a.recipe.id}"
      data-toggle="modal" data-target="#myModal">
 

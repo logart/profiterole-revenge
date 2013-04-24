@@ -127,8 +127,8 @@ body {
 
 .droppable > .btn > a.ui-icon.ui-icon-trash {
     background-position: -98px -130px;
-    left: 95px;
-    position: relative;
+    left: 98px;
+    position: absolute;
     top: -7px;
 }
 .draggable {
