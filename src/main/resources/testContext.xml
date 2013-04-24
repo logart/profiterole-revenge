@@ -44,7 +44,7 @@
         <property name="user" value="profiterole"/>
         <property name="password" value="1234"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/profiterole?characterEncoding=UTF-8"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/profiterole"/>
         <property name="initialPoolSize" value="1"/>
         <property name="maxPoolSize" value="2"/>
         <property name="minPoolSize" value="1"/>
