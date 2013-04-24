@@ -46,7 +46,7 @@ public class AddRecipesController {
 
     private List<String> imagesForSteps = new ArrayList<String>();
 
-     private ImageServiceImpl imageService = new ImageServiceImpl();
+    private ImageServiceImpl imageService = new ImageServiceImpl();
 
     @RequestMapping(method = RequestMethod.GET)
     public String showAddingRecipe(Map model) {
@@ -86,11 +86,17 @@ public class AddRecipesController {
             if (multipartFiles.get(i).isEmpty()) {
                 imagesForSteps.add("http://img15.imageshack.us/img15/9802/stepav.jpg");
             } else {
+
                 File saveFile = new File(multipartFiles.get(i).getOriginalFilename());
                 saveFile.createNewFile();
-                FileOutputStream saveBytes = new FileOutputStream(saveFile);
-                saveBytes.write(multipartFiles.get(i).getBytes());
-                saveBytes.close();
+                FileOutputStream saveBytes = null;
+                try {
+                    saveBytes = new FileOutputStream(saveFile);
+                    saveBytes.write(multipartFiles.get(i).getBytes());
+                    saveBytes.close();
+                } finally {
+                    if (saveBytes != null) saveBytes.close();
+                }
                 imagesForSteps.add(i, imageService.postImage(saveFile));
             }
         }
@@ -105,12 +111,14 @@ public class AddRecipesController {
             File file = new File(data.getImages().getOriginalFilename());
 
             file.createNewFile();
-
-            FileOutputStream fos = new FileOutputStream(file);
-
-
-            fos.write(data.getImages().getBytes());
-            fos.close();
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(file);
+                fos.write(data.getImages().getBytes());
+                fos.close();
+            } finally {
+                if (fos != null) fos.close();
+            }
             data.setImageForRecipeHead(imageService.postImage(file));
         }
 
