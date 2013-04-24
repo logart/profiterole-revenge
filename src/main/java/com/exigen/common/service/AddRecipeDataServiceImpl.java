@@ -33,7 +33,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @return If the list includes a category with a specified id return that category,
      *         else return null
      */
-    public Category getCategoryFromListByID(Integer id, List<Category> list) {
+    public Category getCategoryFromListByID(int  id, List<Category> list) {
         for (Category c : list) {
             if (c.getId() == id) {
                 return c;
@@ -50,7 +50,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @return If the list includes a cuisine with a specified id return that cuisine,
      *         else return null
      */
-    public Cuisine getCuisineFromListByID(Integer id, List<Cuisine> list) {
+    public Cuisine getCuisineFromListByID(int id, List<Cuisine> list) {
         for (Cuisine c : list) {
             if (c.getId() == id) {
                 return c;

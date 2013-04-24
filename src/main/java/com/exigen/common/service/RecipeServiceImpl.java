@@ -34,12 +34,12 @@ public class RecipeServiceImpl implements RecipeService {
     /**
      * {@code MASK_AND} describes the const
      */
-    private int MASK_AND = 1;
+    private final int MASK_AND = 1;
 
     /**
      * {@code S_RIGHT} describes the number of digits to the right shift
      */
-    private int S_RIGHT = 1;
+    private final int S_RIGHT = 1;
     /**
      * {@method getRecipeCuisineList(Cuisine cuisine)}
      *
