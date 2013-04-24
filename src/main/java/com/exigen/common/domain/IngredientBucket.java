@@ -13,6 +13,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ingredientsBucket")
 public class IngredientBucket implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * {@code id} its a primary key for this entity

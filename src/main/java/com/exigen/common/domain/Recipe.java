@@ -40,6 +40,10 @@ import java.util.List;
         })
 
 public class Recipe implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
     private static final int CALORIES_COEFFICIENT = 100;
 

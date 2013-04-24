@@ -14,6 +14,10 @@ import java.io.Serializable;
  * @date February 05, 2013
  */
 public class RegistrationData extends AccountData implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
 
     @NotEmpty(message = "Для завершения регистрации Вы должны принять Правила и условия работы на сайте.")

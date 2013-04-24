@@ -15,6 +15,10 @@ import java.util.List;
 @Entity
 @Table(name = "cuisines")
 public class Cuisine implements Serializable {
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * {@code id} contains id of cuisine
