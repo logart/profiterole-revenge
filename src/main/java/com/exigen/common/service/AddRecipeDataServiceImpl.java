@@ -24,7 +24,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
     private StepService stepService;
     @Autowired
     private MeasureBucketService measureBucketService;
-
+    private byte marker=0;
     /**
      * {@method getCategoryFromListByID(Integer id, List<Category> list)}
      *
@@ -96,6 +96,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
         recipe.setSmallImage(data.getImageForRecipeHead());
         recipe.setBigImage(data.getImageForRecipeHead());
         recipe.setTimeOfCooking(Integer.parseInt(data.getCookingTime()));
+        recipe.setMarkers(marker);
         return recipe;
 
     }
