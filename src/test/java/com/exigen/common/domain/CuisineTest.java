@@ -12,8 +12,8 @@ public class CuisineTest {
     @Test
     public void testGetSetId() throws Exception {
         Cuisine    cuisine = new Cuisine();
-        assertNull(cuisine.getId());
-        Integer test = 2;
+        assertEquals(0,cuisine.getId());
+        int test = 2;
         cuisine.setId(test);
         Assert.assertEquals(test, cuisine.getId());
     }
