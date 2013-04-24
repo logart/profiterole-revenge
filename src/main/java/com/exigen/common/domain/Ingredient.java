@@ -20,7 +20,7 @@ import java.util.List;
                 query = "SELECT i FROM Ingredient i")
 })
 public class Ingredient implements Serializable, Comparable {
-
+     private final static long serialVersionUID = 1L;
     /**
      * {@code id} its a primary key for this entity
      */
@@ -108,7 +108,6 @@ public class Ingredient implements Serializable, Comparable {
 
     @Override
     public int compareTo(Object ingredient) {
-        Ingredient otherIngredient = (Ingredient) ingredient;
-        return this.name.compareTo(otherIngredient.name);
+        return this.name.compareTo(((Ingredient) ingredient).name);
     }
 }
