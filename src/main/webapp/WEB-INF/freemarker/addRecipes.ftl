@@ -145,7 +145,7 @@
 
             [@spring.bind "addRecipeData.title"/]
             <input type="text" name="${spring.status.expression}"
-                   value="${spring.status.value?default("")}" style="width: 315px; font-size: 14px;" maxlength="250"/> <br>
+                   value="${spring.status.value?default("")?html}" style="width: 315px; font-size: 14px;" maxlength="250"/> <br>
             [#if spring.status.error]
                 <p>
 
