@@ -17,10 +17,15 @@ import java.util.List;
 @Table(name = "ingredients")
 @NamedQueries({
         @NamedQuery(name = "Ingredient.getAllIngredients",
-                query = "SELECT i FROM Ingredient i")
+                query = "SELECT i FROM Ingredient i ORDER BY i.name")
 })
-public class Ingredient implements Serializable, Comparable {
-     private final static long serialVersionUID = 1L;
+public class Ingredient implements Serializable {
+
+    /**
+     * {@code serialVersionUID}  Contains serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
+
     /**
      * {@code id} its a primary key for this entity
      */
@@ -104,10 +109,5 @@ public class Ingredient implements Serializable, Comparable {
 
     public void setMeasuresBucketList(List<MeasuresBucket> measuresBucketList) {
         this.measuresBucketList = measuresBucketList;
-    }
-
-    @Override
-    public int compareTo(Object ingredient) {
-        return this.name.compareTo(((Ingredient) ingredient).name);
     }
 }
