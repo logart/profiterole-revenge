@@ -97,6 +97,10 @@ public class Recipe implements Serializable {
      * {@code time} This field to save time of creation for recipe
      */
     private Integer timeOfCooking;
+    /**
+     * {@code markers} This field to save markers ("острый", "вегетарианский", "от шеф-повара")
+     */
+    private Byte markers;
 
     /**
      * {@code ingredients} it's list of ingredient's buckets in recipe.
@@ -118,13 +122,12 @@ public class Recipe implements Serializable {
 
     public Recipe() {
     }
-
     /**
      * {@methods Recipe} its a constructors for adding data in entity
      */
 
     public Recipe(String title, String description, Cuisine cuisine, Category category,
-                  String bigImage, String smallImage, Integer timeOfCooking) {
+                  String bigImage, String smallImage, Integer timeOfCooking ) {
         this.title = title;
         this.description = description;
         this.cuisine = cuisine;
@@ -132,6 +135,21 @@ public class Recipe implements Serializable {
         this.bigImage = bigImage;
         this.smallImage = smallImage;
         this.timeOfCooking = timeOfCooking;
+    }
+    /**
+     * {@methods Recipe} its a constructors for adding data in entity
+     */
+
+    public Recipe(String title, String description, Cuisine cuisine, Category category,
+                  String bigImage, String smallImage, Integer timeOfCooking, Byte markers) {
+        this.title = title;
+        this.description = description;
+        this.cuisine = cuisine;
+        this.category = category;
+        this.bigImage = bigImage;
+        this.smallImage = smallImage;
+        this.timeOfCooking = timeOfCooking;
+        this.markers = markers;
     }
 
     /**
@@ -215,6 +233,14 @@ public class Recipe implements Serializable {
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
+    }
+
+    public Byte getMarkers() {
+        return markers;
+    }
+
+    public void setMarkers(Byte markers) {
+        this.markers = markers;
     }
 
     public int getCalories() {

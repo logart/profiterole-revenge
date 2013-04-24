@@ -2,8 +2,10 @@ package com.exigen.common.service;
 
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
+import com.exigen.common.domain.RecipeWithMarkers;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Interface {@code RecipeService} used for push object from and in DAO for get, add and
@@ -61,4 +63,26 @@ public interface RecipeService {
      */
 
     void removeRecipe(Recipe recipe);
+
+    /**
+     * {@method getMarkersOfRecipe(Recipe recipe)}
+     * for adding information about markers of recipe
+     *
+     * @param recipe (object of some particular recipe)
+     *
+     * @return the map of markers
+     *
+     */
+    Map<String,String> getMarkersOfRecipe(Recipe recipe);
+
+    /**
+     * {@method getListRecipesWithMarkers(List<Recipe> recipeList)}
+     * for adding information about markers of list of recipe
+     *
+     * @param recipeList (object list of some particular recipe)
+     *
+     * @return the list of the object of RecipeWithMarkers
+     *
+     */
+    List<RecipeWithMarkers> getListRecipesWithMarkers(List<Recipe> recipeList);
 }

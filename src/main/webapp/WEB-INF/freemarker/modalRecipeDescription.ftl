@@ -8,6 +8,11 @@
 
     <span class="text-justify">
     <br/>
+    <br/>
+    [#list markers?keys as key]
+        <img src="${markers[key]}" class="img-rounded" title="${key}"/>
+    [/#list]
+    <br/>
     <p><strong>Время приготовления:</strong> ${recipe.timeOfCooking} минут </p>
     <br/>
     <p><strong>Описание:</strong> ${recipe.description}</p>

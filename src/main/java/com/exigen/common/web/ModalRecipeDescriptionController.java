@@ -1,6 +1,7 @@
 package com.exigen.common.web;
 
 
+import com.exigen.common.domain.Recipe;
 import com.exigen.common.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,9 @@ public class ModalRecipeDescriptionController {
     @ResponseBody
     public ModelAndView modalRecipeDescription(@RequestParam("recipeId") Integer recipeId) {
         ModelAndView returnModel;
-        returnModel = new ModelAndView("modalRecipeDescription", "recipe", this.recipeService.getOneRecipe(recipeId));
+        Recipe recipe = this.recipeService.getOneRecipe(recipeId);
+        returnModel = new ModelAndView("modalRecipeDescription", "recipe", recipe);
+        returnModel.addObject("markers", this.recipeService.getMarkersOfRecipe(recipe));
         return returnModel;
     }
 }

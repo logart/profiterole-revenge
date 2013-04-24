@@ -1,6 +1,7 @@
 package com.exigen.common.web;
 
 import com.exigen.common.service.CuisineService;
+import com.exigen.common.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,10 @@ public class MenuController {
 
     @Autowired
     private CuisineService cuisineService;
+
+    @Autowired
+    private RecipeService recipeService;
+
 
     /**
      * {@method menuCuisineAjax()} using for mapped ajax queries      *
@@ -56,7 +61,7 @@ public class MenuController {
     @RequestMapping(value = {"/recipeListFromAjax"})
     @ResponseBody
     public ModelAndView listRecipesToAjax(@RequestParam("cuisineId") Integer cuisineId) {
-        ModelAndView mav = new ModelAndView("recipeListFromAjax", "model", this.cuisineService.getOneCuisine(cuisineId));
+        ModelAndView mav = new ModelAndView("recipeListFromAjax", "model", this.recipeService.getListRecipesWithMarkers(this.cuisineService.getOneCuisine(cuisineId)));
         mav.addObject("cuisineTitle", this.cuisineService.getCuisine().get(cuisineId - 1).getName());
         return mav;
     }
