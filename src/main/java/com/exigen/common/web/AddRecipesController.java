@@ -95,7 +95,9 @@ public class AddRecipesController {
                     saveBytes.write(multipartFiles.get(i).getBytes());
                     saveBytes.close();
                 } finally {
-                    if (saveBytes != null) saveBytes.close();
+                    if (saveBytes != null) {
+                        saveBytes.close();
+                    }
                 }
                 imagesForSteps.add(i, imageService.postImage(saveFile));
             }
@@ -110,16 +112,19 @@ public class AddRecipesController {
 
             File file = new File(data.getImages().getOriginalFilename());
 
-            file.createNewFile();
+            if (file.createNewFile()){
             FileOutputStream fos = null;
             try {
                 fos = new FileOutputStream(file);
                 fos.write(data.getImages().getBytes());
                 fos.close();
             } finally {
-                if (fos != null) fos.close();
+                if (fos != null) {
+                    fos.close();
+                }
             }
             data.setImageForRecipeHead(imageService.postImage(file));
+            }
         }
 
         data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategoryId()), categories));
