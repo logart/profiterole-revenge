@@ -40,7 +40,6 @@ public class IngredientServiceImplTest {
         ingredients.add(ingredient11);
         ingredients.add(ingredient12);
         when(ingredientDao.getAllIngredients()).thenReturn(ingredients);
-        Collections.sort(ingredients);
         ingredientService = new IngredientServiceImpl();
         ingredientService.setIngredientDao(ingredientDao);
         Assert.assertEquals(ingredientService.getAllIngredientsSortedList(),ingredients );

@@ -17,9 +17,9 @@ import java.util.List;
 @Table(name = "ingredients")
 @NamedQueries({
         @NamedQuery(name = "Ingredient.getAllIngredients",
-        query = "SELECT i FROM Ingredient i")
+                query = "SELECT i FROM Ingredient i ORDER BY i.name")
 })
- public class Ingredient implements Serializable, Comparable {
+ public class Ingredient implements Serializable {
 
 
         /**
@@ -108,10 +108,6 @@ import java.util.List;
 
     public void setMeasuresBucketList(List<MeasuresBucket> measuresBucketList) {
         this.measuresBucketList = measuresBucketList;
-    }
-    @Override
-    public int compareTo(Object ingredient) {
-        return this.name.compareTo(((Ingredient) ingredient).name);
     }
 
 }
