@@ -291,6 +291,16 @@
             <artifactId>hibernate-search-analyzers</artifactId>
             <version>4.1.1.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>3.2.0.RC2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.15.0-GA</version>
+        </dependency>
 
     </dependencies>
 
@@ -557,10 +567,10 @@
                         <artifactId>cf-maven-plugin</artifactId>
                         <version>1.0.0.M4</version>
                         <configuration>
-                            <appname>lena-test</appname>
+                            <appname>lena-test3</appname>
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
-                            <url>lena-test.cloudfoundry.com</url>
+                            <url>lena-test3.cloudfoundry.com</url>
                             <username>vev77777@gmail.com</username>
                             <password>Qwerty87</password>
                             <memory>512</memory>
