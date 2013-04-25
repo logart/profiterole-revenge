@@ -36,7 +36,11 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public List<Ingredient> getAllIngredientsSortedList() {
-        return ingredientDao.getAllIngredients();
+        List<Ingredient> ingredientsSort;
+        ingredientsSort = ingredientDao.getAllIngredients();
+        Collections.sort(ingredientsSort);
+        return ingredientsSort;
+
     }
     /**
      * {@method getIngredientById()}
