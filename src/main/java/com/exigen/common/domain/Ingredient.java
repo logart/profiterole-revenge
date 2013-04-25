@@ -17,11 +17,12 @@ import java.util.List;
 @Table(name = "ingredients")
 @NamedQueries({
         @NamedQuery(name = "Ingredient.getAllIngredients",
-                query = "SELECT i FROM Ingredient i ORDER BY i.name")
+        query = "SELECT i FROM Ingredient i")
 })
-public class Ingredient implements Serializable {
+ public class Ingredient implements Serializable, Comparable {
 
-    /**
+
+        /**
      * {@code serialVersionUID}  Contains serialVersionUID
      */
     private static final long serialVersionUID = 1L;
@@ -48,8 +49,6 @@ public class Ingredient implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
     private List<MeasuresBucket> measuresBucketList = new ArrayList<MeasuresBucket>();
 
-//       @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredientId")
-//      private List<IngredientBucket> ingredientBucketList = new ArrayList<IngredientBucket>();
 
 
     /**
@@ -110,4 +109,9 @@ public class Ingredient implements Serializable {
     public void setMeasuresBucketList(List<MeasuresBucket> measuresBucketList) {
         this.measuresBucketList = measuresBucketList;
     }
+    @Override
+    public int compareTo(Object ingredient) {
+        return this.name.compareTo(((Ingredient) ingredient).name);
+    }
+
 }
