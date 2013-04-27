@@ -16,11 +16,12 @@
                     [/#list]\
                 </select>\
                 [@spring.bind "addRecipeData.ingredientsCountList"/]\
-                <input class = "ingrCount" id = "${spring.status.expression}[' + (k - 1) + ']" type="text" name="${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px;  margin-right: 1px;" />\
+                <input type="text" class = "ingrCount" id = "${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px; font-size: 14px; margin-right: 1px;" name="${spring.status.expression}[' + (k - 1) + ']"  >\
                 [@spring.bind "addRecipeData.ingredientsTypeList"/]\
                 <select class="combobox ingrType" id = "${spring.status.expression}[' + (k - 1) + ']" style="height: 30px; width: 59px;" name="${spring.status.expression}[' + (k - 1) + ']">\
                 </select>\
                 </div>';
+
                 $(temp).appendTo('.conress').fadeIn('slow');
             },
 
@@ -252,7 +253,7 @@
                                 </select>
 
                                 [@spring.bind "addRecipeData.ingredientsCountList[${current_index - 1}]"/]
-                                <input type="text" class="forinputs ingrCount" id="${spring.status.expression}" name="${spring.status.expression}"
+                                <input type="text" class="inputs ingrCount" id="${spring.status.expression}" name="${spring.status.expression}"
                                        value="${addRecipeData.ingredientsCountList[current_index - 1]}" style="width: 25px; height: 25px; font-size: 14px;"/>
 
                                 [@spring.bind "addRecipeData.ingredientsTypeList[${current_index - 1}]"/]
