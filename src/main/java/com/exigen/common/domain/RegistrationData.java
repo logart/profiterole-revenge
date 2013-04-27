@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author Lena
  * @date February 05, 2013
  */
-public class RegistrationData extends AccountData implements Serializable {
+public class RegistrationData extends AccountData  {
     /**
      * {@code serialVersionUID}  Contains serialVersionUID
      */
