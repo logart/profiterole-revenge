@@ -168,7 +168,7 @@ public class AddRecipeDataValidator implements Validator {
                     if (Float.parseFloat(countsList.get(i).replace(',','.')) < MIN_INGREDIENT_COUNT_VALUE || Float.parseFloat(countsList.get(i).replace(',','.')) > MAX_INGREDIENT_COUNT_VALUE) {
                         errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "wrongValue." + this.INGREDIENTS_TYPE_LIST, "Корректное значение лежит в диапазоне от " + MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".");
                     }
-                } catch (Exception ex) {
+                } catch (NumberFormatException ex) {
                     errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "wrongValue." + this.INGREDIENTS_TYPE_LIST, "Корректное значение лежит в диапазоне от " + MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".");
                 }
             }
