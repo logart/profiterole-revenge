@@ -16,12 +16,11 @@
                     [/#list]\
                 </select>\
                 [@spring.bind "addRecipeData.ingredientsCountList"/]\
-                <input class = "ingrCount" id = "${spring.status.expression}[' + (k - 1) + ']" type="text" name="${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px; font-size: 10px; margin-right: 1px;" />\
+                <input class = "ingrCount" id = "${spring.status.expression}[' + (k - 1) + ']" type="text" name="${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px;  margin-right: 1px;" />\
                 [@spring.bind "addRecipeData.ingredientsTypeList"/]\
                 <select class="combobox ingrType" id = "${spring.status.expression}[' + (k - 1) + ']" style="height: 30px; width: 59px;" name="${spring.status.expression}[' + (k - 1) + ']">\
                 </select>\
                 </div>';
-
                 $(temp).appendTo('.conress').fadeIn('slow');
             },
 
