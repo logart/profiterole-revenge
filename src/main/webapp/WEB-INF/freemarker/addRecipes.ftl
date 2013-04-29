@@ -45,6 +45,20 @@
                     self.addStep(self.k);
                     self.k++;
                 });
+                $(function(){
+                 var keyStop = {
+                   13: "input:text",
+                   end: null
+                 };
+                 $(document).bind("keydown", function(event){
+                  var selector = keyStop[event.which];
+
+                  if(selector !== undefined && $(event.target).is(selector)) {
+                      event.preventDefault();
+                  }
+                  return true;
+                 });
+                });
                 $('.delete_ingr').live('click', function (e) {
                     e.preventDefault();
                     var id = $(this).data('ingrid');
