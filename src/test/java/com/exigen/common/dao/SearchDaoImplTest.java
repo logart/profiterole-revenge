@@ -21,7 +21,7 @@ import static org.mockito.Matchers.anyList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:testInMemory.xml")
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 @Transactional
 public class SearchDaoImplTest {
 
