@@ -15,7 +15,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import static org.mockito.Matchers.anyList;
 
 
 
@@ -63,8 +62,8 @@ public class SearchDaoImplTest {
 
         entityManager.persist(recipe);
 
-        Assert.assertEquals(anyList(), searchDao.searchRecipe("description"));
-//        Assert.assertEquals(anyList(), searchDao.searchRecipe("title"));
+        Assert.assertNotNull(searchDao.searchRecipe("description"));
+
     }
 
 }
