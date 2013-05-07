@@ -17,6 +17,7 @@ ${scripts!}
     <script type="text/javascript" src="/js/Ellipsis.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
     <script type="text/javascript" src="/js/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="/js/printBlock.js"></script>
 
     <title>Profiterole</title>
 
