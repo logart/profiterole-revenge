@@ -10,7 +10,7 @@
     <br/>
     <br/>
     [#list markers?keys as key]
-        <img src="${markers[key]}" class="img-rounded" title="${key}"/>
+        <img src="${markers[key]}" title="${key}" id="markers"/>
     [/#list]
     <br/>
     <p><strong>Время приготовления:</strong> ${recipe.timeOfCooking} минут </p>
@@ -58,23 +58,7 @@
 </script>
 
 <script type="text/javascript">
-
-</script>
-
-
-<script type="text/javascript">
     $("#close").click(function () {
         $("#image").hide();
     })
-</script>
-
-<script type="text/javascript">
-    function printBlock(printedBlock){
-        printUnit = $(printedBlock).html();
-        $('div.container').addClass('noprint');
-        $('body').append('<div class="toprint">' + printUnit + '</div>');
-        window.print();
-        $('div.container').removeClass('noprint');
-        $('.toprint').remove();
-    }
 </script>
