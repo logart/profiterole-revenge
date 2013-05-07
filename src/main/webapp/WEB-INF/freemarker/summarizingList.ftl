@@ -86,14 +86,3 @@
 
     });
 </script>
-
-<script type="text/javascript">
-    function printBlock(printedBlock){
-        printUnit = $(printedBlock).html();
-        $('div.container').addClass('noprint');
-        $('body').append('<div class="toprint">' + printUnit + '</div>');
-        window.print();
-        $('div.container').removeClass('noprint');
-        $('.toprint').remove();
-    }
-</script>
