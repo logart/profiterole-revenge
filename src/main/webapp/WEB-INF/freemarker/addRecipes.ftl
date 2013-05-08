@@ -150,8 +150,8 @@
     });
 </script>
 
-<div class="row-fluid " style="min-height:1500px;">
-    <h1 style="vertical-align:middle; margin-top:5px">Создать рецепт</h1>
+    <h1>Создать рецепт</h1>
+    <div class="white-block">
 
     <form id="#OK" action="" method="post" commandName="addRecipeData" enctype="multipart/form-data" style="height: 1500px">
         <div class="span6" id="menuDrop">
@@ -349,15 +349,6 @@
 
 </div>
 
-
-<footer>
-
-    <div class="row-fluid">
-        <div class="span12">
-
-        </div>
-    </div>
-</footer>
 
 [/#assign]
 [#include "structure.ftl"/]

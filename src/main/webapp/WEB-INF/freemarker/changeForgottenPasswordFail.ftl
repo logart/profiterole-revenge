@@ -6,10 +6,12 @@
         <div class="alert alert-error">
             <h4>Произошла ошибка при изменении пароля.</h4>
         </div>
-        Повторите попытку или обратитесь к администратору сайта.
-        <ul class="nav nav-pills nav-stacked">
-            <li class=><a href="/login">Перейти на страницу входа</a></li>
-        </ul>
+        <div class="block-create-menu">
+            Повторите попытку или обратитесь к администратору сайта.
+            <ul class="nav nav-pills nav-stacked">
+                <li class=><a href="/login">Перейти на страницу входа</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 [/#assign]
