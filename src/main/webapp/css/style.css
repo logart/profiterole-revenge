@@ -38,6 +38,17 @@ body {
     margin-top: 20px;
 }
 
+.white-block {
+    background-color: white;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: left;
+    margin-top: 20px;
+}
+
 .block-search-results {
     display: block;
     background-color: white;

@@ -6,10 +6,12 @@
         <div class="alert alert-success">
             <h4>Регистрация прошла успешно </h4>
         </div>
-        Спасибо за регистрацию на нашем сайте, ${user}!
-        <ul class="nav nav-pills nav-stacked">
-            <li class=><a href="/index">Перейти на главную страницу</a></li>
-        </ul>
+        <div class="block-create-menu">
+            Спасибо за регистрацию на нашем сайте, ${user}!
+            <ul class="nav nav-pills nav-stacked">
+                <li class=><a href="/index">Перейти на главную страницу</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 [/#assign]

@@ -6,10 +6,12 @@
         <div class="alert alert-success">
             <h4>Пароль успешно изменен </h4>
         </div>
+        <div class="block-create-menu">
         Теперь вы можете зайти в свой аккаунт, используя новый пароль.
         <ul class="nav nav-pills nav-stacked">
             <li class=><a href="/login">Перейти на страницу входа</a></li>
         </ul>
+        </div>
     </div>
 </div>
 [/#assign]
