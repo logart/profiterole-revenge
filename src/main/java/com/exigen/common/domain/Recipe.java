@@ -9,7 +9,6 @@ import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Parameter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,11 +38,8 @@ import java.util.List;
                 })
         })
 
-public class Recipe implements Serializable {
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class Recipe {
+
 
     private static final int CALORIES_COEFFICIENT = 100;
 

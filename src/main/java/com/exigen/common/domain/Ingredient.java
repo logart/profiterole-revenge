@@ -1,7 +1,6 @@
 package com.exigen.common.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +18,8 @@ import java.util.List;
         @NamedQuery(name = "Ingredient.getAllIngredients",
                 query = "SELECT i FROM Ingredient i ORDER BY i.name")
 })
- public class Ingredient implements Serializable {
+ public class Ingredient {
 
-
-        /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
 
     /**
      * {@code id} its a primary key for this entity
