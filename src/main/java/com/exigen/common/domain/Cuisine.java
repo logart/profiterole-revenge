@@ -2,7 +2,6 @@ package com.exigen.common.domain;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,11 +13,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "cuisines")
-public class Cuisine implements Serializable {
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class Cuisine {
+
 
     /**
      * {@code id} contains id of cuisine

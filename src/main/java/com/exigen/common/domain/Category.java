@@ -3,7 +3,6 @@ package com.exigen.common.domain;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,11 +14,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "categories")
-public class Category implements Serializable {
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class Category {
+
 
     /**
      * {@code id} contains id of category

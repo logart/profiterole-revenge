@@ -1,10 +1,10 @@
 package com.exigen.common.domain;
 
-import org.hibernate.validator.constraints.*;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.*;
-import java.io.Serializable;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +15,9 @@ import java.util.List;
  * @author Oleg Kalinichenko
  * @date December 02, 2012
  */
-public class AddRecipeData implements Serializable {
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class AddRecipeData {
+
+
     /**
      * {@code MAX_TITLE_SIZE} Contains maximum length of title text
      */
