@@ -1,7 +1,6 @@
 package com.exigen.common.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Class {@code IngredientBucket} is an entity what describe how many of some ingredient
@@ -12,11 +11,8 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "ingredientsBucket")
-public class IngredientBucket implements Serializable {
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class IngredientBucket {
+
 
     /**
      * {@code id} its a primary key for this entity
