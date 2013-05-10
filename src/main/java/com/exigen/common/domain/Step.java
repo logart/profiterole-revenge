@@ -2,7 +2,6 @@ package com.exigen.common.domain;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Class {@code Steps} is an entity, what contains steps of recipes
@@ -14,11 +13,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "steps")
 @NamedQuery(name = "Step.findStepsAboutRecipe", query = "SELECT t FROM Step t WHERE t.recipe.id=:selectedRecipeId")
-public class Step implements Serializable {
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class Step {
+
 
     /**
      * {@code id} its a primary key for this entity

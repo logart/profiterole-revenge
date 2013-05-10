@@ -1,7 +1,6 @@
 package com.exigen.common.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Class {@code MeasuresBucket} is an entity what describe
@@ -12,11 +11,8 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "measuresBucket")
-public class MeasuresBucket implements Serializable{
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
+public class MeasuresBucket {
+
 
     /**
      * {@code id} its a primary key for this entity
