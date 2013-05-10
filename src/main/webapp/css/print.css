@@ -7,12 +7,17 @@
         display: block;
     }
 
+    h3 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
     .font-12 {
         font-size: 12px;
     }
 
     img.img-rounded {
-        width: 50%;
+        width: 35%;
         height: auto;
     }
 
@@ -20,6 +25,10 @@
         font-size: 12px;
         margin-top: 0em;
         margin-bottom: 0.5em;
+    }
+
+    .modal-header .modal-label {
+        word-wrap: break-word;
     }
 
     .row-fluid {
