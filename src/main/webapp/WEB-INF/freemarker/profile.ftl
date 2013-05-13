@@ -13,14 +13,7 @@
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label-left" for="password">Пароль</label>
 
-        <div class="controls">
-            <input type="password" name="" id="password"
-                   value="${account.password?default("")}" readonly/><strong>*</strong>
-        </div>
-    </div>
 
     <div class="control-group">
         <label class="control-label-left" for="email">Ваш e-mail</label>

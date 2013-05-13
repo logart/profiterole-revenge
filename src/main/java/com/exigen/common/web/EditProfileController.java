@@ -27,6 +27,8 @@ import java.util.Map;
 public class EditProfileController {
     @Autowired
     private AccountService accountService;
+
+    private static final String MASK_PASSWORD = "**********";
     /**
      * {@method index()} using for mapped editProfile form
      *
@@ -36,7 +38,7 @@ public class EditProfileController {
     public String editingProfile(Map model) {
         Account account = accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         AccountData data = accountService.accountDataFromAccount(account);
-
+        data.setPassword(MASK_PASSWORD);
         model.put("editProfileData", data);
         return "editProfile";
     }

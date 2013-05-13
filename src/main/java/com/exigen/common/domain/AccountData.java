@@ -66,6 +66,9 @@ public class AccountData implements Serializable {
 
     private String country;
 
+    @Pattern(regexp="^$|^([\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*\\/\\=\\-]{6,35})$",message =" Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). Длина пароля должна быть от " + MIN_LENGTH_OF_PASS + " до " + MAX_LENGTH_OF_PASS + " символов. ")
+    private String changePassword;
+
 
     /**
      * {@methods get .. and set..} its a getters and setters
@@ -116,5 +119,13 @@ public class AccountData implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getChangePassword() {
+        return changePassword;
+    }
+
+    public void setChangePassword(String changePassword) {
+        this.changePassword = changePassword;
     }
 }

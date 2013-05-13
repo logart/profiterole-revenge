@@ -99,7 +99,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void updateAccount(AccountData data) {
         Account account = findByUsername(data.getLogin());
-        account.setPassword(data.getPassword());
+        if(data.getChangePassword()!=null){
+            account.setPassword(data.getChangePassword());
+        }
         account.setEmail(data.getEmail());
         if (data.getMaleOrFemale() != null) {
             account.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
