@@ -42,9 +42,10 @@ public class EditProfileControllerTest {
         User user = new User("test","pass", AuthorityUtils.createAuthorityList("ROLE_USER"));
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,null);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        when(accountService.findByUsername("test")).thenReturn(new Account());
-
+        Account account = new Account();
+        AccountData data =new AccountData();
+        when(accountService.findByUsername("test")).thenReturn(account);
+        when(accountService.accountDataFromAccount(account)).thenReturn(data);
         EditProfileController profile = new EditProfileController();
         ReflectionTestUtils.setField(profile, "accountService", this.accountService);
         Map model=new TreeMap();

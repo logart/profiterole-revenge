@@ -23,21 +23,29 @@
         </div>
 
 
+
+
         <div class="control-group">
-            <label class="control-label-left" for="password">Пароль</label>
+            <label class="control-label-left" for="changePassword">Пароль</label>
 
             <div class="controls">
-                [@spring.bind "editProfileData.password"/]
-                <input type="password" name="${spring.status.expression}" id="password"
-                       value="${spring.status.value?default("")}"/><strong>*</strong>
+                [@spring.bind "editProfileData.changePassword"/]
+                <input type="password" name="${spring.status.expression}" id="changePassword" value="${spring.status.value?default("")}"/><strong>*</strong>
             </div>
             [#if spring.status.error]
                 <p>
-
-                <div class="error-div" id="passwordError">[@spring.showErrors '<br>', 'error'/]</div>
+                <div class="error-div" id="changePasswordError">[@spring.showErrors '<br>', 'error'/]</div>
                 </p>
             [/#if]
         </div>
+
+        <div class="controls no-display">
+            [@spring.bind "editProfileData.password"/]
+            <input type="password" name="${spring.status.expression}" id="password" value="${spring.status.value?default("")}"/><strong>*</strong>
+        </div>
+
+
+
 
 
         <div class="control-group">

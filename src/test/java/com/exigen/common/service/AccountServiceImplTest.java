@@ -96,7 +96,18 @@ public class AccountServiceImplTest {
          verify(accountDao, times(1)).updateAccount((Account) anyObject());
          }
 
-
+    @Test
+    public void test2UpdateAccount() {
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
+        AccountData accountData = new AccountData();
+        accountData.setDateOfBirth("01.01.2010");
+        accountData.setChangePassword("password");
+        accountData.setMaleOrFemale("Male");
+        accountService.updateAccount(accountData);
+        verify(accountDao, times(1)).updateAccount((Account) anyObject());
+    }
     @Test
     public void accountDataFromAccountTest() {
         accountService = new AccountServiceImpl();
