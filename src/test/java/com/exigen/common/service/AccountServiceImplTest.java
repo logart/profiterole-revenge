@@ -5,6 +5,7 @@ import com.exigen.common.repository.AccountDao;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -93,7 +94,7 @@ public class AccountServiceImplTest {
          AccountData accountData = new AccountData();
          accountData.setDateOfBirth("01.01.2010");
          accountService.updateAccount(accountData);
-         verify(accountDao, times(1)).updateAccount((Account) anyObject());
+         verify(accountDao, times(1)).updateAccount((Account)anyObject());
          }
 
     @Test
@@ -105,8 +106,12 @@ public class AccountServiceImplTest {
         accountData.setDateOfBirth("01.01.2010");
         accountData.setChangePassword("password");
         accountData.setMaleOrFemale("Male");
+        ArgumentCaptor<Account> argument = ArgumentCaptor.forClass(Account.class);
         accountService.updateAccount(accountData);
-        verify(accountDao, times(1)).updateAccount((Account) anyObject());
+        verify(accountDao).updateAccount(argument.capture());
+        Assert.assertEquals("password",argument.getValue().getPassword());
+        Assert.assertEquals(Gender.Male,argument.getValue().getMaleOrFemale());
+
     }
     @Test
     public void accountDataFromAccountTest() {
