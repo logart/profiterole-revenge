@@ -4959,7 +4959,7 @@ input[type="submit"].btn.btn-mini {
     max-height: 80px;
     line-height: 30px;
     word-wrap: break-word;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .modal-body {
