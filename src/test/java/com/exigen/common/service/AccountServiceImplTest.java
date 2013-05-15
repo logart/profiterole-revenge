@@ -36,7 +36,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void FindByUsernameTest() {
+    public void findByUsernameTest() {
         accountService = new AccountServiceImpl();
         String correctUsername = "log";
         String wrongUsername = "username";
@@ -48,7 +48,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void FindByEmailTest() {
+    public void findByEmailTest() {
         accountService = new AccountServiceImpl();
         String correctEmail = "ololo@gmailcom";
         String wrongEmail = "o@gmailcom";
@@ -60,7 +60,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void GetAllAccountsTest() {
+    public void getAllAccountsTest() {
         accountService = new AccountServiceImpl();
         list.add(account);
         when(accountDao.getAllAccounts()).thenReturn(list);
@@ -130,8 +130,8 @@ public class AccountServiceImplTest {
    }
 
 
-    @Test (expected = ServiceException.class)
-    public void resetUserPasswordServiceExceptionTest()throws ServiceException{
+    @Test (expected = NotUniqueHashCodeException.class)
+    public void resetUserPasswordServiceExceptionTest()throws NotUniqueHashCodeException{
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
         when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(new AccountPasswordReset());
