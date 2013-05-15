@@ -164,12 +164,12 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
 
-    public void resetUserPassword(String email) throws ServiceException {
+    public void resetUserPassword(String email) throws NotUniqueHashCodeException {
         AccountPasswordReset accountPasswordReset;
         Account account;
             accountPasswordReset = accountDao.getAccountPasswordResetByHash(generateHash(HASH_SIZE));
         if (accountPasswordReset != null){
-            throw new ServiceException();
+            throw new NotUniqueHashCodeException();
         }  else {
             accountPasswordReset = new AccountPasswordReset();
             accountPasswordReset.setHash(generateHash(HASH_SIZE));

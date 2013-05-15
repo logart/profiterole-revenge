@@ -109,5 +109,5 @@ public interface AccountService {
      * {@method resetUserPassword(String email)}
      * @param email (unique identificator of some particular user)
      */
-    void resetUserPassword(String email) throws ServiceException;
+    void resetUserPassword(String email) throws NotUniqueHashCodeException;
 }
