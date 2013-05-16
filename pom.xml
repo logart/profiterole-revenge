@@ -433,8 +433,8 @@
                             <server>mycloudfoundry-instance</server>
                             <target>http://api.cloudfoundry.com</target>
                             <url>profiterole-development.cloudfoundry.com</url>
-                            <username>flieriya@gmail.com</username>
-                            <password>omgWTF11</password>
+                            <username>logart2007@gmail.com</username>
+                            <password>445566</password>
                             <memory>256</memory>
                         </configuration>
                     </plugin>
