@@ -7,5 +7,5 @@ import java.io.IOException;
 
 public interface ImageService {
 
-    String postImage(File userFile) throws IOException;
+    String postImage(byte[] userFileByteArray,String userFileName) throws IOException;
 }
