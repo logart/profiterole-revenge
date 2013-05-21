@@ -32,6 +32,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/addRecipes")
 public class AddRecipesController {
+
+    private static final String DEFAULT_IMAGE_FOR_STEP = "http://img15.imageshack.us/img15/9802/stepav.jpg";
+    private static final String DEFAULT_IMAGE_FOR_RECIPE_HEAD = "http://imageshack.us/a/img825/4148/98824036.gif";
+
     @Autowired
     private CuisineService cuisineService;
     @Autowired
@@ -69,7 +73,6 @@ public class AddRecipesController {
             ingredients = this.ingredientService.getAllIngredientsSortedList();
         }
 
-
         ValidationUtils.invokeValidator(new AddRecipeDataValidator(), data, errors);
         if (errors.hasErrors()) {
             model.put("addRecipeData", data);
@@ -79,52 +82,22 @@ public class AddRecipesController {
             return "addRecipes";
         }
 
-
         List<MultipartFile> multipartFiles = data.getFiles();
 
         for (int i = 0; i < multipartFiles.size(); i++) {
             if (multipartFiles.get(i).isEmpty()) {
-                imagesForSteps.add("http://img15.imageshack.us/img15/9802/stepav.jpg");
+                imagesForSteps.add(DEFAULT_IMAGE_FOR_STEP);
             } else {
-
-                File saveFile = new File(multipartFiles.get(i).getOriginalFilename());
-                saveFile.createNewFile();
-                FileOutputStream saveBytes = null;
-                try {
-                    saveBytes = new FileOutputStream(saveFile);
-                    saveBytes.write(multipartFiles.get(i).getBytes());
-                    saveBytes.close();
-                } finally {
-                    if (saveBytes != null) {
-                        saveBytes.close();
-                    }
-                }
-                imagesForSteps.add(i, imageService.postImage(saveFile));
+                imagesForSteps.add(i, imageService.postImage(multipartFiles.get(i).getBytes(), multipartFiles.get(i).getOriginalFilename()));
             }
         }
 
         data.setImagesForStepsList(imagesForSteps);
 
-
         if (data.getImages().isEmpty()) {
-            data.setImageForRecipeHead("http://imageshack.us/a/img825/4148/98824036.gif");
+            data.setImageForRecipeHead(DEFAULT_IMAGE_FOR_RECIPE_HEAD);
         } else {
-
-            File file = new File(data.getImages().getOriginalFilename());
-
-            if (file.createNewFile()){
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(file);
-                fos.write(data.getImages().getBytes());
-                fos.close();
-            } finally {
-                if (fos != null) {
-                    fos.close();
-                }
-            }
-            data.setImageForRecipeHead(imageService.postImage(file));
-            }
+            data.setImageForRecipeHead(imageService.postImage(data.getImages().getBytes(), data.getImages().getName()));
         }
 
         data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategoryId()), categories));
@@ -132,5 +105,7 @@ public class AddRecipesController {
         addRecipeDataService.addRecipe(data);
         return "redirect:success";
     }
+
+
 
 }
