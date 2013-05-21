@@ -6,7 +6,7 @@
     $(document).ready(function () {
         var ingredient = {
             k: $(".ingr").length + 1,
-            addStep: function (k) {
+            addIngr: function (k) {
                 var temp = '<div id="ingr_' + k + '" class="ingr"><button data-ingrid="' + k + '" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon ui-icon-trash delete_ingr"">Удалить ингредиент</button>\
                 [@spring.bind "addRecipeData.ingredientsNameList"/]\
                 <select class="combobox ingrName" id = "${spring.status.expression}[' + (k - 1) + ']" style="height: 30px; width: 217px; margin-right: 2px;" name="${spring.status.expression}[' + (k - 1) + ']">\
@@ -42,7 +42,7 @@
                 var self = this;
                 $('#adding').click(function (e) {
                     e.preventDefault();
-                    self.addStep(self.k);
+                    self.addIngr(self.k);
                     self.k++;
                 });
                 $(function () {
@@ -74,6 +74,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var stepCount=2
         var step = {
             i: $(".step").length + 1,
             addStep: function (i) {
@@ -84,13 +85,14 @@
                 <p>Имя файла:</p>\
                 <p>\
                 <div class="fileform">\
-                        <div class="fileformlabel" id="fileformlabel' + (i - 1) + '"></div> \
+                        <div class="fileformlabel" id="fileformlabel' + stepCount + '"></div> \
                         <div class="selectbutton">Обзор</div>\
                         <INPUT NAME="files[' + (i - 1) + ']" TYPE="file" id="upload" ' +
-                        'onchange="getName(this.value, \'fileformlabel' + (i - 1) + '\');"/>\
+                        'onchange="getName(this.value, \'fileformlabel' + stepCount + '\');"/>\
                 </div>\
                 </p>\
                 </div>';
+                stepCount++;
                 $(template).appendTo('.inputs').fadeIn('slow');
             },
             deleteStep: function (id) {
@@ -161,8 +163,8 @@
 <h1>Создать рецепт</h1>
 <div class="white-block">
 
-<form id="#OK" action="" method="post" commandName="addRecipeData" enctype="multipart/form-data"
-      style="height: 1500px">
+<form id="#OK" action="" method="post" commandName="addRecipeData" enctype="multipart/form-data">
+      <!--style="height: 1500px"-->
 <div class="span6" id="menuDrop">
     <p><b>Название</b></p>
 
@@ -238,7 +240,6 @@
             [/#if]
         [/#list]
     </select>
-    </select>
     [#if spring.status.error]
         <p>
 
@@ -278,7 +279,7 @@
                         </select>
 
                         [@spring.bind "addRecipeData.ingredientsCountList[${current_index - 1}]"/]
-                        <input type="text" class="inputs ingrCount" id="${spring.status.expression}"
+                        <input type="text" class="ingrCount" id="${spring.status.expression}"
                                name="${spring.status.expression}"
                                value="${addRecipeData.ingredientsCountList[current_index - 1]}"
                                style="width: 25px; height: 25px; font-size: 14px;"/>
@@ -355,10 +356,10 @@
                     <p>
 
                     <div class="fileform">
-                        <div class="fileformlabel" id="fileformlabel${index-1}"></div>
+                        <div class="fileformlabel" id="fileformlabel1"></div>
                         <div class="selectbutton">Обзор</div>
                         <INPUT NAME="files[${index-1}]" TYPE="file" id="upload" onchange="getName(this.value,
-                               'fileformlabel${index-1}');"/>
+                               'fileformlabel1');"/>
                     </div>
                     </p>
                 </div>
@@ -366,8 +367,8 @@
 
         </div>
         <p>
-            <button class="btn" value="#" id="add"
-                    onclick="document.getElementById('#idForBtn').style.visibility=visible">Добавить шаг
+            <button class="btn" value="#" id="add">
+            Добавить шаг
             </button>
         </p>
 

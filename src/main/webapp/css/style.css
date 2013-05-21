@@ -49,6 +49,18 @@ body {
     margin-top: 20px;
 }
 
+
+.white-block:before,
+.white-block:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.white-block:after {
+    clear: both;
+}
+
 .block-search-results {
     display: block;
     background-color: white;
