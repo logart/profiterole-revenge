@@ -30,7 +30,7 @@
 
             <div class="controls">
                 [@spring.bind "editProfileData.changePassword"/]
-                <input type="password" name="${spring.status.expression}" id="changePassword" value="${spring.status.value?default("")}"/><strong>*</strong>
+                <input type="password" name="${spring.status.expression}" id="changePassword"/><strong>*</strong>
             </div>
             [#if spring.status.error]
                 <p>
