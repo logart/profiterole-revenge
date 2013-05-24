@@ -5,20 +5,22 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var ingredient = {
-            k: $(".ingr").length + 1,
-            addIngr: function (k) {
-                var temp = '<div id="ingr_' + k + '" class="ingr"><button data-ingrid="' + k + '" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon ui-icon-trash delete_ingr"">Удалить ингредиент</button>\
+            ingrCount: $(".ingr").length + 1,
+            addIngr: function (ingrCount) {
+                var temp = '<div id="ingr_' + ingrCount + '" class="ingr"><button data-ingrid="' + ingrCount + '" \
+                title="Удалить ингредиент" class="delete_ingr ui-icon ui-icon-closethick">Удалить ингредиент</button>\
                 [@spring.bind "addRecipeData.ingredientsNameList"/]\
-                <select class="combobox ingrName" id = "${spring.status.expression}[' + (k - 1) + ']" style="height: 30px; width: 217px; margin-right: 2px;" name="${spring.status.expression}[' + (k - 1) + ']">\
+                <select class="combobox ingrName" id = "ingredientsNameList[' + (ingrCount - 1) + ']" name="ingredientsNameList[' + (ingrCount - 1) + ']">\
                     <option value="0"></option>\
                     [#list ingredients as c]<option value="${c.id}">\
                         ${c.name}</option>\
                     [/#list]\
                 </select>\
                 [@spring.bind "addRecipeData.ingredientsCountList"/]\
-                <input type="text" class = "ingrCount" id = "${spring.status.expression}[' + (k - 1) + ']" style="width: 25px; height: 25px; font-size: 14px; margin-right: 1px;" name="${spring.status.expression}[' + (k - 1) + ']"  >\
+                <input type="text" class = "combobox ingrCount" id = "ingredientsCountList[' + (ingrCount - 1) + ']" ' +
+                        'name="ingredientsCountList[' + (ingrCount - 1) + ']"  >\
                 [@spring.bind "addRecipeData.ingredientsTypeList"/]\
-                <select class="combobox ingrType" id = "${spring.status.expression}[' + (k - 1) + ']" style="height: 30px; width: 59px;" name="${spring.status.expression}[' + (k - 1) + ']">\
+                <select class="combobox ingrType" id = "ingredientsTypeList[' + (ingrCount - 1) + ']" name="ingredientsTypeList[' + (ingrCount - 1) + ']">\
                 </select>\
                 </div>';
 
@@ -27,23 +29,26 @@
 
             deleteIngr: function (id) {
                 var self = this;
-                self.k = 1;
+                self.ingrCount = 1;
                 $('#ingr_' + id).remove();
                 $('.ingr').each(function () {
-                    $(this).attr('id', 'ingr_' + self.k);
-                    $(this).find(':button').attr('data-ingrid', self.k);
-                    $(this).find('.ingrName').attr("name", "ingredientsNameList[" + (self.k - 1) + "]");
-                    $(this).find('.ingrCount').attr("name", "ingredientsCountList[" + (self.k - 1) + "]");
-                    $(this).find('.ingrType').attr("name", "ingredientsTypeList[" + (self.k - 1) + "]");
-                    self.k++;
+                    $(this).attr('id', 'ingr_' + self.ingrCount);
+                    $(this).find(':button').attr('data-ingrid', self.ingrCount);
+                    $(this).find('.ingrName').attr("name", "ingredientsNameList[" + (self.ingrCount - 1) + "]").attr
+                            ("id", "ingredientsNameList[" + (self.ingrCount - 1) + "]");
+                    $(this).find('.ingrCount').attr("name", "ingredientsCountList[" + (self.ingrCount - 1) + "]")
+                            .attr("id", "ingredientsCountList[" + (self.ingrCount - 1) + "]");
+                    $(this).find('.ingrType').attr("name", "ingredientsTypeList[" + (self.ingrCount - 1) + "]").attr
+                            ("id", "ingredientsTypeList[" + (self.ingrCount - 1) + "]");
+                    self.ingrCount++;
                 });
             },
             init: function () {
                 var self = this;
                 $('#adding').click(function (e) {
                     e.preventDefault();
-                    self.addIngr(self.k);
-                    self.k++;
+                    self.addIngr(self.ingrCount);
+                    self.ingrCount++;
                 });
                 $(function () {
                     var keyStop = {
@@ -74,45 +79,47 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var stepCount=2
+        var stepFileCount=2
         var step = {
-            i: $(".step").length + 1,
-            addStep: function (i) {
-                var template = '<div id="step_' + i + '" class="step"><p>Шаг <span class="step_counter">' + i + '</span></p>\
-                <button data-stepid="' + i + '" style="position: relative; background-position: -98px -130px;" title="Удалить шаг" class="ui-icon ui-icon-trash delete_step">Удалить шаг</button>\
-                <textarea class = "stepTextarea forinputs" rows="10" cols="15" name="stepsList[' + (i - 1) + ']" maxlength="3000"></textarea> \
+            stepCount: $(".step").length + 1,
+            addStep: function (stepCount) {
+                var template = '<div id="step_' + stepCount + '" class="step"><p>Шаг <span class="step_counter">' + stepCount + '</span></p>\
+                <button data-stepid="' + stepCount + '" title="Удалить шаг" class="delete_step ui-icon \
+                ui-icon-closethick">\
+                Удалить шаг</button>\
+                <textarea class = "stepTextarea forinputs" rows="10" cols="15" name="stepsList[' + (stepCount - 1) + ']" maxlength="3000"></textarea> \
                 <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="10000000000000"> \
                 <p>Имя файла:</p>\
                 <p>\
                 <div class="fileform">\
-                        <div class="fileformlabel" id="fileformlabel' + stepCount + '"></div> \
+                        <div class="fileformlabel" id="fileformlabel' + stepFileCount + '"></div> \
                         <div class="selectbutton">Обзор</div>\
-                        <INPUT NAME="files[' + (i - 1) + ']" TYPE="file" id="upload" ' +
-                        'onchange="getName(this.value, \'fileformlabel' + stepCount + '\');"/>\
+                        <INPUT NAME="files[' + (stepCount - 1) + ']" TYPE="file" id="upload" ' +
+                        'onchange="getName(this.value, \'fileformlabel' + stepFileCount + '\');"/>\
                 </div>\
                 </p>\
                 </div>';
-                stepCount++;
+                stepFileCount++;
                 $(template).appendTo('.inputs').fadeIn('slow');
             },
             deleteStep: function (id) {
                 var self = this;
-                self.i = 1;
+                self.stepCount = 1;
                 $('#step_' + id).remove();
                 $('.step').each(function () {
-                    $(this).attr('id', 'step_' + self.i);
-                    $(this).find('.step_counter').empty().append(self.i);
-                    $(this).find('.stepTextarea').attr("name", "stepsList[" + (self.i - 1) + "]");
-                    $(this).find(':button').attr('data-stepid', self.i);
-                    self.i++;
+                    $(this).attr('id', 'step_' + self.stepCount);
+                    $(this).find('.step_counter').empty().append(self.stepCount);
+                    $(this).find('.stepTextarea').attr("name", "stepsList[" + (self.stepCount - 1) + "]");
+                    $(this).find(':button').attr('data-stepid', self.stepCount);
+                    self.stepCount++;
                 });
             },
             init: function () {
                 var self = this;
                 $('#add').click(function (e) {
                     e.preventDefault();
-                    self.addStep(self.i);
-                    self.i++;
+                    self.addStep(self.stepCount);
+                    self.stepCount++;
                 });
                 $('.delete_step').live('click', function (e) {
                     e.preventDefault();
@@ -164,14 +171,12 @@
 <div class="white-block">
 
 <form id="#OK" action="" method="post" commandName="addRecipeData" enctype="multipart/form-data">
-      <!--style="height: 1500px"-->
 <div class="span6" id="menuDrop">
     <p><b>Название</b></p>
 
     [@spring.bind "addRecipeData.title"/]
-    <input type="text" name="${spring.status.expression}"
-           value="${spring.status.value?default("")?html}" style="width: 315px; font-size: 14px;"
-           maxlength="250"/> <br>
+    <input type="text" name="title"
+           value="${spring.status.value?default("")?html}" class="add-recipe-title" maxlength="250"/> <br>
     [#if spring.status.error]
         <p>
 
@@ -182,7 +187,7 @@
     <p><b>Описание</b></p>
     [@spring.bind "addRecipeData.description"/]
     <textarea class="forinputs" rows="10" cols="60"
-              name="${spring.status.expression}" maxlength="3000">${spring.status.value?default("")}</textarea>
+              name="description" maxlength="3000">${spring.status.value?default("")}</textarea>
     <br/>
     [#if spring.status.error]
         <p>
@@ -194,8 +199,8 @@
     <b>Время приготовления</b>
 
     [@spring.bind "addRecipeData.cookingTime"/]
-    <input type="text" name="${spring.status.expression}"
-           value="${spring.status.value?default("")}" style="width: 30px; font-size: 14px;"/> мин
+    <input type="text" name="cookingTime"
+           value="${spring.status.value?default("")}" class="cooking-time"/> мин
     [#if spring.status.error]
         <p>
 
@@ -210,7 +215,7 @@
     &nbsp;
     &nbsp;
     [@spring.bind "addRecipeData.cuisineId"/]
-    <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 130px">
+    <select class="combobox1" name="cuisineId">
         <option value=""></option>
         [#list cuisines as value]
             [#if "${value.id}" == "${spring.status.value?default(\"\")}"]
@@ -230,7 +235,7 @@
     <p></p>
     <b>Категория</b>
     [@spring.bind "addRecipeData.categoryId"/]
-    <select class="combobox" name="${spring.status.expression}" style="height: 30px; width: 130px">
+    <select class="combobox1" name="categoryId">
         <option value=""></option>
         [#list categories as value]
             [#if "${value.id}" == "${spring.status.value?default(\"\")}"]
@@ -252,7 +257,6 @@
 
     <p></p>
 
-    <div id="container">
         <div class="dynamic-form">
             <div class="conress">
                 [#assign ingrListSize = addRecipeData.ingredientsCountList?size]
@@ -261,13 +265,13 @@
                 [/#if]
                 [#list 1..ingrListSize as current_index]
                     <div id="ingr_${current_index}" class="ingr">
-                        <button data-ingrid="${current_index}" style="position: relative; background-position: -98px -130px" title="Удалить ингредиент" class="ui-icon
-                        ui-icon-trash delete_ingr">
+                        <button data-ingrid="${current_index}" title="Удалить ингредиент" class="delete_ingr ui-icon
+                        ui-icon-closethick">
                         Удалить ингредиент
                         </button>
                         [@spring.bind "addRecipeData.ingredientsNameList[${current_index - 1}]"/]
                         <select class="combobox ingrName" id="${spring.status.expression}"
-                                style="height: 30px; width: 217px" name="${spring.status.expression}">
+                                name="${spring.status.expression}">
                             <option value="0"></option>
                             [#list ingredients as c]
                                 [#if ""+c.id = addRecipeData.ingredientsNameList[current_index - 1]]
@@ -279,14 +283,13 @@
                         </select>
 
                         [@spring.bind "addRecipeData.ingredientsCountList[${current_index - 1}]"/]
-                        <input type="text" class="ingrCount" id="${spring.status.expression}"
+                        <input type="text" class="combobox ingrCount" id="${spring.status.expression}"
                                name="${spring.status.expression}"
-                               value="${addRecipeData.ingredientsCountList[current_index - 1]}"
-                               style="width: 25px; height: 25px; font-size: 14px;"/>
+                               value="${addRecipeData.ingredientsCountList[current_index - 1]}"/>
 
                         [@spring.bind "addRecipeData.ingredientsTypeList[${current_index - 1}]"/]
                         <select class="combobox ingrType" id="${spring.status.expression}"
-                                style="height: 30px; width: 61px" name="${spring.status.expression}">
+                                name="${spring.status.expression}">
                         </select>
 
                         [#if spring.status.error]
@@ -299,7 +302,6 @@
                     </div>
                 [/#list]
             </div>
-        </div>
         <p>
             <button class="btn" value="#" id="adding">Добавить ингрeдиент</button>
 
@@ -335,9 +337,8 @@
                 <div id="step_${index}" class="step">
 
                     <p>Шаг <span class="step_counter">${index}</span></p>
-                    <button data-stepid="${index}"
-                            style="position: relative; background-position: -98px -130px;" title="Удалить шаг"
-                            class="ui-icon ui-icon-trash delete_step">Удалить шаг
+                    <button data-stepid="${index}" title="Удалить шаг" class="delete_step ui-icon
+                    ui-icon-closethick">Удалить шаг
                     </button>
                     [@spring.bind "addRecipeData.stepsList[${index-1}]"/]
                     <textarea class="stepTextarea forinputs" rows="10" cols="45"
@@ -373,9 +374,7 @@
         </p>
 
     </div>
-    <div style="margin-top: 40px;">
-        <button class="btn btn-large" style="width: :100px;height: 60px;" id="OK">Создать</button>
-    </div>
+    <button class="btn btn-large create" id="OK">Создать</button>
 
 </div>
 
