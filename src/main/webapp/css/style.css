@@ -1,8 +1,18 @@
+.add-recipe-title {
+    width: 315px;
+    font-size: 14px;
+}
+
 body {
     background-image: url('/img/background.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.cooking-time {
+    width: 30px;
+    font-size: 14px;
 }
 
 .recipe {
@@ -25,6 +35,16 @@ body {
 .img-cuisine {
     width: 100px;
     height: 100px;
+}
+
+.delete_ingr.ui-icon {
+    position: relative;
+    background-position: -98px -130px;
+}
+
+.delete_step.ui-icon {
+    position: relative;
+    background-position: -98px -130px;
 }
 
 .block-create-menu {
@@ -88,6 +108,11 @@ body {
 
 .error{
     color: #ff0000;
+}
+
+.btn.create {
+    margin-top: 40px;
+    height: 60px;
 }
 
 .btn-group {
@@ -282,6 +307,30 @@ a.ui-slider-handle {
 .combobox {
     height: 30px;
     width: 117px;
+    font-size: 14px;
+}
+
+.combobox.ingrCount {
+    height: 25px;
+    width: 25px;
+    font-size: 14px;
+}
+
+.combobox.ingrName {
+    height: 30px;
+    width: 217px;
+    font-size: 14px;
+}
+
+.combobox.ingrType {
+    height: 30px;
+    width: 61px;
+    font-size: 14px;
+}
+
+.combobox1 {
+    height: 30px;
+    width: 130px;
     font-size: 14px;
 }
 
