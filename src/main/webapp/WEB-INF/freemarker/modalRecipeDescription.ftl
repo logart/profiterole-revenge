@@ -4,7 +4,9 @@
     <h3 id="myModalLabel" class="modal-label">${recipe.title}</h3>
 </div>
 <div id="body" class="modal-body" style="display: none;">
-    <img src="${recipe.bigImage}" class="img-rounded" id="image"/>
+    <a href="${recipe.bigImage}" target="_blank"> <img src="${recipe.bigImage}" class="img-rounded recipe-modal"
+                                                       id="image"/>
+    </a>
 
     <span class="text-justify">
     <br/>
@@ -12,7 +14,7 @@
     [#list markers?keys as key]
         <img src="${markers[key]}" title="${key}" id="markers"/>
     [/#list]
-    <br/>
+        <br/>
     <p><strong>Время приготовления:</strong> ${recipe.timeOfCooking} минут </p>
     <br/>
     <p><strong>Описание:</strong> ${recipe.description}</p>
@@ -30,7 +32,7 @@
     [#list recipe.steps as a]
         <p><strong>Шаг ${a.number}</strong></p>
 
-         <p><img src="${a.image}"></p>
+    <a href="${a.image}" target="_blank"> <img src="${a.image}" class="img-rounded recipe-modal" id="image"/></a>
     <p style="word-wrap: break-word;">${a.description}</p>
     [/#list]
         </span>
@@ -38,21 +40,24 @@
 <div class="modal-footer noprint">
     <button class="btn btn-primary pull-left " onclick="printBlock('#myModal')">Печать</button>
 
-    <button class="btn btn-success" style="display: none;" data-dismiss="modal" onclick="addButtonClick(${recipe.id})">Добавить</button>
+    <button class="btn btn-success" style="display: none;" data-dismiss="modal" onclick="addButtonClick(${recipe.id})">
+        Добавить
+    </button>
 </div>
 
 <script type="text/javascript">
     $("div .rec_id").filter(function (index) {
-        if($(this).text() == "${recipe.id}"){
-            $("div.modal-footer > button.btn-success").css('display', 'inline-block') ;
+        if ($(this).text() == "${recipe.id}") {
+            $("div.modal-footer > button.btn-success").css('display', 'inline-block');
             return true;
         }
         return false;
     });
-    function addButtonClick(id){
+    function addButtonClick(id) {
         var elem = $("div .rec_id").filter(function (index) {
-            return ($(this).text() == "${recipe.id}")&&($(this).parent().find(".rec_count").length==0);}).parent();
-        addToMenuByCloning(elem,$(".droppable:visible"));
+            return ($(this).text() == "${recipe.id}") && ($(this).parent().find(".rec_count").length == 0);
+        }).parent();
+        addToMenuByCloning(elem, $(".droppable:visible"));
     }
 
 </script>
