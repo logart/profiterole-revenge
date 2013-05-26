@@ -182,6 +182,11 @@ a:hover {
     border-radius: 6px;
 }
 
+.img-rounded.recipe-modal {
+    width: 35%;
+    height: auto;
+}
+
 .img-polaroid {
     padding: 4px;
     background-color: #fff;

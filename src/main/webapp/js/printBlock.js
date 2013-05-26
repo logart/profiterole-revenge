@@ -10,6 +10,7 @@ function printBlock(printedBlock) {
     var printUnit = $(printedBlock).html();
     $('div.container').addClass('noprint');
     $('body').append('<div class="toprint">' + printUnit + '</div>');
+    $(".toprint").find(".recipe-modal").unwrap();
     window.print();
     $('div.container').removeClass('noprint');
     $('.toprint').remove();
