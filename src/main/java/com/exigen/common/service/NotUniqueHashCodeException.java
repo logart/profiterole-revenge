@@ -7,7 +7,7 @@ package com.exigen.common.service;
  * @author Victoria Ganzha
  * @Date 29.03.13
  */
-public class NotUniqueHashCodeException extends Exception{
+public class NotUniqueHashCodeException extends ServiceException{
 
     /**
      * {@method NotUniqueHashCodeException} its a default NotUniqueHashCodeException constructor

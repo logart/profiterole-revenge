@@ -9,13 +9,12 @@ package com.exigen.common.service;
  */
 public interface SendMailService {
     /**
-     * {@method sendMail(String hash, String login, String email)}
+     * {@method sendMail(String message, String email)}
      * for send mail message
      *
-     * @param hash (object of the hash)
-     * @param login (object of the Account.login)
-     * @param email (object of the Account.email)
+     * @param message (Object message  generate by NotificationService, for send specific mail massage)
+     * @param email (object of the Account.email, for send mail message on specific email)
      *
      */
-    void sendMail(String hash, String login, String email) ;
+    void sendMail(String message, String email) throws NotificationException;
 }

@@ -1,8 +1,6 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.service.AccountService;
-import com.exigen.common.service.ForgotPasswordValidator;
-import com.exigen.common.service.NotUniqueHashCodeException;
+import com.exigen.common.service.*;
 import com.exigen.common.web.ForgotPasswordController;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -66,10 +64,13 @@ public class ForgotPasswordControllerTest {
         BindingResult result = mock(BindingResult.class);
         when(result.hasErrors()).thenReturn(false);
         when(forgotPasswordValidator.supports(String.class)).thenReturn(true);
+
         try {
-            doThrow(new NotUniqueHashCodeException()).when(this.accountService).resetUserPassword(anyString());
+            doThrow(new ServiceException()).when(this.accountService).resetUserPassword(anyString());
+        } catch (NotificationException e) {
+            e.printStackTrace();
         } catch (NotUniqueHashCodeException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
         Assert.assertEquals("redirect:", forgotPasswordController.forgotPassword(model, email, result));
 

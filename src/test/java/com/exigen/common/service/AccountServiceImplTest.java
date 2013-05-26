@@ -130,8 +130,8 @@ public class AccountServiceImplTest {
    }
 
 
-    @Test (expected = NotUniqueHashCodeException.class)
-    public void resetUserPasswordServiceExceptionTest()throws NotUniqueHashCodeException{
+    @Test (expected = ServiceException.class)
+    public void resetUserPasswordServiceExceptionTest()throws NotUniqueHashCodeException,NotificationException{
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
         when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(new AccountPasswordReset());

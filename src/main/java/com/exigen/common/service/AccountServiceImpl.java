@@ -30,8 +30,10 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private SendMailService sendMailService;
 
+    @Autowired
+    private NotificationService notificationService;
 
-        public static final int HASH_SIZE = 32;
+    public static final int HASH_SIZE = 32;
 
     public AccountServiceImpl() {
     }
@@ -164,21 +166,24 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
 
-    public void resetUserPassword(String email) throws NotUniqueHashCodeException {
+    public void resetUserPassword(String email) throws NotUniqueHashCodeException, NotificationException {
         AccountPasswordReset accountPasswordReset;
+        String hash = generateHash(HASH_SIZE);
         Account account;
-            accountPasswordReset = accountDao.getAccountPasswordResetByHash(generateHash(HASH_SIZE));
+            accountPasswordReset = accountDao.getAccountPasswordResetByHash(hash);
         if (accountPasswordReset != null){
             throw new NotUniqueHashCodeException();
         }  else {
             accountPasswordReset = new AccountPasswordReset();
-            accountPasswordReset.setHash(generateHash(HASH_SIZE));
+            accountPasswordReset.setHash(hash);
             account = accountDao.getAccountByEmail(email);
             accountPasswordReset.setAccount(account);
             accountDao.addAccountPasswordReset(accountPasswordReset);
-            sendMailService.sendMail(accountPasswordReset.getHash(),account.getLogin(),email);
+            String message = notificationService.createResetPasswordMessage(accountPasswordReset.getHash(),account.getLogin());
+            sendMailService.sendMail(message, email);
         }
     }
+
 
     /**
      * {@inheritDoc}
