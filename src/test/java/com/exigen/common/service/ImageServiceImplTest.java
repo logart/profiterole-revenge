@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.io.File;
-
 import static org.mockito.Mockito.when;
 
 /**
@@ -25,11 +23,13 @@ public class ImageServiceImplTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
+
     
     @Test
     public void testPostImage() throws Exception {
-        File file=new File("fghfgh");
-     when(imageService.postImage(file)).thenReturn("fgfh");
-        Assert.assertNotNull(imageService.postImage(file));
+        byte[]userFileByteArray = {2};
+        String userFileName = "userFileName";
+        when(imageService.postImage(userFileByteArray, userFileName)).thenReturn("userFileName");
+        Assert.assertNotNull(imageService.postImage(userFileByteArray, userFileName));
     }
 }
