@@ -1,6 +1,7 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.AddRecipeData;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.util.HtmlUtils;
@@ -16,6 +17,7 @@ import java.util.regex.Pattern;
  * @author Oleg Kalinichenko
  * @date January 02, 2013
  */
+@Component
 public class AddRecipeDataValidator implements Validator {
     /**
      * {@code stepPattern} Contains pattern for check steps

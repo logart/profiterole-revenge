@@ -42,13 +42,16 @@ public class AddRecipesController {
     private IngredientService ingredientService;
     @Autowired
     private AddRecipeDataService addRecipeDataService;
+    @Autowired
+    private AddRecipeDataValidator addRecipeDataValidator ;
+    @Autowired
+    private ImageService imageService;
+
     private List<Category> categories;
     private List<Cuisine> cuisines;
     private List<Ingredient> ingredients;
 
     private List<String> imagesForSteps = new ArrayList<String>();
-
-    private ImageServiceImpl imageService = new ImageServiceImpl();
 
     @RequestMapping(method = RequestMethod.GET)
     public String showAddingRecipe(Map model) {
@@ -71,7 +74,8 @@ public class AddRecipesController {
             ingredients = this.ingredientService.getAllIngredientsSortedList();
         }
 
-        ValidationUtils.invokeValidator(new AddRecipeDataValidator(), data, errors);
+        ValidationUtils.invokeValidator(addRecipeDataValidator, data, errors);
+
         if (errors.hasErrors()) {
             model.put("addRecipeData", data);
             model.put("cuisines", cuisines);
@@ -79,7 +83,6 @@ public class AddRecipesController {
             model.put("ingredients", ingredients);
             return "addRecipes";
         }
-
         List<MultipartFile> multipartFiles = data.getFiles();
 
         for (int i = 0; i < multipartFiles.size(); i++) {
@@ -89,7 +92,6 @@ public class AddRecipesController {
                 imagesForSteps.add(i, imageService.postImage(multipartFiles.get(i).getBytes(), multipartFiles.get(i).getOriginalFilename()));
             }
         }
-
         data.setImagesForStepsList(imagesForSteps);
 
         if (data.getImages().isEmpty()) {
@@ -97,13 +99,9 @@ public class AddRecipesController {
         } else {
             data.setImageForRecipeHead(imageService.postImage(data.getImages().getBytes(), data.getImages().getName()));
         }
-
         data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategoryId()), categories));
         data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisineId()), cuisines));
         addRecipeDataService.addRecipe(data);
         return "redirect:success";
     }
-
-
-
 }
