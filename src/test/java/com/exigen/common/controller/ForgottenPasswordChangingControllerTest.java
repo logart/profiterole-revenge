@@ -106,12 +106,14 @@ public class ForgottenPasswordChangingControllerTest {
         verify(this.accountService, never()).changeForgottenUserPassword(anyString(), anyString());
     }
 
+    @Test
     public void testChangeForgottenPasswordSuccess (){
         ForgottenPasswordChangingController controller = new ForgottenPasswordChangingController();
         Map model = new TreeMap();
         Assert.assertEquals("changeForgottenPasswordSuccess", controller.changeForgottenPasswordSuccess(model));
     }
 
+    @Test
     public void testChangeForgottenPasswordFail (){
         ForgottenPasswordChangingController controller = new ForgottenPasswordChangingController();
         Map model = new TreeMap();
