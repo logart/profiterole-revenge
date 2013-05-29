@@ -43,7 +43,7 @@ public class AddRecipesController {
     @Autowired
     private AddRecipeDataService addRecipeDataService;
     @Autowired
-    private AddRecipeDataValidator addRecipeDataValidator ;
+    private AddRecipeDataValidator addRecipeDataValidator;
     @Autowired
     private ImageService imageService;
 
@@ -68,11 +68,10 @@ public class AddRecipesController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingRecipe(Map model, @ModelAttribute("addRecipeData") @Valid AddRecipeData data, BindingResult errors) throws IOException {
-        if (categories == null || cuisines == null || ingredients == null) {
-            categories = this.categoriesService.getCategories();
-            cuisines = this.cuisineService.getCuisine();
-            ingredients = this.ingredientService.getAllIngredientsSortedList();
-        }
+
+        categories = this.categoriesService.getCategories();
+        cuisines = this.cuisineService.getCuisine();
+        ingredients = this.ingredientService.getAllIngredientsSortedList();
 
         ValidationUtils.invokeValidator(addRecipeDataValidator, data, errors);
 
@@ -97,7 +96,7 @@ public class AddRecipesController {
         if (data.getImages().isEmpty()) {
             data.setImageForRecipeHead(DEFAULT_IMAGE_FOR_RECIPE_HEAD);
         } else {
-            data.setImageForRecipeHead(imageService.postImage(data.getImages().getBytes(), data.getImages().getName()));
+            data.setImageForRecipeHead(imageService.postImage(data.getImages().getBytes(), data.getImages().getOriginalFilename()));
         }
         data.setCategory(addRecipeDataService.getCategoryFromListByID(Integer.parseInt(data.getCategoryId()), categories));
         data.setCuisine(addRecipeDataService.getCuisineFromListByID(Integer.parseInt(data.getCuisineId()), cuisines));
