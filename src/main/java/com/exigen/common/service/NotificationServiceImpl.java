@@ -29,7 +29,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     public static final String CHANGE_FORGOTTEN_PASSWORD_URL = "changeForgottenPassword";
 
-    public static final String ACTIVATION_ACCOUNT_MAIL_URL = "activationAccountMail.ftl";
+    public static final String ACTIVATION_ACCOUNT_MAIL_URL = "activationAccountMail";
 
     /**
      * {@code request} describes the HttpServletRequest to inject on this
@@ -111,7 +111,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     }
 
-    /**                                                                       createActivationMessage(String hash, String login)
+    /**
      * {@method createActivationMessage(String hash, String login)}
      *
      * @param hash (String of a hash, unique hash code used for generate URL)
