@@ -49,15 +49,18 @@
             range:true,
             min:6,
             max:540,
-            values:[ 6, 60 ],
+            values:[ 6, 540 ],
             slide:function (event, ui) {
-                $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + ":" + parseInt((ui.values[ 0 ]) % 60, 10) +
-                        " - " + parseInt((ui.values[ 1 ]) / 60 % 24, 10) + ":" + parseInt((ui.values[ 1 ]) % 60, 10));
+                $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + "ч. " + parseInt((ui.values[ 0 ]) % 60,
+                        10) + "мин." + " - " + parseInt((ui.values[ 1 ]) / 60 % 24,
+                        10) + "ч. " + parseInt((ui.values[ 1 ]) % 60, 10) + "мин.");
                 filterRecipies(ui.values);
             }
         });
-        $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24, 10) + ":" + parseInt($("#slider-range").slider("values", 0) % 60, 10) +
-                "-" + parseInt($("#slider-range").slider("values", 1) / 60 % 24, 10) + ":" + parseInt($("#slider-range").slider("values", 1) % 60, 10));
+        $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24,
+                10) + "ч. " + parseInt($("#slider-range").slider("values", 0) % 60, 10) + "мин." +
+                " - " + parseInt($("#slider-range").slider("values", 1) / 60 % 24,
+                10) + "ч. " + parseInt($("#slider-range").slider("values", 1) % 60, 10) + "мин.");
     });
 </script>
 
