@@ -29,6 +29,8 @@ public class NotificationServiceImpl implements NotificationService {
 
     public static final String CHANGE_FORGOTTEN_PASSWORD_URL = "changeForgottenPassword";
 
+    public static final String ACTIVATION_ACCOUNT_MAIL_URL = "activationAccountMail.ftl";
+
     /**
      * {@code request} describes the HttpServletRequest to inject on this
      * class
@@ -43,7 +45,7 @@ public class NotificationServiceImpl implements NotificationService {
      */
 
     public String getRequestBaseURL(){
-        StringBuffer commonURL = new StringBuffer();
+        StringBuilder commonURL = new StringBuilder();
         commonURL.append(request.getScheme())
                 .append("://")
                 .append(request.getServerName())
@@ -106,6 +108,28 @@ public class NotificationServiceImpl implements NotificationService {
         datamodel.put("login",login);
 
         return generateMessage("resetUserPasswordMail.ftl", datamodel);
+
+    }
+
+    /**                                                                       createActivationMessage(String hash, String login)
+     * {@method createActivationMessage(String hash, String login)}
+     *
+     * @param hash (String of a hash, unique hash code used for generate URL)
+     * @param login (object of an Account.login, login name of user, used for generate message)
+     * @return String message
+     */
+
+    public String createActivationMessage(String hash, String login) throws NotificationException {
+
+        String commonURL = getRequestBaseURL();
+        String responseURL = commonURL.concat(ACTIVATION_ACCOUNT_MAIL_URL + "?hash=").concat(hash);
+
+        Map<String,String> datamodel= new HashMap<String,String>();
+        datamodel.put("responseURL",responseURL);
+        datamodel.put("commonURL",commonURL);
+        datamodel.put("login",login);
+
+        return generateMessage("activationAccountMail.ftl", datamodel);
 
     }
 
