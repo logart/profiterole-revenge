@@ -40,4 +40,14 @@ public interface NotificationService {
      */
 
     String createResetPasswordMessage(String hash, String login) throws NotificationException;
+
+    /**
+     * {@method createActivationMessage(String hash, String login)}
+     *
+     * @param hash (String of a hash, unique hash code used for generate URL)
+     * @param login (object of an Account.login, login name of user, used for generate message)
+     * @return String message
+     */
+
+    public String createActivationMessage(String hash, String login) throws NotificationException;
 }

@@ -5,6 +5,8 @@
     <div class="span12 text-cener padding">
         <div class="alert alert-success">
             <h4>Регистрация прошла успешно </h4>
+            <h4>На Ваш Email отправлено сообщение со ссылкой для активации аккаунта. </h4>
+            <h4> Пожалуйста, проверьте Вашу почту! </h4>
         </div>
         <div class="block-create-menu">
             Спасибо за регистрацию на нашем сайте, ${user}!

@@ -29,7 +29,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     public static final String CHANGE_FORGOTTEN_PASSWORD_URL = "changeForgottenPassword";
 
-    public static final String ACTIVATION_ACCOUNT_MAIL_URL = "activationAccountMail";
+    public static final String ACTIVATION_ACCOUNT_MAIL_URL = "activation";
 
     /**
      * {@code request} describes the HttpServletRequest to inject on this

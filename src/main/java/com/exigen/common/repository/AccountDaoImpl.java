@@ -2,7 +2,7 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountPasswordReset;
+import com.exigen.common.domain.HashesOfAccount;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
@@ -65,9 +65,9 @@ public class AccountDaoImpl implements AccountDao {
      * {@inheritDoc}
      */
     @Override
-    public AccountPasswordReset getAccountPasswordResetByHash(String hash) {
+    public HashesOfAccount getHashesOfAccountByHash(String hash) {
         try{
-        return this.entityManager.createNamedQuery("AccountPasswordReset.findByHash",AccountPasswordReset.class).setParameter("hash",
+        return this.entityManager.createNamedQuery("HashesOfAccount.findByHash",HashesOfAccount.class).setParameter("hash",
                  hash).getSingleResult();
         } catch(NoResultException e){
             return null;
@@ -108,8 +108,8 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     @Transactional
-    public void addAccountPasswordReset(AccountPasswordReset accountPasswordReset){
-        entityManager.persist(accountPasswordReset);
+    public void addHashesOfAccount(HashesOfAccount hashesOfAccount){
+        entityManager.persist(hashesOfAccount);
     }
 
     /**
@@ -119,8 +119,10 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     @Transactional
-    public void removeAccountPasswordReset(AccountPasswordReset accountPasswordReset){
-        AccountPasswordReset managedAccountPasswordReset = entityManager.merge(accountPasswordReset);
-        entityManager.remove(managedAccountPasswordReset);
+    public void removeHashesOfAccount(HashesOfAccount hashesOfAccount){
+        HashesOfAccount managedHashesOfAccount = entityManager.merge(hashesOfAccount);
+        entityManager.remove(managedHashesOfAccount);
     }
+
+
 }

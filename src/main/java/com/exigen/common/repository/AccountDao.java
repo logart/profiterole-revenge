@@ -2,7 +2,7 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountPasswordReset;
+import com.exigen.common.domain.HashesOfAccount;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public interface AccountDao {
      * @return  the user, where hash equals parameter hash( return complete description
      *         of with all entity's fields).
      */
-    AccountPasswordReset getAccountPasswordResetByHash(String hash);
+    HashesOfAccount getHashesOfAccountByHash(String hash);
 
     /**
      * {method getOneRecipeList(Integer recipeId)}
@@ -106,19 +106,21 @@ public interface AccountDao {
     void removeAccount(Account account);
 
     /**
-     * addAccountPasswordReset(AccountPasswordReset accountPasswordReset)
+     * addHashesOfAccount(HashesOfAccount hashesOfAccount)
      * for adding information about some particular user into DB
      *
-     * @param accountPasswordReset (object of some particular user)
+     * @param hashesOfAccount (object of some particular user)
      */
-    void addAccountPasswordReset(AccountPasswordReset accountPasswordReset);
+    void addHashesOfAccount(HashesOfAccount hashesOfAccount);
 
     /**
-     * removeAccountPasswordReset(AccountPasswordReset accountPasswordReset)
+     * removeHashesOfAccount(HashesOfAccount hashesOfAccount)
      * for remove information about hash and some particular user from DB
      * after use it in changing forgotten password process
      *
-     * @param accountPasswordReset (object of AccountPasswordReset)
+     * @param hashesOfAccount (object of HashesOfAccount)
      */
-    void removeAccountPasswordReset(AccountPasswordReset accountPasswordReset);
+    void removeHashesOfAccount(HashesOfAccount hashesOfAccount);
+
+
 }

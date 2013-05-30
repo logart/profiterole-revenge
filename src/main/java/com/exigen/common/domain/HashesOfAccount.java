@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Class  {@code AccountPasswordReset} is used to reset
+ * Class  {@code HashesOfAccount} is used to activation of account and to reset
  *  password for user
  * @author Victoria Ganzha
  * Date 29.03.13
@@ -12,11 +12,18 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "account_pass_reset")
+@Table(name = "hashes_of_account")
+@DiscriminatorColumn(
+        name="discriminator",
+        discriminatorType=DiscriminatorType.STRING
+)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @NamedQueries({
-        @NamedQuery(name = "AccountPasswordReset.findByHash", query = "SELECT h FROM AccountPasswordReset h WHERE hash = :hash")
+        @NamedQuery(name = "HashesOfAccount.findByHash", query = "SELECT h FROM HashesOfAccount h WHERE h.hash = :hash")
+
 })
-public class AccountPasswordReset implements Serializable {
+abstract public class HashesOfAccount implements Serializable {
+//public class HashesOfAccount implements Serializable {
 
 
     /**
@@ -42,6 +49,10 @@ public class AccountPasswordReset implements Serializable {
      */
     @OneToOne
     private Account account;
+
+    @Column(name = "discriminator", updatable=false,insertable = false )
+    private String discriminator;
+
 
     /**
      * {methods get .. and set..} its a getters and setters
@@ -69,5 +80,13 @@ public class AccountPasswordReset implements Serializable {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getDiscriminator() {
+        return discriminator;
+    }
+
+    public void setDiscriminator(String discriminator) {
+        this.discriminator = discriminator;
     }
 }
