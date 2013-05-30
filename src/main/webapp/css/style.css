@@ -184,6 +184,13 @@ body {
     padding: 2px;
 }
 
+.sliderCont {
+    width: 401px;
+    height: 30px;
+    float: left;
+    background: url(../img/scale.png) 0 bottom no-repeat;
+}
+
 .slider-input {
     border-color: #FFFFFF;
     border: 0;
@@ -194,6 +201,14 @@ body {
     background-color: #FFFFFF !important;
 }
 
+.ui-slider .ui-slider-range {
+    background: #f6931f;
+}
+
+#slider-range{
+    background: lightgray;
+}
+
 .no-display {
     display: none;
 }
@@ -201,8 +216,6 @@ body {
 .no-outline {
     outline: none !important;
 }
-
-
 
 a.ui-slider-handle {
     outline: none !important;
@@ -214,6 +227,7 @@ a.ui-slider-handle {
 
 .content {
     margin-top: 10px;
+    display: inline-block;
 }
 
 .text-justify {
