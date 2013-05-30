@@ -1,7 +1,7 @@
 package com.exigen.common.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 /**
  * Class  {@code HashesOfAccount} is used to activation of account and to reset
@@ -22,7 +22,7 @@ import java.io.Serializable;
         @NamedQuery(name = "HashesOfAccount.findByHash", query = "SELECT h FROM HashesOfAccount h WHERE h.hash = :hash")
 
 })
-abstract public class HashesOfAccount  {
+abstract  class HashesOfAccount  {
 
 
     /**
