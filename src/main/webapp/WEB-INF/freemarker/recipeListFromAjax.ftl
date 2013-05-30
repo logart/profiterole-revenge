@@ -23,6 +23,15 @@
 [#list model as a]
 [#--[#list model?keys as a]--]
 <div class="btn draggable recepies_btn" data-content="
+Время приготовления:
+[#if a.recipe.timeOfCooking &lt; 60]
+     ${a.recipe.timeOfCooking % 60 }мин.<br />
+[#else]
+     ${a.recipe.timeOfCooking / 60 % 24}ч. ${a.recipe.timeOfCooking % 60 }мин.<br />
+[/#if]
+[#list  a.markers?keys as marker]
+    - ${marker}; <br />
+[/#list]
 [#if a.recipe.description?length &lt; 250]
 ${a.recipe.description}
 [#else]
@@ -89,7 +98,8 @@ ${a.recipe.description?substring(0,250)} ...
 
     $('#cuisine').find('.btn').popover({
         trigger: 'hover',
-        placement: 'left'
+        placement: 'left',
+        delay: { show: 500, hide: 100 }
     })
 
     [#--Dragg-able JavaScript--]
