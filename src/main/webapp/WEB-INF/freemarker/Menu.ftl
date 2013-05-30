@@ -3,6 +3,21 @@
 
 <script type="text/javascript">
 
+    var animateSlidebarOnFirstshow = (function() {
+        var firstshow = true; // статическая переменная
+        return function() {
+            if (firstshow){
+                firstshow=false;
+                $("#slider-range").slider("values", 1, 500);
+                $("#slider-range").slider("values", 0, 6);
+                $("#amount").val("от " + parseInt($("#slider-range").slider("values", 0) / 60 % 24,
+                        10) + "ч. " + parseInt($("#slider-range").slider("values", 0) % 60, 10) + "мин." +
+                        " до " + parseInt($("#slider-range").slider("values", 1) / 60 % 24,
+                        10) + "ч. " + parseInt($("#slider-range").slider("values", 1) % 60, 10) + "мин.");
+            }
+        };
+    })();
+
     $(document).ready(function () {
 
         $.get("/menuCuisinesAjax", function (response) {
@@ -23,7 +38,7 @@
 
         $('.btn.btn-large.no-outline').click(function () {
 
-            $('#hiddens').show(500);
+            $('#hiddens').show(500, animateSlidebarOnFirstshow);
 
             var myMeal = $(this).attr("value");
             $('#menuDrop').children().hide();
@@ -36,7 +51,6 @@
                     }).get();
             var maxHeight = Math.max.apply(Math, heightArray);
             $(".block-create-menu").height(maxHeight);
-
         });
 
     });
@@ -49,18 +63,15 @@
             range:true,
             min:6,
             max:540,
-            values:[ 6, 540 ],
+            values:[ 240, 250 ],
+            animate: true,
             slide:function (event, ui) {
-                $("#amount").val(parseInt((ui.values[ 0 ]) / 60 % 24, 10) + "ч. " + parseInt((ui.values[ 0 ]) % 60,
-                        10) + "мин." + " - " + parseInt((ui.values[ 1 ]) / 60 % 24,
+                $("#amount").val("от " + parseInt((ui.values[ 0 ]) / 60 % 24, 10) + "ч. " + parseInt((ui.values[ 0 ]) % 60,
+                        10) + "мин." + " до " + parseInt((ui.values[ 1 ]) / 60 % 24,
                         10) + "ч. " + parseInt((ui.values[ 1 ]) % 60, 10) + "мин.");
                 filterRecipies(ui.values);
             }
         });
-        $("#amount").val(parseInt($("#slider-range").slider("values", 0) / 60 % 24,
-                10) + "ч. " + parseInt($("#slider-range").slider("values", 0) % 60, 10) + "мин." +
-                " - " + parseInt($("#slider-range").slider("values", 1) / 60 % 24,
-                10) + "ч. " + parseInt($("#slider-range").slider("values", 1) % 60, 10) + "мин.");
     });
 </script>
 
@@ -128,8 +139,9 @@
                 <h5><label for="amount">Время приготовления</label></h5>
                 <input readonly="readonly" type="input-small" id="amount" class="slider-input"/>
                 </p>
+                <div class="sliderCont">
                 <div id="slider-range" class="no-outline"></div>
-
+                </div>
                 <div class="content" id="cuisine"></div>
 
             </div>
