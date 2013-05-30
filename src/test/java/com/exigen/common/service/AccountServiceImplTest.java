@@ -22,11 +22,15 @@ import static org.mockito.Mockito.*;
 public class AccountServiceImplTest {
     @Mock
     private AccountDao accountDao;
+    @Mock
+    private NotificationService notificationService;
+    @Mock
+    private SendMailService sendMailService;
     private Calendar calendar = new GregorianCalendar(2010, 11, 03);
     private Account  account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar, "Ukraine");
     private AccountServiceImpl accountService;
     private List<Account> list = new ArrayList<Account>();
-    private AccountPasswordReset accountPasswordReset;
+    private HashesOfAccount hashesOfAccount;
 
     private static final int HASH_SIZE = 32;
 
@@ -77,13 +81,23 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testAddAccountByRegistrationData() {
+    public void testAddAccountByRegistrationData() throws Exception{
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        ReflectionTestUtils.setField(accountService, "notificationService", notificationService);
+        ReflectionTestUtils.setField(accountService, "sendMailService", sendMailService);
+
         RegistrationData registrationData = new RegistrationData();
         registrationData.setDateOfBirth("01.01.2010");
+        registrationData.setLogin("user");
+        String message = "message";
+        when(notificationService.createActivationMessage(anyString(),anyString())).thenReturn(message);
+        when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
         accountService.addAccount(registrationData);
+
         verify(accountDao, times(1)).addAccount((Account) anyObject());
+        verify( sendMailService,times(1)).sendMail(anyString(), anyString());
+
         }
 
     @Test
@@ -134,7 +148,7 @@ public class AccountServiceImplTest {
     public void resetUserPasswordServiceExceptionTest()throws NotUniqueHashCodeException,NotificationException{
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
-        when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(new AccountPasswordReset());
+        when(accountDao.getHashesOfAccountByHash(anyString())).thenReturn(new AccountPasswordReset());
         accountService.resetUserPassword("");
 
     }
@@ -143,15 +157,39 @@ public class AccountServiceImplTest {
     public void resetUserPasswordServiceNullTest()throws Exception{
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
-        when(accountDao.getAccountPasswordResetByHash(anyString())).thenReturn(null);
-        Assert.assertNull(accountDao.getAccountPasswordResetByHash(anyString()));
-        accountPasswordReset = new AccountPasswordReset();
-        accountPasswordReset.setHash("2343535645");
+        when(accountDao.getHashesOfAccountByHash(anyString())).thenReturn(null);
+        Assert.assertNull(accountDao.getHashesOfAccountByHash(anyString()));
+        hashesOfAccount = new AccountPasswordReset();
+        hashesOfAccount.setHash("2343535645");
         account = accountDao.getAccountByEmail("ololo@gmailcom");
-        accountPasswordReset.setAccount(account);
-        accountDao.addAccountPasswordReset(accountPasswordReset);
-        verify(accountDao, times(1)).addAccountPasswordReset((AccountPasswordReset)anyObject());
+        hashesOfAccount.setAccount(account);
+        accountDao.addHashesOfAccount(hashesOfAccount);
+        verify(accountDao, times(1)).addHashesOfAccount((HashesOfAccount) anyObject());
     }
 
+    @Test
+    public void activationOfAccountTest1(){
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        hashesOfAccount = new ActivationHash();
+        hashesOfAccount.setAccount(account);
+        String hash ="1234567";
+        account.setActivated(false);
+        when(accountDao.getHashesOfAccountByHash(hash)).thenReturn(hashesOfAccount);
+        accountService.activationOfAccount(hash);
+        verify(accountDao, times(1)).updateAccount(account);
+    }
 
+    @Test
+    public void activationOfAccountTest2(){
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        hashesOfAccount = new ActivationHash();
+        hashesOfAccount.setAccount(account);
+        String hash ="1234567";
+        account.setActivated(true);
+        when(accountDao.getHashesOfAccountByHash(hash)).thenReturn(hashesOfAccount);
+        accountService.activationOfAccount(hash);
+        verify(accountDao,never()).updateAccount(account);
+    }
 }

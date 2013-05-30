@@ -72,6 +72,11 @@ public class Account implements Serializable {
     private String role = "ROLE_USER";
 
     /**
+     * {@code activated} contains the true if the user is activated and the false if the user isn`t activated
+     */
+    private boolean activated;
+
+    /**
      * {@method Account} its a default constructor for JPA
      */
     public Account() {
@@ -160,5 +165,11 @@ public class Account implements Serializable {
         this.role = role;
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
 
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
 }

@@ -47,9 +47,8 @@ public class RegistrationControllerTest {
         Assert.assertEquals("registration",test);
 
     }
-
     @Test
-    public void testProcessAddingUserValidatedOk(){
+    public void testProcessAddingUserValidatedOk()throws Exception{
         RegistrationController profile = new  RegistrationController();
         ReflectionTestUtils.setField(profile, "accountService", this.accountService);
         ReflectionTestUtils.setField(profile, "registrationValidator", this.registrationValidator);

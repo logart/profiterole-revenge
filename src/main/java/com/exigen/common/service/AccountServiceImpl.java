@@ -33,6 +33,8 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private NotificationService notificationService;
 
+
+
     public static final int HASH_SIZE = 32;
 
     public AccountServiceImpl() {
@@ -82,7 +84,8 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
     @Override
-    public void addAccount(RegistrationData data) {
+    public void addAccount(RegistrationData data) throws NotificationException{
+        String hash;
         Account account = new Account();
         account.setLogin(data.getLogin());
         account.setPassword(data.getPassword());
@@ -93,6 +96,22 @@ public class AccountServiceImpl implements AccountService {
         account.setDateOfBirth(getCalendar(data.getDateOfBirth()));
         account.setCountry(data.getCountry());
         accountDao.addAccount(account);
+
+        HashesOfAccount hashesOfAccount;
+
+        do {
+            hash = generateHash(HASH_SIZE);
+            hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        }
+        while (hashesOfAccount != null);
+
+         hashesOfAccount = new ActivationHash();
+         hashesOfAccount.setHash(hash);
+
+         hashesOfAccount.setAccount(accountDao.getAccountByLogin(account.getLogin()));
+         accountDao.addHashesOfAccount(hashesOfAccount);
+         String message = notificationService.createActivationMessage(hash,account.getLogin());
+         sendMailService.sendMail(message, account.getEmail());
     }
 
     /**
@@ -167,32 +186,47 @@ public class AccountServiceImpl implements AccountService {
      */
 
     public void resetUserPassword(String email) throws NotUniqueHashCodeException, NotificationException {
-        AccountPasswordReset accountPasswordReset;
+        HashesOfAccount hashesOfAccount;
         String hash = generateHash(HASH_SIZE);
         Account account;
-            accountPasswordReset = accountDao.getAccountPasswordResetByHash(hash);
-        if (accountPasswordReset != null){
+            hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        if (hashesOfAccount != null){
             throw new NotUniqueHashCodeException();
         }  else {
-            accountPasswordReset = new AccountPasswordReset();
-            accountPasswordReset.setHash(hash);
+            hashesOfAccount = new AccountPasswordReset();
+            hashesOfAccount.setHash(hash);
             account = accountDao.getAccountByEmail(email);
-            accountPasswordReset.setAccount(account);
-            accountDao.addAccountPasswordReset(accountPasswordReset);
-            String message = notificationService.createResetPasswordMessage(accountPasswordReset.getHash(),account.getLogin());
+            hashesOfAccount.setAccount(account);
+            accountDao.addHashesOfAccount(hashesOfAccount);
+            String message = notificationService.createResetPasswordMessage(hashesOfAccount.getHash(),account.getLogin());
             sendMailService.sendMail(message, email);
         }
     }
-
 
     /**
      * {@inheritDoc}
      */
     public void changeForgottenUserPassword(String hash, String newPassword) {
-        AccountPasswordReset accountPasswordReset = accountDao.getAccountPasswordResetByHash(hash);
-        Account account = accountPasswordReset.getAccount();
+        HashesOfAccount hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        Account account = hashesOfAccount.getAccount();
         account.setPassword(newPassword);
         accountDao.updateAccount(account);
-        accountDao.removeAccountPasswordReset(accountPasswordReset) ;
+        accountDao.removeHashesOfAccount(hashesOfAccount) ;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Account  activationOfAccount(String hash){
+        HashesOfAccount hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        Account account = hashesOfAccount.getAccount();
+        if (!account.isActivated()){
+            account.setActivated(true);
+            accountDao.updateAccount(account);
+            accountDao.removeHashesOfAccount(hashesOfAccount) ;
+        } else {
+            accountDao.removeHashesOfAccount(hashesOfAccount) ;
+        }
+        return account;
     }
 }

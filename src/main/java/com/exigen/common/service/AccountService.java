@@ -65,8 +65,9 @@ public interface AccountService {
      *                              (resource
      *                              on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when user is null)
+     * @throws NotificationException (when there are errors of notification service)
      */
-    void addAccount(RegistrationData data);
+    void addAccount(RegistrationData data) throws NotificationException;
 
     /**
      * {@method updateAccount(AccountData data)}
@@ -94,14 +95,14 @@ public interface AccountService {
 
     /**
      * {@method changeForgottenUserPassword(String hash, String newPassword)}
-     * for changing password in account, that given by hash from AccountPasswordReset
+     * for changing password in account, that given by hash from HashesOfAccount
      *
      * @param hash (string with hash)
      * @param newPassword (string with newPassword)
      * @throws org.springframework.dao.DataAccessException
      *                              (resource
      *                              on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when AccountPasswordReset is null)
+     * @throws NullPointerException (when HashesOfAccount is null)
      */
     void changeForgottenUserPassword(String hash, String newPassword) ;
 
@@ -110,4 +111,13 @@ public interface AccountService {
      * @param email (unique identificator of some particular user)
      */
     void resetUserPassword(String email) throws NotUniqueHashCodeException, NotificationException;
+
+    /**
+     * {@method activationOfAccount(String hash)}
+     * for activation of account for user
+     *
+     * @param hash (string of hash)
+     *
+     */
+    Account activationOfAccount(String hash);
 }

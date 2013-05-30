@@ -3,6 +3,7 @@ package com.exigen.common.web;
 
 import com.exigen.common.service.AccountService;
 import com.exigen.common.domain.RegistrationData;
+import com.exigen.common.service.NotificationException;
 import com.exigen.common.service.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +28,10 @@ public class RegistrationController {
     private AccountService accountService;
     @Autowired
     private RegistrationValidator registrationValidator;
+
+
     /**
-     * {@method index()} using for mapped registration form
+     * {@method registration(Map model)} using for mapped registration form
      *
      * @return registration form view name
      */
@@ -39,6 +42,12 @@ public class RegistrationController {
         return "registration";
     }
 
+    /**
+     * {@method processAddingUser(Map model,  RegistrationData data, BindingResult errors)
+     * for registration of user and redirect to result page
+     *
+     * @param data (object of RegistrationData)}
+     **/
     @RequestMapping(method = RequestMethod.POST)
     public String processAddingUser(Map model, @ModelAttribute("registrationData") @Valid RegistrationData data, BindingResult errors) {
         ValidationUtils.invokeValidator(registrationValidator, data, errors);
@@ -46,8 +55,12 @@ public class RegistrationController {
             model.put("registrationData", data);
             return "registration";
         }
-        accountService.addAccount(data);
-
+        try {
+            accountService.addAccount(data);
+        }
+        catch(NotificationException e){
+            return "redirect:";
+        }
         return "redirect:registrationSuccess?user=" + data.getLogin();
     }
 

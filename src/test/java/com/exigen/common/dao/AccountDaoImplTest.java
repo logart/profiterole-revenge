@@ -1,7 +1,8 @@
 package com.exigen.common.dao;
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountPasswordReset;
+import com.exigen.common.domain.ActivationHash;
+import com.exigen.common.domain.HashesOfAccount;
 import com.exigen.common.domain.Gender;
 import com.exigen.common.repository.AccountDao;
 import org.junit.Assert;
@@ -24,14 +25,14 @@ public class AccountDaoImplTest {
     @Autowired
     AccountDao accountDao;
     Account account;
-    AccountPasswordReset accountPasswordReset;
+    HashesOfAccount hashesOfAccount;
 
     @Before
     public void setup() {
         account = new Account("login", "password", "vasya-pupkin@gmail.com", Gender.Male, new GregorianCalendar(2012, 12, 21), "Ukraine");
-        accountPasswordReset = new AccountPasswordReset();
-        accountPasswordReset.setAccount(account);
-        accountPasswordReset.setHash("1234567890");
+        hashesOfAccount = new ActivationHash();
+        hashesOfAccount.setAccount(account);
+        hashesOfAccount.setHash("1234567890");
     }
 
 
@@ -42,10 +43,10 @@ public class AccountDaoImplTest {
     }
 
     @Test
-    public void addAccountPasswordReset(){
+    public void addHashesOfAccount(){
         accountDao.addAccount(account);
-        accountDao.addAccountPasswordReset(accountPasswordReset);
-        Assert.assertEquals(accountPasswordReset,accountDao.getAccountPasswordResetByHash(accountPasswordReset.getHash()));
+        accountDao.addHashesOfAccount(hashesOfAccount);
+        Assert.assertEquals(hashesOfAccount,accountDao.getHashesOfAccountByHash(hashesOfAccount.getHash()));
     }
 
     @Test
@@ -67,10 +68,10 @@ public class AccountDaoImplTest {
     }
 
     @Test
-    public void getOneAccountPasswordResetByHash(){
+    public void getOneHashesOfAccountByHash(){
         accountDao.addAccount(account);
-        accountDao.addAccountPasswordReset(accountPasswordReset);
-        Assert.assertEquals(accountPasswordReset,accountDao.getAccountPasswordResetByHash(accountPasswordReset.getHash()));
+        accountDao.addHashesOfAccount(hashesOfAccount);
+        Assert.assertEquals(hashesOfAccount,accountDao.getHashesOfAccountByHash(hashesOfAccount.getHash()));
     }
 
     @Test
@@ -94,11 +95,11 @@ public class AccountDaoImplTest {
     }
 
     @Test
-    public void removeAccountPasswordReset() {
+    public void removeHashesOfAccount() {
         accountDao.addAccount(account);
-        accountDao.addAccountPasswordReset(accountPasswordReset);
-        accountDao.removeAccountPasswordReset(accountPasswordReset);
-        Assert.assertNull(accountDao.getAccountPasswordResetByHash(accountPasswordReset.getHash()));
+        accountDao.addHashesOfAccount(hashesOfAccount);
+        accountDao.removeHashesOfAccount(hashesOfAccount);
+        Assert.assertNull(accountDao.getHashesOfAccountByHash(hashesOfAccount.getHash()));
 
     }
 }
