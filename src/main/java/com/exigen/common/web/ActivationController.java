@@ -43,16 +43,15 @@ public class ActivationController {
      **/
     @RequestMapping(method = RequestMethod.GET)
     public String checkHashAndActivate(Map model, @RequestParam("hash") String hash) {
-
-        try{
             Account account =  accountService.activationOfAccount(hash);
-            customUserDetailsService.login(account.getLogin(),account.getPassword());
-            model.put("user", account.getLogin());
-            return "redirect:activation/success?user=" + account.getLogin();
-        }catch(Exception e){
-            return "redirect:activation/fail";
-        }
-
+            if (account!=null){
+                customUserDetailsService.login(account.getLogin(),account.getPassword());
+                model.put("user", account.getLogin());
+                return "redirect:activation/success?user=" + account.getLogin();
+            }
+            else{
+                 return "redirect:activation/fail";
+            }
     }
 
     /**

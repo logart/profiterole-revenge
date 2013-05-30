@@ -219,13 +219,19 @@ public class AccountServiceImpl implements AccountService {
      */
     public Account  activationOfAccount(String hash){
         HashesOfAccount hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
-        Account account = hashesOfAccount.getAccount();
-        if (!account.isActivated()){
-            account.setActivated(true);
-            accountDao.updateAccount(account);
-            accountDao.removeHashesOfAccount(hashesOfAccount) ;
-        } else {
-            accountDao.removeHashesOfAccount(hashesOfAccount) ;
+        Account account;
+        if(hashesOfAccount!=null){
+           account = hashesOfAccount.getAccount();
+           if (!account.isActivated()){
+               account.setActivated(true);
+               accountDao.updateAccount(account);
+               accountDao.removeHashesOfAccount(hashesOfAccount) ;
+           } else {
+               accountDao.removeHashesOfAccount(hashesOfAccount) ;
+           }
+        }
+        else {
+            account = null;
         }
         return account;
     }
