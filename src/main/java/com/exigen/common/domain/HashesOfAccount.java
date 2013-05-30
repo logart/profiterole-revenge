@@ -22,14 +22,8 @@ import java.io.Serializable;
         @NamedQuery(name = "HashesOfAccount.findByHash", query = "SELECT h FROM HashesOfAccount h WHERE h.hash = :hash")
 
 })
-abstract public class HashesOfAccount implements Serializable {
-//public class HashesOfAccount implements Serializable {
+abstract public class HashesOfAccount  {
 
-
-    /**
-     * {@code serialVersionUID}  Contains serialVersionUID
-     */
-    private static final long serialVersionUID = 1L;
 
     /**
      * {@code id} contains id of account

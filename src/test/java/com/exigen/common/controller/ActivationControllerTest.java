@@ -48,17 +48,6 @@ public class ActivationControllerTest {
 
     }
 
-    @Test
-    public void checkHashAndActivateTest2(){
-        activationController = new ActivationController();
-        ReflectionTestUtils.setField(activationController,"accountService", accountService);
-        ReflectionTestUtils.setField(activationController,"customUserDetailsService",customUserDetailsService);
-        Account account = new Account();
-        Map model = new TreeMap();
-        String hash = "12345";
-        when(accountService.activationOfAccount(hash)).thenThrow();
-        Assert.assertEquals(activationController.checkHashAndActivate(model, hash), "redirect:activation/fail");
-    }
 
     @Test
     public void activationSuccessTest(){

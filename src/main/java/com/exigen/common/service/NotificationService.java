@@ -49,5 +49,5 @@ public interface NotificationService {
      * @return String message
      */
 
-    public String createActivationMessage(String hash, String login) throws NotificationException;
+    String createActivationMessage(String hash, String login) throws NotificationException;
 }
