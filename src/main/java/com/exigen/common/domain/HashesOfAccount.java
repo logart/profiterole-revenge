@@ -22,7 +22,7 @@ import javax.persistence.*;
         @NamedQuery(name = "HashesOfAccount.findByHash", query = "SELECT h FROM HashesOfAccount h WHERE h.hash = :hash")
 
 })
-abstract  class HashesOfAccount  {
+public abstract  class HashesOfAccount  {
 
 
     /**
