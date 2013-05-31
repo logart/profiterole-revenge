@@ -70,7 +70,7 @@ public class AccountTest {
 
     @Test
     public void getSetRole(){
-        assertEquals(account.getRole(),"ROLE_USER");
+        assertEquals(account.getRole(),"ROLE_INACTIVE_USER");
         account.setRole("User");
         assertEquals("User",account.getRole());
     }

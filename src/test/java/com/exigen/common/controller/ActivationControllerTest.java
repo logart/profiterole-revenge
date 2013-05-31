@@ -44,7 +44,7 @@ public class ActivationControllerTest {
         when(accountService.activationOfAccount(hash)).thenReturn(account);
         activationController.checkHashAndActivate(model,hash);
         verify(customUserDetailsService, times(1)).login(anyString(), anyString());
-        Assert.assertEquals(activationController.checkHashAndActivate(model, hash), "redirect:activation/success?user=" + account.getLogin());
+        Assert.assertEquals(activationController.checkHashAndActivate(model, hash), "redirect:activation/success?user=");
 
     }
 
