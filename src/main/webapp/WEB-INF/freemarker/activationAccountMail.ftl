@@ -6,15 +6,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     </head>
-<body style="background-color:#EEEEEE;">
-	<div style="margin:0 auto; width:650px; background-color:#eebea6; box-shadow:0 0 15px black;-moz-box-shadow:0 0 15px black; padding:10px; margin-top:20px; margin-bottom:20px;">
+<body style="background-color:#00FFFF;">
+	<div style="margin:0 auto; width:650px; background-color:#00FF33; box-shadow:0 0 15px black;-moz-box-shadow:0 0 15px black; padding:10px; margin-top:20px; margin-bottom:20px;">
 		<div style=" margin:0 30px; padding-top:40px; padding-bottom:40px;">
-			<span style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:dimgray;">
+			<span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; color:003333;">
 				<span style="font-weight:bold;">Hello, ${login}</span><br><br>
 
 
 				You have been registered on <span style="color:black;">PROFITEROLE</span>.<br>
-				For activation account, please, go to the <a style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#0077c0;" href="${responseURL}">activation page</a>.<br>
+				For activation account, please, go to the <a style="font-family:Arial, Helvetica, sans-serif; font-size:15px; color:#0077c0;" href="${responseURL}">activation page</a>.<br>
 
 
 				Welcome to <a style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#0077c0;" href="${commonURL}" alt="${commonURL}" class="external" target="_blank">Profiterole</a>.

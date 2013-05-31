@@ -7,7 +7,7 @@
             <h4>Активация аккаунта прошла успешно </h4>
         </div>
         <div class="block-create-menu">
-            Спасибо за регистрацию на нашем сайте, ${user}!
+            Спасибо за регистрацию на нашем сайте ${user}!
             <ul class="nav nav-pills nav-stacked">
                 <li class=><a href="/index">Перейти на главную страницу</a></li>
             </ul>

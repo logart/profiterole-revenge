@@ -10,14 +10,14 @@
     <link rel="stylesheet" type="text/css" href="<@spring.url '/css/print.css'/>" media="print"/>
 ${styles!}
 ${scripts!}
-    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="<@spring.url '/js/jquery-1.8.3.js'/>"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/HiddenDimensions.js"></script>
-    <script type="text/javascript" src="/js/Ellipsis.js"></script>
+    <script type="text/javascript" src="<@spring.url '/js/bootstrap.js'/>"></script>
+    <script type="text/javascript" src="<@spring.url '/js/HiddenDimensions.js'/>"></script>
+    <script type="text/javascript" src="<@spring.url '/js/Ellipsis.js'/>"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
-    <script type="text/javascript" src="/js/jquery.ui.datepicker.js"></script>
-    <script type="text/javascript" src="/js/printBlock.js"></script>
+    <script type="text/javascript" src="<@spring.url '/js/jquery.ui.datepicker.js'/>"></script>
+    <script type="text/javascript" src="<@spring.url '/js/printBlock.js'/>"></script>
 
     <title>Profiterole</title>
 
@@ -35,21 +35,21 @@ ${scripts!}
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                    <li><a href="menu"> Создать меню</a></li>
+                    <li><a href="<@spring.url '/menu'/>"> Создать меню</a></li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown" data-toggle="dropdown">
+                        <a href="<@spring.url '/#'/>" class="dropdown" data-toggle="dropdown">
                             Рецепты
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <a href="/allOfRecipes">Все рецепты</a>
+                            <a href="<@spring.url '/allOfRecipes'/>">Все рецепты</a>
                         <#--<@security.authorize  access="isAuthenticated()">-->
-                            <a href="/addRecipes">Создать рецепт</a>
+                            <a href="<@spring.url '/addRecipes'/>">Создать рецепт</a>
                         <#--</@security.authorize>-->
                         </ul>
                     </li>
-                    <li><a href="about">О нас</a></li>
+                    <li><a href="<@spring.url '/about'/>">О нас</a></li>
 
                 </ul>
 

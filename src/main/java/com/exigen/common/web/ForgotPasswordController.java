@@ -1,7 +1,6 @@
 package com.exigen.common.web;
 
 import com.exigen.common.service.ForgotPasswordValidator;
-import com.exigen.common.service.NotUniqueHashCodeException;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.NotificationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +54,10 @@ public class ForgotPasswordController {
             return "forgotPassword";
         }
         try {
-            accountService.resetUserPassword(email);
-        }
-        catch(NotUniqueHashCodeException ex){
-            return "redirect:";
+            accountService.resetPasswordHashSendMail(email);
         }
         catch(NotificationException e){
-            return "redirect:";
+            return "redirect:/login";
         }
 
         return "successSendMail";

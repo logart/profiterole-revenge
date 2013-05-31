@@ -59,7 +59,7 @@ public class RegistrationController {
             accountService.addAccount(data);
         }
         catch(NotificationException e){
-            return "redirect:";
+            return "redirect:/login";
         }
         return "redirect:registrationSuccess?user=" + data.getLogin();
     }

@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 public class SendMailServiceImpl implements SendMailService{
 
     protected static final Logger LOG = Logger.getLogger(SendMailServiceImpl.class.getName());
+
     /**
      * {@code mailSender} describes the JavaMailSender to inject on this
      * class

@@ -8,6 +8,7 @@ package com.exigen.common.service;
  *
  */
 public interface SendMailService {
+
     /**
      * {@method sendMail(String message, String email)}
      * for send mail message
