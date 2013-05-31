@@ -47,7 +47,7 @@ public class ActivationController {
             if (account!=null){
                 customUserDetailsService.login(account.getLogin(),account.getPassword());
                 model.put("user", account.getLogin());
-                return "redirect:activation/success?user=" + account.getLogin();
+                return "redirect:activation/success?user=";
             }
             else{
                  return "redirect:activation/fail";

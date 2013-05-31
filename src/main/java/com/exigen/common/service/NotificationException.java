@@ -7,7 +7,7 @@ package com.exigen.common.service;
  * @author Victoria Ganzha
  * @Date 23.05.13
  */
-public class NotificationException extends ServiceException {
+public class NotificationException extends Exception {
 
 
     /**

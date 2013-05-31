@@ -34,6 +34,10 @@ public class AccountServiceImplTest {
 
     private static final int HASH_SIZE = 32;
 
+    public final static String ROLE_USER ="ROLE_USER";
+
+    public final static String ROLE_INACTIVE_USER = "ROLE_INACTIVE_USER";
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -90,14 +94,16 @@ public class AccountServiceImplTest {
         RegistrationData registrationData = new RegistrationData();
         registrationData.setDateOfBirth("01.01.2010");
         registrationData.setLogin("user");
+        registrationData.setEmail("ethe@fdb.com");
         String message = "message";
         when(notificationService.createActivationMessage(anyString(),anyString())).thenReturn(message);
         when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
+        when(accountDao.getAccountByEmail(anyString())).thenReturn(account);
+
         accountService.addAccount(registrationData);
 
         verify(accountDao, times(1)).addAccount((Account) anyObject());
-        verify( sendMailService,times(1)).sendMail(anyString(), anyString());
-
+        accountService.activationHashSendMail("ethe@fdb.com");
         }
 
     @Test
@@ -143,16 +149,6 @@ public class AccountServiceImplTest {
         Assert.assertTrue(accountService.generateHash(AccountServiceImpl.HASH_SIZE).length() >= AccountServiceImpl.HASH_SIZE);
    }
 
-
-    @Test (expected = ServiceException.class)
-    public void resetUserPasswordServiceExceptionTest()throws NotUniqueHashCodeException,NotificationException{
-        accountService = new AccountServiceImpl();
-        ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
-        when(accountDao.getHashesOfAccountByHash(anyString())).thenReturn(new AccountPasswordReset());
-        accountService.resetUserPassword("");
-
-    }
-
     @Test
     public void resetUserPasswordServiceNullTest()throws Exception{
         accountService = new AccountServiceImpl();
@@ -174,10 +170,10 @@ public class AccountServiceImplTest {
         hashesOfAccount = new ActivationHash();
         hashesOfAccount.setAccount(account);
         String hash ="1234567";
-        account.setActivated(false);
+        account.setRole(Account.ROLE_USER);
         when(accountDao.getHashesOfAccountByHash(hash)).thenReturn(hashesOfAccount);
         accountService.activationOfAccount(hash);
-        verify(accountDao, times(1)).updateAccount(account);
+        verify(accountDao, never()).updateAccount(account);
     }
 
     @Test
@@ -187,9 +183,9 @@ public class AccountServiceImplTest {
         hashesOfAccount = new ActivationHash();
         hashesOfAccount.setAccount(account);
         String hash ="1234567";
-        account.setActivated(true);
+        account.setRole(Account.ROLE_INACTIVE_USER);
         when(accountDao.getHashesOfAccountByHash(hash)).thenReturn(hashesOfAccount);
         accountService.activationOfAccount(hash);
-        verify(accountDao,never()).updateAccount(account);
+        verify(accountDao,times(1)).updateAccount(account);
     }
 }

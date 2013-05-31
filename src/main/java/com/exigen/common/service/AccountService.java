@@ -107,10 +107,22 @@ public interface AccountService {
     void changeForgottenUserPassword(String hash, String newPassword) ;
 
     /**
-     * {@method resetUserPassword(String email)}
+     * {@method activationHashSendMail(String email)} using for create entity ActivationHash
+     * with unique hash code and account, then call NotificationService (create message),
+     * and call SendMailService (send message)
      * @param email (unique identificator of some particular user)
+     * @throws NotificationException (when file.ftl delete from freemarker)
      */
-    void resetUserPassword(String email) throws NotUniqueHashCodeException, NotificationException;
+    void activationHashSendMail(String email)throws NotificationException;
+
+    /**
+     * {@method resetPasswordHashSendMail(String email)} using for create entity AccountPasswordReset
+     * with unique hash code and account, then call NotificationService (create message),
+     * and call SendMailService (send message)
+     * @param email (unique identificator of some particular user)
+     * @throws NotificationException (when file.ftl delete from freemarker)
+     */
+    void resetPasswordHashSendMail(String email) throws  NotificationException;
 
     /**
      * {@method activationOfAccount(String hash)}

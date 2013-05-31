@@ -10,6 +10,7 @@ import java.util.Map;
  * @date May 21,2013
  *
  */
+
 public interface NotificationService {
 
     /**

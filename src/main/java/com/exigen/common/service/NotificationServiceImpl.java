@@ -29,7 +29,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     public static final String CHANGE_FORGOTTEN_PASSWORD_URL = "changeForgottenPassword";
 
-    public static final String ACTIVATION_ACCOUNT_MAIL_URL = "activation";
+    public static final String ACTIVATION_URL = "activation";
 
     /**
      * {@code request} describes the HttpServletRequest to inject on this
@@ -122,7 +122,7 @@ public class NotificationServiceImpl implements NotificationService {
     public String createActivationMessage(String hash, String login) throws NotificationException {
 
         String commonURL = getRequestBaseURL();
-        String responseURL = commonURL.concat(ACTIVATION_ACCOUNT_MAIL_URL + "?hash=").concat(hash);
+        String responseURL = commonURL.concat(ACTIVATION_URL + "?hash=").concat(hash);
 
         Map<String,String> datamodel= new HashMap<String,String>();
         datamodel.put("responseURL",responseURL);

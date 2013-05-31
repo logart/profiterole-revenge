@@ -66,12 +66,9 @@ public class ForgotPasswordControllerTest {
         when(forgotPasswordValidator.supports(String.class)).thenReturn(true);
 
         try {
-            doThrow(new NotificationException()).when(this.accountService).resetUserPassword(anyString());
-            doThrow(new NotUniqueHashCodeException()).when(this.accountService).resetUserPassword(anyString());
-            Assert.assertEquals("redirect:", forgotPasswordController.forgotPassword(model, email, result));
+            doThrow(new NotificationException()).when(this.accountService).resetPasswordHashSendMail(anyString());
+            Assert.assertEquals("redirect:/login", forgotPasswordController.forgotPassword(model, email, result));
         } catch (NotificationException e) {
-            e.printStackTrace();
-        } catch (NotUniqueHashCodeException e) {
             e.printStackTrace();
         }
 
@@ -93,7 +90,10 @@ public class ForgotPasswordControllerTest {
         Assert.assertEquals("forgotPassword", forgotPasswordController.forgotPassword(model, email, result));
 
     }
+
+
 }
+
 
 
 

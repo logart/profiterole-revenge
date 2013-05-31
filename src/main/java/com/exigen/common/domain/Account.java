@@ -26,6 +26,16 @@ public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * {@code ROLE_USER}  Contains ROLE_USER
+     */
+    public final static String ROLE_USER ="ROLE_USER";
+
+    /**
+     * {@code ROLE_INACTIVE_USER }  Contains ROLE_INACTIVE_USER
+     */
+    public final static String ROLE_INACTIVE_USER = "ROLE_INACTIVE_USER";
+
+    /**
      * {@code id} contains id of account
      */
     @Id
@@ -69,12 +79,7 @@ public class Account implements Serializable {
     /**
      * {@code dateOfBirth} contains the role of user
      */
-    private String role = "ROLE_USER";
-
-    /**
-     * {@code activated} contains the true if the user is activated and the false if the user isn`t activated
-     */
-    private boolean activated;
+    private String role = ROLE_INACTIVE_USER;
 
     /**
      * {@method Account} its a default constructor for JPA
@@ -165,11 +170,4 @@ public class Account implements Serializable {
         this.role = role;
     }
 
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
 }
