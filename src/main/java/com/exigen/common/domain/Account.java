@@ -28,12 +28,12 @@ public class Account implements Serializable {
     /**
      * {@code ROLE_USER}  Contains ROLE_USER
      */
-    public final static String ROLE_USER ="ROLE_USER";
+    public static final  String ROLE_USER ="ROLE_USER";
 
     /**
      * {@code ROLE_INACTIVE_USER }  Contains ROLE_INACTIVE_USER
      */
-    public final static String ROLE_INACTIVE_USER = "ROLE_INACTIVE_USER";
+    public static final  String ROLE_INACTIVE_USER = "ROLE_INACTIVE_USER";
 
     /**
      * {@code id} contains id of account
