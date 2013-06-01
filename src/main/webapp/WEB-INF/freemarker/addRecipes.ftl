@@ -111,6 +111,7 @@
                     $(this).find('.step_counter').empty().append(self.stepCount);
                     $(this).find('.stepTextarea').attr("name", "stepsList[" + (self.stepCount - 1) + "]");
                     $(this).find(':button').attr('data-stepid', self.stepCount);
+                    $(this).find(':INPUT').attr('name', "files[" + (self.stepCount - 1) + "]");
                     self.stepCount++;
                 });
             },
@@ -198,13 +199,17 @@
 
     <b>Время приготовления</b>
 
-    [@spring.bind "addRecipeData.cookingTime"/]
-    <input type="text" name="cookingTime"
+    [@spring.bind "addRecipeData.cookingTimeHours"/]
+    <input type="text" name="cookingTimeHours"
+           value="${spring.status.value?default("")}" class="cooking-time"/> ч
+
+    [@spring.bind "addRecipeData.cookingTimeMinutes"/]
+    <input type="text" name="cookingTimeMinutes"
            value="${spring.status.value?default("")}" class="cooking-time"/> мин
     [#if spring.status.error]
         <p>
 
-        <div class="error-div" id="cookingTimeError">[@spring.showErrors '<br>', 'error'/]</div>
+        <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
         </p>
     [/#if]
 

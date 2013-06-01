@@ -29,14 +29,29 @@ public class AddRecipeData {
     private static final int MAX_DESCRIPTION_SIZE = 3000;
 
     /**
-     * {@code MAX_COOKING_TIME_SIZE} Contains maximum value of cooking time
+     * {@code MAX_COOKING_TIME_SIZE} Contains maximum value of cooking time for hour
      */
     private static final int MAX_COOKING_TIME_SIZE = 540;
 
     /**
-     * {@code MIN_COOKING_TIME_SIZE} Contains minimum value of cooking time
+     * {@code MAX_COOKING_HOURS_SIZE} Contains maximum value of cooking time for hour
      */
-    private static final int MIN_COOKING_TIME_SIZE = 6;
+    private static final int MAX_COOKING_HOURS_SIZE = 9;
+
+    /**
+     * {@code MIN_COOKING_HOURS_SIZE} Contains minimum value of cooking time for hour
+     */
+    private static final int MIN_COOKING_HOURS_SIZE = 0;
+
+    /**
+     * {@code MAX_COOKING_MINUTES_SIZE} Contains maximum value of cooking time for minutes
+     */
+    private static final int MAX_COOKING_MINUTES_SIZE = 59;
+
+    /**
+     * {@code MIN_COOKING_MINUTES_SIZE} Contains minimum value of cooking time for minutes
+     */
+    private static final int MIN_COOKING_MINUTES_SIZE = 0;
 
     /**
      * {@code title} Contains the title of recipe.
@@ -55,12 +70,28 @@ public class AddRecipeData {
     private String description;
 
     /**
+     * {@code cookingTimeMinutes} This field contains minutes for cooking time.
+     */
+    //@NotEmpty(message = "Поле не должно быть пустым.")
+    //@Pattern(regexp = "^([6-9])$|^([1-5]\\d)$", message = " Корректное значение лежит в диапазоне от  " +
+    //        MIN_COOKING_MINUTES_SIZE + " до " + MAX_COOKING_MINUTES_SIZE + " (целые).")
+
+    private String cookingTimeMinutes;
+
+    /**
+     * {@code cookingTimeMinutes} This field contains hours for cooking time.
+     */
+    //@NotEmpty(message = "Поле не должно быть пустым.")
+    //@Pattern(regexp = "^([0-9])$", message = " Корректное значение лежит в диапазоне от  " +
+    //        MIN_COOKING_HOURS_SIZE + " до " + MAX_COOKING_HOURS_SIZE + " (целые).")
+
+    private String cookingTimeHours;
+
+    /**
      * {@code cookingTime} This field contains cooking time.
      */
-    @NotEmpty(message = "Поле не должно быть пустым.")
-    @Pattern(regexp = "^([6-9])$|^(\\d\\d)$|^([1-4]\\d\\d)$|^(5[0-3]\\d)$|^(540)$", message = " Корректное значение лежит в диапазоне от  " + MIN_COOKING_TIME_SIZE + " до " + MAX_COOKING_TIME_SIZE + " (целые).")
 
-    private String cookingTime;
+    private Integer cookingTime;
 
     /**
      * {@code cuisineId} This field contains the selected cuisine ID, to obtain appropriate cuisine
@@ -151,12 +182,29 @@ public class AddRecipeData {
         this.description = description;
     }
 
-    public String getCookingTime() {
-        return cookingTime;
+    public String getCookingTimeHours() {
+        return cookingTimeHours;
     }
 
-    public void setCookingTime(String cookingTime) {
-        this.cookingTime = cookingTime;
+    public void setCookingTimeHours(String cookingTimeHours) {
+        this.cookingTimeHours = cookingTimeHours;
+    }
+
+    public String getCookingTimeMinutes() {
+        return cookingTimeMinutes;
+    }
+
+    public void setCookingTimeMinutes(String cookingTimeMinutes) {
+        this.cookingTimeMinutes = cookingTimeMinutes;
+    }
+
+    public Integer getCookingTime() {
+        return this.cookingTime;
+    }
+
+    public void setCookingTime(String cookingTimeHours, String cookingTimeMinutes) {
+        if (cookingTimeHours == "") { cookingTimeHours = "0";}
+        this.cookingTime = Integer.parseInt(cookingTimeHours)*60+Integer.parseInt(cookingTimeMinutes);
     }
 
     public Cuisine getCuisine() {
