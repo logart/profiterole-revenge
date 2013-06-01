@@ -38,10 +38,25 @@ public class AddRecipeDataTest {
     }
 
     @Test
-    public void testGetCookingTime() throws Exception {
+    public void testgetCookingTimeHours() throws Exception {
         String test="234";
-        addRecipeData.setCookingTime(test);
-        Assert.assertEquals(test, addRecipeData.getCookingTime());
+        addRecipeData.setCookingTimeHours(test);
+        Assert.assertEquals(test, addRecipeData.getCookingTimeHours());
+    }
+
+    @Test
+    public void testgetCookingTimeMinutes() throws Exception {
+        String test="567";
+        addRecipeData.setCookingTimeMinutes(test);
+        Assert.assertEquals(test, addRecipeData.getCookingTimeMinutes());
+    }
+
+    @Test
+    public void testGetCookingTime() throws Exception {
+        String test="2";
+        String test1="5";
+        addRecipeData.setCookingTime(test, test1);
+        Assert.assertEquals(new Integer(125), addRecipeData.getCookingTime());
     }
 
     @Test
