@@ -26,7 +26,7 @@ public class RegistrationValidator implements Validator {
      * {@method supports(Class<?> aClass)}
      *
      * @param aClass(Class of posted object)
-     * @return if passed object of type AddRecipeData returns true
+     * @return if passed object of type RegistrationData returns true
      *         else return false
      */
     @Override
@@ -54,6 +54,10 @@ public class RegistrationValidator implements Validator {
         account = accountService.findByEmail(email);
         if ( account != null){
             errors.rejectValue("email", "emailAlreadyExist.email", "Пользователь с таким e-mail уже существует.");
+        }
+
+        if (!data.getPassword().equals(data.getConfirmPassword())){
+            errors.rejectValue("password", "passwordNotConfirm.password", "Пароль должен быть повторен.");
         }
     }
 }

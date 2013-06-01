@@ -3,6 +3,7 @@ package com.exigen.common.controller;
 import com.exigen.common.domain.Account;
 import com.exigen.common.domain.AccountData;
 import com.exigen.common.service.AccountService;
+import com.exigen.common.service.EditProfileValidator;
 import com.exigen.common.web.EditProfileController;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -31,6 +32,9 @@ public class EditProfileControllerTest {
     @Mock
     private AccountService accountService ;
 
+    @Mock
+    private EditProfileValidator editProfileValidator;
+
 
     @Before
     public void setup() {
@@ -57,11 +61,14 @@ public class EditProfileControllerTest {
     public void testProcessEditingProfileValidatedOk(){
         EditProfileController profile = new  EditProfileController();
         ReflectionTestUtils.setField(profile, "accountService", this.accountService);
+        ReflectionTestUtils.setField(profile,"editProfileValidator",this.editProfileValidator);
 
         Map model = new TreeMap();
         AccountData accountData= new AccountData() ;
         BindingResult result = mock(BindingResult.class);
         when(result.hasErrors()).thenReturn(false);
+
+        when(editProfileValidator.supports(accountData.getClass())).thenReturn(true);
 
         Assert.assertEquals("redirect:profile", profile.processEditingProfile(model,accountData,result));
         verify(this.accountService).updateAccount((AccountData)anyObject());
@@ -71,11 +78,14 @@ public class EditProfileControllerTest {
     public void testProcessEditingProfileValidatedNotOk(){
         EditProfileController profile = new  EditProfileController();
         ReflectionTestUtils.setField(profile, "accountService", this.accountService);
+        ReflectionTestUtils.setField(profile,"editProfileValidator",this.editProfileValidator);
 
         Map model = new TreeMap();
         AccountData accountData= new AccountData() ;
         BindingResult result = mock(BindingResult.class);
         when(result.hasErrors()).thenReturn(true);
+
+        when(editProfileValidator.supports(accountData.getClass())).thenReturn(true);
 
         Assert.assertNotNull(profile.processEditingProfile(model,accountData,result));
         Assert.assertEquals("editProfile", profile.processEditingProfile(model,accountData,result));
