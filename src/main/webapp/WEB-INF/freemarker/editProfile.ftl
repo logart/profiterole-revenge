@@ -39,6 +39,20 @@
             [/#if]
         </div>
 
+        <div class="control-group">
+            <label class="control-label-left" for="changePassword">Повторите пароль</label>
+
+            <div class="controls">
+                [@spring.bind "editProfileData.confirmPassword"/]
+                <input type="password" name="${spring.status.expression}" id="confirmPassword"/><strong>*</strong>
+            </div>
+            [#if spring.status.error]
+                <p>
+                <div class="error-div" id="confirmPasswordError">[@spring.showErrors '<br>', 'error'/]</div>
+                </p>
+            [/#if]
+        </div>
+
         <div class="controls no-display">
             [@spring.bind "editProfileData.password"/]
             <input type="password" name="${spring.status.expression}" id="password" value="${spring.status.value?default("")}"/><strong>*</strong>

@@ -11,21 +11,19 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.BindingResult;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 public class RegistrationValidatorTest {
     @Mock
     private AccountService accountService ;
 
+    private  RegistrationData registrationData = new RegistrationData() ;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
-
-    private  RegistrationData registrationData = new RegistrationData() ;
 
     @Test
     public void testSupports() throws Exception {
@@ -41,6 +39,8 @@ public class RegistrationValidatorTest {
         when(accountService.findByUsername(anyString())).thenReturn(new Account());
 
         RegistrationData registrationData = new RegistrationData() ;
+        registrationData.setPassword("");
+        registrationData.setConfirmPassword("");
         registrationValidator.validate(registrationData , result );
 
         when(accountService.findByUsername(anyString())).thenReturn(null);
@@ -57,6 +57,8 @@ public class RegistrationValidatorTest {
 
         when(accountService.findByEmail(anyString())).thenReturn(new Account());
         RegistrationData registrationData = new RegistrationData() ;
+        registrationData.setPassword("");
+        registrationData.setConfirmPassword("");
         registrationValidator.validate(registrationData , result );
 
         when(accountService.findByEmail(anyString())).thenReturn(null);
@@ -65,4 +67,18 @@ public class RegistrationValidatorTest {
         verify(result).rejectValue(anyString(),anyString(),anyString()) ;
     }
 
+    @Test
+    public void testValidateConfirmPassword() throws Exception {
+        RegistrationValidator registrationValidator = new RegistrationValidator() ;
+        ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
+        BindingResult result = mock(BindingResult.class);
+        RegistrationData registrationData = new RegistrationData() ;
+        registrationData.setPassword("");
+        registrationData.setConfirmPassword("");
+        registrationValidator.validate(registrationData , result );
+
+        registrationData.setConfirmPassword("1");
+        registrationValidator.validate(registrationData , result );
+        verify(result).rejectValue(anyString(),anyString(),anyString()) ;
+    }
 }
