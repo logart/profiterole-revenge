@@ -15,13 +15,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import static org.mockito.Mockito.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: lena
- * Date: 29.05.13
- * Time: 22:15
- * To change this template use File | Settings | File Templates.
- */
+
 public class ActivationControllerTest {
     @Mock
     private AccountService accountService;
