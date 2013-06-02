@@ -238,8 +238,9 @@ public class AccountServiceImpl implements AccountService {
         if((hashesOfAccount!=null) && (hashesOfAccount instanceof AccountPasswordReset)){
             check=true;
         }
-        else
+        else {
              check=false;
+        }
         return check;
     }
 
