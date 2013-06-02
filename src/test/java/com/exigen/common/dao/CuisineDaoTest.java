@@ -62,19 +62,6 @@ public class CuisineDaoTest {
         Assert.assertNotNull(cuisineDao.getCuisine());
     }
 
-    @Test
-    public void getOneCuisineListTest(){
-        categoriesDao.addCategories(testCategory);
-        cuisineDao.addCuisine(testCuisine);
-        testRecipe.setCategory(testCategory);
-        testRecipe.setCuisine(testCuisine);
-        recipeDao.addRecipe(testRecipe);
-        recipes.add(testRecipe);
-        testCuisine.setRecipeList(recipes);
-        cuisineDao.addCuisine(testCuisine);
-        Assert.assertNull(recipeDao.getOneRecipe(testCuisine.getId()));
 
-
-    }
 
 }
