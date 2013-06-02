@@ -81,12 +81,27 @@ public class AddRecipeDataValidator implements Validator {
     /**
      * {@code cookingTimeHoursValue} Contains hours of cooking time
      */
-    Integer cookingTimeHoursValue;
+    private Integer cookingTimeHoursValue;
 
     /**
      * {@code cookingTimeMinutesValue} Contains minutes of cooking time
      */
-    Integer cookingTimeMinutesValue;
+    private Integer cookingTimeMinutesValue;
+
+    /**
+     * {@code COOKING_MINUTES_ERROR_MESSAGE} massage of cooking time minutes error
+     */
+    private static final String  COOKING_MINUTES_ERROR_MESSAGE = "Если не указаны часы времени приготовления, " +
+            "корректное значение для минут лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " минут до " +
+            MAX_COOKING_MINUTES_SIZE + " минут (целые), если часы указаны - значение для минут лежит в диапазоне от " +
+            MIN_COOKING_HOURS_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
+            "но не более 9 часов.";
+
+    /**
+     * {@code COOKING_MINUTES_ERROR_MESSAGE} massage of cooking time minutes error
+     */
+    private static final String INGREDIENT_COUNT_ERROR_MESSAGE = "Корректное значение лежит в диапазоне от " +
+            MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".";
 
     /**
      * {@method supports(Class<?> aClass)}
@@ -114,8 +129,8 @@ public class AddRecipeDataValidator implements Validator {
         data.setIngredientsCountList(trimList(data.getIngredientsCountList()));
         data.setStepsList(trimList(data.getStepsList()));
         checkCookingTimeNotEmptyNotLiteral(data.getCookingTimeMinutes(), data.getCookingTimeHours(), errors);
-        checkCookingTimeHours(errors);
-        checkCookingTimeMinutes(errors);
+        checkCookingTimeHours(this.cookingTimeHoursValue, errors);
+        checkCookingTimeMinutes(this.cookingTimeHoursValue, this.cookingTimeMinutesValue, errors);
         checkSteps(data.getStepsList(), errors);
         checkIngredientsCount(data.getIngredientsCountList(), errors);
         checkIngredientsName(data.getIngredientsNameList(), errors);
@@ -210,10 +225,12 @@ public class AddRecipeDataValidator implements Validator {
             }else {
                 try {
                     if (Float.parseFloat(countsList.get(i).replace(',','.')) < MIN_INGREDIENT_COUNT_VALUE || Float.parseFloat(countsList.get(i).replace(',','.')) > MAX_INGREDIENT_COUNT_VALUE) {
-                        errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", WRONG_VALUE + this.INGREDIENTS_TYPE_LIST, "Корректное значение лежит в диапазоне от " + MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".");
+                        errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]",
+                                WRONG_VALUE + this.INGREDIENTS_TYPE_LIST, INGREDIENT_COUNT_ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException ex) {
-                    errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", WRONG_VALUE + this.INGREDIENTS_TYPE_LIST, "Корректное значение лежит в диапазоне от " + MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".");
+                    errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]",
+                            WRONG_VALUE + this.INGREDIENTS_TYPE_LIST, INGREDIENT_COUNT_ERROR_MESSAGE);
                 }
             }
         }
@@ -261,9 +278,9 @@ public class AddRecipeDataValidator implements Validator {
      * method for check text of cooking time, and if something wrong,
      * add errors to instance errors
      */
-    private void checkCookingTimeHours(Errors errors) {
+    private void checkCookingTimeHours(Integer cookingTimeHoursValue, Errors errors) {
 
-        if (this.cookingTimeHoursValue > MAX_COOKING_HOURS_SIZE || this.cookingTimeHoursValue < MIN_COOKING_HOURS_SIZE) {
+        if (cookingTimeHoursValue > MAX_COOKING_HOURS_SIZE || cookingTimeHoursValue < MIN_COOKING_HOURS_SIZE) {
             errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
                     "Корректное значение для часов приготовления лежит в диапазоне от " + MIN_COOKING_HOURS_SIZE +
                             " часов до " + MAX_COOKING_HOURS_SIZE + " часов (целые).");
@@ -275,39 +292,27 @@ public class AddRecipeDataValidator implements Validator {
      * method for check text of cooking time, and if something wrong,
      * add errors to instance errors
      */
-    private void checkCookingTimeMinutes(Errors errors) {
+    private void checkCookingTimeMinutes(Integer cookingTimeHoursValue, Integer cookingTimeMinutesValue, Errors errors) {
 
-        if  (this.cookingTimeHoursValue == 0 && (this.cookingTimeMinutesValue < MIN_COOKING_TIME_SIZE ||
-                this.cookingTimeMinutesValue > MAX_COOKING_MINUTES_SIZE)) {
-            errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
-                    "Если не указаны часы времени приготовления, корректное значение для минут лежит в диапазоне " +
-                            "от " + MIN_COOKING_TIME_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут " +
-                            "(целые), если часы указаны - значение для минут лежит в диапазоне от " +
-                            MIN_COOKING_HOURS_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
-                            "но не более 9 часов.");
+        if  (cookingTimeHoursValue == 0 && (cookingTimeMinutesValue < MIN_COOKING_TIME_SIZE ||
+                cookingTimeMinutesValue > MAX_COOKING_MINUTES_SIZE)) {
+            errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
+                    COOKING_MINUTES_ERROR_MESSAGE);
 
         }
 
-        if  ((this.cookingTimeHoursValue > 0 && this.cookingTimeHoursValue < MAX_COOKING_HOURS_SIZE) && (this
-                .cookingTimeMinutesValue < MIN_COOKING_HOURS_SIZE ||this.cookingTimeMinutesValue >
+        if  ((cookingTimeHoursValue > 0 && cookingTimeHoursValue < MAX_COOKING_HOURS_SIZE) &&
+                (cookingTimeMinutesValue < MIN_COOKING_HOURS_SIZE ||cookingTimeMinutesValue >
                 MAX_COOKING_MINUTES_SIZE)) {
-            errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
-                    "Если не указаны часы времени приготовления, корректное значение для минут лежит в диапазоне " +
-                            "от " + MIN_COOKING_TIME_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут " +
-                            "(целые), если часы указаны - значение для минут лежит в диапазоне от " +
-                            MIN_COOKING_HOURS_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
-                            "но не более 9 часов.");
+            errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
+                    COOKING_MINUTES_ERROR_MESSAGE);
 
         }
 
-        if  (this.cookingTimeHoursValue == MAX_COOKING_HOURS_SIZE && this.cookingTimeMinutesValue >
+        if  (cookingTimeHoursValue == MAX_COOKING_HOURS_SIZE && cookingTimeMinutesValue >
                 MIN_COOKING_HOURS_SIZE) {
-            errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
-                    "Если не указаны часы времени приготовления, корректное значение для минут лежит в диапазоне " +
-                            "от " + MIN_COOKING_TIME_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут " +
-                            "(целые), если часы указаны - значение для минут лежит в диапазоне от " +
-                            MIN_COOKING_HOURS_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
-                            "но не более 9 часов.");
+            errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
+                    COOKING_MINUTES_ERROR_MESSAGE);
 
         }
     }

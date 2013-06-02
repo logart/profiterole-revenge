@@ -175,8 +175,11 @@ public class AddRecipeData {
     }
 
     public void setCookingTime(String cookingTimeHours, String cookingTimeMinutes) {
-        if (cookingTimeHours.isEmpty()) { cookingTimeHours = "0";}
-        this.cookingTime = Integer.parseInt(cookingTimeHours)*SECOND_IN_MINUTE+Integer.parseInt(cookingTimeMinutes);
+        String tempString;
+        if (cookingTimeHours.isEmpty()) {
+            tempString = "0";
+        } else { tempString = cookingTimeHours;}
+        this.cookingTime = Integer.parseInt(tempString)*SECOND_IN_MINUTE+Integer.parseInt(cookingTimeMinutes);
     }
 
     public Cuisine getCuisine() {
