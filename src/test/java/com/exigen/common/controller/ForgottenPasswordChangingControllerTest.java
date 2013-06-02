@@ -44,14 +44,7 @@ public class ForgottenPasswordChangingControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void testCheckHashAndAskNewPassword() {
-        ForgottenPasswordChangingController controller = new ForgottenPasswordChangingController();
-        Map model = new TreeMap();
-        String hash = "";
-        Assert.assertNotNull(controller.checkHashAndAskNewPassword(model, hash));
-        Assert.assertEquals("changeForgottenPassword", controller.checkHashAndAskNewPassword(model, hash));
-    }
+
 
     @Test
     public void testProcessEditingProfileValidatedOk() {

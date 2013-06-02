@@ -232,6 +232,20 @@ public class AccountServiceImpl implements AccountService {
     /**
      * {@inheritDoc}
      */
+    public boolean checkAccountPasswordResetHash(String hash){
+        boolean check;
+        HashesOfAccount hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        if((hashesOfAccount!=null) && (hashesOfAccount instanceof AccountPasswordReset)){
+            check=true;
+        }
+        else
+             check=false;
+        return check;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void changeForgottenUserPassword(String hash, String newPassword) {
         HashesOfAccount hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
         Account account = hashesOfAccount.getAccount();
@@ -239,6 +253,7 @@ public class AccountServiceImpl implements AccountService {
         accountDao.updateAccount(account);
         accountDao.removeHashesOfAccount(hashesOfAccount) ;
     }
+
 
     /**
      * {@method activationOfAccount(String hash)}
@@ -248,11 +263,15 @@ public class AccountServiceImpl implements AccountService {
      *
      */
     public Account  activationOfAccount(String hash){
-        HashesOfAccount hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        HashesOfAccount hashesOfAccount ;
         Account account;
-        if(hashesOfAccount!=null){
-           account = hashesOfAccount.getAccount();
-           if (account.getRole().equals(Account.ROLE_INACTIVE_USER)){
+
+         hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+
+        if((hashesOfAccount!=null) && (hashesOfAccount instanceof ActivationHash)){
+            account = hashesOfAccount.getAccount();
+
+          if (account.getRole().equals(Account.ROLE_INACTIVE_USER)){
                account.setRole(Account.ROLE_USER);
                accountDao.updateAccount(account);
                accountDao.removeHashesOfAccount(hashesOfAccount) ;
@@ -260,6 +279,7 @@ public class AccountServiceImpl implements AccountService {
                accountDao.removeHashesOfAccount(hashesOfAccount) ;
            }
         }
+
         else {
             account = null;
         }
