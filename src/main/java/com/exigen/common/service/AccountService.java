@@ -132,4 +132,12 @@ public interface AccountService {
      *
      */
     Account activationOfAccount(String hash);
+    /**
+     * {@method checkAccountPasswordResetHash(String hash)}
+     * for check of hash
+     *
+     * @param hash (string of hash)
+     *
+     */
+    boolean checkAccountPasswordResetHash(String hash);
 }

@@ -1,5 +1,6 @@
 package com.exigen.common.web;
 
+
 import com.exigen.common.domain.ChangeForgottenPasswordData;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.ForgotPasswordChangingValidator;
@@ -41,6 +42,8 @@ public class ForgottenPasswordChangingController {
     @Autowired
     private AccountService accountService;
 
+
+
     /**
      * shows changeForgottenPassword form
      * @param  "hash"
@@ -48,8 +51,15 @@ public class ForgottenPasswordChangingController {
     @RequestMapping(method = RequestMethod.GET)
     public String checkHashAndAskNewPassword(Map model, @RequestParam("hash") String hash) {
         ChangeForgottenPasswordData passwordData = new ChangeForgottenPasswordData() ;
-        model.put("changeForgottenPasswordData", passwordData);
-        return "changeForgottenPassword";
+
+        boolean check=accountService.checkAccountPasswordResetHash(hash);
+        if (check){
+            model.put("changeForgottenPasswordData", passwordData);
+            return "changeForgottenPassword";
+        }
+        else {
+            return "redirect:changeForgottenPassword/fail";
+        }
     }
 
     /**
