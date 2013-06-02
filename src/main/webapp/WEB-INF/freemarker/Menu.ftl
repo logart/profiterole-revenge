@@ -4,7 +4,7 @@
 <script type="text/javascript">
 
     var animateSlidebarOnFirstshow = (function() {
-        var firstshow = true; // статическая переменная
+        var firstshow = true;
         return function() {
             if (firstshow){
                 firstshow=false;
