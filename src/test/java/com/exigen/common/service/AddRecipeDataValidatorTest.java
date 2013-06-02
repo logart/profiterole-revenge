@@ -636,44 +636,4 @@ public class AddRecipeDataValidatorTest {
         Assert.assertEquals(true,errors.hasErrors());
 
     }
-
-    @Test
-    public void testcheckCookingTime6(){
-        AddRecipeData data = new AddRecipeData();
-        data.setTitle("борщ");
-        data.setCategory(new Category("первое"));
-        data.setCategoryId("0");
-        data.setCookingTimeHours("o");
-        data.setCookingTimeMinutes("20");
-        data.setDescription("описание");
-
-        List<String> stepsList = new ArrayList<String>();
-        stepsList.add(0,"шаг1");
-        data.setStepsList(stepsList);
-
-        List<String> ingredientsNameList = new ArrayList<String>();
-        ingredientsNameList.add(0,"картошка");
-        ingredientsNameList.add(1,"капуста");
-        data.setIngredientsNameList(ingredientsNameList);
-
-        List<String> ingredientsCountList = new ArrayList<String>();
-        ingredientsCountList.add(0,"500");
-        ingredientsCountList.add(1,"450");
-        data.setIngredientsCountList(ingredientsCountList);
-
-        List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
-        data.setIngredientsTypeList(ingredientsTypeList);
-
-        List<String> imagesForStepsList = new ArrayList<String>();
-        imagesForStepsList.add(0,"");
-        data.setImagesForStepsList(imagesForStepsList);
-        Map map = new HashMap();
-        Errors errors = new MapBindingResult(map,"");
-        addRecipeDataValidator.validate(data,errors);
-        Assert.assertEquals(true,errors.hasErrors());
-
-
-    }
 }
