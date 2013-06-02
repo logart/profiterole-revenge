@@ -29,29 +29,9 @@ public class AddRecipeData {
     private static final int MAX_DESCRIPTION_SIZE = 3000;
 
     /**
-     * {@code MAX_COOKING_TIME_SIZE} Contains maximum value of cooking time for hour
-     */
-    private static final int MAX_COOKING_TIME_SIZE = 540;
-
-    /**
-     * {@code MAX_COOKING_HOURS_SIZE} Contains maximum value of cooking time for hour
-     */
-    private static final int MAX_COOKING_HOURS_SIZE = 9;
-
-    /**
-     * {@code MIN_COOKING_HOURS_SIZE} Contains minimum value of cooking time for hour
-     */
-    private static final int MIN_COOKING_HOURS_SIZE = 0;
-
-    /**
      * {@code MAX_COOKING_MINUTES_SIZE} Contains maximum value of cooking time for minutes
      */
-    private static final int MAX_COOKING_MINUTES_SIZE = 59;
-
-    /**
-     * {@code MIN_COOKING_MINUTES_SIZE} Contains minimum value of cooking time for minutes
-     */
-    private static final int MIN_COOKING_MINUTES_SIZE = 0;
+    private static final int SECOND_IN_MINUTE = 60;
 
     /**
      * {@code title} Contains the title of recipe.
@@ -72,19 +52,11 @@ public class AddRecipeData {
     /**
      * {@code cookingTimeMinutes} This field contains minutes for cooking time.
      */
-    //@NotEmpty(message = "Поле не должно быть пустым.")
-    //@Pattern(regexp = "^([6-9])$|^([1-5]\\d)$", message = " Корректное значение лежит в диапазоне от  " +
-    //        MIN_COOKING_MINUTES_SIZE + " до " + MAX_COOKING_MINUTES_SIZE + " (целые).")
-
     private String cookingTimeMinutes;
 
     /**
      * {@code cookingTimeMinutes} This field contains hours for cooking time.
      */
-    //@NotEmpty(message = "Поле не должно быть пустым.")
-    //@Pattern(regexp = "^([0-9])$", message = " Корректное значение лежит в диапазоне от  " +
-    //        MIN_COOKING_HOURS_SIZE + " до " + MAX_COOKING_HOURS_SIZE + " (целые).")
-
     private String cookingTimeHours;
 
     /**
@@ -199,12 +171,12 @@ public class AddRecipeData {
     }
 
     public Integer getCookingTime() {
-        return this.cookingTime;
+        return cookingTime;
     }
 
     public void setCookingTime(String cookingTimeHours, String cookingTimeMinutes) {
-        if (cookingTimeHours == "") { cookingTimeHours = "0";}
-        this.cookingTime = Integer.parseInt(cookingTimeHours)*60+Integer.parseInt(cookingTimeMinutes);
+        if (cookingTimeHours.isEmpty()) { cookingTimeHours = "0";}
+        this.cookingTime = Integer.parseInt(cookingTimeHours)*SECOND_IN_MINUTE+Integer.parseInt(cookingTimeMinutes);
     }
 
     public Cuisine getCuisine() {
