@@ -412,7 +412,7 @@
                             <url>profiterole-production.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
                             <password>445566</password>
-                            <memory>256</memory>
+                            <memory>512</memory>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -435,7 +435,7 @@
                             <url>profiterole-development.cloudfoundry.com</url>
                             <username>logart2007@gmail.com</username>
                             <password>445566</password>
-                            <memory>256</memory>
+                            <memory>512</memory>
                         </configuration>
                     </plugin>
                 </plugins>

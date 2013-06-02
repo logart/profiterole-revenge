@@ -268,8 +268,9 @@ public class AddRecipeDataValidator implements Validator {
        } catch (NumberFormatException ex){
            errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
                    "Корректное значение для часов приготовления лежит в диапазоне от " + MIN_COOKING_HOURS_SIZE +
-                           " до " + MAX_COOKING_HOURS_SIZE + ", для минут - " + MIN_COOKING_HOURS_SIZE + " до " +
-                           MAX_COOKING_MINUTES_SIZE + " (целые), но не менее 6 минут и не более 9 часов");
+                           " часов до " + MAX_COOKING_HOURS_SIZE + " часов, для минут - " + MIN_COOKING_HOURS_SIZE +
+                           " минут до" + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
+                           "но не менее 6 минут и не более 9 часов");
        }
    }
 
