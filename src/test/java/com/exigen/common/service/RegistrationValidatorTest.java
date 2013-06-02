@@ -32,7 +32,7 @@ public class RegistrationValidatorTest {
     }
 
     @Test
-    public void testValidateUserExists() throws Exception {
+    public void test1ValidateUserExists() throws Exception {
         RegistrationValidator registrationValidator = new RegistrationValidator() ;
         ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
@@ -43,32 +43,51 @@ public class RegistrationValidatorTest {
         registrationData.setConfirmPassword("");
         registrationValidator.validate(registrationData , result );
 
-        when(accountService.findByUsername(anyString())).thenReturn(null);
-        registrationValidator.validate(registrationData , result );
-
         verify(result).rejectValue(anyString(),anyString(),anyString()) ;
     }
 
     @Test
-    public void testValidateEmailExists() throws Exception {
+    public void test2ValidateUserExists() throws Exception {
         RegistrationValidator registrationValidator = new RegistrationValidator() ;
         ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
+        RegistrationData registrationData = new RegistrationData() ;
+        registrationData.setPassword("");
+        registrationData.setConfirmPassword("");
+        when(accountService.findByUsername(anyString())).thenReturn(null);
+        registrationValidator.validate(registrationData , result );
 
+        verify(result,never()).rejectValue(anyString(),anyString(),anyString()) ;
+    }
+
+    @Test
+    public void test1ValidateEmailExists() throws Exception {
+        RegistrationValidator registrationValidator = new RegistrationValidator() ;
+        ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
+        BindingResult result = mock(BindingResult.class);
         when(accountService.findByEmail(anyString())).thenReturn(new Account());
         RegistrationData registrationData = new RegistrationData() ;
         registrationData.setPassword("");
         registrationData.setConfirmPassword("");
         registrationValidator.validate(registrationData , result );
-
-        when(accountService.findByEmail(anyString())).thenReturn(null);
-        registrationValidator.validate(registrationData , result );
-
-        verify(result).rejectValue(anyString(),anyString(),anyString()) ;
+        verify(result,times(1)).rejectValue(anyString(),anyString(),anyString()) ;
     }
 
     @Test
-    public void testValidateConfirmPassword() throws Exception {
+    public void test2ValidateEmailExists() throws Exception {
+        RegistrationValidator registrationValidator = new RegistrationValidator() ;
+        ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
+        BindingResult result = mock(BindingResult.class);
+        RegistrationData registrationData = new RegistrationData() ;
+        registrationData.setPassword("");
+        registrationData.setConfirmPassword("");
+        when(accountService.findByEmail(anyString())).thenReturn(null);
+        registrationValidator.validate(registrationData , result );
+        verify(result,never()).rejectValue(anyString(),anyString(),anyString()) ;
+    }
+
+    @Test
+    public void test1ValidateConfirmPassword() throws Exception {
         RegistrationValidator registrationValidator = new RegistrationValidator() ;
         ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
@@ -76,9 +95,18 @@ public class RegistrationValidatorTest {
         registrationData.setPassword("");
         registrationData.setConfirmPassword("");
         registrationValidator.validate(registrationData , result );
+        verify(result,never()).rejectValue(anyString(),anyString(),anyString()) ;
+    }
 
+    @Test
+    public void test2ValidateConfirmPassword() throws Exception {
+        RegistrationValidator registrationValidator = new RegistrationValidator() ;
+        ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
+        BindingResult result = mock(BindingResult.class);
+        RegistrationData registrationData = new RegistrationData() ;
+        registrationData.setPassword("");
         registrationData.setConfirmPassword("1");
         registrationValidator.validate(registrationData , result );
-        verify(result).rejectValue(anyString(),anyString(),anyString()) ;
+        verify(result,times(1)).rejectValue(anyString(),anyString(),anyString()) ;
     }
 }
