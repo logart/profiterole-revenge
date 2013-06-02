@@ -216,16 +216,14 @@ public class AccountServiceImpl implements AccountService {
      * @throws NotificationException (when file.ftl delete from freemarker)
      */
     public void resetPasswordHashSendMail(String email) throws  NotificationException {
-        HashesOfAccount hashesOfAccount;
+        HashesOfAccount hashesOfAccount = new AccountPasswordReset();
         String hash = createHashForHashOfAccount();
-        Account account;
-            hashesOfAccount = new AccountPasswordReset();
-            hashesOfAccount.setHash(hash);
-            account = accountDao.getAccountByEmail(email);
-            hashesOfAccount.setAccount(account);
-            accountDao.addHashesOfAccount(hashesOfAccount);
-            String message = notificationService.createResetPasswordMessage(hashesOfAccount.getHash(),account.getLogin());
-            sendMailService.sendMail(message, email);
+        Account account = accountDao.getAccountByEmail(email);
+        hashesOfAccount.setHash(hash);
+        hashesOfAccount.setAccount(account);
+        accountDao.addHashesOfAccount(hashesOfAccount);
+        String message = notificationService.createResetPasswordMessage(hashesOfAccount.getHash(),account.getLogin());
+        sendMailService.sendMail(message, email);
 
     }
 
@@ -267,7 +265,7 @@ public class AccountServiceImpl implements AccountService {
         HashesOfAccount hashesOfAccount ;
         Account account;
 
-         hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+        hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
 
         if((hashesOfAccount!=null) && (hashesOfAccount instanceof ActivationHash)){
             account = hashesOfAccount.getAccount();
