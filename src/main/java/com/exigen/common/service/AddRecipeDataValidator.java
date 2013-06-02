@@ -299,7 +299,7 @@ public class AddRecipeDataValidator implements Validator {
                 cookingTimeMinutesValue > MAX_COOKING_MINUTES_SIZE)) {
             errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
                     COOKING_MINUTES_ERROR_MESSAGE);
-
+            return;
         }
 
         if  ((cookingTimeHoursValue > 0 && cookingTimeHoursValue < MAX_COOKING_HOURS_SIZE) &&
@@ -307,7 +307,7 @@ public class AddRecipeDataValidator implements Validator {
                 MAX_COOKING_MINUTES_SIZE)) {
             errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
                     COOKING_MINUTES_ERROR_MESSAGE);
-
+            return;
         }
 
         if  (cookingTimeHoursValue == MAX_COOKING_HOURS_SIZE && cookingTimeMinutesValue >
