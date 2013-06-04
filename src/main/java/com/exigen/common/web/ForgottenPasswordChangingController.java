@@ -52,14 +52,8 @@ public class ForgottenPasswordChangingController {
     public String checkHashAndAskNewPassword(Map model, @RequestParam("hash") String hash) {
         ChangeForgottenPasswordData passwordData = new ChangeForgottenPasswordData() ;
 
-        boolean check=accountService.checkAccountPasswordResetHash(hash);
-        if (check){
             model.put("changeForgottenPasswordData", passwordData);
             return "changeForgottenPassword";
-        }
-        else {
-            return "redirect:changeForgottenPassword/fail";
-        }
     }
 
     /**

@@ -2,9 +2,7 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountPasswordReset;
-import com.exigen.common.domain.ActivationHash;
-import com.exigen.common.domain.HashesOfAccount;
+import com.exigen.common.domain.AbstractHashOfAccount;
 
 import java.util.List;
 
@@ -49,14 +47,6 @@ public interface AccountDao {
      */
 
     Account getAccountByEmail(String email);
-
-    /**
-     *
-     * @param hash (unique identificator of some particular user)
-     * @return  the user, where hash equals parameter hash( return complete description
-     *         of with all entity's fields).
-     */
-    HashesOfAccount getHashesOfAccountByHash(String hash);
 
     /**
      * {method getOneRecipeList(Integer recipeId)}
@@ -108,35 +98,29 @@ public interface AccountDao {
     void removeAccount(Account account);
 
     /**
-     * addHashesOfAccount(HashesOfAccount hashesOfAccount)
+     *
+     * @param hash, hashClass
+     * @return  hashClass, where hash equals parameter hash( return complete description
+     *          of with all entity's fields).
+     */
+    <T extends AbstractHashOfAccount> T getHashesOfAccountByHash(String hash, Class<T> hashClass);
+
+    /**
+     * addHashesOfAccount(AbstractHashOfAccount abstractHashOfAccount)
      * for adding information about some particular user into DB
      *
-     * @param hashesOfAccount (object of some particular user)
+     * @param abstractHashOfAccount (object of some particular user)
      */
-    void addHashesOfAccount(HashesOfAccount hashesOfAccount);
+    void addHashesOfAccount(AbstractHashOfAccount abstractHashOfAccount);
 
-    /**
-     * removeHashesOfAccount(HashesOfAccount hashesOfAccount)
+     /**
+     * removeHashOfAccount(String hash, Class<? extends AbstractHashOfAccount> hashClass)
      * for remove information about hash and some particular user from DB
-     * after use it in changing forgotten password process
+     * after use it in changing forgotten password
+     * and activation  process
      *
-     * @param hashesOfAccount (object of HashesOfAccount)
      */
-    void removeHashesOfAccount(HashesOfAccount hashesOfAccount);
 
-    /**
-     *
-     * @param hash (unique identificator of some particular user)
-     * @return  the user, where hash equals parameter hash( return complete description
-     *         of with all entity's fields).
-     */
-    ActivationHash getActivationHashByHash(String hash);
+     void removeHashOfAccount(String hash, Class<? extends AbstractHashOfAccount> hashClass);
 
-    /**
-     *
-     * @param hash (unique identificator of some particular user)
-     * @return  the user, where hash equals parameter hash( return complete description
-     *         of with all entity's fields).
-     */
-    AccountPasswordReset getAccountPasswordResetByHash(String hash);
 }

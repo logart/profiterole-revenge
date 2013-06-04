@@ -95,14 +95,14 @@ public interface AccountService {
 
     /**
      * {@method changeForgottenUserPassword(String hash, String newPassword)}
-     * for changing password in account, that given by hash from HashesOfAccount
+     * for changing password in account, that given by hash from ResetPasswordHash
      *
      * @param hash (string with hash)
      * @param newPassword (string with newPassword)
      * @throws org.springframework.dao.DataAccessException
      *                              (resource
      *                              on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when HashesOfAccount is null)
+     * @throws NullPointerException (when AbstractHashOfAccount is null)
      */
     void changeForgottenUserPassword(String hash, String newPassword) ;
 
@@ -116,7 +116,7 @@ public interface AccountService {
     void activationHashSendMail(String email)throws NotificationException;
 
     /**
-     * {@method resetPasswordHashSendMail(String email)} using for create entity AccountPasswordReset
+     * {@method resetPasswordHashSendMail(String email)} using for create entity ResetPasswordHash
      * with unique hash code and account, then call NotificationService (create message),
      * and call SendMailService (send message)
      * @param email (unique identificator of some particular user)
@@ -132,12 +132,5 @@ public interface AccountService {
      *
      */
     Account activationOfAccount(String hash);
-    /**
-     * {@method checkAccountPasswordResetHash(String hash)}
-     * for check of hash
-     *
-     * @param hash (string of hash)
-     *
-     */
-    boolean checkAccountPasswordResetHash(String hash);
+
 }
