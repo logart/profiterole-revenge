@@ -32,9 +32,6 @@ public abstract  class AbstractHashOfAccount {
     @OneToOne
     private Account account;
 
-    @Column(name = "discriminator", updatable=false,insertable = false )
-    private String discriminator;
-
     /**
      * {methods get .. and set..} its a getters and setters
      */
