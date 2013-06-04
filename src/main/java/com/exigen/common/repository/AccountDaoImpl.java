@@ -1,14 +1,11 @@
 package com.exigen.common.repository;
 
 
+import com.exigen.common.domain.AbstractHashOfAccount;
 import com.exigen.common.domain.Account;
-import com.exigen.common.domain.ActivationHash;
-import com.exigen.common.domain.AccountPasswordReset;
-import com.exigen.common.domain.HashesOfAccount;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -53,7 +50,6 @@ public class AccountDaoImpl implements AccountDao {
         return user;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -63,44 +59,6 @@ public class AccountDaoImpl implements AccountDao {
                 email).getSingleResult();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HashesOfAccount getHashesOfAccountByHash(String hash) {
-        try{
-        return this.entityManager.createNamedQuery("HashesOfAccount.findByHash",HashesOfAccount.class).setParameter("hash",
-                 hash).getSingleResult();
-        } catch(NoResultException e){
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ActivationHash getActivationHashByHash(String hash) {
-        try{
-            return this.entityManager.createNamedQuery("ActivationHash.findByHash",ActivationHash.class).setParameter("hash",
-                    hash).getSingleResult();
-        } catch(NoResultException e){
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AccountPasswordReset getAccountPasswordResetByHash(String hash) {
-        try{
-            return this.entityManager.createNamedQuery("AccountPasswordReset.findByHash",AccountPasswordReset.class).setParameter("hash",
-                    hash).getSingleResult();
-        } catch(NoResultException e){
-            return null;
-        }
-    }
     /**
      * {@inheritDoc}
      */
@@ -128,27 +86,30 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
-
     @Override
-    @Transactional
-    public void addHashesOfAccount(HashesOfAccount hashesOfAccount){
-        entityManager.persist(hashesOfAccount);
+    public <T extends AbstractHashOfAccount> T getHashesOfAccountByHash(String hash, Class<T> hashClass) {
+        return this.entityManager.find(hashClass, hash);
     }
 
     /**
-     *
      * {@inheritDoc}
      */
-
     @Override
     @Transactional
-    public void removeHashesOfAccount(HashesOfAccount hashesOfAccount){
-        HashesOfAccount managedHashesOfAccount = entityManager.merge(hashesOfAccount);
-        entityManager.remove(managedHashesOfAccount);
+    public void addHashesOfAccount(AbstractHashOfAccount abstractHashOfAccount){
+        entityManager.persist(abstractHashOfAccount);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void removeHashOfAccount(String hash,Class<? extends AbstractHashOfAccount> hashClass){
+        AbstractHashOfAccount abstractHashOfAccount = this.entityManager.find(hashClass, hash);
+        entityManager.remove(abstractHashOfAccount);
+    }
 
 }

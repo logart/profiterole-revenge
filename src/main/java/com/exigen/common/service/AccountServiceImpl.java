@@ -172,17 +172,17 @@ public class AccountServiceImpl implements AccountService {
     /**
      * {@method createHashForHashOfAccount()}
      *
-     * @return unique hash for entity HashesOfAccount
+     * @return unique hash for  AbstractHashOfAccount
      *
      */
-    public String createHashForHashOfAccount(){
-        HashesOfAccount hashesOfAccount;
+    public String createHashForHashOfAccount(Class<? extends AbstractHashOfAccount> hashClass){
+        AbstractHashOfAccount abstractHashOfAccount;
         String hash;
         do {
             hash = generateHash(HASH_SIZE);
-            hashesOfAccount = accountDao.getHashesOfAccountByHash(hash);
+            abstractHashOfAccount = accountDao.getHashesOfAccountByHash(hash, hashClass);
         }
-        while (hashesOfAccount != null);
+        while (abstractHashOfAccount != null);
         return hash;
     }
 
@@ -195,34 +195,32 @@ public class AccountServiceImpl implements AccountService {
      *
      */
     public void activationHashSendMail(String email)throws NotificationException{
-        HashesOfAccount hashesOfAccount;
-        String hash = createHashForHashOfAccount();
-        Account account;
-        hashesOfAccount = new ActivationHash();
-        hashesOfAccount.setHash(hash);
-        account = accountDao.getAccountByEmail(email);
-        hashesOfAccount.setAccount(account);
-        accountDao.addHashesOfAccount(hashesOfAccount);
-        String message = notificationService.createActivationMessage(hash,account.getLogin());
+        ActivationHash activationHash = new ActivationHash();
+        String hash = createHashForHashOfAccount(ActivationHash.class);
+        Account account = accountDao.getAccountByEmail(email);
+        activationHash.setHash(hash);
+        activationHash.setAccount(account);
+        accountDao.addHashesOfAccount(activationHash);
+        String message = notificationService.createActivationMessage(activationHash.getHash(),account.getLogin());
         sendMailService.sendMail(message, account.getEmail());
 
     }
 
     /**
-     * {@method resetPasswordHashSendMail(String email)} using for create entity AccountPasswordReset
+     * {@method resetPasswordHashSendMail(String email)} using for create entity ResetPasswordHash
      * with unique hash code and account, then call NotificationService (create message),
      * and call SendMailService (send message)
      * @param email (unique identificator of some particular user)
      * @throws NotificationException (when file.ftl delete from freemarker)
      */
     public void resetPasswordHashSendMail(String email) throws  NotificationException {
-        HashesOfAccount hashesOfAccount = new AccountPasswordReset();
-        String hash = createHashForHashOfAccount();
+        ResetPasswordHash resetPasswordHash = new ResetPasswordHash();
+        String hash = createHashForHashOfAccount(ResetPasswordHash.class);
         Account account = accountDao.getAccountByEmail(email);
-        hashesOfAccount.setHash(hash);
-        hashesOfAccount.setAccount(account);
-        accountDao.addHashesOfAccount(hashesOfAccount);
-        String message = notificationService.createResetPasswordMessage(hashesOfAccount.getHash(),account.getLogin());
+        resetPasswordHash.setHash(hash);
+        resetPasswordHash.setAccount(account);
+        accountDao.addHashesOfAccount(resetPasswordHash);
+        String message = notificationService.createResetPasswordMessage(resetPasswordHash.getHash(),account.getLogin());
         sendMailService.sendMail(message, email);
 
     }
@@ -230,27 +228,13 @@ public class AccountServiceImpl implements AccountService {
     /**
      * {@inheritDoc}
      */
-    public boolean checkAccountPasswordResetHash(String hash){
-        boolean check;
-        AccountPasswordReset hashesOfAccount = accountDao.getAccountPasswordResetByHash(hash);
-        if(hashesOfAccount!=null){
-            check=true;
-        }
-        else {
-             check=false;
-        }
-        return check;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    @Transactional
     public void changeForgottenUserPassword(String hash, String newPassword) {
-        AccountPasswordReset hashesOfAccount = accountDao.getAccountPasswordResetByHash(hash);
-        Account account = hashesOfAccount.getAccount();
+        ResetPasswordHash resetPasswordHash = accountDao.getHashesOfAccountByHash(hash, ResetPasswordHash.class);
+        Account account = resetPasswordHash.getAccount();
         account.setPassword(newPassword);
         accountDao.updateAccount(account);
-        accountDao.removeHashesOfAccount(hashesOfAccount) ;
+        accountDao.removeHashOfAccount(hash,ResetPasswordHash.class);
     }
 
 
@@ -261,19 +245,22 @@ public class AccountServiceImpl implements AccountService {
      * @param hash (string of hash)
      *
      */
+    @Transactional
     public Account  activationOfAccount(String hash){
+        ActivationHash activationHash = accountDao.getHashesOfAccountByHash(hash, ActivationHash.class);
         Account account;
-        ActivationHash hashesOfAccount = accountDao.getActivationHashByHash(hash);
-        if(hashesOfAccount!=null) {
-            account = hashesOfAccount.getAccount();
+
+        if(activationHash!=null){
+            account = activationHash.getAccount();
           if (account.getRole().equals(Account.ROLE_INACTIVE_USER)){
                account.setRole(Account.ROLE_USER);
                accountDao.updateAccount(account);
-               accountDao.removeHashesOfAccount(hashesOfAccount) ;
+               accountDao.removeHashOfAccount(hash, ActivationHash.class);
            } else {
-               accountDao.removeHashesOfAccount(hashesOfAccount) ;
+               accountDao.removeHashOfAccount(hash, ActivationHash.class);
            }
         }
+
         else {
             account = null;
         }

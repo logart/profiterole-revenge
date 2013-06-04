@@ -1,9 +1,8 @@
 package com.exigen.common.domain;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+
+
+import javax.persistence.*;
 
 
 /**
@@ -15,8 +14,6 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @DiscriminatorValue("A")
-@NamedQueries({
-        @NamedQuery(name = "ActivationHash.findByHash", query = "SELECT a FROM ActivationHash a WHERE a.hash = :hash")
-})
-public class ActivationHash extends HashesOfAccount {
+public class ActivationHash extends AbstractHashOfAccount {
+
 }

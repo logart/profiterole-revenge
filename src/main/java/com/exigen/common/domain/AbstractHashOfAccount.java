@@ -4,38 +4,26 @@ import javax.persistence.*;
 
 
 /**
- * Class  {@code HashesOfAccount} is used to activation of account and to reset
+ * Class  {@code AbstractHashOfAccount} is used to activation of account and to reset
  *  password for user
  * @author Victoria Ganzha
  * Date 29.03.13
  *
  */
 
-@Entity
-@Table(name = "hashes_of_account")
+@MappedSuperclass
 @DiscriminatorColumn(
         name="discriminator",
         discriminatorType=DiscriminatorType.STRING
 )
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@NamedQueries({
-        @NamedQuery(name = "HashesOfAccount.findByHash", query = "SELECT h FROM HashesOfAccount h WHERE h.hash = :hash")
-
-})
-public abstract  class HashesOfAccount  {
-
-
-    /**
-     * {@code id} contains id of account
-     */
-    @Id
-    @GeneratedValue
-    private Integer id;
+public abstract  class AbstractHashOfAccount {
 
     /**
      * {@code hash} contains hash of account
      */
 
+    @Id
     private String hash;
 
     /**
@@ -47,18 +35,9 @@ public abstract  class HashesOfAccount  {
     @Column(name = "discriminator", updatable=false,insertable = false )
     private String discriminator;
 
-
     /**
      * {methods get .. and set..} its a getters and setters
      */
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getHash() {
         return hash;
@@ -76,11 +55,4 @@ public abstract  class HashesOfAccount  {
         this.account = account;
     }
 
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public void setDiscriminator(String discriminator) {
-        this.discriminator = discriminator;
-    }
 }
