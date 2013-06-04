@@ -2,6 +2,8 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
+import com.exigen.common.domain.ActivationHash;
+import com.exigen.common.domain.AccountPasswordReset;
 import com.exigen.common.domain.HashesOfAccount;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,7 +76,31 @@ public class AccountDaoImpl implements AccountDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ActivationHash getActivationHashByHash(String hash) {
+        try{
+            return this.entityManager.createNamedQuery("ActivationHash.findByHash",ActivationHash.class).setParameter("hash",
+                    hash).getSingleResult();
+        } catch(NoResultException e){
+            return null;
+        }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AccountPasswordReset getAccountPasswordResetByHash(String hash) {
+        try{
+            return this.entityManager.createNamedQuery("AccountPasswordReset.findByHash",AccountPasswordReset.class).setParameter("hash",
+                    hash).getSingleResult();
+        } catch(NoResultException e){
+            return null;
+        }
+    }
     /**
      * {@inheritDoc}
      */

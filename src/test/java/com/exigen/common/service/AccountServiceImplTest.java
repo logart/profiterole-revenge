@@ -4,6 +4,7 @@ import com.exigen.common.domain.*;
 import com.exigen.common.repository.AccountDao;
 import junit.framework.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -167,11 +168,11 @@ public class AccountServiceImplTest {
     public void activationOfAccountTest1(){
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
-        hashesOfAccount = new ActivationHash();
+        ActivationHash hashesOfAccount = new ActivationHash();
         hashesOfAccount.setAccount(account);
         String hash ="1234567";
         account.setRole(Account.ROLE_USER);
-        when(accountDao.getHashesOfAccountByHash(hash)).thenReturn(hashesOfAccount);
+        when(accountDao.getActivationHashByHash(hash)).thenReturn(hashesOfAccount);
         accountService.activationOfAccount(hash);
         verify(accountDao, never()).updateAccount(account);
     }
@@ -180,12 +181,45 @@ public class AccountServiceImplTest {
     public void activationOfAccountTest2(){
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
-        hashesOfAccount = new ActivationHash();
+        ActivationHash hashesOfAccount = new ActivationHash();
         hashesOfAccount.setAccount(account);
         String hash ="1234567";
         account.setRole(Account.ROLE_INACTIVE_USER);
-        when(accountDao.getHashesOfAccountByHash(hash)).thenReturn(hashesOfAccount);
+        when(accountDao.getActivationHashByHash(hash)).thenReturn(hashesOfAccount);
         accountService.activationOfAccount(hash);
         verify(accountDao,times(1)).updateAccount(account);
+    }
+
+    @Test
+    public void checkAccountPasswordResetHashTest1(){
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        AccountPasswordReset hashesOfAccount =null;
+        String hash = "1234567";
+        when(accountDao.getAccountPasswordResetByHash(hash)).thenReturn(hashesOfAccount);
+        Assert.assertFalse(accountService.checkAccountPasswordResetHash(hash));
+    }
+
+
+    @Test
+    public void checkAccountPasswordResetHashTest2(){
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        AccountPasswordReset hashesOfAccount =new AccountPasswordReset();
+        String hash = "1234567";
+        when(accountDao.getAccountPasswordResetByHash(hash)).thenReturn(hashesOfAccount);
+        Assert.assertNotNull(accountService.checkAccountPasswordResetHash(hash));
+    }
+
+    @Test
+    public void changeForgottenUserPasswordTest(){
+        accountService = new AccountServiceImpl();
+        ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
+        AccountPasswordReset hashesOfAccount = new AccountPasswordReset();
+        hashesOfAccount.setAccount(account);
+        String hash = "1234567";
+        when(accountDao.getAccountPasswordResetByHash(hash)).thenReturn(hashesOfAccount);
+        accountService.changeForgottenUserPassword(hash,"1111");
+        verify(accountDao,times(1)).removeHashesOfAccount(hashesOfAccount);
     }
 }

@@ -2,6 +2,8 @@ package com.exigen.common.repository;
 
 
 import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountPasswordReset;
+import com.exigen.common.domain.ActivationHash;
 import com.exigen.common.domain.HashesOfAccount;
 
 import java.util.List;
@@ -122,5 +124,19 @@ public interface AccountDao {
      */
     void removeHashesOfAccount(HashesOfAccount hashesOfAccount);
 
+    /**
+     *
+     * @param hash (unique identificator of some particular user)
+     * @return  the user, where hash equals parameter hash( return complete description
+     *         of with all entity's fields).
+     */
+    ActivationHash getActivationHashByHash(String hash);
 
+    /**
+     *
+     * @param hash (unique identificator of some particular user)
+     * @return  the user, where hash equals parameter hash( return complete description
+     *         of with all entity's fields).
+     */
+    AccountPasswordReset getAccountPasswordResetByHash(String hash);
 }
