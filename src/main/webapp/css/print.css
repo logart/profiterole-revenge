@@ -16,9 +16,13 @@
         font-size: 12px;
     }
 
-    img.img-rounded {
-        width: 35%;
+    img.img-recipe-modal {
+        width: 60%;
         height: auto;
+    }
+
+    img.img-recipe-modal-step{
+        display: none;
     }
 
     .modal-body p {
@@ -49,7 +53,7 @@
     }
 
     .row-fluid [class*="span"] {
-        display: table;
+        display: block;
         float: left;
         width: 100%;
         min-height: 30px;
@@ -67,6 +71,11 @@
     .row-fluid .span4 {
         width: 31.914893617021278%;
         *width: 31.861702127659576%;
+    }
+
+    .row-fluid .span6 {
+        width: 48.93617021276595%;
+        *width: 48.88297872340425%;
     }
 
     .row-fluid .span12 {
@@ -128,6 +137,10 @@
 
     .text-justify {
         text-align: justify;
+    }
+
+    .text-left {
+        text-align: left;
     }
 
     .text-right {
