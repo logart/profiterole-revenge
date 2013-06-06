@@ -182,8 +182,8 @@ a:hover {
     border-radius: 6px;
 }
 
-.img-rounded.recipe-modal {
-    width: 35%;
+img.img-recipe-modal {
+    width: 70%;
     height: auto;
 }
 
