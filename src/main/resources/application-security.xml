@@ -4,7 +4,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
-                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                     http://www.springframework.org/schema/security
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd
                     http://www.springframework.org/schema/context
@@ -16,9 +16,14 @@
         <intercept-url pattern="/addRecipes" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/editProfile" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/profile" access="hasRole('ROLE_USER')" />
-	</http>
-
+        <access-denied-handler ref="accessDeniedHandler"/>
+    </http>
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="customUserDetailsService"/>
     </authentication-manager>
-</beans:beans>   
+
+    <beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+        <beans:property name="errorPage" value="/noaccess"/>
+    </beans:bean>
+
+</beans:beans>
