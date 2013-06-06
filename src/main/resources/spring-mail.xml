@@ -28,7 +28,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 		<property name="from" value="profiterole.tasty@gmail.com" />
 		<property name="to" value="" />
-		<property name="subject" value="Testing Subject" />
+		<property name="subject" value="Profiterole" />
 		<property name="text">
 		<value>
 			<![CDATA[
