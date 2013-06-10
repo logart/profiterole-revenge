@@ -19,4 +19,5 @@ public interface AddRecipeDataService {
     Cuisine getCuisineFromListByID(int id, List<Cuisine> list);
 
     void addRecipe(AddRecipeData data);
+
 }

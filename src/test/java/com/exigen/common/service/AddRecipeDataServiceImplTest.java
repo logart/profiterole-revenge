@@ -5,12 +5,15 @@ import com.exigen.common.domain.*;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class AddRecipeDataServiceImplTest {
@@ -34,6 +37,12 @@ public class AddRecipeDataServiceImplTest {
 
     @Mock
     IngredientService ingredientService;
+    @Mock
+    IngredientBucketService ingredientBucketService;
+    @Mock
+    StepService stepService;
+    @Mock
+    RecipeService recipeService;
 
     @Before
     public void setup() {
@@ -54,27 +63,22 @@ public class AddRecipeDataServiceImplTest {
         Assert.assertEquals(cuisine, addRecipeDataService.getCuisineFromListByID(id, cuisineList));
     }
 
-//    @Test
-//    public void getCaloriesTest() {
-//        List<String> idList = new ArrayList<String>();
-//        idList.add(0, "1");
-//        when(ingredientService.getIngredientById(Integer.parseInt(idList.get(0)))).thenReturn(ingredient);
-//        addRecipeDataService.setIngridientService(ingredientService);
-//        Assert.assertEquals(ingredient.getCalories(), addRecipeDataService.getCalories(idList));
-//
-//    }
 
-//    @Test
-//    public void makeStepsTest() {
-//        Recipe recipe1 = new Recipe();
-//        steps.add("step");
-//        List<String> images=new ArrayList<String>();
-//        images.add("ghf");
-//        AddRecipeData addRecipeData1 = new AddRecipeData();
-//        addRecipeData1.setStepsList(steps);
-//        addRecipeData1.setImageForRecipeHead("");
-//        addRecipeData1.setImagesForStepsList(images);
-//
-//        Assert.assertNotNull(addRecipeDataService.makeSteps(addRecipeData1, recipe));
-//    }
+      @Test
+    public void makeMarkersTest(){
+          ReflectionTestUtils.setField(addRecipeDataService, "recipeService", recipeService);
+          List<String> markersNames = new ArrayList<String>();
+          markersNames.add(0,"aa");
+          markersNames.add(1,"bb");
+          markersNames.add(2,"cc");
+          byte marker = 7;
+          AddRecipeData data = new AddRecipeData();
+          data.setMarkersNames(markersNames);
+          data.setCookingTimeMinutes("9");
+          data.setCookingTimeHours("1");
+          ArgumentCaptor<Recipe> argument = ArgumentCaptor.forClass(Recipe.class);
+          addRecipeDataService.addRecipe(data);
+          verify(recipeService).addRecipe(argument.capture());
+          Assert.assertEquals((byte)argument.getValue().getMarkers(),marker);
+      }
 }

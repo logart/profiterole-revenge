@@ -67,6 +67,7 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @param data (object with data what user input)
      */
     public void addRecipe(AddRecipeData data) {
+        marker = makeMarkers(data.getMarkersNames());
         Recipe recipe = makeRecipe(data);
         List<IngredientBucket> ingredientBuckets = makeIngredients(data, recipe);
         List<Step> stepList = makeSteps(data, recipe);
@@ -151,6 +152,27 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
             result.add(ingredientBucket);
         }
         return result;
+    }
+
+    /**
+     * {@method makeMarkers(List<String> markersNames)}
+     * for make field of marker from list of marker's names
+     *
+     * @param markersNames  (the list of marker's names)
+     *
+     * @return markers
+     */
+    private byte makeMarkers(List<String> markersNames){
+        int markers = 0;
+        int a=1;
+        if (markersNames!=null){
+             for (int i =0; i < markersNames.size(); i++ ){
+                  int j=(markersNames.get(i)==null?0:1);
+                  markers = markers + a * j;
+                  a=a*2;
+             }
+        }
+        return (byte)markers;
     }
 
 }

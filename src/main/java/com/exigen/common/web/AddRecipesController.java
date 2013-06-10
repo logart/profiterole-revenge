@@ -46,12 +46,16 @@ public class AddRecipesController {
     private AddRecipeDataValidator addRecipeDataValidator;
     @Autowired
     private ImageService imageService;
+    @Autowired
+    private RecipeService recipeService;
 
     private List<Category> categories;
     private List<Cuisine> cuisines;
     private List<Ingredient> ingredients;
 
     private List<String> imagesForSteps = new ArrayList<String>();
+    private List<String> markersNames = new ArrayList<String>();
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String showAddingRecipe(Map model) {
@@ -59,10 +63,13 @@ public class AddRecipesController {
         categories = this.categoriesService.getCategories();
         cuisines = this.cuisineService.getCuisine();
         ingredients = this.ingredientService.getAllIngredientsSortedList();
+        markersNames = this.recipeService.getListOfMarkersNames();
+
         model.put("addRecipeData", data);
         model.put("cuisines", cuisines);
         model.put("categories", categories);
         model.put("ingredients", ingredients);
+        model.put("markersNames",markersNames);
         return "addRecipes";
     }
 
@@ -80,6 +87,7 @@ public class AddRecipesController {
             model.put("cuisines", cuisines);
             model.put("categories", categories);
             model.put("ingredients", ingredients);
+            model.put("markersNames",markersNames);
             return "addRecipes";
         }
         List<MultipartFile> multipartFiles = data.getFiles();

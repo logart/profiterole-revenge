@@ -164,4 +164,21 @@ public class RecipeServiceImpl implements RecipeService {
         return recipesWithMarkers;
     }
 
+    /**
+     * {@method getListOfMarkersNames()}
+     * for get information about names of markers
+     *
+     * @return the list of names of markers
+     *
+     */
+    public List<String> getListOfMarkersNames(){
+        List<String> listMarkersNames = new ArrayList<String>();
+        Iterator<Map.Entry<String, String>> itr1 = markers.entrySet().iterator();
+        int i=markers.size();
+        for(int j=0; j<=i-1; j++){
+            Map.Entry<String, String> entry = itr1.next();
+            listMarkersNames.add(entry.getKey());
+        }
+        return listMarkersNames;
+    }
 }

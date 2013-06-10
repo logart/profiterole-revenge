@@ -258,6 +258,18 @@
     [/#if]
     <p></p>
 
+
+
+    <b class="markersTitle">Маркер блюда</b>
+    <div class="markersCheckbox">
+     [#assign markersListSize = markersNames?size]
+     [#list 1..markersListSize as  current_index]
+        [@spring.bind "addRecipeData.markersNames[${current_index-1}]"/]
+           <input type="checkbox" name="${spring.status.expression}" value="${markersNames[current_index-1]}" >${markersNames[current_index-1]} <br>
+      [/#list]
+    </div>
+
+
     <b>Ингредиенты</b>
 
     <p></p>
