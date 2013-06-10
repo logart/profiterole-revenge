@@ -80,4 +80,11 @@ public class RecipeServiceImplTest {
         Assert.assertSame(resipesWithMarkers.size(),recipeService.getListRecipesWithMarkers(recipes).size());
 
     }
+
+    @Test
+    public void getListOfMarkersNamesTest(){
+        List<String> listMarkersNames = new ArrayList<String>();
+        listMarkersNames.add(0,"имя");
+        Assert.assertEquals(recipeService.getListOfMarkersNames().get(0),listMarkersNames.get(0));
+    }
 }

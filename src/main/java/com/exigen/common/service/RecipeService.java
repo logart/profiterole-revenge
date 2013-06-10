@@ -85,4 +85,13 @@ public interface RecipeService {
      *
      */
     List<RecipeWithMarkers> getListRecipesWithMarkers(List<Recipe> recipeList);
+
+    /**
+     * {@method getListOfMarkersNames()}
+     * for get information about names of markers
+     *
+     * @return the list of names of markers
+     *
+     */
+    List<String> getListOfMarkersNames();
 }

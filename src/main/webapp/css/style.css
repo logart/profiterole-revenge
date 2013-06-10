@@ -384,3 +384,10 @@ a.ui-slider-handle {
     top: -10px;
     left: -2px;
 }
+.markersTitle{
+    width:77px;
+    float: left;
+}
+.markersCheckbox{
+    margin-left: 77px;
+}

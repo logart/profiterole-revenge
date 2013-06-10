@@ -114,9 +114,10 @@ public class AddRecipeData {
 
     private  List<String> imagesForStepsList = new ArrayList<String>();
 
-
-
     private String imageForRecipeHead;
+
+    private List<String> markersNames;
+
 
     public String getCuisineId() {
         return cuisineId;
@@ -265,4 +266,12 @@ public class AddRecipeData {
     public void setFiles(List<MultipartFile> files) {
      this.files=files;
 }
+
+    public List<String> getMarkersNames() {
+        return markersNames;
+    }
+
+    public void setMarkersNames(List<String> markersNames) {
+        this.markersNames = markersNames;
+    }
 }
