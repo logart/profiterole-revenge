@@ -22,4 +22,15 @@ public class MenuPageController {
 
         return "Menu";
     }
+
+    /**
+     * {@method index()} using for mapped "MenuForWeek" page view
+     *
+     * @return empty view name "MenuForWeek"
+     */
+    @RequestMapping(value = {"/menuForWeek"})
+    public String menForWeekPage() {
+
+        return "MenuForWeek";
+    }
 }
