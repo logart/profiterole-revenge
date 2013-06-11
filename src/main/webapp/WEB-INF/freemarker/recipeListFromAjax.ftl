@@ -54,6 +54,7 @@ ${a.recipe.description?substring(0,250)} ...
 
 
     <div class="time_value no-display">${a.recipe.timeOfCooking}</div>
+    <div class="complexity_value no-display">${a.recipe.complexity}</div>
     <div class="cat_value no-display">${a.recipe.category.id}</div>
     <div class="rec_id no-display">${a.recipe.id}</div>
     <div class="rec_cal no-display">${a.recipe.calories}</div>

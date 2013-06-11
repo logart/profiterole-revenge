@@ -13,10 +13,11 @@
 
         <div class="span6 align2 text-left">
         <br/>
-    [#list markers?keys as key]
-        <p><img src="${markers[key]}" title="${key}" id="markers"/> - ${key}</p>
-    [/#list]
-        <p><strong>Время приготовления:</strong> ${recipe.timeOfCooking} минут </p>
+        [#list markers?keys as key]
+            <p><img src="${markers[key]}" title="${key}" id="markers"/> - ${key}</p>
+        [/#list]
+            <p><strong>Время приготовления:</strong> ${recipe.timeOfCooking} минут </p>
+            <p><strong>Сложность рецепта:</strong> ${recipe.complexity}</p>
         </div>
 
     </div>
