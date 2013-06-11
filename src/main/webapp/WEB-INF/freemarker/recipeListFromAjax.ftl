@@ -130,7 +130,7 @@ ${a.recipe.description?substring(0,250)} ...
     function deleteRecipe(target){
         target.parent().popover('destroy').remove();
         var container = $("#menuDrop").find("div:visible")[0];
-       if (container.find(".rec_id").length==0){
+       if ($(container).find(".rec_id").length==0){
            unmarkButtonDayOfWeek(container.id.split("_")[0],container.id.split("_")[1]);
        };
     }
