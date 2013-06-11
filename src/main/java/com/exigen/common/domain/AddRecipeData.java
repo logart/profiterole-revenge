@@ -55,6 +55,17 @@ public class AddRecipeData {
     private String cookingTimeMinutes;
 
     /**
+     * {@code complexity} This field contains complexity of recipe.
+     */
+    @NotEmpty(message = "Сложность приготовления блюда должна быть указана.")
+    private String complexity;
+
+    /**
+     * {@code quantityOfDish} This field contains weight of dish in grams.
+     */
+    private String quantityOfDish;
+
+    /**
      * {@code cookingTimeMinutes} This field contains hours for cooking time.
      */
     private String cookingTimeHours;
@@ -62,7 +73,6 @@ public class AddRecipeData {
     /**
      * {@code cookingTime} This field contains cooking time.
      */
-
     private Integer cookingTime;
 
     /**
@@ -176,11 +186,31 @@ public class AddRecipeData {
     }
 
     public void setCookingTime(String cookingTimeHours, String cookingTimeMinutes) {
-        String tempString;
+        Integer tempHours;
+        Integer tempMinutes;
+        if (cookingTimeMinutes.isEmpty()) {
+            tempMinutes = 0;
+        }  else { tempMinutes = Integer.parseInt(cookingTimeMinutes);}
         if (cookingTimeHours.isEmpty()) {
-            tempString = "0";
-        } else { tempString = cookingTimeHours;}
-        this.cookingTime = Integer.parseInt(tempString)*SECOND_IN_MINUTE+Integer.parseInt(cookingTimeMinutes);
+            tempHours = 0;
+        } else { tempHours = Integer.parseInt(cookingTimeHours);}
+        this.cookingTime = tempHours*SECOND_IN_MINUTE+tempMinutes;
+    }
+
+    public String getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(String complexity) {
+        this.complexity = complexity;
+    }
+
+    public String getQuantityOfDish() {
+        return quantityOfDish;
+    }
+
+    public void setQuantityOfDish(String quantityOfDish) {
+        this.quantityOfDish = quantityOfDish;
     }
 
     public Cuisine getCuisine() {

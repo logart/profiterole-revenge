@@ -97,6 +97,18 @@ public class Recipe {
      * {@code time} This field to save time of creation for recipe
      */
     private Integer timeOfCooking;
+
+    /**
+     * {@code complexity} This field to save complexity of recipe
+     */
+    @Column(columnDefinition = "VARCHAR(20)")
+    private String complexity;
+
+    /**
+     * {@code quantityOfDish} This field to save quantity of dish of creation for recipe
+     */
+    private Integer quantityOfDish;
+
     /**
      * {@code markers} This field to save markers ("острый", "вегетарианский", "от шеф-повара")
      */
@@ -149,6 +161,26 @@ public class Recipe {
         this.bigImage = bigImage;
         this.smallImage = smallImage;
         this.timeOfCooking = timeOfCooking;
+        this.markers = markers;
+    }
+
+    /**
+     * {@methods Recipe} its a constructors for adding data in entity
+     * add complexity of recipe, quantity of dish
+     */
+
+    public Recipe(String title, String description, Cuisine cuisine, Category category,
+                  String bigImage, String smallImage, Integer timeOfCooking, String complexity,
+                  Integer quantityOfDish, Byte markers) {
+        this.title = title;
+        this.description = description;
+        this.cuisine = cuisine;
+        this.category = category;
+        this.bigImage = bigImage;
+        this.smallImage = smallImage;
+        this.timeOfCooking = timeOfCooking;
+        this.complexity = complexity;
+        this.quantityOfDish = quantityOfDish;
         this.markers = markers;
     }
 
@@ -219,12 +251,28 @@ public class Recipe {
         this.timeOfCooking = timeOfCooking;
     }
 
+    public String getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(String compexity) {
+        this.complexity = compexity;
+    }
+
     public List<IngredientBucket> getIngredients() {
         return ingredients;
     }
 
     public void setIngredients(List<IngredientBucket> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Integer getQuantityOfDish() {
+        return quantityOfDish;
+    }
+
+    public void setQuantityOfDish(Integer quantityOfDish) {
+        this.quantityOfDish = quantityOfDish;
     }
 
     public List<Step> getSteps() {

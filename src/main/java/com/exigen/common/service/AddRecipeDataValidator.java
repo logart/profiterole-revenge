@@ -1,6 +1,8 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.AddRecipeData;
+import com.exigen.common.domain.MeasuresBucket;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -68,6 +70,11 @@ public class AddRecipeDataValidator implements Validator {
      */
     private static final String COOKING_TIME_MINUTES = "cookingTimeMinutes";
 
+    /**
+     * {@code COOKING_TIME_MINUTES} Contains name of bean where ingredient's error should be add
+     */
+    private static final String QUANTITY_OF_DISH = "quantityOfDish";
+
    /**
      * {@code INGREDIENTS_TYPE_LIST} Contains name of bean where ingredient's error should be add
      */
@@ -87,6 +94,14 @@ public class AddRecipeDataValidator implements Validator {
      * {@code cookingTimeMinutesValue} Contains minutes of cooking time
      */
     private Integer cookingTimeMinutesValue;
+
+    /**
+     * {@code quantityOfDish} Contains grams of the finished dish
+     */
+    private Integer quantityOfDish;
+
+    @Autowired
+    private MeasureBucketService measureBucketService;
 
     /**
      * {@code COOKING_MINUTES_ERROR_MESSAGE} massage of cooking time minutes error
@@ -116,6 +131,15 @@ public class AddRecipeDataValidator implements Validator {
     }
 
     /**
+     * {@method setRecipeDao(RecipeDao recipeDao)}
+     * for tests services. Inject in this class
+     */
+
+    public void setMeasureBucketService(MeasureBucketService measureBucketService) {
+        this.measureBucketService = measureBucketService;
+    }
+
+    /**
      * {@method validate(Object o, Errors errors)}
      * for check all input data, and if something wrong,
      * add errors to instance errors
@@ -131,6 +155,8 @@ public class AddRecipeDataValidator implements Validator {
         checkCookingTimeNotEmptyNotLiteral(data.getCookingTimeMinutes(), data.getCookingTimeHours(), errors);
         checkCookingTimeHours(this.cookingTimeHoursValue, errors);
         checkCookingTimeMinutes(this.cookingTimeHoursValue, this.cookingTimeMinutesValue, errors);
+        checkQuantityOfDish(data.getQuantityOfDish(), data.getIngredientsCountList(), data.getIngredientsTypeList(),
+                data.getIngredientsNameList(), errors);
         checkSteps(data.getStepsList(), errors);
         checkIngredientsCount(data.getIngredientsCountList(), errors);
         checkIngredientsName(data.getIngredientsNameList(), errors);
@@ -316,6 +342,48 @@ public class AddRecipeDataValidator implements Validator {
                     COOKING_MINUTES_ERROR_MESSAGE);
 
         }
+    }
+
+
+    /**
+     * {@method checkQuantityOfDish(String quantityOfDish, Errors errors)}
+     * method for check text of quantity of dish, and if something wrong,
+     * add errors to instance errors
+     *
+     * @param quantityOfDish (quantity of dish of recipe)
+     */
+    private void checkQuantityOfDish(String quantityOfDish, List<String> countsList, List<String> typesList,
+                                     List<String> namesList, Errors errors) {
+
+        try {
+            if (quantityOfDish.isEmpty()) {
+                errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
+                        "Вес готового блюда должнен быть указан (целое число), но не более общего веса всех входящих " +
+                                "в рецепт ингредиентов.");
+                return;
+            } else {
+                this.quantityOfDish = Integer.parseInt(quantityOfDish);
+            }
+
+        } catch (NumberFormatException ex){
+            errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
+                    "Вес готового блюда должен быть целым числом, но не более общего веса всех входящих в рецепт " +
+                            "ингредиентов.");
+            return;
+        }
+        if (countsList.size() != 0 && typesList.size() != 0 && namesList.size() != 0) {
+            int weightAllIngredients = 0;
+            MeasuresBucket measuresBucket;
+            for (int i=0; i < typesList.size(); i++) {
+                measuresBucket = measureBucketService.getMeasuresBucketListById(Integer.parseInt(typesList.get(i)));
+                weightAllIngredients += Integer.parseInt(countsList.get(i))*measuresBucket.getGramEquals();
+            }
+            if (this.quantityOfDish > weightAllIngredients){
+                errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
+                        "Вес готового блюда не должен превышать вес всех входящих в рецепт ингредиентов.");
+            }
+        }
+
     }
 
     /**

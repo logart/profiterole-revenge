@@ -79,7 +79,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var stepFileCount=2
+        var stepFileCount = 2
         var step = {
             stepCount: $(".step").length + 1,
             addStep: function (stepCount) {
@@ -213,6 +213,18 @@
         </p>
     [/#if]
 
+    <br/>
+    <b>Вес готового блюда</b>
+    [@spring.bind "addRecipeData.quantityOfDish"/]
+    <input type="text" name="quantityOfDish"
+           value="${spring.status.value?default("")}" class="cooking-time"/> грамм
+    [#if spring.status.error]
+        <p>
+
+        <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
+        </p>
+    [/#if]
+
     <p></p>
     <b>Кухня</b>
     &nbsp;
@@ -274,51 +286,51 @@
 
     <p></p>
 
-        <div class="dynamic-form">
-            <div class="conress">
-                [#assign ingrListSize = addRecipeData.ingredientsCountList?size]
-                [#if ingrListSize = 0]
-                    [#assign ingrListSize = 1]
-                [/#if]
-                [#list 1..ingrListSize as current_index]
-                    <div id="ingr_${current_index}" class="ingr">
-                        <button data-ingrid="${current_index}" title="Удалить ингредиент" class="delete_ingr ui-icon
+    <div class="dynamic-form">
+        <div class="conress">
+            [#assign ingrListSize = addRecipeData.ingredientsCountList?size]
+            [#if ingrListSize = 0]
+                [#assign ingrListSize = 1]
+            [/#if]
+            [#list 1..ingrListSize as current_index]
+                <div id="ingr_${current_index}" class="ingr">
+                    <button data-ingrid="${current_index}" title="Удалить ингредиент" class="delete_ingr ui-icon
                         ui-icon-closethick">
                         Удалить ингредиент
-                        </button>
-                        [@spring.bind "addRecipeData.ingredientsNameList[${current_index - 1}]"/]
-                        <select class="combobox ingrName" id="${spring.status.expression}"
-                                name="${spring.status.expression}">
-                            <option value="0"></option>
-                            [#list ingredients as c]
-                                [#if ""+c.id = addRecipeData.ingredientsNameList[current_index - 1]]
-                                    <option selected="" value="${c.id}">${c.name}</option>
-                                [#else]
-                                    <option value="${c.id}">${c.name}</option>
-                                [/#if]
-                            [/#list]
-                        </select>
+                    </button>
+                    [@spring.bind "addRecipeData.ingredientsNameList[${current_index - 1}]"/]
+                    <select class="combobox ingrName" id="${spring.status.expression}"
+                            name="${spring.status.expression}">
+                        <option value="0"></option>
+                        [#list ingredients as c]
+                            [#if ""+c.id = addRecipeData.ingredientsNameList[current_index - 1]]
+                                <option selected="" value="${c.id}">${c.name}</option>
+                            [#else]
+                                <option value="${c.id}">${c.name}</option>
+                            [/#if]
+                        [/#list]
+                    </select>
 
-                        [@spring.bind "addRecipeData.ingredientsCountList[${current_index - 1}]"/]
-                        <input type="text" class="combobox ingrCount" id="${spring.status.expression}"
-                               name="${spring.status.expression}"
-                               value="${addRecipeData.ingredientsCountList[current_index - 1]}"/>
+                    [@spring.bind "addRecipeData.ingredientsCountList[${current_index - 1}]"/]
+                    <input type="text" class="combobox ingrCount" id="${spring.status.expression}"
+                           name="${spring.status.expression}"
+                           value="${addRecipeData.ingredientsCountList[current_index - 1]}"/>
+                    <!-- ingredientsType = MeasuresBucket.id -->
+                    [@spring.bind "addRecipeData.ingredientsTypeList[${current_index - 1}]"/]
+                    <select class="combobox ingrType" id="${spring.status.expression}"
+                            name="${spring.status.expression}">
+                    </select>
 
-                        [@spring.bind "addRecipeData.ingredientsTypeList[${current_index - 1}]"/]
-                        <select class="combobox ingrType" id="${spring.status.expression}"
-                                name="${spring.status.expression}">
-                        </select>
+                    [#if spring.status.error]
+                        <p>
 
-                        [#if spring.status.error]
-                            <p>
+                        <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
+                        </p>
+                    [/#if]
 
-                            <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
-                            </p>
-                        [/#if]
-
-                    </div>
-                [/#list]
-            </div>
+                </div>
+            [/#list]
+        </div>
         <p>
             <button class="btn" value="#" id="adding">Добавить ингрeдиент</button>
 
@@ -339,8 +351,25 @@
         <div class="selectbutton">Обзор</div>
         <input type="file" name="images" id="upload" onchange="getName(this.value, 'fileformlabel');"/>
     </div>
-    </p><br>
+    </p>
+    <br>
 
+    <div class="control-group">
+        <div class="control-label-left"><b>Сложность приготовления</b></div>
+        <div class="controls" id="complexity">
+            [#assign cont={"":"","легкий":"легкий",
+            "средний":"средний",
+            "сложный":"сложный",
+            "очень сложный":"очень сложный"}]
+            [@spring.formSingleSelect "addRecipeData.complexity" cont "class=\"combobox1\"" /]
+        </div>
+        [#if spring.status.error]
+            <p>
+
+            <div class="error-div">[@spring.showErrors '<br>', 'error'/]</div>
+            </p>
+        [/#if]
+    </div>
 
     <p><b>Шаги приготовления</b></p>
 
@@ -386,7 +415,7 @@
         </div>
         <p>
             <button class="btn" value="#" id="add">
-            Добавить шаг
+                Добавить шаг
             </button>
         </p>
 

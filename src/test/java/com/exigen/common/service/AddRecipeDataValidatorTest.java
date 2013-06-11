@@ -1,10 +1,13 @@
 package com.exigen.common.service;
 
 
-import com.exigen.common.domain.AddRecipeData;
-import com.exigen.common.domain.Category;
+import com.exigen.common.domain.*;
 import junit.framework.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.DirectFieldBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.MapBindingResult;
@@ -14,9 +17,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.when;
+
 public class AddRecipeDataValidatorTest {
 
     AddRecipeDataValidator addRecipeDataValidator=new AddRecipeDataValidator();
+
+    @Mock
+    MeasureBucketService measureBucketService;
+
+    MeasuresBucket measuresBucket = new MeasuresBucket(new Measure(), new Ingredient(), new Integer(1));
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testTrimList(){
@@ -34,6 +50,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -50,8 +67,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -59,6 +76,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
 
         Errors errors = new DirectFieldBindingResult(data,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(false,errors.hasErrors());
     }
@@ -72,6 +92,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"ша{г1");
@@ -88,8 +109,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -97,6 +118,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -110,6 +134,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
 //        stepsList.add(0,"шаг1");
@@ -126,8 +151,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -135,6 +160,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -148,6 +176,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -164,8 +193,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -173,6 +202,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -186,158 +218,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
-
-        List<String> stepsList = new ArrayList<String>();
-        stepsList.add(0,"шаг1");
-        data.setStepsList(stepsList);
-
-        List<String> ingredientsNameList = new ArrayList<String>();
-        ingredientsNameList.add(0,"картошка");
-        ingredientsNameList.add(1,"капуста");
-        data.setIngredientsNameList(ingredientsNameList);
-
-        List<String> ingredientsCountList = new ArrayList<String>();
-        ingredientsCountList.add(0,"");
-        ingredientsCountList.add(1,"450");
-        data.setIngredientsCountList(ingredientsCountList);
-
-        List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
-        data.setIngredientsTypeList(ingredientsTypeList);
-
-        List<String> imagesForStepsList = new ArrayList<String>();
-        imagesForStepsList.add(0,"");
-        data.setImagesForStepsList(imagesForStepsList);
-        Map map = new HashMap();
-        Errors errors = new MapBindingResult(map,"");
-        addRecipeDataValidator.validate(data,errors);
-        Assert.assertEquals(true,errors.hasErrors());
-    }
-
-    @Test
-    public void testValidate6(){
-        AddRecipeData data = new AddRecipeData();
-        data.setTitle("борщ");
-        data.setCategory(new Category("первое"));
-        data.setCategoryId("0");
-        data.setCookingTimeHours("1");
-        data.setCookingTimeMinutes("20");
-        data.setDescription("описание");
-
-        List<String> stepsList = new ArrayList<String>();
-        stepsList.add(0,"шаг1");
-        data.setStepsList(stepsList);
-
-        List<String> ingredientsNameList = new ArrayList<String>();
-        ingredientsNameList.add(0,"картошка");
-        ingredientsNameList.add(1,"капуста");
-        data.setIngredientsNameList(ingredientsNameList);
-
-        List<String> ingredientsCountList = new ArrayList<String>();
-        ingredientsCountList.add(0,"5mt00");
-        ingredientsCountList.add(1,"450");
-        data.setIngredientsCountList(ingredientsCountList);
-
-        List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
-        data.setIngredientsTypeList(ingredientsTypeList);
-
-        List<String> imagesForStepsList = new ArrayList<String>();
-        imagesForStepsList.add(0,"");
-        data.setImagesForStepsList(imagesForStepsList);
-        Map map = new HashMap();
-        Errors errors = new MapBindingResult(map,"");
-        addRecipeDataValidator.validate(data,errors);
-        Assert.assertEquals(true,errors.hasErrors());
-    }
-
-    @Test
-    public void testValidate7(){
-        AddRecipeData data = new AddRecipeData();
-        data.setTitle("борщ");
-        data.setCategory(new Category("первое"));
-        data.setCategoryId("0");
-        data.setCookingTimeHours("1");
-        data.setCookingTimeMinutes("20");
-        data.setDescription("описание");
-
-        List<String> stepsList = new ArrayList<String>();
-        stepsList.add(0,"шаг1");
-        data.setStepsList(stepsList);
-
-        List<String> ingredientsNameList = new ArrayList<String>();
-        ingredientsNameList.add(0,"картошка");
-        ingredientsNameList.add(1,"капуста");
-        data.setIngredientsNameList(ingredientsNameList);
-
-        List<String> ingredientsCountList = new ArrayList<String>();
-        ingredientsCountList.add(0,"500");
-        ingredientsCountList.add(1,"450");
-        data.setIngredientsCountList(ingredientsCountList);
-
-        List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"");
-        ingredientsTypeList.add(1,"г");
-        data.setIngredientsTypeList(ingredientsTypeList);
-
-        List<String> imagesForStepsList = new ArrayList<String>();
-        imagesForStepsList.add(0,"");
-        data.setImagesForStepsList(imagesForStepsList);
-        Map map = new HashMap();
-        Errors errors = new MapBindingResult(map,"");
-        addRecipeDataValidator.validate(data,errors);
-        Assert.assertEquals(true,errors.hasErrors());
-    }
-
-    @Test
-    public void testValidate8(){
-        AddRecipeData data = new AddRecipeData();
-        data.setTitle("борщ");
-        data.setCategory(new Category("первое"));
-        data.setCategoryId("0");
-        data.setCookingTimeHours("1");
-        data.setCookingTimeMinutes("20");
-        data.setDescription("описание");
-
-        List<String> stepsList = new ArrayList<String>();
-        stepsList.add(0,"шаг1");
-        data.setStepsList(stepsList);
-
-        List<String> ingredientsNameList = new ArrayList<String>();
-        ingredientsNameList.add(0,"картошка");
-        ingredientsNameList.add(1,"капуста");
-        data.setIngredientsNameList(ingredientsNameList);
-
-        List<String> ingredientsCountList = new ArrayList<String>();
-        ingredientsCountList.add(0,"500");
-        ingredientsCountList.add(1,"450");
-        data.setIngredientsCountList(ingredientsCountList);
-
-        List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"");
-        ingredientsTypeList.add(1,"г");
-        data.setIngredientsTypeList(ingredientsTypeList);
-
-        List<String> imagesForStepsList = new ArrayList<String>();
-        imagesForStepsList.add(0,"");
-        data.setImagesForStepsList(imagesForStepsList);
-        Map map = new HashMap();
-        Errors errors = new MapBindingResult(map,"");
-        addRecipeDataValidator.validate(data,errors);
-        Assert.assertEquals(true,errors.hasErrors());
-    }
-
-    @Test
-    public void testValidate9(){
-        AddRecipeData data = new AddRecipeData();
-        data.setTitle("борщ");
-        data.setCategory(new Category("первое"));
-        data.setCategoryId("0");
-        data.setCookingTimeHours("1");
-        data.setCookingTimeMinutes("20");
-        data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"");
@@ -354,8 +235,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -363,44 +244,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
-        addRecipeDataValidator.validate(data,errors);
-        Assert.assertEquals(true,errors.hasErrors());
-    }
 
-    @Test
-    public void testValidate10(){
-        AddRecipeData data = new AddRecipeData();
-        data.setTitle("борщ");
-        data.setCategory(new Category("первое"));
-        data.setCategoryId("0");
-        data.setCookingTimeHours("1");
-        data.setCookingTimeMinutes("20");
-        data.setDescription("описание");
-
-        List<String> stepsList = new ArrayList<String>();
-        stepsList.add(0,"step1");
-        data.setStepsList(stepsList);
-
-        List<String> ingredientsNameList = new ArrayList<String>();
-        ingredientsNameList.add(0,"картошка");
-        ingredientsNameList.add(1,"капуста");
-        data.setIngredientsNameList(ingredientsNameList);
-
-        List<String> ingredientsCountList = new ArrayList<String>();
-        ingredientsCountList.add(0,"0.05");
-        ingredientsCountList.add(1,"450");
-        data.setIngredientsCountList(ingredientsCountList);
-
-        List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
-        data.setIngredientsTypeList(ingredientsTypeList);
-
-        List<String> imagesForStepsList = new ArrayList<String>();
-        imagesForStepsList.add(0,"");
-        data.setImagesForStepsList(imagesForStepsList);
-        Map map = new HashMap();
-        Errors errors = new MapBindingResult(map,"");
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -414,6 +260,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"step1");
@@ -437,6 +284,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -456,6 +306,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("10");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -472,8 +323,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -481,6 +332,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -494,6 +348,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("1");
         data.setCookingTimeMinutes("20");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -510,8 +365,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -519,6 +374,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(false,errors.hasErrors());
     }
@@ -532,6 +390,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("0");
         data.setCookingTimeMinutes("5");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -548,8 +407,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -557,9 +416,13 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
+
     @Test
     public void testcheckCookingTime4(){
         AddRecipeData data = new AddRecipeData();
@@ -569,6 +432,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("0");
         data.setCookingTimeMinutes("60");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -585,8 +449,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -594,6 +458,9 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
     }
@@ -607,6 +474,7 @@ public class AddRecipeDataValidatorTest {
         data.setCookingTimeHours("");
         data.setCookingTimeMinutes("");
         data.setDescription("описание");
+        data.setQuantityOfDish("700");
 
         List<String> stepsList = new ArrayList<String>();
         stepsList.add(0,"шаг1");
@@ -623,8 +491,8 @@ public class AddRecipeDataValidatorTest {
         data.setIngredientsCountList(ingredientsCountList);
 
         List<String> ingredientsTypeList = new ArrayList<String>();
-        ingredientsTypeList.add(0,"г");
-        ingredientsTypeList.add(1,"г");
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
         data.setIngredientsTypeList(ingredientsTypeList);
 
         List<String> imagesForStepsList = new ArrayList<String>();
@@ -632,8 +500,52 @@ public class AddRecipeDataValidatorTest {
         data.setImagesForStepsList(imagesForStepsList);
         Map map = new HashMap();
         Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
         addRecipeDataValidator.validate(data,errors);
         Assert.assertEquals(true,errors.hasErrors());
+    }
 
+    @Test
+    public void testcheckCookingTime6(){
+        AddRecipeData data = new AddRecipeData();
+        data.setTitle("борщ");
+        data.setCategory(new Category("первое"));
+        data.setCategoryId("0");
+        data.setCookingTimeHours("1");
+        data.setCookingTimeMinutes("");
+        data.setDescription("описание");
+        data.setQuantityOfDish("700");
+
+        List<String> stepsList = new ArrayList<String>();
+        stepsList.add(0,"шаг1");
+        data.setStepsList(stepsList);
+
+        List<String> ingredientsNameList = new ArrayList<String>();
+        ingredientsNameList.add(0,"картошка");
+        ingredientsNameList.add(1,"капуста");
+        data.setIngredientsNameList(ingredientsNameList);
+
+        List<String> ingredientsCountList = new ArrayList<String>();
+        ingredientsCountList.add(0,"500");
+        ingredientsCountList.add(1,"450");
+        data.setIngredientsCountList(ingredientsCountList);
+
+        List<String> ingredientsTypeList = new ArrayList<String>();
+        ingredientsTypeList.add(0,"1");
+        ingredientsTypeList.add(1,"1");
+        data.setIngredientsTypeList(ingredientsTypeList);
+
+        List<String> imagesForStepsList = new ArrayList<String>();
+        imagesForStepsList.add(0,"");
+        data.setImagesForStepsList(imagesForStepsList);
+        Map map = new HashMap();
+        Errors errors = new MapBindingResult(map,"");
+
+        when(measureBucketService.getMeasuresBucketListById(anyInt())).thenReturn(measuresBucket);
+        addRecipeDataValidator.setMeasureBucketService(measureBucketService);
+        addRecipeDataValidator.validate(data,errors);
+        Assert.assertEquals(false,errors.hasErrors());
     }
 }
