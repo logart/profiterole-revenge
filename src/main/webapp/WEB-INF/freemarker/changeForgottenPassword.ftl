@@ -4,7 +4,7 @@
 
 
 <div class="text-cener">
-    <h2>Изменение забытого пароля</h2>
+    <h2>Восстановление пароля</h2>
 </div>
 <div class="white-block">
     <div class="row">

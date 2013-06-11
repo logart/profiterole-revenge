@@ -42,13 +42,13 @@
 
             [#if account.maleOrFemale?if_exists == "Male"]
                 <label class="radio inline">
-                    М
+                    Мужской
                 </label>
             [/#if]
 
             [#if account.maleOrFemale?if_exists == "Female"]
                 <label class="radio inline">
-                    Ж
+                    Женский
                 </label>
             [/#if]
         </div>
@@ -67,7 +67,7 @@
     </div>
 
     <div style="text-align: center">
-        <button type="submit" class="btn" onclick="location.href='editProfile';">Изменить</button>
+        <button type="submit" class="btn" onclick="location.href='editProfile';">Редактировать</button>
     </div>
 </div>
 
