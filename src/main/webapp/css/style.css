@@ -386,9 +386,37 @@ a.ui-slider-handle {
     left: -2px;
 }
 .markersTitle{
-    width:77px;
-    float: left;
-}
+     width:77px;
+     float: left;
+ }
 .markersCheckbox{
     margin-left: 77px;
+}
+.dayOfWeekButton{
+    height: 3em;
+}
+
+.dayOfWeekButton > .breakfastMarker {
+    position: absolute;
+    top:2% ;
+    left:10%;
+    width: 80%;
+    height: 30%;
+}
+.dayOfWeekButton > .dinnerMarker {
+    position: absolute;
+    top:35% ;
+    left:10%;
+    width: 80%;
+    height: 30%;
+}
+.dayOfWeekButton > .supperMarker {
+    position: absolute;
+    top:68%;
+    left:10%;
+    width: 80%;
+    height: 30%;
+}
+.dayOfWeekButton > .breakfastMarker.marked, .dinnerMarker.marked, .supperMarker.marked{
+    background: #f6931f;
 }

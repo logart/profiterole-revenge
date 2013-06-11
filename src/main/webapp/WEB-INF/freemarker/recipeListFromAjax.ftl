@@ -113,6 +113,7 @@ ${a.recipe.description?substring(0,250)} ...
             accept: ".recepies_btn",
             drop: function (event, ui) {
                 addToMenuByCloning(ui.draggable, $(this));
+                markButtonDayOfWeek($(this)[0].id.split("_")[0],$(this)[0].id.split("_")[1]);
             }
         });
     });
@@ -126,10 +127,16 @@ ${a.recipe.description?substring(0,250)} ...
     $(".recipe_title label").each(function () {
         $(this).ellipsis();
     });
-
+    function deleteRecipe(target){
+        target.parent().popover('destroy').remove();
+        var container = $("#menuDrop").find("div:visible")[0];
+       if (container.find(".rec_id").length==0){
+           unmarkButtonDayOfWeek(container.id.split("_")[0],container.id.split("_")[1]);
+       };
+    }
     function addToMenuByCloning(clonableElement, droppedTo){
             var trash_icon = "<a href='#' title='Удалить рецепт' class='ui-icon ui-icon-trash' onclick=\"" +
-                    "$(this).parent().popover('destroy').remove(); return false;\">Удалить рецепт</a>";
+                    "deleteRecipe($(this)); return false;\">Удалить рецепт</a>";
             var counter = "<input type='test' class='rec_count' value=1>";
             var minus_btn = "<input type='button' class='minus_count' value='-' onclick='" +
                     "var $input = $(this).parent().find(\".rec_count\");" +

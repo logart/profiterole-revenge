@@ -35,8 +35,16 @@ ${scripts!}
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                    <li><a href="<@spring.url '/menu'/>"> Создать меню</a></li>
-
+                    <li class="dropdown">
+                        <a href="<@spring.url '/#'/>" class="dropdown" data-toggle="dropdown">
+                            Создать меню
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a href="<@spring.url '/menu'/>">Меню на день</a>
+                            <a href="<@spring.url '/menuForWeek'/>">Меню на неделю</a>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="<@spring.url '/#'/>" class="dropdown" data-toggle="dropdown">
                             Рецепты
