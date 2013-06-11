@@ -66,7 +66,7 @@ ${scripts!}
                     <a href="/registration">Регистрация</a>
                     </@security.authorize>
                     <@security.authorize  access="isAuthenticated()">
-                    <a href="/profile">Профайл</a>
+                    <a href="/profile">Профиль</a>
                     </@security.authorize>
                     </ul>
 
