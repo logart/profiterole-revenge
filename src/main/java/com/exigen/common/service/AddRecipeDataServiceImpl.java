@@ -94,6 +94,8 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
         recipe.setDescription(data.getDescription());
         recipe.setCuisine(data.getCuisine());
         recipe.setCategory(data.getCategory());
+        recipe.setComplexity(data.getComplexity());
+        recipe.setQuantityOfDish(Integer.parseInt(data.getQuantityOfDish()));
         recipe.setSmallImage(data.getImageForRecipeHead());
         recipe.setBigImage(data.getImageForRecipeHead());
         data.setCookingTime(data.getCookingTimeHours(), data.getCookingTimeMinutes());

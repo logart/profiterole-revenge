@@ -38,25 +38,49 @@ public class AddRecipeDataTest {
     }
 
     @Test
-    public void testgetCookingTimeHours() throws Exception {
+    public void testGetCookingTimeHours() throws Exception {
         String test="234";
         addRecipeData.setCookingTimeHours(test);
         Assert.assertEquals(test, addRecipeData.getCookingTimeHours());
     }
 
     @Test
-    public void testgetCookingTimeMinutes() throws Exception {
+    public void testGetCookingTimeMinutes() throws Exception {
         String test="567";
         addRecipeData.setCookingTimeMinutes(test);
         Assert.assertEquals(test, addRecipeData.getCookingTimeMinutes());
     }
 
     @Test
-    public void testGetCookingTime() throws Exception {
+    public void testGetSetCookingTime() throws Exception {
         String test="2";
         String test1="5";
         addRecipeData.setCookingTime(test, test1);
         Assert.assertEquals(new Integer(125), addRecipeData.getCookingTime());
+    }
+
+    @Test
+    public void testGetSetCookingTime2() throws Exception {
+        String cookingTimeHours = "";
+        String cookingTimeMinutes = "0";
+        addRecipeData.setCookingTime(cookingTimeHours, cookingTimeMinutes);
+        Assert.assertEquals(new Integer(0), addRecipeData.getCookingTime());
+    }
+
+    @Test
+    public void testGetSetCookingTime3() throws Exception {
+        String cookingTimeHours = "1";
+        String cookingTimeMinutes = "";
+        addRecipeData.setCookingTime(cookingTimeHours, cookingTimeMinutes);
+        Assert.assertEquals(new Integer(60), addRecipeData.getCookingTime());
+    }
+
+    @Test
+    public void testGetSetCookingTime4() throws Exception {
+        String cookingTimeHours = "0";
+        String cookingTimeMinutes = "25";
+        addRecipeData.setCookingTime(cookingTimeHours, cookingTimeMinutes);
+        Assert.assertEquals(new Integer(25), addRecipeData.getCookingTime());
     }
 
     @Test
@@ -134,4 +158,5 @@ public class AddRecipeDataTest {
         addRecipeData.setFiles(files);
         Assert.assertEquals(files,addRecipeData.getFiles());
     }
+
 }

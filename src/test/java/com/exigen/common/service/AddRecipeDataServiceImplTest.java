@@ -76,6 +76,7 @@ public class AddRecipeDataServiceImplTest {
           data.setMarkersNames(markersNames);
           data.setCookingTimeMinutes("9");
           data.setCookingTimeHours("1");
+          data.setQuantityOfDish("1");
           ArgumentCaptor<Recipe> argument = ArgumentCaptor.forClass(Recipe.class);
           addRecipeDataService.addRecipe(data);
           verify(recipeService).addRecipe(argument.capture());
