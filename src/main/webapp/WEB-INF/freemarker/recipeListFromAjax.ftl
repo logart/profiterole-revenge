@@ -114,7 +114,7 @@ ${a.recipe.description?substring(0,250)} ...
             accept: ".recepies_btn",
             drop: function (event, ui) {
                 addToMenuByCloning(ui.draggable, $(this));
-                markButtonDayOfWeek($(this)[0].id.split("_")[0],$(this)[0].id.split("_")[1]);
+                if($(".dayOfWeekButton").length>0) markButtonDayOfWeek($(this)[0].id.split("_")[0],$(this)[0].id.split("_")[1]);
             }
         });
     });
@@ -132,7 +132,7 @@ ${a.recipe.description?substring(0,250)} ...
         target.parent().popover('destroy').remove();
         var container = $("#menuDrop").find("div:visible")[0];
        if ($(container).find(".rec_id").length==0){
-           unmarkButtonDayOfWeek(container.id.split("_")[0],container.id.split("_")[1]);
+           if($(".dayOfWeekButton").length>0) unmarkButtonDayOfWeek(container.id.split("_")[0],container.id.split("_")[1]);
        };
     }
     function addToMenuByCloning(clonableElement, droppedTo){
