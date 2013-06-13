@@ -5,6 +5,8 @@ package com.exigen.common.service;
 import com.exigen.common.domain.IngredientBucket;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * Interface {@code IngredientBucketService} used for push object from and in DAO for get, add and
  * remove objects into DB with helps SpringTransaction and JPA
@@ -51,12 +53,12 @@ public interface IngredientBucketService {
     void removeIngredientBucket(IngredientBucket ingredientBucket);
 
     /**
-     * {@method getAllIngredientBuckets(List<Integer> listOfRecipesId)}
+     * {@method getAllIngredientBuckets(Map<Integer,Integer> numberOfRecipes)}
      * return list of all ingredientBuckets from DB  where Recipe from list
      *
-     * @param listOfRecipesId list of Id
+     * @param numberOfRecipe map with recipeId their number
      *
      */
 
-    List<IngredientBucket> getAllIngredientBuckets(List<Integer> listOfRecipesId);
+    List<IngredientBucket> getAllIngredientBuckets(Map<Integer,Integer> numberOfRecipe);
 }

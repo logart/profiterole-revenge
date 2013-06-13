@@ -11,9 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 import static org.mockito.Mockito.when;
 
@@ -23,6 +22,9 @@ public class SummarizingListControllerTest {
     @Mock
     IngredientBucketService ingredientBucketService;
 
+    @Mock
+    HttpServletRequest request;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -31,24 +33,27 @@ public class SummarizingListControllerTest {
     @Test
     public void testSummarizingListController() throws Exception {
 
-        List<Integer> idList = new ArrayList<Integer>();
-        idList.add(1);
-
         IngredientBucket ingredientBucket = new IngredientBucket();
-
         List<IngredientBucket> ingredients = new LinkedList<IngredientBucket>();
-
         ingredients.add(ingredientBucket);
-
 
         SummarizingListController summarizingListController = new SummarizingListController();
 
         ReflectionTestUtils.setField(summarizingListController, "ingredientBucketService",
                 this.ingredientBucketService);
 
-        when(ingredientBucketService.getAllIngredientBuckets(idList)).thenReturn(ingredients);
+        ReflectionTestUtils.setField(summarizingListController, "request",
+                this.request);
 
-        ModelAndView modelAndView = summarizingListController.summarizingListController(idList);
+        Map<Integer, Integer> idMap = new HashMap<Integer, Integer>();
+        Integer recipeId = 1;
+        Integer recipeIdCount = 5;
+        idMap.put(recipeId, recipeIdCount);
+
+
+        when(ingredientBucketService.getAllIngredientBuckets(idMap)).thenReturn(ingredients);
+
+        ModelAndView modelAndView = summarizingListController.summarizingListController(request);
 
         Assert.assertEquals("summarizingList", modelAndView.getViewName());
 
