@@ -4,11 +4,13 @@ import com.exigen.common.service.IngredientBucketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class  {@code SummarizingListController} is used to create
@@ -29,16 +31,27 @@ public class SummarizingListController {
     @Autowired
     private IngredientBucketService ingredientBucketService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     /**
      * {@method summarizingListController()} using for mapped ajax queries      *
      *
      * @return information about chosed recipes in modal window
      */
 
-    @RequestMapping(value = {"/summarizingList"})
+    @RequestMapping(value = "/summarizingList", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public ModelAndView summarizingListController(@RequestParam("recipesId") List<Integer> recipesId) {
+    public ModelAndView summarizingListController(HttpServletRequest request) {
+        Map <String, String[]> params = request.getParameterMap();
+        Map <Integer, Integer> ids = new HashMap<Integer, Integer>(params.size());
+        for (Map.Entry<String,String[]> entry: params.entrySet()){
+            Integer recipeId = Integer.parseInt(entry.getKey());
+            Integer recipeIdCount = Integer.parseInt(entry.getValue()[0]);
+            ids.put(recipeId, recipeIdCount);
+        }
+
         return new ModelAndView("summarizingList", "model", this.ingredientBucketService
-                .getAllIngredientBuckets(recipesId));
+                .getAllIngredientBuckets(ids));
     }
 }

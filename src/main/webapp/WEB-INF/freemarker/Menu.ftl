@@ -32,7 +32,18 @@
                 for(var i=0;i<count;i++)id_rec.push($(this).text());
                 return true;
             });
-            lv_url = "/summarizingList?recipesId=" + id_rec;
+            var map ={};
+            for (var i = 0; i<id_rec.length; i++){
+                if(map[id_rec[i]] == null){
+                    map[id_rec[i]] = 0;
+                }
+                map[id_rec[i]] = ++map[id_rec[i]];
+            }
+            var params = '';
+            for(param in map){
+                params += param + '=' + map[param] + '&';
+            }
+            lv_url = "/summarizingList?" + params;
             $("#modalForSummarizingList").load(lv_url);
         });
 

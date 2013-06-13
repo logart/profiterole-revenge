@@ -13,9 +13,12 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.when;
 import junit.framework.Assert;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IngredientBucketServiceImplTest {
@@ -31,10 +34,15 @@ public class IngredientBucketServiceImplTest {
     }
 
     @Test
-    public void getAllIngredientBucketsTest(){
+    public void getAllIngredientBucketsTest2(){
+
+        Map<Integer,Integer> numberOfRecipe = new HashMap<Integer, Integer>();
+        numberOfRecipe.put(0, 5);
+        numberOfRecipe.put(1, 3);
+
         List<Integer> listOfRecipesId = new ArrayList<Integer>();
-        listOfRecipesId.add(0,0);
-        listOfRecipesId.add(1,1);
+        listOfRecipesId.add(0);
+        listOfRecipesId.add(1);
         Recipe recipe1 = new Recipe();
         recipe1.setId(0);
         Recipe recipe2 = new Recipe();
@@ -70,10 +78,11 @@ public class IngredientBucketServiceImplTest {
         ingredientBucketList.get(i).setId(i);
 
         ingredientBucketService = new IngredientBucketServiceImpl();
-        ingredientBucketService.setIngredientBucketDao(ingredientBucketDao);
-        when(ingredientBucketDao.getAllIngredientBuckets(listOfRecipesId)).thenReturn(ingredientBucketList);
+        ReflectionTestUtils.setField(ingredientBucketService, "ingredientBucketDao",
+                this.ingredientBucketDao);
 
-        Assert.assertEquals(ingredientBucketService.getAllIngredientBuckets( listOfRecipesId).size(),3);
+        when(ingredientBucketDao.getAllIngredientBuckets(listOfRecipesId)).thenReturn(ingredientBucketList);
+        Assert.assertEquals(ingredientBucketService.getAllIngredientBuckets(numberOfRecipe).size(),3);
 
     }
 

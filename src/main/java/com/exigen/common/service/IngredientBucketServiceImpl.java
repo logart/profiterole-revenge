@@ -5,10 +5,9 @@ import com.exigen.common.repository.IngredientBucketDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Class {@code IngredientBucketServiceImpl} used for push object from and in DAO for get, add and
@@ -88,25 +87,19 @@ public class IngredientBucketServiceImpl implements IngredientBucketService {
     }
 
     /**
-     * {@method getAllIngredientBuckets(List<Integer> listOfRecipesId)}
+     * {@method getAllIngredientBuckets(Map<Integer,Integer> numberOfRecipes)}
      * return list of all ingredientBuckets from DB  where Recipe from list
      *
-     * @param listOfRecipesId list of Id
-     * @throws org.springframework.dao.DataAccessException
-     *          (resource
-     *          on cloudfoundry is unavalible, DB is changed)
+     * @param numberOfRecipe map with recipeId their number
+     *
      */
 
-    public List<IngredientBucket> getAllIngredientBuckets(List<Integer> listOfRecipesId) {
+    public List<IngredientBucket> getAllIngredientBuckets(Map<Integer,Integer> numberOfRecipe) {
 
-        HashMap<Integer, Integer> numberOfRecipe = new HashMap<Integer, Integer>();
         Integer itemId;
         IngredientBucket ib;
-        for (Integer i : listOfRecipesId) {
 
-            itemId = numberOfRecipe.get(i);
-            numberOfRecipe.put(i, itemId == null ? 1 : ++itemId);
-        }
+        List listOfRecipesId = CollectionUtils.arrayToList(numberOfRecipe.keySet().toArray());
 
         List<IngredientBucket> results = ingredientBucketDao.getAllIngredientBuckets(listOfRecipesId);
 
