@@ -8,7 +8,7 @@
 
     <util:map id="markers" map-class="java.util.LinkedHashMap">
         <entry key="острый" value="/img/gchilli.png"/>
-        <entry key="от шеф-повара" value="/img/gcook.png"/>
+        <entry key="диетический" value="/img/gdieta.png"/>
         <entry key="вегитарианский" value="/img/gcarrot.png"/>
     </util:map>
 
