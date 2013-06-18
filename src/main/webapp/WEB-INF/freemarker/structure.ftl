@@ -41,8 +41,8 @@ ${scripts!}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <a href="<@spring.url '/menu'/>">Меню на день</a>
-                            <a href="<@spring.url '/menuForWeek'/>">Меню на неделю</a>
+                            <li><a href="<@spring.url '/menu'/>">Меню на день</a></li>
+                            <li><a href="<@spring.url '/menuForWeek'/>">Меню на неделю</a> </li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -51,9 +51,9 @@ ${scripts!}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <a href="<@spring.url '/allOfRecipes'/>">Все рецепты</a>
+                            <li> <a href="<@spring.url '/allOfRecipes'/>">Все рецепты</a></li>
                         <#--<@security.authorize  access="isAuthenticated()">-->
-                            <a href="<@spring.url '/addRecipes'/>">Создать рецепт</a>
+                            <li><a href="<@spring.url '/addRecipes'/>">Создать рецепт</a></li>
                         <#--</@security.authorize>-->
                         </ul>
                     </li>
@@ -71,19 +71,19 @@ ${scripts!}
 
                 <ul class="btn btn-link pull-right" style="text-decoration: underline">
                     <@security.authorize  access="!isAuthenticated()">
-                    <a href="/registration">Регистрация</a>
+                    <li style="list-style-type: none;"> <a href="/registration">Регистрация</a>  </li>
                     </@security.authorize>
                     <@security.authorize  access="isAuthenticated()">
-                    <a href="/profile">Профиль</a>
+                    <li style="list-style-type: none;"><a href="/profile">Профиль</a>  </li>
                     </@security.authorize>
                     </ul>
 
                 <ul class="btn btn-link pull-right" style="text-decoration: underline">
                 <@security.authorize  access="!isAuthenticated()">
-                    <a href="/login">Вход</a>
+                <li style="list-style-type: none;"> <a href="/login">Вход</a></li>
                 </@security.authorize>
                 <@security.authorize  access="isAuthenticated()">
-                    <a href='/j_spring_security_logout'>Выход</a>
+                <li style="list-style-type: none;"><a href='/j_spring_security_logout'>Выход</a></li>
                 </@security.authorize>
                 </ul>
 
