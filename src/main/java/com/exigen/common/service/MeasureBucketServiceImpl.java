@@ -60,11 +60,12 @@ public class MeasureBucketServiceImpl implements MeasureBucketService {
      */
     @Cacheable("measures")
     @Override
-    public Map<Integer, String> getMeasuresBucketMapByIngredientId(Integer ingredientId) {
+    public Map<Integer, String[]> getMeasuresBucketMapByIngredientId(Integer ingredientId) {
         List<MeasuresBucket> buckets = measureBucketDao.getMeasuresBucketListByIngredientId(ingredientId);
-        Map<Integer, String> result = new HashMap<Integer, String>();
+        Map<Integer, String[]> result = new HashMap<Integer, String[]>();
         for (MeasuresBucket bucket : buckets) {
-            result.put(bucket.getId(), bucket.getMeasure().getTitle());
+            String[] arr = {bucket.getMeasure().getTitle(), bucket.getGramEquals().toString()}  ;
+            result.put(bucket.getId(), arr);
         }
         return result;
     }

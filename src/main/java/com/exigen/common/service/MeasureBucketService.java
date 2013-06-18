@@ -37,7 +37,7 @@ public interface MeasureBucketService {
      * @param ingredientId
      * @return the map where value ia a name of MeasuresBucket, and key is id.aIngredient entity =@param).
      */
-    Map<Integer, String> getMeasuresBucketMapByIngredientId(Integer ingredientId);
+    Map<Integer, String[]> getMeasuresBucketMapByIngredientId(Integer ingredientId);
 
     /**
      * {@method getMeasuresBucketListByMeasureId(Integer measureId)}

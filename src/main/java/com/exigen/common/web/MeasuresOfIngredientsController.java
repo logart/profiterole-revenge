@@ -33,7 +33,7 @@ public class MeasuresOfIngredientsController {
      */
     @RequestMapping(value = "/getMeasures", method = RequestMethod.GET)
     @ResponseBody
-    public Map<Integer, String> getMeasures(@RequestParam Integer ingredientId) {
+    public Map<Integer, String[]> getMeasures(@RequestParam Integer ingredientId) {
         return measureBucketService.getMeasuresBucketMapByIngredientId(ingredientId);
     }
 }
