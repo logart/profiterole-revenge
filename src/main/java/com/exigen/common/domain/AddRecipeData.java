@@ -186,15 +186,16 @@ public class AddRecipeData {
     }
 
     public void setCookingTime(String cookingTimeHours, String cookingTimeMinutes) {
-        Integer tempHours;
-        Integer tempMinutes;
         if (cookingTimeMinutes.isEmpty()) {
-            tempMinutes = 0;
-        }  else { tempMinutes = Integer.parseInt(cookingTimeMinutes);}
+            this.cookingTime = 0;
+        }  else {
+            this.cookingTime = Integer.parseInt(cookingTimeMinutes);
+        }
         if (cookingTimeHours.isEmpty()) {
-            tempHours = 0;
-        } else { tempHours = Integer.parseInt(cookingTimeHours);}
-        this.cookingTime = tempHours*SECOND_IN_MINUTE+tempMinutes;
+            this.cookingTime += 0;
+        } else {
+            this.cookingTime += Integer.parseInt(cookingTimeHours)*SECOND_IN_MINUTE;
+        }
     }
 
     public String getComplexity() {
