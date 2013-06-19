@@ -50,4 +50,25 @@ public class SummarizingListController {
         return new ModelAndView("summarizingList", "model", this.ingredientBucketService
                 .getAllIngredientBuckets(ids));
     }
+
+    /**
+     * {@method summarizingListController()} using for mapped ajax queries      *
+     *
+     * @return information about chosed recipes in modal window
+     */
+
+    @RequestMapping(value = "/summarizingListForWeek", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public ModelAndView summarizingListForWeekController(HttpServletRequest request) {
+        Map <String, String[]> params = request.getParameterMap();
+        Map <Integer, Integer> ids = new HashMap<Integer, Integer>(params.size());
+        for (Map.Entry<String,String[]> entry: params.entrySet()){
+            Integer recipeId = Integer.parseInt(entry.getKey());
+            Integer recipeIdCount = Integer.parseInt(entry.getValue()[0]);
+            ids.put(recipeId, recipeIdCount);
+        }
+
+        return new ModelAndView("summarizingListForWeek", "model", this.ingredientBucketService
+                .getAllIngredientBuckets(ids));
+    }
 }
