@@ -64,7 +64,7 @@ ${scripts!}
 
       <!---- -->
                 <form action="/searchResults" method="POST" class="navbar-search pull-right">
-                    <input type="text" class="search-query" placeholder="Нажмите для поиска" name="searchUnit"
+                    <input type="text" class="search-query" placeholder="Поиск" name="searchUnit"
                            value="">
                 </form>
 
