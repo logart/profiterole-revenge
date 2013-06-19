@@ -43,7 +43,7 @@
             for(param in map){
                 params += param + '=' + map[param] + '&';
             }
-            lv_url = "/summarizingList?" + params;
+            lv_url = "/summarizingListForWeek?" + params;
             $("#modalForSummarizingList").load(lv_url);
         });
 
