@@ -163,7 +163,7 @@
 
 
         <div style="text-align: center">
-            <button type="submit" class="btn">Сохранить</button>
+            <button type="submit" class="btn">Сохранить изменения</button>
         </div>
     </div>
 </form>
