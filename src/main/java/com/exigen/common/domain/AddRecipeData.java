@@ -191,9 +191,7 @@ public class AddRecipeData {
         }  else {
             this.cookingTime = Integer.parseInt(cookingTimeMinutes);
         }
-        if (cookingTimeHours.isEmpty()) {
-            this.cookingTime += 0;
-        } else {
+        if (!cookingTimeHours.isEmpty()) {
             this.cookingTime += Integer.parseInt(cookingTimeHours)*SECOND_IN_MINUTE;
         }
     }
