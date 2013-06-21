@@ -62,6 +62,11 @@ public class AddRecipeDataValidator implements Validator {
      private static final int MIN_INGREDIENT_COUNT_VALUE = 1;
 
     /**
+     * {@code MIN_DISH_OUTPUT} Contains coefficient of minimum value of finished dish
+     */
+    private static final float MIN_DISH_OUTPUT = 0.25f;
+
+    /**
      * {@code COOKING_TIME_MINUTES} Contains name of bean where ingredient's error should be add
      */
     private static final String WRONG_VALUE = "wrongValue.";
@@ -358,8 +363,8 @@ public class AddRecipeDataValidator implements Validator {
         try {
             if (quantityOfDish.isEmpty()) {
                 errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
-                        "Вес готового блюда должнен быть указан (целое число), но не более общего веса всех входящих " +
-                                "в рецепт ингредиентов.");
+                        "Вес готового блюда должнен быть указан (целое число), но не менее 25% и не более общего веса" +
+                                " всех входящих в рецепт ингредиентов.");
                 return;
             } else {
                 this.quantityOfDish = Integer.parseInt(quantityOfDish);
@@ -367,8 +372,8 @@ public class AddRecipeDataValidator implements Validator {
 
         } catch (NumberFormatException ex){
             errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
-                    "Вес готового блюда должен быть целым числом, но не более общего веса всех входящих в рецепт " +
-                            "ингредиентов.");
+                    "Вес готового блюда должен быть целым числом, но не менее 25% и не более общего веса всех " +
+                            "входящих в рецепт ингредиентов.");
             return;
         }
         if (countsList.size() != 0 && typesList.size() != 0 && namesList.size() != 0) {
@@ -378,9 +383,10 @@ public class AddRecipeDataValidator implements Validator {
                 measuresBucket = measureBucketService.getMeasuresBucketListById(Integer.parseInt(typesList.get(i)));
                 weightAllIngredients += Integer.parseInt(countsList.get(i))*measuresBucket.getGramEquals();
             }
-            if (this.quantityOfDish > weightAllIngredients){
+            if (this.quantityOfDish > weightAllIngredients || this.quantityOfDish < weightAllIngredients * MIN_DISH_OUTPUT){
                 errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
-                        "Вес готового блюда не должен превышать вес всех входящих в рецепт ингредиентов.");
+                        "Вес готового блюда не должен быть меньше 25% и не должен превышать вес всех входящих в " +
+                                "рецепт ингредиентов. (" + weightAllIngredients + " гр.)");
             }
         }
 
