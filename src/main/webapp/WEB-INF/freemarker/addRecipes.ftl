@@ -463,6 +463,7 @@
         var MAX_COOKING_MINUTES_SIZE = 59 ;
         var MIN_COOKING_HOURS_SIZE = 0;
         var MAX_COOKING_HOURS_SIZE = 9;
+        var MIN_DISH_OUTPUT = 0.25;
 
         var isValidatedOk=true;
 
@@ -569,10 +570,10 @@
         var quantityOfDish = parseInt($("input[name=quantityOfDish]")[0].value);
         if (isNaN(quantityOfDish)) {
             errorText+= wrapToErrorSpan("Вес готового блюда должнен быть указан (целое число), " +
-                    "но не более общего веса всех входящих в рецепт ингредиентов.");
-        }else if(quantityOfDish > weightAllIngredients){
-            errorText+= wrapToErrorSpan("Вес готового блюда не должен превышать вес всех входящих в рецепт ингредиентов." +
-                    " (" + weightAllIngredients + " гр.)");
+                    "но не менее 25% и не более общего веса всех входящих в рецепт ингредиентов.");
+        }else if(quantityOfDish > weightAllIngredients || quantityOfDish < weightAllIngredients * MIN_DISH_OUTPUT){
+            errorText+= wrapToErrorSpan("Вес готового блюда не должен быть меньше 25% и не должен превышать вес всех " +
+                    "входящих в рецепт ингредиентов. (" + weightAllIngredients + " гр.)");
         }
         singleValidationResulting("div[id=quantityOfDish]",errorText);
 
