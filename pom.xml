@@ -304,6 +304,21 @@
 
     <plugins>
 
+        <!-- mutation testing -->
+        <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>0.30</version>
+            <configuration>
+                <targetClasses>
+                    <param>com.exigen.common*</param>
+                </targetClasses>
+                <targetTests>
+                    <param>com.exigen.common*</param>
+                </targetTests>
+            </configuration>
+        </plugin>
+
         <plugin>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>maven-jetty-plugin</artifactId>
