@@ -311,13 +311,13 @@
             <version>0.30</version>
             <configuration>
                 <targetClasses>
-                    <param>com.exigen.common*</param>
+                    <param>com.exigen.common.*</param>
                 </targetClasses>
                 <targetTests>
-                    <param>com.exigen.common*</param>
+                    <param>com.exigen.common.*</param>
                 </targetTests>
                 <outputFormats>
-                    <format>xml</format>
+                    <format>XML</format>
                 </outputFormats>
             </configuration>
         </plugin>
