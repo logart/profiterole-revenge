@@ -420,3 +420,13 @@ a.ui-slider-handle {
 .dayOfWeekButton > .breakfastMarker.marked, .dinnerMarker.marked, .supperMarker.marked{
     background: #f6931f;
 }
+.modal {
+    width: 760px;
+    left: 40%;
+}
+.span4{
+    width: 31.114893617021278%;
+}
+.row-fluid .span4 {
+    width: 30.914893617021278%;
+}
