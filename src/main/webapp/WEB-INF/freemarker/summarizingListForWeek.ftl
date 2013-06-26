@@ -4,7 +4,7 @@
     <h4 id="myModalLabel">Итого</h4>
 </div>
 
-<ul class="nav nav-tabs" id="summarizingTab">
+<ul class="nav nav-tabs noprint" id="summarizingTab">
     <li class="active"><a href="#1" id="1">Ингридиенты</a></li>
     <li><a href="#2" id="2">Меню</a></li>
 </ul>
@@ -50,8 +50,8 @@
 
             <div class="span4"  style="display: none" id="tab21" >
                 <h5></h5>
-                <table class="table table-bordered table-condensed font-12" >
-                 <tr><td>Название</td><td><nobr>К/Порция</nobr></td><td><nobr>Выход</nobr></td></tr>
+                <table class="table table-bordered table-condensed font-12 fixed-table" >
+                 <tr><td class="summListRecipeName">Название</td><td><nobr>К/Порция</nobr></td><td><nobr>Выход</nobr></td></tr>
                </table>
             </div>
 
@@ -115,7 +115,8 @@
                  var count = $(this).parent().parent().find("input.rec_count").val();
                  var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
 
-                 $("#"+dayNames[i][1]+"_"+mealNames[j][1]+"_sum  table").append("<tr><td>" + name + "</td><td><nobr> " + count + "x</nobr></td><td><nobr></nobr></td></tr>");
+                 $("#"+dayNames[i][1]+"_"+mealNames[j][1]+"_sum  table").append("<tr><td class='summListRecipeName'>"
+                         + name + "</td><td><nobr>" + count + "x</nobr></td><td><nobr></nobr></td></tr>");
 
                  meal_cal[j] += cal * count;
                  return true;

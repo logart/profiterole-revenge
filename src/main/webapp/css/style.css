@@ -430,3 +430,12 @@ a.ui-slider-handle {
 .row-fluid .span4 {
     width: 30.914893617021278%;
 }
+
+.fixed-table {
+    table-layout:fixed;
+}
+
+.summListRecipeName{
+    width: 45%;
+    word-wrap: break-word;
+}

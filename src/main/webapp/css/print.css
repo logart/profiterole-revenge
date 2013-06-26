@@ -92,6 +92,15 @@
         width: 940px;
     }
 
+    .fixed-table {
+        table-layout:fixed;
+    }
+
+    .summListRecipeName{
+        width: 45%;
+        word-wrap: break-word;
+    }
+
     .table {
         font-size: 12px;
         width: 100%;
