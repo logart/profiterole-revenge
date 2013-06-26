@@ -7,17 +7,17 @@
     <div class="row-fluid text-cener">
         <div class="span4">
             <h4>Завтрак</h4>
-            <table class="table table-bordered table-condensed font-12" id="br_sum">
+            <table class="table table-bordered table-condensed font-12 fixed-table" id="br_sum">
             </table>
         </div>
         <div class="span4">
             <h4>Обед</h4>
-            <table class="table table-bordered table-condensed font-12" id="dn_sum">
+            <table class="table table-bordered table-condensed font-12 fixed-table" id="dn_sum">
             </table>
         </div>
         <div class="span4">
             <h4>Ужин</h4>
-            <table class="table table-bordered table-condensed font-12" id="sp_sum">
+            <table class="table table-bordered table-condensed font-12 fixed-table" id="sp_sum">
             </table>
         </div>
         <div class="span12">
@@ -55,7 +55,9 @@
             var name = $(this).text();
             var count = $(this).parent().parent().find("input.rec_count").val();
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
-            $("#br_sum").append("<tr><td>" + name + "</td><td><nobr>x " + count + "</nobr></td></tr>");
+            $("#br_sum").append("<tr><td class='summListRecipeName'>" + name + "</td><td><nobr>x " +
+                    count +
+            "</nobr></td></tr>");
             br_cal += cal * count;
             return true;
         });
@@ -64,7 +66,8 @@
             var name = $(this).text();
             var count = $(this).parent().parent().find("input.rec_count").val();
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
-            $("#dn_sum").append("<tr><td>" + name + "</td><td><nobr>x " + count + "</nobr></td></tr>");
+            $("#dn_sum").append("<tr><td class='summListRecipeName'>" + name + "</td><td><nobr>x " + count
+                    + "</nobr></td></tr>");
             dn_cal += cal * count;
             return true;
         });
@@ -73,7 +76,8 @@
             var name = $(this).text();
             var count = $(this).parent().parent().find("input.rec_count").val();
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
-            $("#sp_sum").append("<tr><td>" + name + "</td><td><nobr>x " + count + "</nobr></td></tr>");
+            $("#sp_sum").append("<tr><td class='summListRecipeName'>" + name + "</td><td><nobr>x " + count +
+                    "</nobr></td></tr>");
             sp_cal += cal * count;
             return true;
         });
