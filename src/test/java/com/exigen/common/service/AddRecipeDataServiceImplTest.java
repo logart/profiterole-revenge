@@ -11,10 +11,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class AddRecipeDataServiceImplTest {
 
@@ -29,9 +29,12 @@ public class AddRecipeDataServiceImplTest {
 
     List<Cuisine> cuisineList = new ArrayList<Cuisine>();
 
+    IngredientType type_t1 = new IngredientType("молочные продукты");
+    List<IngredientType> listOfTypes = new ArrayList<IngredientType>(Arrays.asList(type_t1));
+    Ingredient ingredient = new Ingredient("name", 4, listOfTypes.get(0));
+
     Recipe recipe = new Recipe();
 
-    Ingredient ingredient = new Ingredient("name", 4);
 
     List<String> steps = new ArrayList<String>();
 

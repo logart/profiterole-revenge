@@ -110,7 +110,7 @@ public class IngredientBucketServiceImpl implements IngredientBucketService {
             }
         }
 
-        HashMap<Integer, IngredientBucket> numberOfIngredient = new HashMap<Integer, IngredientBucket>();
+        LinkedHashMap<Integer, IngredientBucket> numberOfIngredient = new LinkedHashMap<Integer, IngredientBucket>();
 
         for (IngredientBucket i : results) {
             itemId = i.getIngredient().getId();

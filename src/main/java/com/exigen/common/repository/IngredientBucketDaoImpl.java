@@ -89,7 +89,7 @@ public class IngredientBucketDaoImpl implements IngredientBucketDao{
     @Override
     public List<IngredientBucket> getAllIngredientBuckets(List<Integer> listOfRecipesId){
         List<IngredientBucket> results = this.entityManager.createQuery("select ib from IngredientBucket ib WHERE ib" +
-                ".recipe.id IN (:selectedRecipes)").setParameter("selectedRecipes", listOfRecipesId).getResultList();
+                ".recipe.id IN (:selectedRecipes) order by ib.ingredient.type.name, ib.ingredient.name").setParameter("selectedRecipes", listOfRecipesId).getResultList();
         return results;
     }
 }

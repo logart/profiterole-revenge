@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -23,7 +23,7 @@ import java.util.Map;
 public class SummarizingListController {
 
     /**
-     * {@code ingridientService} describes the IngridientService for inject on this
+     * {@code ingridientService} describes the IngredientService for inject on this
      * class
      */
 
@@ -40,7 +40,7 @@ public class SummarizingListController {
     @ResponseBody
     public ModelAndView summarizingListController(HttpServletRequest request) {
         Map <String, String[]> params = request.getParameterMap();
-        Map <Integer, Integer> ids = new HashMap<Integer, Integer>(params.size());
+        Map <Integer, Integer> ids = new LinkedHashMap<Integer, Integer>(params.size());
         for (Map.Entry<String,String[]> entry: params.entrySet()){
             Integer recipeId = Integer.parseInt(entry.getKey());
             Integer recipeIdCount = Integer.parseInt(entry.getValue()[0]);
@@ -61,7 +61,7 @@ public class SummarizingListController {
     @ResponseBody
     public ModelAndView summarizingListForWeekController(HttpServletRequest request) {
         Map <String, String[]> params = request.getParameterMap();
-        Map <Integer, Integer> ids = new HashMap<Integer, Integer>(params.size());
+        Map <Integer, Integer> ids = new LinkedHashMap<Integer, Integer>(params.size());
         for (Map.Entry<String,String[]> entry: params.entrySet()){
             Integer recipeId = Integer.parseInt(entry.getKey());
             Integer recipeIdCount = Integer.parseInt(entry.getValue()[0]);

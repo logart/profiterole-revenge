@@ -1,10 +1,7 @@
 package com.exigen.common.dao;
 
 
-import com.exigen.common.domain.Category;
-import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Ingredient;
-import com.exigen.common.domain.Recipe;
+import com.exigen.common.domain.*;
 import com.exigen.common.repository.*;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.times;
@@ -34,6 +32,7 @@ import static org.mockito.Mockito.verify;
 public class IngredientDaoTest {
     @Mock
     private EntityManager entityManager;
+
     @Autowired
     private IngredientDao ingredientDao;
 
@@ -46,7 +45,6 @@ public class IngredientDaoTest {
     @Autowired
     private RecipeDao recipeDao;
 
-
     private Ingredient ingredient;
     private Recipe recipe;
     private Cuisine cuisine;
@@ -54,6 +52,7 @@ public class IngredientDaoTest {
     private Integer recipeId;
     private List<Recipe> recipeList;
     private List<Ingredient> ingredientList;
+
 
     @Before
     public void setup() {
@@ -65,7 +64,10 @@ public class IngredientDaoTest {
 
         recipe = new Recipe("title", "desc", cuisine, category, "link1", "link2", 4);
         recipeDao.addRecipe(recipe);
-        ingredient = new Ingredient("name", 5);
+
+        IngredientType type_t1 = new IngredientType("молочные продукты");
+        List <IngredientType> listOfTypes = new ArrayList<IngredientType>(Arrays.asList(type_t1));
+        ingredient = new Ingredient("name", 5, listOfTypes.get(0));
         ingredientList = new ArrayList<Ingredient>();
         recipeList = new ArrayList<Recipe>();
         MockitoAnnotations.initMocks(this);
