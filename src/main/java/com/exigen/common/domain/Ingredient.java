@@ -133,14 +133,4 @@ import java.util.List;
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Ingredient{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", calories=" + calories +
-                ", type=" + type +
-                ", measuresBucketList=" + measuresBucketList +
-                '}';
-    }
 }

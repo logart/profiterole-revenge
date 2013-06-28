@@ -1,5 +1,12 @@
 package com.exigen.common.service;
 
+
+import com.exigen.common.domain.IngredientType;
+import com.exigen.common.repository.IngredientTypeDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * Class {@code IngredientTypeService} used for get, add and remove objects
  * from IngredientType entity with helps SpringTransaction JPA
@@ -7,13 +14,6 @@ package com.exigen.common.service;
  * @date  20.06.13
  *
  */
-
-import com.exigen.common.domain.IngredientType;
-
-import com.exigen.common.repository.IngredientTypeDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service("ingredientTypeService")
 @Transactional

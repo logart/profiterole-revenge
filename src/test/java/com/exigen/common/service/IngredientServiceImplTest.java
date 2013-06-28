@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
@@ -34,9 +35,11 @@ public class IngredientServiceImplTest {
     @Test
     public void  getAllIngredientsSortedListTest() {
         List<Ingredient> ingredients =new ArrayList<Ingredient>();
-        List<IngredientType> listOfTypes = new ArrayList<IngredientType>();
+        IngredientType type_1 = new IngredientType("молочные продукты");
+        IngredientType type_2 = new IngredientType("мясо");
+        List<IngredientType> listOfTypes = new ArrayList<IngredientType>(Arrays.asList(type_1,type_2));
         Ingredient ingredient11 = new Ingredient("сахар",500, listOfTypes.get(0));
-        Ingredient ingredient12 = new Ingredient("гречка",100, listOfTypes.get(4));
+        Ingredient ingredient12 = new Ingredient("гречка",100, listOfTypes.get(1));
         ingredients.add(ingredient11);
         ingredients.add(ingredient12);
         when(ingredientDao.getAllIngredients()).thenReturn(ingredients);
