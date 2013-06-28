@@ -2,7 +2,7 @@ package com.exigen.common.service;
 
 
 import com.exigen.common.domain.Ingredient;
-import com.exigen.common.domain.Recipe;
+import com.exigen.common.domain.IngredientType;
 import com.exigen.common.repository.IngredientDao;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -34,8 +34,9 @@ public class IngredientServiceImplTest {
     @Test
     public void  getAllIngredientsSortedListTest() {
         List<Ingredient> ingredients =new ArrayList<Ingredient>();
-        Ingredient ingredient11 = new Ingredient("сахар",500);
-        Ingredient ingredient12 = new Ingredient("гречка",100);
+        List<IngredientType> listOfTypes = new ArrayList<IngredientType>();
+        Ingredient ingredient11 = new Ingredient("сахар",500, listOfTypes.get(0));
+        Ingredient ingredient12 = new Ingredient("гречка",100, listOfTypes.get(4));
         ingredients.add(ingredient11);
         ingredients.add(ingredient12);
         when(ingredientDao.getAllIngredients()).thenReturn(ingredients);

@@ -1,6 +1,13 @@
 package com.exigen.common.domain;
 
+
+
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +47,17 @@ import java.util.List;
      */
     private int calories;
 
+
+    /**
+     * {@code type} this field to describe types of ingredient
+     */
+
+    @ManyToOne(targetEntity = IngredientType.class)
+    @JoinColumn(name = "typeId", nullable = false)
+    private IngredientType type;
+
+
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
     private List<MeasuresBucket> measuresBucketList = new ArrayList<MeasuresBucket>();
 
@@ -55,17 +73,20 @@ import java.util.List;
     /**
      * {@method Ingredient} its a constructor for setting name of Ingredient
      */
-    public Ingredient(String name) {
+    public Ingredient(String name, IngredientType type) {
         this.name = name;
+        this.type = type;
     }
 
     /**
      * {@method Ingredient} its a constructor for adding data in entity
+     * {@param } name,calories,type
      */
-    public Ingredient(String name, int calories) {
+
+    public Ingredient(String name, int calories, IngredientType type) {
         this.name = name;
         this.calories = calories;
-
+        this.type = type;
     }
 
     /**
@@ -104,4 +125,22 @@ import java.util.List;
         this.measuresBucketList = measuresBucketList;
     }
 
+    public IngredientType getType() {
+        return type;
+    }
+
+    public void setType(IngredientType type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", calories=" + calories +
+                ", type=" + type +
+                ", measuresBucketList=" + measuresBucketList +
+                '}';
+    }
 }

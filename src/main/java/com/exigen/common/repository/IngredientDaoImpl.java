@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * {@inheritDoc}
  */
-@Repository("ingridientDao")
+@Repository("ingredientDao")
 public class IngredientDaoImpl implements IngredientDao {
 
     /**
@@ -24,8 +24,8 @@ public class IngredientDaoImpl implements IngredientDao {
      * {@inheritDoc}
      */
     @Override
-    public Ingredient getIngredientById(Integer ingridientId) {
-        return entityManager.find(Ingredient.class, ingridientId);
+    public Ingredient getIngredientById(Integer ingredientId) {
+        return entityManager.find(Ingredient.class, ingredientId);
     }
 
     /**

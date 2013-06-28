@@ -1,9 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Ingredient;
-import com.exigen.common.domain.IngredientBucket;
-import com.exigen.common.domain.MeasuresBucket;
-import com.exigen.common.domain.Recipe;
+import com.exigen.common.domain.*;
 import com.exigen.common.repository.IngredientBucketDao;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +12,7 @@ import junit.framework.Assert;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IngredientBucketServiceImplTest {
@@ -49,14 +43,18 @@ public class IngredientBucketServiceImplTest {
         recipe2.setId(1);
 
         List<Ingredient> ingredientList = new ArrayList<Ingredient>();
+        IngredientType type_t1 = new IngredientType("молочные продукты + яйца");
+        IngredientType type_t2 = new IngredientType("мясные продукты");
+        IngredientType type_t3 = new IngredientType("рыбные продукты");
+        List<IngredientType> listOfTypes = new ArrayList<IngredientType>(Arrays.asList(type_t1,type_t2,type_t3 ));
 
-        ingredientList.add(0,new Ingredient("сахар"));
+        ingredientList.add(0,new Ingredient("сахар", listOfTypes.get(0)));
         ingredientList.get(0).setId(0);
 
-        ingredientList.add(1, new Ingredient("мука"));
+        ingredientList.add(1, new Ingredient("мука",listOfTypes.get(1)));
         ingredientList.get(1).setId(1);
 
-        ingredientList.add(2,new Ingredient("вода"));
+        ingredientList.add(2,new Ingredient("вода",listOfTypes.get(2)));
         ingredientList.get(2).setId(2);
 
         MeasuresBucket measuresBucket = new MeasuresBucket();
