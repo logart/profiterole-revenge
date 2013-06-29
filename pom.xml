@@ -311,13 +311,14 @@
             <version>0.29</version>
             <configuration>
                 <targetClasses>
-                    <param>com.exigen.common.*</param>
+                    <param>com.exigen.common.domain.AddRecipeData</param>
                 </targetClasses>
                 <targetTests>
-                    <param>com.exigen.common.*</param>
+                    <param>com.exigen.common.domain.AddRecipeDataTest</param>
                 </targetTests>
                 <outputFormats>
                     <format>XML</format>
+                    <format>HTML</format>
                 </outputFormats>
             </configuration>
         </plugin>
