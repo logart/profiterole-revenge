@@ -171,7 +171,7 @@
         <dependency>
             <groupId>org.cloudfoundry</groupId>
             <artifactId>cloudfoundry-runtime</artifactId>
-            <version>0.8.1</version>
+            <version>0.8.4</version>
         </dependency>
 
         <!-- Java Mail API -->
@@ -308,7 +308,7 @@
         <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>0.29</version>
+            <version>0.30</version>
             <configuration>
                 <targetClasses>
                     <param>com.exigen.common.domain.AddRecipeData</param>
@@ -462,6 +462,7 @@
         </profile>
 
         <!--Profiles for developers private servers-->
+
         <profile>
             <id>vsam-profiterole</id>
             <build>
@@ -471,12 +472,33 @@
                         <artifactId>cf-maven-plugin</artifactId>
                         <version>1.0.0.M4</version>
                         <configuration>
+                            <server>mycloudfoundry-instance</server>
+                            <target>https://api.run.pivotal.io</target>
+                            <url>vsam-profiterole.cfapp.io</url>
+                            <framework>spring</framework>
+                            <memory>512</memory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>vsam-profiterole1</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.cloudfoundry</groupId>
+                        <artifactId>cf-maven-plugin</artifactId>
+                        <version>1.0.0.M4</version>
+                        <configuration>
                             <appname>profiterole</appname>
                             <server>mycloudfoundry-instance</server>
-                            <target>http://api.cloudfoundry.com</target>
-                            <url>vsam-profiterole.cloudfoundry.com</url>
+                            <target>https://api.run.pivotal.io</target>
+                            <url>vsam-profiterole.cfapps.io</url>
+                            <framework>spring</framework>
                             <username>volodymyr.samokhval@gmail.com</username>
-                            <password>ingu6HA</password>
+                            <password>2517vaNhtyth</password>
                             <memory>512</memory>
                         </configuration>
                     </plugin>
