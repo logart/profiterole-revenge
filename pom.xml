@@ -320,6 +320,7 @@
                     <format>XML</format>
                     <format>HTML</format>
                 </outputFormats>
+                <verbose>true</verbose>
             </configuration>
         </plugin>
 
