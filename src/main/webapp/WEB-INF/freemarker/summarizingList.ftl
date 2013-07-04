@@ -57,7 +57,7 @@
             var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
             $("#br_sum").append("<tr><td class='summListRecipeName'>" + name + "</td><td><nobr>x " +
                     count +
-            "</nobr></td></tr>");
+                    "</nobr></td></tr>");
             br_cal += cal * count;
             return true;
         });
