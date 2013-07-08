@@ -26,6 +26,17 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeDao recipeDao;
 
     /**
+     * {@code MASK_AND} describes the const
+     */
+    private static final double PORTION_ROUNDING = 0.5;
+
+    /**
+     * {@code portion} describes the ArrayList<Integer> with portion of Recipe
+     */
+    @Resource
+    private ArrayList<Integer> portion;
+
+    /**
      * {@code markers} describes the LinkedHashMap<String, String> with names and pictures of markers
      */
     @Resource
@@ -111,6 +122,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     /**
+     * {@method setPortion(ArrayList<Integer> portion)}
+     * for initialized from bean. Inject in this class
+     */
+    public void setPortion(ArrayList<Integer> portion) {
+        this.portion = portion;
+    }
+
+    /**
      * {@method setMarkers(Map<String,String> markers)}
      * for tests services. Inject in this class
      */
@@ -145,7 +164,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     /**
-     * {@method getListRecipesWithMarkers(List<Recipe> recipeList)}
+     * {@method getListRecipesWithMarkersAndPortion(List<Recipe> recipeList)}
      * for adding information about markers of list of recipe
      *
      * @param recipeList (object list of some particular recipe)
@@ -153,9 +172,17 @@ public class RecipeServiceImpl implements RecipeService {
      * @return the list of the object of RecipeWithMarkers
      *
      */
-    public List<RecipeWithMarkers> getListRecipesWithMarkers(List<Recipe> recipeList){
+    public List<RecipeWithMarkers> getListRecipesWithMarkersAndPortion(List<Recipe> recipeList){
         List<RecipeWithMarkers> recipesWithMarkers = new ArrayList<RecipeWithMarkers>();
         for(Recipe recipe: recipeList){
+            if (recipe.getCategory().getId() == 1 || recipe.getCategory().getId() == 4 ){
+                recipe.setValueOfPortion(portion.get(0));
+                //Integer tempPortion =  recipe.getQuantityOfDish() % portion.get(0);
+                //recipe.setValueOfPortion( tempPortion / portion.get(0) >
+                //        PORTION_ROUNDING ? ++tempPortion : tempPortion);
+            } else {
+                recipe.setValueOfPortion(portion.get(1));
+            }
             RecipeWithMarkers recipeWithMarkers = new RecipeWithMarkers();
             recipeWithMarkers.setRecipe(recipe);
             recipeWithMarkers.setMarkers(getMarkersOfRecipe(recipe));

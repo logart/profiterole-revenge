@@ -58,6 +58,8 @@ ${a.recipe.description?substring(0,250)} ...
     <div class="cat_value no-display">${a.recipe.category.id}</div>
     <div class="rec_id no-display">${a.recipe.id}</div>
     <div class="rec_cal no-display">${a.recipe.calories}</div>
+    <div class="rec_dish_quantity no-display">${a.recipe.quantityOfDish}</div>
+    <div class="rec_portion no-display">${a.recipe.valueOfPortion}</div>
 </div>
 [/#list]
 

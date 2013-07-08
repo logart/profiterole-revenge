@@ -114,6 +114,13 @@ public class Recipe {
      */
     private Byte markers;
 
+
+    /**
+     * {@code valueOfPortion} This field to save number of portion of Recipe
+     */
+    @Transient
+    private Integer valueOfPortion;
+
     /**
      * {@code ingredients} it's list of ingredient's buckets in recipe.
      */
@@ -281,6 +288,14 @@ public class Recipe {
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
+    }
+
+    public Integer getValueOfPortion() {
+        return valueOfPortion;
+    }
+
+    public void setValueOfPortion(Integer valueOfPortion) {
+        this.valueOfPortion = valueOfPortion;
     }
 
     public Byte getMarkers() {

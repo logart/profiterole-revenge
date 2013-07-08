@@ -13,7 +13,7 @@
     <import resource="classpath:application-security.xml"></import>
     <import resource="classpath:root-context.xml"></import>
     <import resource="classpath:spring-mail.xml"></import>
-    <import resource="classpath:markers.xml"></import>
+    <import resource="classpath:markersAndPortion.xml"></import>
     <context:annotation-config/>
 
     <context:component-scan base-package="com.exigen.common"/>
@@ -44,12 +44,11 @@
         <property name="user" value="profiterole"/>
         <property name="password" value="1234"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/profiterole"/>
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://localhost:3306/profiterole3"/>
         <property name="initialPoolSize" value="1"/>
-        <property name="maxPoolSize" value="2"/>
+        <property name="maxPoolSize" value="20"/>
         <property name="minPoolSize" value="1"/>
-        <property name="acquireIncrement" value="1"/>
-        <property name="acquireRetryAttempts" value="0"/>
     </bean>
 
     <bean id="entityManagerFactory"

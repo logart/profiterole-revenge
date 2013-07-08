@@ -12,8 +12,16 @@
         <entry key="вегитарианский" value="/img/gcarrot.png"/>
     </util:map>
 
+    <util:list id="portion" list-class="java.util.ArrayList">
+        <value>150</value>
+        <value>250</value>
+    </util:list>
+
     <bean id="recipeService" class="com.exigen.common.service.RecipeServiceImpl">
         <property name="markers" ref="markers" />
+        <property name="portion" ref="portion"/>
     </bean>
+
+
 </beans>
 
