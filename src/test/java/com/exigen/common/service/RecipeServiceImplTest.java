@@ -77,7 +77,7 @@ public class RecipeServiceImplTest {
         recipeWithMarkers.setMarkers(markers);
         List<RecipeWithMarkers> resipesWithMarkers = new ArrayList<RecipeWithMarkers>();
         resipesWithMarkers.add(recipeWithMarkers);
-        Assert.assertSame(resipesWithMarkers.size(),recipeService.getListRecipesWithMarkers(recipes).size());
+        Assert.assertSame(resipesWithMarkers.size(),recipeService.getListRecipesWithMarkersAndPortion(recipes).size());
 
     }
 

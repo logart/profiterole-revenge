@@ -76,7 +76,7 @@ public interface RecipeService {
     Map<String,String> getMarkersOfRecipe(Recipe recipe);
 
     /**
-     * {@method getListRecipesWithMarkers(List<Recipe> recipeList)}
+     * {@method getListRecipesWithMarkersAndPortion(List<Recipe> recipeList)}
      * for adding information about markers of list of recipe
      *
      * @param recipeList (object list of some particular recipe)
@@ -84,7 +84,7 @@ public interface RecipeService {
      * @return the list of the object of RecipeWithMarkers
      *
      */
-    List<RecipeWithMarkers> getListRecipesWithMarkers(List<Recipe> recipeList);
+    List<RecipeWithMarkers> getListRecipesWithMarkersAndPortion(List<Recipe> recipeList);
 
     /**
      * {@method getListOfMarkersNames()}

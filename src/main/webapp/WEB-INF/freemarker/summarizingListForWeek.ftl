@@ -5,8 +5,8 @@
 </div>
 
 <ul class="nav nav-tabs noprint" id="summarizingTab">
-    <li class="active"><a href="#1" id="1">Ингридиенты</a></li>
-    <li><a href="#2" id="2">Меню</a></li>
+    <li class="active"><a href="#1" id="1">Меню</a></li>
+    <li><a href="#2" id="2">Ингридиенты</a></li>
 </ul>
 
 <script type="text/javascript">
@@ -23,32 +23,11 @@
 
 <div class="summarizingContentTab" id="tab1">
     <div class="modal-body">
-    <span class="text-justify">
-
-        <table class="table table-striped table-bordered table-condensed font-12">
-        [#list model as a]
-            <tr>
-                <td>${a.ingredient.name}</td>
-                <td>${a.countOfIngredient}</td>
-                <td>${a.measuresBucket.measure.title}</td>
-            </tr>
-        [/#list]
-        </table>
-        <br/>
-    </span>
-    </div>
-    <div class="modal-footer noprint">
-        <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
-    </div>
-</div>
-
-<div class="summarizingContentTab" id="tab2" style="display: none;">
-    <div class="modal-body">
-        <div class="row-fluid text-cener" id="tab20">
+        <div class="row-fluid text-cener" id="tab10">
 
             <div class="span12 text-cener " data-name="dayOfWeek" style="display: none"><h4></h4></div>
 
-            <div class="span4" style="display: none" id="tab21">
+            <div class="span4" style="display: none" id="tab11">
                 <h5></h5>
                 <table class="table table-bordered table-condensed font-12 fixed-table">
                     <tr>
@@ -63,7 +42,7 @@
                 </table>
             </div>
 
-            <div style="display: none" id="tab22">
+            <div style="display: none" id="tab12">
                 <div class="span12">
                     <div class="span4 text-right"><span data-name="br_kkal"></span> ккал.</div>
                     <div class="span4 text-right"><span data-name="dn_kkal"></span> ккал.</div>
@@ -78,7 +57,27 @@
 
         </div>
 
+    </div>
+    <div class="modal-footer noprint">
+        <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
+    </div>
+</div>
 
+<div class="summarizingContentTab" id="tab2" style="display: none;">
+    <div class="modal-body">
+    <span class="text-justify">
+
+        <table class="table table-striped table-bordered table-condensed font-12">
+        [#list model as a]
+            <tr>
+                <td>${a.ingredient.name}</td>
+                <td>${a.countOfIngredient}</td>
+                <td>${a.measuresBucket.measure.title}</td>
+            </tr>
+        [/#list]
+        </table>
+        <br/>
+    </span>
     </div>
     <div class="modal-footer noprint">
         <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
@@ -108,6 +107,7 @@
         var meal_cal = [];
         var day_cal;
         var week_cal = 0;
+        var PORTION_ROUNDING = 0.5;
 
 
         for (var i = 0; i < dayNames.length; i++) {
@@ -123,20 +123,34 @@
             }
             ;
 
-            $("div[data-name='dayOfWeek']:first").clone().removeAttr("style").appendTo("#tab20").find("h4").text(dayNames[i][2]);
+            $("div[data-name='dayOfWeek']:first").clone().removeAttr("style").appendTo("#tab10").find("h4").text(dayNames[i][2]);
 
             for (var j = 0; j < mealNames.length; j++) {
                 meal_cal[j] = 0;
 
-                $("#tab21").clone().attr("id", dayNames[i][1] + "_" + mealNames[j][1] + "_sum").removeAttr("style").appendTo("#tab20").find("h5").text(mealNames[j][0]);
+                $("#tab11").clone().attr("id", dayNames[i][1] + "_" + mealNames[j][1] + "_sum").removeAttr("style").appendTo("#tab10").find("h5").text(mealNames[j][0]);
 
                 $("#" + dayNames[i][1] + "_" + mealNames[j][1]).find("label.title").filter(function (index) {
                     var name = $(this).text();
                     var count = $(this).parent().parent().find("input.rec_count").val();
                     var cal = parseInt($(this).parent().parent().find("div.rec_cal").text().replace(/\s+/g, ''), 10);
+                    var portion = parseInt($(this).parent().parent().find("div.rec_portion").text(), 10);
+                    var quantityOfDish = parseInt($(this).parent().parent().find("div.rec_dish_quantity").text(), 10);
+
+                    quantityOfDish *= count;
+                    var tempPortion =  quantityOfDish % portion;
+                    if ((tempPortion / portion) > PORTION_ROUNDING) {
+                        tempPortion = quantityOfDish / portion;
+                        tempPortion = tempPortion - (tempPortion % 1);
+                        tempPortion++;
+                    }  else {
+                        tempPortion = quantityOfDish / portion;
+                        tempPortion = tempPortion - (tempPortion % 1);
+                    }
 
                     $("#" + dayNames[i][1] + "_" + mealNames[j][1] + "_sum  table").append("<tr><td class='summListRecipeName'>"
-                            + name + "</td><td><nobr>" + count + "x</nobr></td><td><nobr></nobr></td></tr>");
+                            + name + "</td><td><nobr>" + tempPortion + "x" + portion + "</nobr></td><td><nobr>" +
+                            quantityOfDish + "</nobr></td></tr>");
 
                     meal_cal[j] += cal * count;
                     return true;
@@ -145,7 +159,7 @@
             }
             ;
             week_cal += day_cal;
-            $("#tab22").clone().attr("id", dayNames[i][1] + "_cal").removeAttr("style").appendTo("#tab20");
+            $("#tab12").clone().attr("id", dayNames[i][1] + "_cal").removeAttr("style").appendTo("#tab10");
             $("#" + dayNames[i][1] + "_cal  span[data-name='br_kkal']").text(meal_cal[0]);
             $("#" + dayNames[i][1] + "_cal  span[data-name='dn_kkal']").text(meal_cal[1]);
             $("#" + dayNames[i][1] + "_cal  span[data-name='sp_kkal']").text(meal_cal[2]);
@@ -153,7 +167,7 @@
         }
         ;
         $("#week_kkal  span").text(week_cal);
-        $("#week_kkal").appendTo("#tab20");
+        $("#week_kkal").appendTo("#tab10");
 
     });
 
