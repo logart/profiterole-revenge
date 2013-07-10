@@ -411,9 +411,9 @@
 
 
     <profiles>
+
         <profile>
             <id>gioia-test</id>
-
             <build>
                 <plugins>
                     <plugin>
@@ -451,174 +451,87 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>dev-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>wagon-maven-plugin</artifactId>
+                        <version>1.0-beta-4</version>
+                        <configuration>
+                            <fromDir></fromDir>
+                            <fromFile>${project.build.directory}/${project.build.finalName}.war</fromFile>
+                            <includes>*.war</includes>
+                            <excludes>pom.xml</excludes>
+                            <url>scp://51d3c2cbe0b8cde1050000f9@dev-profiterole.rhcloud.com</url>
+                            <toDir></toDir>
+                            <toFile>$HOME/jbossews/webapps/ROOT.war</toFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>upload-single</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>upload-single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- <version>2.14</version>
+                        -->
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>test-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>wagon-maven-plugin</artifactId>
+                        <version>1.0-beta-4</version>
+                        <configuration>
+                            <fromDir></fromDir>
+                            <fromFile>${project.build.directory}/${project.build.finalName}.war</fromFile>
+                            <includes>*.war</includes>
+                            <excludes>pom.xml</excludes>
+                            <url>scp://51dd396b5973ca551e0001d0@test-profiterole.rhcloud.com</url>
+                            <toDir></toDir>
+                            <toFile>$HOME/jbossews/webapps/ROOT.war</toFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>upload-single</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>upload-single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- <version>2.14</version>
+                        -->
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
-<!--Test-server profile-->
-    <!--<profiles>-->
-        <!--<profile>-->
-            <!--<id>profiterole-test-server</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M1</version>-->
-                        <!--<configuration>-->
-                            <!--<appname>profiterole-test</appname>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>http://api.cloudfoundry.com</target>-->
-                            <!--<url>profiterole-test.cloudfoundry.com</url>-->
-                            <!--<username>logart2007@gmail.com</username>-->
-                            <!--<password>445566</password>-->
-                            <!--<memory>256</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-        <!--Production server profile-->
-        <!--<profile>-->
-            <!--<id>profiterole-production-server</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M4</version>-->
-                        <!--<configuration>-->
-                            <!--<appname>profiterole-production</appname>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>http://api.cloudfoundry.com</target>-->
-                            <!--<url>profiterole-production.cloudfoundry.com</url>-->
-                            <!--<username>logart2007@gmail.com</username>-->
-                            <!--<password>445566</password>-->
-                            <!--<memory>512</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-        <!--Profile for current development project version-->
-        <!--<profile>-->
-            <!--<id>profiterole-development-server</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M1</version>-->
-                        <!--<configuration>-->
-                            <!--<appname>profiterole-development</appname>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>http://api.cloudfoundry.com</target>-->
-                            <!--<url>profiterole-development.cloudfoundry.com</url>-->
-                            <!--<username>logart2007@gmail.com</username>-->
-                            <!--<password>445566</password>-->
-                            <!--<memory>512</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-        <!--Profiles for developers private servers-->
-
-        <!--<profile>-->
-            <!--<id>vsam-profiterole</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M4</version>-->
-                        <!--<configuration>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>https://api.run.pivotal.io</target>-->
-                            <!--<url>vsam-profiterole.cfapp.io</url>-->
-                            <!--<framework>spring</framework>-->
-                            <!--<memory>512</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-        <!--<profile>-->
-            <!--<id>vsam-profiterole1</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M4</version>-->
-                        <!--<configuration>-->
-                            <!--<appname>profiterole</appname>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>https://api.run.pivotal.io</target>-->
-                            <!--<url>vsam-profiterole.cfapps.io</url>-->
-                            <!--<framework>spring</framework>-->
-                            <!--<username>volodymyr.samokhval@gmail.com</username>-->
-                            <!--<password>2517vaNhtyth</password>-->
-                            <!--<memory>512</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-        <!--<profile>-->
-            <!--<id>lena-test</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M4</version>-->
-                        <!--<configuration>-->
-                            <!--<appname>lena-test3</appname>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>http://api.cloudfoundry.com</target>-->
-                            <!--<url>lena-test3.cloudfoundry.com</url>-->
-                            <!--<username>vev77777@gmail.com</username>-->
-                            <!--<password>Qwerty87</password>-->
-                            <!--<memory>512</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-        <!--<profile>-->
-            <!--<id>tolik-test</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.cloudfoundry</groupId>-->
-                        <!--<artifactId>cf-maven-plugin</artifactId>-->
-                        <!--<version>1.0.0.M1</version>-->
-                        <!--<configuration>-->
-                            <!--<appname>profiterole</appname>-->
-                            <!--<server>mycloudfoundry-instance</server>-->
-                            <!--<target>http://api.cloudfoundry.com</target>-->
-                            <!--<url>tolik-test.cloudfoundry.com</url>-->
-                            <!--<username>sivner777@gmail.com</username>-->
-                            <!--<password>wkOy9DIj</password>-->
-                            <!--<memory>512</memory>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.apache.maven.plugins</groupId>-->
-                        <!--<artifactId>maven-surefire-plugin</artifactId>-->
-                        <!--&lt;!&ndash; <version>2.14</version>-->
-   <!--&ndash;&gt;                  <configuration>-->
-                        <!--<skipTests>true</skipTests>-->
-                    <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-
-    <!--</profiles>-->
 </project>

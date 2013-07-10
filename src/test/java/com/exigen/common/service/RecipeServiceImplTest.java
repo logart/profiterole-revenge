@@ -4,7 +4,6 @@ package com.exigen.common.service;
 import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
-import com.exigen.common.domain.RecipeWithMarkers;
 import com.exigen.common.repository.RecipeDao;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -34,7 +33,7 @@ public class RecipeServiceImplTest {
 
     List<Recipe> recipes=new ArrayList<Recipe>();
 
-    List<Integer> recipesId=new ArrayList<Integer>();
+//    List<Integer> recipesId=new ArrayList<Integer>();
     Map<String,String> markers = new LinkedHashMap<String, String>();
 
     @Before
@@ -69,17 +68,17 @@ public class RecipeServiceImplTest {
         Assert.assertEquals(stringMap,recipeService.getMarkersOfRecipe(recipe));
     }
 
-    @Test
-    public void getListRecipesWithMarkersTest(){
-        recipes.add(recipe);
-        RecipeWithMarkers recipeWithMarkers = new RecipeWithMarkers();
-        recipeWithMarkers.setRecipe(recipe);
-        recipeWithMarkers.setMarkers(markers);
-        List<RecipeWithMarkers> resipesWithMarkers = new ArrayList<RecipeWithMarkers>();
-        resipesWithMarkers.add(recipeWithMarkers);
-        Assert.assertSame(resipesWithMarkers.size(),recipeService.getListRecipesWithMarkersAndPortion(recipes).size());
-
-    }
+//    @Test
+//    public void getListRecipesWithMarkersTest(){
+//        recipes.add(recipe);
+//        RecipeWithMarkers recipeWithMarkers = new RecipeWithMarkers();
+//        recipeWithMarkers.setRecipe(recipe);
+//        recipeWithMarkers.setMarkers(markers);
+//        List<RecipeWithMarkers> resipesWithMarkers = new ArrayList<RecipeWithMarkers>();
+//        resipesWithMarkers.add(recipeWithMarkers);
+//        Assert.assertSame(resipesWithMarkers.size(),recipeService.getListRecipesWithMarkersAndPortion(recipes).size());
+//
+//    }
 
     @Test
     public void getListOfMarkersNamesTest(){
