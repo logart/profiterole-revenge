@@ -309,24 +309,24 @@
     <plugins>
 
         <!-- mutation testing -->
-        <plugin>
-            <groupId>org.pitest</groupId>
-            <artifactId>pitest-maven</artifactId>
-            <version>0.30</version>
-            <configuration>
-                <targetClasses>
-                    <param>com.exigen.common.*</param>
-                </targetClasses>
-                <targetTests>
-                    <param>com.exigen.common.*</param>
-                </targetTests>
-                <outputFormats>
-                    <format>XML</format>
-                    <format>HTML</format>
-                </outputFormats>
-                <verbose>true</verbose>
-            </configuration>
-        </plugin>
+        <!--<plugin>-->
+            <!--<groupId>org.pitest</groupId>-->
+            <!--<artifactId>pitest-maven</artifactId>-->
+            <!--<version>0.30</version>-->
+            <!--<configuration>-->
+                <!--<targetClasses>-->
+                    <!--<param>com.exigen.common.*</param>-->
+                <!--</targetClasses>-->
+                <!--<targetTests>-->
+                    <!--<param>com.exigen.common.*</param>-->
+                <!--</targetTests>-->
+                <!--<outputFormats>-->
+                    <!--<format>XML</format>-->
+                    <!--<format>HTML</format>-->
+                <!--</outputFormats>-->
+                <!--<verbose>true</verbose>-->
+            <!--</configuration>-->
+        <!--</plugin>-->
 
         <plugin>
             <groupId>org.mortbay.jetty</groupId>
@@ -493,7 +493,7 @@
         </profile>
 
         <profile>
-            <id>test-test</id>
+            <id>test-profiterole</id>
             <build>
                 <plugins>
                     <plugin>
@@ -502,6 +502,7 @@
                         <version>1.0-beta-4</version>
                         <configuration>
                             <fromDir></fromDir>
+                            <serverId>test-profiterole</serverId>
                             <fromFile>${project.build.directory}/${project.build.finalName}.war</fromFile>
                             <includes>*.war</includes>
                             <excludes>pom.xml</excludes>
