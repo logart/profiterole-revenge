@@ -26,15 +26,19 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeDao recipeDao;
 
     /**
-     * {@code MASK_AND} describes the const
+     * {@code CATEGORY_1} describes the first category
      */
-    private static final double PORTION_ROUNDING = 0.5;
+    private static final int CATEGORY_1 = 1;
 
+    /**
+     * {@code CATEGORY_1} describes the fourth category
+     */
+    private static final int CATEGORY_4 = 4;
     /**
      * {@code portion} describes the ArrayList<Integer> with portion of Recipe
      */
     @Resource
-    private ArrayList<Integer> portion;
+    private List<Integer> portion;
 
     /**
      * {@code markers} describes the LinkedHashMap<String, String> with names and pictures of markers
@@ -125,7 +129,7 @@ public class RecipeServiceImpl implements RecipeService {
      * {@method setPortion(ArrayList<Integer> portion)}
      * for initialized from bean. Inject in this class
      */
-    public void setPortion(ArrayList<Integer> portion) {
+    public void setPortion(List<Integer> portion) {
         this.portion = portion;
     }
 
@@ -175,11 +179,8 @@ public class RecipeServiceImpl implements RecipeService {
     public List<RecipeWithMarkers> getListRecipesWithMarkersAndPortion(List<Recipe> recipeList){
         List<RecipeWithMarkers> recipesWithMarkers = new ArrayList<RecipeWithMarkers>();
         for(Recipe recipe: recipeList){
-            if (recipe.getCategory().getId() == 1 || recipe.getCategory().getId() == 4 ){
+            if (recipe.getCategory().getId() == CATEGORY_1 || recipe.getCategory().getId() == CATEGORY_4 ){
                 recipe.setValueOfPortion(portion.get(0));
-                //Integer tempPortion =  recipe.getQuantityOfDish() % portion.get(0);
-                //recipe.setValueOfPortion( tempPortion / portion.get(0) >
-                //        PORTION_ROUNDING ? ++tempPortion : tempPortion);
             } else {
                 recipe.setValueOfPortion(portion.get(1));
             }
