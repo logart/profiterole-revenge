@@ -493,7 +493,7 @@
         </profile>
 
         <profile>
-            <id>test-profiterole</id>
+            <id>test-test</id>
             <build>
                 <plugins>
                     <plugin>
@@ -502,7 +502,6 @@
                         <version>1.0-beta-4</version>
                         <configuration>
                             <fromDir></fromDir>
-                            <serverId>test-profiterole</serverId>
                             <fromFile>${project.build.directory}/${project.build.finalName}.war</fromFile>
                             <includes>*.war</includes>
                             <excludes>pom.xml</excludes>

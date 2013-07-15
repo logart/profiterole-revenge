@@ -8,6 +8,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="port" value="587" />
 		<property name="username" value="profiterole.tasty@gmail.com" />
 		<property name="password" value="profi2503" />
+        <property name="defaultEncoding" value="UTF-8"/>
 		
 		<property name="javaMailProperties">
 			<props>
