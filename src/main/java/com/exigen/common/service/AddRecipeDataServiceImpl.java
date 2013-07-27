@@ -137,7 +137,8 @@ public class AddRecipeDataServiceImpl implements AddRecipeDataService {
      * @return list of IngredientBuckets
      */
     private List<IngredientBucket> makeIngredients(AddRecipeData data, Recipe recipe) {
-        List<String> ingredientsId = data.getIngredientsNameList();
+
+        List<String> ingredientsId = data.getIngredientsIdList();
         List<String> ingredientsCount = data.getIngredientsCountList();
         List<String> ingredientsMeasureId = data.getIngredientsTypeList();
         List<IngredientBucket> result = new ArrayList<IngredientBucket>();

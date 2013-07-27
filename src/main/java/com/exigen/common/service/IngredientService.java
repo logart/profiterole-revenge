@@ -13,7 +13,26 @@ import java.util.List;
  */
 public interface IngredientService {
 
+    /**
+     * {@method getIngredientsListByLetter(String term)}
+     *
+     * @return the list of ingredients.
+     * @throws org.springframework.dao.DataAccessException)(resource
+     *                                    on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException)(when search has no results in the database)
+     */
 
+    List<String> getIngredientsListByLetter(String term);
+    /**
+     * {@method getIngredientIdByName(String ingredientName)}
+     *
+     * @return the id of ingredients by name.
+     * @throws org.springframework.dao.DataAccessException)(resource
+     *                                    on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException)(when search has no results in the database)
+     */
+
+    Integer getIngredientIdByName(String ingredientName);
     /**
      * {@method getAllIngredientsSortedList()}
      *

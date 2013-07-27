@@ -111,7 +111,10 @@ public class AddRecipeData {
      * {@code ingredientList} This field contains list of names of ingredients for meal
      */
     private  List<String> ingredientsNameList = new ArrayList<String>();
-
+    /**
+     * {@code ingredientList} This field contains list of id of ingredients for meal
+     */
+    private  List<String> ingredientsIdList = new ArrayList<String>();
     /**
      * {@code ingredientList} This field contains list of counts of ingredients for meal
      */
@@ -236,6 +239,14 @@ public class AddRecipeData {
         this.ingredientsNameList = ingredientsNameList;
     }
 
+    public List<String> getIngredientsIdList() {
+        return ingredientsIdList;
+    }
+
+    public void setIngredientsIdList(List<String> ingredientsIdList) {
+        this.ingredientsIdList = ingredientsIdList;
+    }
+
     public List<String> getIngredientsCountList() {
         return ingredientsCountList;
     }
@@ -303,4 +314,5 @@ public class AddRecipeData {
     public void setMarkersNames(List<String> markersNames) {
         this.markersNames = markersNames;
     }
+
 }
