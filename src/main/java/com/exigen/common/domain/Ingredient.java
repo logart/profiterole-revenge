@@ -23,7 +23,11 @@ import java.util.List;
 @Table(name = "ingredients")
 @NamedQueries({
         @NamedQuery(name = "Ingredient.getAllIngredients",
-                query = "SELECT i FROM Ingredient i ORDER BY i.name")
+                query = "SELECT i FROM Ingredient i ORDER BY i.name"),
+        @NamedQuery(name = "Ingredient.getIngredientsListByLetter",
+        query = "SELECT i FROM Ingredient i WHERE i.name LIKE :term "),
+        @NamedQuery(name = "Ingredient.getIngredientByName",
+        query = "SELECT i FROM Ingredient i WHERE i.name = :selectedName ")
 })
  public class Ingredient {
 

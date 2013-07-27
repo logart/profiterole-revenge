@@ -7,15 +7,12 @@
         var ingredient = {
             ingrCount: $(".ingr").length + 1,
             addIngr: function (ingrCount) {
-                var temp = '<div id="ingr_' + ingrCount + '" class="ingr"><button data-ingrid="' + ingrCount + '" \
+                var temp = '<div id="ingr_' + ingrCount + ' class="ingr"><button data-ingrid=' + ingrCount + '" \
                 title="Удалить ингредиент" class="delete_ingr ui-icon ui-icon-closethick">Удалить ингредиент</button>\
                 [@spring.bind "addRecipeData.ingredientsNameList"/]\
-                <select class="combobox ingrName" id = "ingredientsNameList[' + (ingrCount - 1) + ']" name="ingredientsNameList[' + (ingrCount - 1) + ']">\
-                    <option value="0"></option>\
-                    [#list ingredients as c]<option value="${c.id}">\
-                        ${c.name}</option>\
-                    [/#list]\
-                </select>\
+                <input class="combobox ingrName" id="ingredientsNameList[' + (ingrCount - 1) + ']" name="ingredientsNameList[' + (ingrCount - 1) + ']" >\
+                [@spring.bind "addRecipeData.ingredientsIdList"/]\
+                <input class="combobox ingrId no-display" id="ingredientsIdList[' + (ingrCount - 1) + ']" name="ingredientsIdList[' + (ingrCount - 1) + ']" >\
                 [@spring.bind "addRecipeData.ingredientsCountList"/]\
                 <input type="text" class = "combobox ingrCount" id = "ingredientsCountList[' + (ingrCount - 1) + ']" ' +
                         'name="ingredientsCountList[' + (ingrCount - 1) + ']"  >\
@@ -36,6 +33,8 @@
                     $(this).find(':button').attr('data-ingrid', self.ingrCount);
                     $(this).find('.ingrName').attr("name", "ingredientsNameList[" + (self.ingrCount - 1) + "]").attr
                             ("id", "ingredientsNameList[" + (self.ingrCount - 1) + "]");
+                    $(this).find('.ingrId').attr("name", "ingredientsIdList[" + (self.ingrCount - 1) + "]").attr
+                            ("id", "ingredientsIdList[" + (self.ingrCount - 1) + "]");
                     $(this).find('.ingrCount').attr("name", "ingredientsCountList[" + (self.ingrCount - 1) + "]")
                             .attr("id", "ingredientsCountList[" + (self.ingrCount - 1) + "]");
                     $(this).find('.ingrType').attr("name", "ingredientsTypeList[" + (self.ingrCount - 1) + "]").attr
@@ -135,43 +134,86 @@
     });
 </script>
 
+
 <script type="text/javascript">
-    //{ingredientId: {measureId:gramEquivalent, ...}, ...}
+
     var ingredientsMeasuresGramEquals = {};
+    var id=0;
 
     $(document).ready(function () {
-        $('[id^="ingredientsNameList"]').live("change", function () {
-            debugger;
-            var ingredientId = $(this).val();
+
+            $('[id^="ingredientsNameList"]').live("blur", function () {
+
             var selectedIngredient = parseInt($(this).attr('id').replace(/^\D+/g, ''));
-            if (ingredientId == '0') {
+            var ingrName = $(this).val();
+
+            if(ingrName==""){
                 $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').attr('disabled', true);
                 $('#ingredientsCountList\\[' + selectedIngredient + '\\]').attr('disabled', true);
-                return(false);
+
+                return (false);
             }
             $('#ingredientsCountList\\[' + selectedIngredient + '\\]').attr('disabled', true);
             $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').attr('disabled', true);
             $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').html('<option>...</option>');
-            var url = '/getMeasures';
-            $.ajax({
-                url: url,
-                data: ({ingredientId: ingredientId}),
-                success: function (data) {
-                    $('#ingredientsCountList\\[' + selectedIngredient + '\\]').attr('disabled', false);
-                    $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').attr('disabled', false);
-                    $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').html('<option value = "0"></option>');
-                    $.each(data, function (index, value) {
-                        if (ingredientsMeasuresGramEquals[ingredientId]==undefined)ingredientsMeasuresGramEquals[ingredientId]={};
-                        ingredientsMeasuresGramEquals[ingredientId][index]= value[1];
-                        $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').append('<option value = "' + index + '">' + value[0] + '</option>');
 
-                    });
+            var url1 = '/addRecipes/getIngredientId';
+              $.ajax({
+                    url: url1,
+                    data: ({ingredientName: ingrName}),
+                    type: 'POST',
+                    success:function(data){
+                      $('#ingredientsIdList\\[' + selectedIngredient + '\\]').attr('value', data);
+                     id=data;
+                        $.ajax({
+                            url: '/getMeasures',
+                            data: ({ingredientId: id}),
+                            success: function (data) {
 
-                }
-            });
+                                $('#ingredientsCountList\\[' + selectedIngredient + '\\]').attr('disabled', false);
+                                $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').attr('disabled', false);
+                                $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').html('<option value = "0"></option>');
+                                $.each(data, function (index, value) {
+                                    if (ingredientsMeasuresGramEquals[id]==undefined)ingredientsMeasuresGramEquals[id]={};
+                                    ingredientsMeasuresGramEquals[id][index]= value[1];
+                                    $('#ingredientsTypeList\\[' + selectedIngredient + '\\]').append('<option value = "' + index + '">' + value[0] + '</option>');
+
+                                });
+                            }
+                        });
+                   }
+                }) ;
         });
     });
 </script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('[id^="ingredientsNameList"]').live("focus", function () {
+            $(this).autocomplete({
+                source: function( request, response ) {
+                 	$.ajax({
+                         url: "/addRecipes/ingredients",
+                         dataType : "json",
+                         type: 'POST',
+                         data: ({'searchString': request.term}),
+                         success: function(data){
+                              response(($.map(data.searchMap , function(item){
+                                       return {label: item}
+
+                              })))
+                           }
+                      })
+                }
+           });
+        });
+});
+
+</script>
+
+
 
 <h1>Создать рецепт</h1>
 <div class="white-block">
@@ -307,18 +349,17 @@
                         ui-icon-closethick">
                         Удалить ингредиент
                     </button>
+
                     [@spring.bind "addRecipeData.ingredientsNameList[${current_index - 1}]"/]
-                    <select class="combobox ingrName" id="${spring.status.expression}"
-                            name="${spring.status.expression}">
-                        <option value="0"></option>
-                        [#list ingredients as c]
-                            [#if ""+c.id = addRecipeData.ingredientsNameList[current_index - 1]]
-                                <option selected="" value="${c.id}">${c.name}</option>
-                            [#else]
-                                <option value="${c.id}">${c.name}</option>
-                            [/#if]
-                        [/#list]
-                    </select>
+                    <input type="text" class="combobox ingrName" id="${spring.status.expression}"
+                           name="${spring.status.expression}"
+                           value="${addRecipeData.ingredientsNameList[current_index - 1]}" >
+
+                    [@spring.bind "addRecipeData.ingredientsIdList[${current_index - 1}]"/]
+                    <input class="combobox ingrId no-display" id="${spring.status.expression}"
+                           name="${spring.status.expression}"
+                           value="${addRecipeData.ingredientsIdList[current_index - 1]}" >
+
 
                     [@spring.bind "addRecipeData.ingredientsCountList[${current_index - 1}]"/]
                     <input type="text" class="combobox ingrCount" id="${spring.status.expression}"
@@ -344,6 +385,7 @@
             <button class="btn" value="#" id="adding">Добавить ингрeдиент</button>
 
         </p>
+
     </div>
 
 </div>
@@ -546,9 +588,11 @@
         var selectedIngredientId;
         var countOfIngredient;
         var selectedMesureID;
-        for (var i=0;i<$("select.ingrName").length ; i++){
+
+        for (var i=0;i<$("input.ingrName").length ; i++){
             errorText="";
-            selectedIngredientId = parseInt($("select[name='ingredientsNameList["+ i +"]']")[0].value);
+
+            selectedIngredientId = parseInt($("input[name='ingredientsIdList["+ i +"]']")[0].value);
             if (isNaN(selectedIngredientId)) errorText+= wrapToErrorSpan("Название ингредиента должно быть выбрано.");
 
             countOfIngredient = parseFloat($("input[name='ingredientsCountList["+ i +"]']")[0].value);

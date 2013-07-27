@@ -16,19 +16,23 @@ import java.util.List;
 public interface IngredientDao {
 
     /**
-     * {@method getIngredientsRecipeList(Integer recipeId)}
+     * {@method getIngredientById(Integer ingredientId)}
      *
-     * @param ingridientId (ID of some particular recipe)
-     * @return the list of ingridients, where recipe in Ingredient entity =@param).
-     * @throws org.springframework.dao.DataAccessException (resource
-     *                                   on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when recipe is null, or has no results in the database)
+     * @param ingredientId (ID of the ingredient)
+     * @return the ingredient).
      */
-    Ingredient getIngredientById(Integer ingridientId);
+    Ingredient getIngredientById(Integer ingredientId);
+    /**
+     * {@method getIngredientByName(String ingredientName)}
+     *
+     * @param ingredientName (Name of the ingredient)
+     * @return the ingredient).
+     */
+    Ingredient getIngredientByName(String ingredientName);
     /**
      * {@method getAllIngredients()}
      *
-     * @return the list of ingridients.
+     * @return the list of ingredients.
      * @throws org.springframework.dao.DataAccessException (resource
      *                                   on cloudfoundry is unavalible, DB is changed)
      * @throws NullPointerException (when search has no results in the database)
@@ -56,4 +60,7 @@ public interface IngredientDao {
      * @throws NullPointerException (when ingridient is null)
      */
     void removeIngredient(Ingredient ingredient);
+
+
+    List<Ingredient> getIngredientsListByLetter(String term) ;
 }

@@ -3,9 +3,11 @@ package com.exigen.common.service;
 import com.exigen.common.domain.Ingredient;
 import com.exigen.common.repository.IngredientDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +24,45 @@ public class IngredientServiceImpl implements IngredientService {
      */
     @Autowired
     private IngredientDao ingredientDao;
+
+    /**
+     * {@method getAllIngredientsSortedList()}
+     *
+     * @return the list of ingredients.
+     * @throws org.springframework.dao.DataAccessException)(resource
+     *                                   on cloudfoundry is unavalible, DB is changed)
+     * @throws NullPointerException)(when search has no results in the database)
+     */
+
+    @Override
+    public List<String> getIngredientsListByLetter(String term) {
+        List<String> result = new ArrayList<String>();
+        List<Ingredient> ingredientList = ingredientDao.getIngredientsListByLetter(term);
+        int i=0;
+        for (Ingredient ingredient : ingredientList){
+            result.add(i,ingredient.getName());
+            i++;
+        }
+        return result;
+    }
+
+    /**
+     * {@method getIngredientIdByName(String ingredientName)}
+     *
+     * @return the Id of ingredients.
+     *
+     * @throws EmptyResultDataAccessException)(when search has no results in the database)
+     */
+    @Override
+    public Integer getIngredientIdByName(String ingredientName){
+        try {
+           Ingredient ingredient = ingredientDao.getIngredientByName(ingredientName) ;
+           return ingredient.getId();
+        }
+        catch (EmptyResultDataAccessException ex){
+           return null;
+        }
+    }
 
 
     /**

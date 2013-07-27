@@ -3,20 +3,18 @@ package com.exigen.common.web;
 import com.exigen.common.domain.AddRecipeData;
 import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
-import com.exigen.common.domain.Ingredient;
 import com.exigen.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +49,7 @@ public class AddRecipesController {
 
     private List<Category> categories;
     private List<Cuisine> cuisines;
-    private List<Ingredient> ingredients;
+
 
     private List<String> imagesForSteps = new ArrayList<String>();
     private List<String> markersNames = new ArrayList<String>();
@@ -62,13 +60,11 @@ public class AddRecipesController {
         AddRecipeData data = new AddRecipeData();
         categories = this.categoriesService.getCategories();
         cuisines = this.cuisineService.getCuisine();
-        ingredients = this.ingredientService.getAllIngredientsSortedList();
         markersNames = this.recipeService.getListOfMarkersNames();
 
         model.put("addRecipeData", data);
         model.put("cuisines", cuisines);
         model.put("categories", categories);
-        model.put("ingredients", ingredients);
         model.put("markersNames",markersNames);
         return "addRecipes";
     }
@@ -78,7 +74,7 @@ public class AddRecipesController {
 
         categories = this.categoriesService.getCategories();
         cuisines = this.cuisineService.getCuisine();
-        ingredients = this.ingredientService.getAllIngredientsSortedList();
+
 
         ValidationUtils.invokeValidator(addRecipeDataValidator, data, errors);
 
@@ -86,7 +82,6 @@ public class AddRecipesController {
             model.put("addRecipeData", data);
             model.put("cuisines", cuisines);
             model.put("categories", categories);
-            model.put("ingredients", ingredients);
             model.put("markersNames",markersNames);
             return "addRecipes";
         }
@@ -111,4 +106,22 @@ public class AddRecipesController {
         addRecipeDataService.addRecipe(data);
         return "redirect:success";
     }
+
+
+     @RequestMapping(value = "/ingredients", method = RequestMethod.POST)
+    @ResponseBody
+    public  Map<String,List<String>> getIngredientsList(@RequestParam(value = "searchString", required = false) String term) {
+        Map<String, List<String>> searchMap = new HashMap<String, List<String>>();
+         searchMap.put("searchMap", this.ingredientService.getIngredientsListByLetter(term));
+        return searchMap;
+    }
+
+    @RequestMapping(value = "/getIngredientId", method = RequestMethod.POST)
+    @ResponseBody
+    public  Integer getIngredientId(@RequestParam(value = "ingredientName", required = false) String ingredientName) {
+        Integer ingredientId = this.ingredientService.getIngredientIdByName(ingredientName);
+        return ingredientId;
+    }
+
 }
+
