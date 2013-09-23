@@ -110,7 +110,7 @@
                     $(this).find('.step_counter').empty().append(self.stepCount);
                     $(this).find('.stepTextarea').attr("name", "stepsList[" + (self.stepCount - 1) + "]");
                     $(this).find(':button').attr('data-stepid', self.stepCount);
-                    $(this).find(':INPUT').attr('name', "files[" + (self.stepCount - 1) + "]");
+                    $(this).find('INPUT[type=file]').attr('name', "files[" + (self.stepCount - 1) + "]");
                     self.stepCount++;
                 });
             },
