@@ -1,11 +1,12 @@
 package com.exigen.common.web;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,11 @@ public class AllAccountsController{
      */
     @RequestMapping(value = {"/accounts"})
     public ModelAndView allAccounts() {
-        List<Account> accounts =  accountService.getAllAccounts();
+        List<AccountUser> accountUsers =  accountService.getAllAccounts();
         List<String> accountsText = new ArrayList<String>();
-        for (Account account: accounts){
-             accountsText.add(account.getId() + ":  " + account.getLogin() + ", "+ account.getPassword());
+        for (AccountUser accountUser : accountUsers){
+             accountsText.add(accountUser.getId() + ":  " + accountUser.getLogin() + ", "+ accountUser.getPassword());
         }
-        return new ModelAndView("allAccounts", "accounts", accountsText);
+        return new ModelAndView("allAccounts", "accountUsers", accountsText);
     }
 }

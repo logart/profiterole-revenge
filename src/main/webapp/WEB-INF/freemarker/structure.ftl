@@ -73,9 +73,13 @@ ${scripts!}
                     <@security.authorize  access="!isAuthenticated()">
                     <li style="list-style-type: none;"> <a href="/registration">Регистрация</a>  </li>
                     </@security.authorize>
-                    <@security.authorize  access="isAuthenticated()">
+                    <@security.authorize  access="hasRole('ROLE_USER')">
                     <li style="list-style-type: none;"><a href="/profile">Профиль</a>  </li>
                     </@security.authorize>
+                    <@security.authorize  access="hasRole('ROLE_ADMIN')">
+                    <li style="list-style-type: none;"><a href="/admin">Администрирование сайта</a>  </li>
+                    </@security.authorize>
+
                     </ul>
 
                 <ul class="btn btn-link pull-right" style="text-decoration: underline">

@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.util.ReflectionTestUtils;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -27,9 +28,9 @@ public class AccountServiceImplTest {
     @Mock
     private SendMailService sendMailService;
     private Calendar calendar = new GregorianCalendar(2010, 11, 03);
-    private Account  account = new Account("log", "pwd", "ololo@gmailcom", Gender.Female, calendar, "Ukraine");
+    private AccountUser  accountUser = new AccountUser("log", "pwd", "ololo@gmail.com");
     private AccountServiceImpl accountService;
-    private List<Account> list = new ArrayList<Account>();
+    private List<AccountUser> list = new ArrayList<AccountUser>();
     private ActivationHash activationHash;
     private ResetPasswordHash resetPasswordHash;
 
@@ -49,40 +50,40 @@ public class AccountServiceImplTest {
         accountService = new AccountServiceImpl();
         String correctUsername = "log";
         String wrongUsername = "username";
-        when(accountDao.getAccountByLogin(account.getLogin())).thenReturn(account);
-        when(accountDao.getAccountByLogin(wrongUsername)).thenThrow(new EmptyResultDataAccessException(1));
+        when(accountDao.getAccountUserByLogin(accountUser.getLogin())).thenReturn(accountUser);
+        when(accountDao.getAccountUserByLogin(wrongUsername)).thenThrow(new EmptyResultDataAccessException(1));
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
-        Assert.assertEquals(account, accountService.findByUsername(correctUsername));
+        Assert.assertEquals(accountUser, accountService.findByUsername(correctUsername));
         Assert.assertNull(accountService.findByUsername(wrongUsername));
     }
 
     @Test
     public void findByEmailTest() {
         accountService = new AccountServiceImpl();
-        String correctEmail = "ololo@gmailcom";
-        String wrongEmail = "o@gmailcom";
-        when(accountDao.getAccountByEmail(account.getEmail())).thenReturn(account);
+        String correctEmail = "ololo@gmail.com";
+        String wrongEmail = "o@gmail.com";
+        when(accountDao.getAccountByEmail(accountUser.getEmail())).thenReturn(accountUser);
         when(accountDao.getAccountByEmail(wrongEmail)).thenThrow(new EmptyResultDataAccessException(1));
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
-        Assert.assertEquals(account, accountService.findByEmail(correctEmail));
+        Assert.assertEquals(accountUser, accountService.findByEmail(correctEmail));
         Assert.assertNull(accountService.findByEmail(wrongEmail));
     }
 
     @Test
     public void getAllAccountsTest() {
         accountService = new AccountServiceImpl();
-        list.add(account);
+        list.add(accountUser);
         when(accountDao.getAllAccounts()).thenReturn(list);
         ReflectionTestUtils.setField(accountService, "accountDao", this.accountDao);
-        Assert.assertEquals(account, accountService.getAllAccounts().get(0));
+        Assert.assertEquals(accountUser, accountService.getAllAccounts().get(0));
     }
 
     @Test
     public void addAccountTest() {
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
-        accountService.addAccount(account);
-        verify(accountDao, times(1)).addAccount(account);
+        accountService.addAccount(accountUser);
+        verify(accountDao, times(1)).addAccount(accountUser);
     }
 
     @Test
@@ -98,12 +99,12 @@ public class AccountServiceImplTest {
         registrationData.setEmail("ethe@fdb.com");
         String message = "message";
         when(notificationService.createActivationMessage(anyString(),anyString())).thenReturn(message);
-        when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
-        when(accountDao.getAccountByEmail(anyString())).thenReturn(account);
+        when(accountDao.getAccountByLogin(anyString())).thenReturn(accountUser);
+        when(accountDao.getAccountByEmail(anyString())).thenReturn(accountUser);
 
         accountService.addAccount(registrationData);
 
-        verify(accountDao, times(1)).addAccount((Account) anyObject());
+        verify(accountDao, times(1)).addAccount((AccountUser) anyObject());
         accountService.activationHashSendMail("ethe@fdb.com");
         }
 
@@ -111,23 +112,23 @@ public class AccountServiceImplTest {
     public void testUpdateAccount() {
          accountService = new AccountServiceImpl();
          ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
-         when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
+         when(accountDao.getAccountUserByLogin(anyString())).thenReturn(accountUser);
          AccountData accountData = new AccountData();
          accountData.setDateOfBirth("01.01.2010");
          accountService.updateAccount(accountData);
-         verify(accountDao, times(1)).updateAccount((Account)anyObject());
+         verify(accountDao, times(1)).updateAccount((AccountUser)anyObject());
          }
 
     @Test
     public void test2UpdateAccount() {
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
-        when(accountDao.getAccountByLogin(anyString())).thenReturn(account);
+        when(accountDao.getAccountUserByLogin(anyString())).thenReturn(accountUser);
         AccountData accountData = new AccountData();
         accountData.setDateOfBirth("01.01.2010");
         accountData.setChangePassword("password");
         accountData.setMaleOrFemale("Male");
-        ArgumentCaptor<Account> argument = ArgumentCaptor.forClass(Account.class);
+        ArgumentCaptor<AccountUser> argument = ArgumentCaptor.forClass(AccountUser.class);
         accountService.updateAccount(accountData);
         verify(accountDao).updateAccount(argument.capture());
         Assert.assertEquals("password",argument.getValue().getPassword());
@@ -137,11 +138,11 @@ public class AccountServiceImplTest {
     @Test
     public void accountDataFromAccountTest() {
         accountService = new AccountServiceImpl();
-        Assert.assertEquals(account.getLogin(), accountService.accountDataFromAccount(account).getLogin());
-        account.setMaleOrFemale(null);
-        account.setDateOfBirth(null);
-        Assert.assertNull(accountService.accountDataFromAccount(account).getMaleOrFemale());
-        Assert.assertNull(accountService.accountDataFromAccount(account).getDateOfBirth());
+        Assert.assertEquals(accountUser.getLogin(), accountService.accountDataFromAccount(accountUser).getLogin());
+        accountUser.setMaleOrFemale(null);
+        accountUser.setDateOfBirth(null);
+        Assert.assertNull(accountService.accountDataFromAccount(accountUser).getMaleOrFemale());
+        Assert.assertNull(accountService.accountDataFromAccount(accountUser).getDateOfBirth());
     }
 
    @Test
@@ -158,8 +159,8 @@ public class AccountServiceImplTest {
         Assert.assertNull(accountDao.getHashesOfAccountByHash("2343535645", ResetPasswordHash.class));
         resetPasswordHash = new ResetPasswordHash();
         resetPasswordHash.setHash("2343535645");
-        account = accountDao.getAccountByEmail("ololo@gmailcom");
-        resetPasswordHash.setAccount(account);
+        accountUser = accountDao.getAccountByEmail("ololo@gmailcom");
+        resetPasswordHash.setAccountUser(accountUser);
         accountDao.addHashesOfAccount(resetPasswordHash);
         verify(accountDao, times(1)).addHashesOfAccount((ResetPasswordHash) anyObject());
     }
@@ -169,12 +170,12 @@ public class AccountServiceImplTest {
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
         activationHash = new ActivationHash();
-        activationHash.setAccount(account);
+        activationHash.setAccountUser(accountUser);
         String hash ="1234567";
-        account.setRole(Account.ROLE_USER);
+        accountUser.setRole(RoleConstants.ROLE_USER);
         when(accountDao.getHashesOfAccountByHash(hash, ActivationHash.class)).thenReturn(activationHash);
         accountService.activationOfAccount(hash);
-        verify(accountDao, never()).updateAccount(account);
+        verify(accountDao, never()).updateAccount(accountUser);
     }
 
     @Test
@@ -182,11 +183,11 @@ public class AccountServiceImplTest {
         accountService = new AccountServiceImpl();
         ReflectionTestUtils.setField(accountService, "accountDao", accountDao);
         activationHash = new ActivationHash();
-        activationHash.setAccount(account);
+        activationHash.setAccountUser(accountUser);
         String hash ="1234567";
-        account.setRole(Account.ROLE_INACTIVE_USER);
+        accountUser.setRole(RoleConstants.ROLE_INACTIVE_USER);
         when(accountDao.getHashesOfAccountByHash(hash, ActivationHash.class)).thenReturn(activationHash);
         accountService.activationOfAccount(hash);
-        verify(accountDao,times(1)).updateAccount(account);
+        verify(accountDao,times(1)).updateAccount(accountUser);
     }
 }

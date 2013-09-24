@@ -1,6 +1,6 @@
 package com.exigen.common.web;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +43,10 @@ public class ActivationController {
      **/
     @RequestMapping(method = RequestMethod.GET)
     public String checkHashAndActivate(Map model, @RequestParam("hash") String hash) {
-            Account account =  accountService.activationOfAccount(hash);
-            if (account!=null){
-                customUserDetailsService.login(account.getLogin(),account.getPassword());
-                model.put("user", account.getLogin());
+            AccountUser accountUser =  accountService.activationOfAccount(hash);
+            if (accountUser !=null){
+                customUserDetailsService.login(accountUser.getLogin(), accountUser.getPassword());
+                model.put("user", accountUser.getLogin());
                 return "redirect:activation/success?user=";
             }
             else{

@@ -1,6 +1,8 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.service.*;
+import com.exigen.common.service.AccountService;
+import com.exigen.common.service.ForgotPasswordValidator;
+import com.exigen.common.service.NotificationException;
 import com.exigen.common.web.ForgotPasswordController;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -9,9 +11,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.BindingResult;
-import static org.mockito.Mockito.*;
-import java.util.TreeMap;
+
 import java.util.Map;
+import java.util.TreeMap;
+
+import static org.mockito.Mockito.*;
 
 /**
  * author Ganzha Victoria

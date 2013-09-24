@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.domain.RegistrationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,13 +46,13 @@ public class RegistrationValidator implements Validator {
     public void validate(Object target, Errors errors) {
         RegistrationData data = (RegistrationData) target;
         String login = data.getLogin();
-        Account account = accountService.findByUsername(login);
-        if (account != null) {
+        AccountUser accountUser = accountService.findByUsername(login);
+        if (accountUser != null) {
             errors.rejectValue("login", "loginAlreadyExist.login", "Пользователь с таким логином уже существует.");
         }
         String email = data.getEmail();
-        account = accountService.findByEmail(email);
-        if ( account != null){
+        accountUser = accountService.findByEmail(email);
+        if ( accountUser != null){
             errors.rejectValue("email", "emailAlreadyExist.email", "Пользователь с таким e-mail уже существует.");
         }
 

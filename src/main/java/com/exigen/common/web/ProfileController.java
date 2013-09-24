@@ -1,12 +1,13 @@
 package com.exigen.common.web;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.util.Map;
 
 
@@ -36,8 +37,8 @@ public class ProfileController{
     @RequestMapping(method = RequestMethod.GET)
     public String viewProfile(Map model){
        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        Account account =  accountService.findByUsername(userName);
-        model.put("account", account);
+        AccountUser accountUser =  accountService.findByUsername(userName);
+        model.put("accountUser", accountUser);
         return "profile";
     }
 

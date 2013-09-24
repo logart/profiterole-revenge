@@ -1,6 +1,6 @@
 package com.exigen.common.web;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.RoleConstants;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
@@ -23,11 +23,11 @@ public class AccessDeniedController {
 
     @RequestMapping
     public String accessDenied(Authentication authentication, Model model){
-        if(authentication.getAuthorities().contains(new SimpleGrantedAuthority(Account.ROLE_INACTIVE_USER))){
+        if(authentication.getAuthorities().contains(new SimpleGrantedAuthority(RoleConstants.ROLE_INACTIVE_USER))){
             model.addAttribute("user", authentication.getName());
             return "activationAccountNotFinished";
 
-        } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Account.ROLE_USER))){
+        } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(RoleConstants.ROLE_USER))){
             return "redirect:/";
         }
         return "redirect:/login";

@@ -27,7 +27,7 @@ public class AddRecipeDataValidator implements Validator {
     private static final int MAX_COOKING_HOURS_SIZE = 9;
 
     /**
-     * {@code MIN_COOKING_HOURS_SIZE} Contains maximum value of cooking time for hour
+     * {@code MIN_COOKING_HOURS_SIZE} Contains minimum value of cooking time for hour
      */
     private static final int MIN_COOKING_HOURS_SIZE = 0;
 

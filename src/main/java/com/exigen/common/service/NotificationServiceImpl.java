@@ -5,6 +5,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -93,7 +94,7 @@ public class NotificationServiceImpl implements NotificationService {
      * {@method createResetPasswordMessage(String hash, String login)}
      *
      * @param hash (String of a hash, unique hash code used for generate URL)
-     * @param login (object of an Account.login, login name of user, used for generate message)
+     * @param login (object of an AccountUser.login, login name of user, used for generate message)
      * @return String message
      */
 
@@ -115,7 +116,7 @@ public class NotificationServiceImpl implements NotificationService {
      * {@method createActivationMessage(String hash, String login)}
      *
      * @param hash (String of a hash, unique hash code used for generate URL)
-     * @param login (object of an Account.login, login name of user, used for generate message)
+     * @param login (object of an AccountUser.login, login name of user, used for generate message)
      * @return String message
      */
 

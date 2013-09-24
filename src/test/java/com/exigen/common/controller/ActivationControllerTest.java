@@ -1,6 +1,6 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.CustomUserDetailsService;
 import com.exigen.common.web.ActivationController;
@@ -13,6 +13,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import static org.mockito.Mockito.*;
 
 
@@ -32,10 +33,10 @@ public class ActivationControllerTest {
         activationController = new ActivationController();
         ReflectionTestUtils.setField(activationController,"accountService", accountService);
         ReflectionTestUtils.setField(activationController,"customUserDetailsService",customUserDetailsService);
-        Account account = new Account();
+        AccountUser accountUser = new AccountUser("test","pass","12345678");
         Map model = new TreeMap();
-        String hash = "";
-        when(accountService.activationOfAccount(hash)).thenReturn(account);
+        String hash = " ";
+        when(accountService.activationOfAccount(hash)).thenReturn(accountUser);
         activationController.checkHashAndActivate(model,hash);
         verify(customUserDetailsService, times(1)).login(anyString(), anyString());
         Assert.assertEquals(activationController.checkHashAndActivate(model, hash), "redirect:activation/success?user=");

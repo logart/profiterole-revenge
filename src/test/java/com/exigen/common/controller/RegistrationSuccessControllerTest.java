@@ -1,7 +1,6 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.domain.Account;
-import com.exigen.common.domain.Gender;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.web.RegistrationSuccessController;
 import junit.framework.Assert;
@@ -33,13 +32,13 @@ public class RegistrationSuccessControllerTest {
 
     Calendar calendar=new GregorianCalendar(2010, 11, 03);
 
-    Account account=new Account("log","pwd","ololo@gmailcom", Gender.Female,calendar, "Ukraine");
+    AccountUser accountUser =new AccountUser("log","pwd","ololo@gmailcom");
 
-    List<Account> list=new ArrayList<Account>(){};
+    List<AccountUser> list=new ArrayList<AccountUser>(){};
     @Test
          public void testRegistrationSuccess() throws Exception {
         RegistrationSuccessController registrationSuccessController=new RegistrationSuccessController();
-        when(accountService.findByUsername("user")).thenReturn(account);
+        when(accountService.findByUsername("user")).thenReturn(accountUser);
         ReflectionTestUtils.setField(registrationSuccessController, "accountService", this.accountService);
         Map map=new TreeMap();
         String u="user";

@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -53,8 +53,8 @@ public class ForgotPasswordValidator implements Validator{
             return;
         }
 
-        Account account = accountService.findByEmail(email);
-        if ( account == null){
+        AccountUser accountUser = accountService.findByEmail(email);
+        if ( accountUser == null){
             errors.reject("emailNotExist.email", "Пользователь  с данным e-mail адрессом не зарегистрирован.");
         }
 

@@ -2,7 +2,6 @@ package com.exigen.common.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -63,7 +62,7 @@ public class SendMailServiceImpl implements SendMailService{
      * for send mail message
      *
      * @param message (Object message  generate by NotificationService, for send specific mail massage)
-     * @param email (object of the Account.email, for send mail message on specific email)
+     * @param email (object of the AccountUser.email, for send mail message on specific email)
      *
      */
     public void sendMail(String message,  String email) throws NotificationException {

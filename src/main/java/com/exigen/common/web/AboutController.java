@@ -20,7 +20,7 @@ public class AboutController {
      *
      * @return  view name
      */
-        @RequestMapping(value = "/about")
+        @RequestMapping (value = "/about")
         public ModelAndView about(){
             return new ModelAndView("about");
         }

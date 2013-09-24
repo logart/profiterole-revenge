@@ -1,7 +1,7 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.domain.Account;
 import com.exigen.common.domain.AccountData;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.EditProfileValidator;
 import com.exigen.common.web.EditProfileController;
@@ -46,10 +46,10 @@ public class EditProfileControllerTest {
         User user = new User("test","pass", AuthorityUtils.createAuthorityList("ROLE_USER"));
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,null);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        Account account = new Account();
+        AccountUser accountUser = new AccountUser("test","pass","12345678");
         AccountData data =new AccountData();
-        when(accountService.findByUsername("test")).thenReturn(account);
-        when(accountService.accountDataFromAccount(account)).thenReturn(data);
+        when(accountService.findByUsername("test")).thenReturn(accountUser);
+        when(accountService.accountDataFromAccount(accountUser)).thenReturn(data);
         EditProfileController profile = new EditProfileController();
         ReflectionTestUtils.setField(profile, "accountService", this.accountService);
         Map model=new TreeMap();

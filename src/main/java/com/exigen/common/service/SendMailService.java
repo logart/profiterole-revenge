@@ -14,7 +14,7 @@ public interface SendMailService {
      * for send mail message
      *
      * @param message (Object message  generate by NotificationService, for send specific mail massage)
-     * @param email (object of the Account.email, for send mail message on specific email)
+     * @param email (object of the AccountUser.email, for send mail message on specific email)
      *
      */
     void sendMail(String message, String email) throws NotificationException;
