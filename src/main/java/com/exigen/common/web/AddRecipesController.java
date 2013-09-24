@@ -119,9 +119,9 @@ public class AddRecipesController {
     @RequestMapping(value = "/getIngredientId", method = RequestMethod.POST)
     @ResponseBody
     public  Integer getIngredientId(@RequestParam(value = "ingredientName", required = false) String ingredientName) {
-        Integer ingredientId = this.ingredientService.getIngredientIdByName(ingredientName);
-        return ingredientId;
+
+        return  this.ingredientService.getIngredientIdByName(ingredientName);
+
     }
 
 }
-
