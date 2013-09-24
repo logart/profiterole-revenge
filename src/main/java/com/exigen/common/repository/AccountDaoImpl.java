@@ -1,10 +1,12 @@
 package com.exigen.common.repository;
 
 
+import com.exigen.common.domain.AbstractAccount;
 import com.exigen.common.domain.AbstractHashOfAccount;
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -26,8 +28,8 @@ public class AccountDaoImpl implements AccountDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Account> getAllAccounts() {
-        List<Account> users = this.entityManager.createNamedQuery("Account.findAllUsers")
+    public List<AccountUser> getAllAccounts() {
+        List<AccountUser> users = this.entityManager.createNamedQuery("AccountUser.findAllUsers")
                 .getResultList();
         return users;
     }
@@ -36,16 +38,16 @@ public class AccountDaoImpl implements AccountDao {
      * {@inheritDoc}
      */
     @Override
-    public Account getOneAccount(Integer userId) {
-        return entityManager.find(Account.class, userId);
+    public AccountUser getOneAccount(Integer userId) {
+        return entityManager.find(AccountUser.class, userId);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Account getAccountByLogin(String login) {
-        Account user = this.entityManager.createNamedQuery("Account.findUserByLogin", Account.class).setParameter("login",
+    public AccountUser getAccountUserByLogin(String login) {
+        AccountUser user = this.entityManager.createNamedQuery("AccountUser.findUserByLogin", AccountUser.class).setParameter("login",
                 login).getSingleResult();
         return user;
     }
@@ -54,8 +56,19 @@ public class AccountDaoImpl implements AccountDao {
      * {@inheritDoc}
      */
     @Override
-    public Account getAccountByEmail(String email) {
-        return this.entityManager.createNamedQuery("Account.findUserByEmail", Account.class).setParameter("email",
+    public AbstractAccount getAccountByLogin(String login){
+        AbstractAccount abstractAccount = this.entityManager.createNamedQuery("AbstractAccount.findUserByLogin", AbstractAccount.class).setParameter("login",
+                login).getSingleResult();
+        return abstractAccount;
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AccountUser getAccountByEmail(String email) {
+        return this.entityManager.createNamedQuery("AccountUser.findUserByEmail", AccountUser.class).setParameter("email",
                 email).getSingleResult();
     }
 
@@ -64,8 +77,8 @@ public class AccountDaoImpl implements AccountDao {
      */
     @Override
     @Transactional
-    public void addAccount(Account account) {
-        entityManager.persist(account);
+    public void addAccount(AccountUser accountUser) {
+        entityManager.persist(accountUser);
     }
 
     /**
@@ -73,16 +86,16 @@ public class AccountDaoImpl implements AccountDao {
      */
     @Override
     @Transactional
-    public void updateAccount(Account account) {
-        entityManager.merge(account);
+    public void updateAccount(AccountUser accountUser) {
+        entityManager.merge(accountUser);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeAccount(Account account) {
-        entityManager.remove(account);
+    public void removeAccount(AccountUser accountUser) {
+        entityManager.remove(accountUser);
     }
 
     /**

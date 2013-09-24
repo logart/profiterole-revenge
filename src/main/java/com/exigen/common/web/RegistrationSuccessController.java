@@ -1,6 +1,6 @@
 package com.exigen.common.web;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,9 +33,9 @@ public class RegistrationSuccessController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String registrationSuccess(Map model, @RequestParam("user") String user) {
-        Account account = accountService.findByUsername(user);
-        if (account != null) {
-            model.put("user", account.getLogin());
+        AccountUser accountUser = accountService.findByUsername(user);
+        if (accountUser != null) {
+            model.put("user", accountUser.getLogin());
         } else {
             return "redirect:";
         }

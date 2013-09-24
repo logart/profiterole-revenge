@@ -1,7 +1,8 @@
 package com.exigen.common.web;
 
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
+import com.exigen.common.domain.RoleConstants;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.NotificationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,16 +38,19 @@ public class HelloController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getAuthorities() != null &&
-                authentication.getAuthorities().contains(new SimpleGrantedAuthority(Account.ROLE_INACTIVE_USER))){
-            Account account = accountService.findByUsername(((User)authentication.getPrincipal()).getUsername());
+                authentication.getAuthorities().contains(new SimpleGrantedAuthority(RoleConstants.ROLE_INACTIVE_USER))){
+            AccountUser accountUser = accountService.findByUsername(((User)authentication.getPrincipal()).getUsername());
             ModelAndView modelAndView =  new ModelAndView("registrationSuccess");
             try {
-                modelAndView.addObject("user", account.getLogin());
-                accountService.activationHashSendMail(account.getEmail());
+                modelAndView.addObject("user", accountUser.getLogin());
+                accountService.activationHashSendMail(accountUser.getEmail());
             } catch (NotificationException e) {
                 modelAndView.addObject("error", "Сервис временно не доступен!");
             }
             return modelAndView;
+        }
+        if (authentication != null && authentication.getAuthorities() != null && authentication.getAuthorities().contains(new SimpleGrantedAuthority(RoleConstants.ROLE_ADMIN))){
+            return new ModelAndView ("admin");
         }
         return new ModelAndView("MainPage");
     }

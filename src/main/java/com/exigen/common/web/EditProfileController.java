@@ -1,8 +1,8 @@
 package com.exigen.common.web;
 
 
-import com.exigen.common.domain.Account;
 import com.exigen.common.domain.AccountData;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.EditProfileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +41,8 @@ public class EditProfileController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String editingProfile(Map model) {
-        Account account = accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        AccountData data = accountService.accountDataFromAccount(account);
+        AccountUser accountUser = accountService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        AccountData data = accountService.accountDataFromAccount(accountUser);
         data.setPassword(MASK_PASSWORD);
         model.put("editProfileData", data);
         return "editProfile";

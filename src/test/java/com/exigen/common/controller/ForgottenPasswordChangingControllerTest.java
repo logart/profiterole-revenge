@@ -1,22 +1,14 @@
 package com.exigen.common.controller;
 
-import com.exigen.common.domain.Account;
-import com.exigen.common.domain.AccountData;
 import com.exigen.common.domain.ChangeForgottenPasswordData;
 import com.exigen.common.service.AccountService;
 import com.exigen.common.service.ForgotPasswordChangingValidator;
-import com.exigen.common.service.RegistrationValidator;
-import com.exigen.common.web.EditProfileController;
 import com.exigen.common.web.ForgottenPasswordChangingController;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.BindingResult;
 

@@ -1,17 +1,17 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.domain.ChangeForgottenPasswordData;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.BindingResult;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * author Anatolii Kondratiev
@@ -23,7 +23,7 @@ public class ForgotPasswordChangingValidatorTest {
     private AccountService accountService;
 
     @Mock
-    private Account account;
+    private AccountUser accountUser;
 
     @Before
     public void setUp() throws Exception {

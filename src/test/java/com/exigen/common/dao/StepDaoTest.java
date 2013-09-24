@@ -4,14 +4,13 @@ import com.exigen.common.domain.Category;
 import com.exigen.common.domain.Cuisine;
 import com.exigen.common.domain.Recipe;
 import com.exigen.common.domain.Step;
-import com.exigen.common.repository.*;
-import org.junit.Assert;
+import com.exigen.common.repository.StepDao;
+import com.exigen.common.repository.StepDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:testInMemory.xml")

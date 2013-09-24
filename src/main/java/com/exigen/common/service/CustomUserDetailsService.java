@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AbstractAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,16 +34,19 @@ public class CustomUserDetailsService implements UserDetailsService {
     private AuthenticationManager authenticationManager;
 
     public UserDetails loadUserByUsername(String username) {
-        Account account = accountService.findByUsername(username);
-        if (account != null) {
-            return new User(account.getLogin(), account.getPassword(), Collections.singleton(createAuthority(account)));
+
+        AbstractAccount abstractAccount =  accountService.findAccountByUserName(username);
+
+        if (abstractAccount!= null) {
+            return new User(abstractAccount.getLogin(),abstractAccount.getPassword(), Collections.singleton(createAuthority(abstractAccount)));
+
         } else {
             throw new UsernameNotFoundException("user not found");
         }
     }
 
-    private GrantedAuthority createAuthority(Account account) {
-        return new SimpleGrantedAuthority(account.getRole());
+    private GrantedAuthority createAuthority(AbstractAccount abstractAccount) {
+        return new SimpleGrantedAuthority(abstractAccount.getRole());
     }
 
     public void  login(String username,String password){

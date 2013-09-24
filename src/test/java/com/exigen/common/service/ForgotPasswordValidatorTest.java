@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.validation.BindingResult;
+
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -21,7 +22,7 @@ public class ForgotPasswordValidatorTest {
     private AccountService accountService;
 
     @Mock
-    private Account account;
+    private AccountUser accountUser;
 
     @Before
     public void setUp() throws Exception {
@@ -61,7 +62,7 @@ public class ForgotPasswordValidatorTest {
         ReflectionTestUtils.setField(passwordValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
 
-        when(accountService.findByEmail(anyString())).thenReturn(new Account());
+        when(accountService.findByEmail(anyString())).thenReturn(new AccountUser("log","pwd","ololo@gmailcom"));
         String email = "ggg@g.com";
         passwordValidator.validate(email, result );
 

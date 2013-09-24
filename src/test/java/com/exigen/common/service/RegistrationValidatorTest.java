@@ -1,6 +1,6 @@
 package com.exigen.common.service;
 
-import com.exigen.common.domain.Account;
+import com.exigen.common.domain.AccountUser;
 import com.exigen.common.domain.RegistrationData;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -36,7 +36,7 @@ public class RegistrationValidatorTest {
         RegistrationValidator registrationValidator = new RegistrationValidator() ;
         ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
-        when(accountService.findByUsername(anyString())).thenReturn(new Account());
+        when(accountService.findByUsername(anyString())).thenReturn(new AccountUser(registrationData.getLogin(),registrationData.getPassword(),registrationData.getEmail()));
 
         RegistrationData registrationData = new RegistrationData() ;
         registrationData.setPassword("");
@@ -65,7 +65,7 @@ public class RegistrationValidatorTest {
         RegistrationValidator registrationValidator = new RegistrationValidator() ;
         ReflectionTestUtils.setField(registrationValidator, "accountService", this.accountService);
         BindingResult result = mock(BindingResult.class);
-        when(accountService.findByEmail(anyString())).thenReturn(new Account());
+        when(accountService.findByEmail(anyString())).thenReturn(new AccountUser(registrationData.getLogin(),registrationData.getPassword(),registrationData.getEmail()));
         RegistrationData registrationData = new RegistrationData() ;
         registrationData.setPassword("");
         registrationData.setConfirmPassword("");

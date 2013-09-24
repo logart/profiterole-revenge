@@ -1,6 +1,7 @@
 package com.exigen.common.domain;
 
 import org.junit.Test;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 
@@ -19,10 +20,10 @@ public class AccountPasswordResetTest {
 
     @Test
     public void getSetAccount(){
-        assertNull(resetPasswordHash.getAccount());
-        Account account = new Account();
-        resetPasswordHash.setAccount(account);
-        assertEquals(account, resetPasswordHash.getAccount());
+        assertNull(resetPasswordHash.getAccountUser());
+        AccountUser accountUser = new AccountUser();
+        resetPasswordHash.setAccountUser(accountUser);
+        assertEquals(accountUser, resetPasswordHash.getAccountUser());
     }
 
 }

@@ -45,7 +45,20 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
     @Override
-    public Account findByUsername(String username) {
+    public AccountUser findByUsername(String username) {
+        try {
+            return accountDao.getAccountUserByLogin(username);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AbstractAccount findAccountByUserName(String username){
         try {
             return accountDao.getAccountByLogin(username);
         } catch (EmptyResultDataAccessException ex) {
@@ -57,7 +70,7 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
     @Override
-    public Account findByEmail(String email){
+    public AccountUser findByEmail(String email){
         try {
             return accountDao.getAccountByEmail(email);
         }  catch (EmptyResultDataAccessException ex){
@@ -65,19 +78,21 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addAccount(Account account) {
-        accountDao.addAccount(account);
+    public void addAccount(AccountUser accountUser) {
+        accountDao.addAccount(accountUser);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<Account> getAllAccounts() {
+    public List<AccountUser> getAllAccounts() {
         return accountDao.getAllAccounts();
     }
 
@@ -87,18 +102,16 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional
     public void addAccount(RegistrationData data) throws NotificationException{
-        Account account = new Account();
-        account.setLogin(data.getLogin());
-        account.setPassword(data.getPassword());
-        account.setEmail(data.getEmail());
+        AccountUser accountUser = new AccountUser(data.getLogin(), data.getPassword(), data.getEmail());
         if (data.getMaleOrFemale() != null) {
-            account.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
+            accountUser.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
         }
-        account.setDateOfBirth(getCalendar(data.getDateOfBirth()));
-        account.setCountry(data.getCountry());
-        accountDao.addAccount(account);
+        accountUser.setDateOfBirth(getCalendar(data.getDateOfBirth()));
+        accountUser.setCountry(data.getCountry());
+        accountUser.setRole(RoleConstants.ROLE_INACTIVE_USER);
+        accountDao.addAccount(accountUser);
 
-        activationHashSendMail(account.getEmail());
+        activationHashSendMail(accountUser.getEmail());
 
     }
 
@@ -107,17 +120,17 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public void updateAccount(AccountData data) {
-        Account account = findByUsername(data.getLogin());
+        AccountUser accountUser = findByUsername(data.getLogin());
         if(data.getChangePassword()!=null){
-            account.setPassword(data.getChangePassword());
+            accountUser.setPassword(data.getChangePassword());
         }
-        account.setEmail(data.getEmail());
+        accountUser.setEmail(data.getEmail());
         if (data.getMaleOrFemale() != null) {
-            account.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
+            accountUser.setMaleOrFemale(Gender.valueOf(data.getMaleOrFemale()));
         }
-        account.setDateOfBirth(getCalendar(data.getDateOfBirth()));
-        account.setCountry(data.getCountry());
-        accountDao.updateAccount(account);
+        accountUser.setDateOfBirth(getCalendar(data.getDateOfBirth()));
+        accountUser.setCountry(data.getCountry());
+        accountDao.updateAccount(accountUser);
     }
 
     /**
@@ -126,10 +139,6 @@ public class AccountServiceImpl implements AccountService {
      * @param date (date in String type in format dd.mm.yyyy)
      * @return return Calendar with inserted date from variable date.
      *  if variable con
-     * @throws org.springframework.dao.DataAccessException
-     *                              (resource
-     *                              on cloudfoundry is unavalible, DB is changed)
-     * @throws NullPointerException (when userId is null, or id has no results in the database)
      */
     private Calendar getCalendar(String date) {
         Calendar cal = Calendar.getInstance();
@@ -146,15 +155,15 @@ public class AccountServiceImpl implements AccountService {
     /**
      * {@inheritDoc}
      */
-    public AccountData accountDataFromAccount(Account account){
+    public AccountData accountDataFromAccount(AccountUser accountUser){
         AccountData data = new AccountData();
-        data.setLogin(account.getLogin());
-        data.setEmail(account.getEmail());
-        data.setPassword(account.getPassword());
+        data.setLogin(accountUser.getLogin());
+        data.setEmail(accountUser.getEmail());
+        data.setPassword(accountUser.getPassword());
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        data.setDateOfBirth((account.getDateOfBirth()!=null)?sdf.format(account.getDateOfBirth().getTime()):null);
-        data.setMaleOrFemale((account.getMaleOrFemale()!=null)?account.getMaleOrFemale().name():null) ;
-        data.setCountry(account.getCountry());
+        data.setDateOfBirth((accountUser.getDateOfBirth()!=null)?sdf.format(accountUser.getDateOfBirth().getTime()):null);
+        data.setMaleOrFemale((accountUser.getMaleOrFemale()!=null)? accountUser.getMaleOrFemale().name():null) ;
+        data.setCountry(accountUser.getCountry());
         return data;
     }
 
@@ -197,12 +206,12 @@ public class AccountServiceImpl implements AccountService {
     public void activationHashSendMail(String email)throws NotificationException{
         ActivationHash activationHash = new ActivationHash();
         String hash = createHashForHashOfAccount(ActivationHash.class);
-        Account account = accountDao.getAccountByEmail(email);
+        AccountUser accountUser = accountDao.getAccountByEmail(email);
         activationHash.setHash(hash);
-        activationHash.setAccount(account);
+        activationHash.setAccountUser(accountUser);
         accountDao.addHashesOfAccount(activationHash);
-        String message = notificationService.createActivationMessage(activationHash.getHash(),account.getLogin());
-        sendMailService.sendMail(message, account.getEmail());
+        String message = notificationService.createActivationMessage(activationHash.getHash(), accountUser.getLogin());
+        sendMailService.sendMail(message, accountUser.getEmail());
 
     }
 
@@ -216,11 +225,11 @@ public class AccountServiceImpl implements AccountService {
     public void resetPasswordHashSendMail(String email) throws  NotificationException {
         ResetPasswordHash resetPasswordHash = new ResetPasswordHash();
         String hash = createHashForHashOfAccount(ResetPasswordHash.class);
-        Account account = accountDao.getAccountByEmail(email);
+        AccountUser accountUser = accountDao.getAccountByEmail(email);
         resetPasswordHash.setHash(hash);
-        resetPasswordHash.setAccount(account);
+        resetPasswordHash.setAccountUser(accountUser);
         accountDao.addHashesOfAccount(resetPasswordHash);
-        String message = notificationService.createResetPasswordMessage(resetPasswordHash.getHash(),account.getLogin());
+        String message = notificationService.createResetPasswordMessage(resetPasswordHash.getHash(), accountUser.getLogin());
         sendMailService.sendMail(message, email);
 
     }
@@ -231,9 +240,9 @@ public class AccountServiceImpl implements AccountService {
     @Transactional
     public void changeForgottenUserPassword(String hash, String newPassword) {
         ResetPasswordHash resetPasswordHash = accountDao.getHashesOfAccountByHash(hash, ResetPasswordHash.class);
-        Account account = resetPasswordHash.getAccount();
-        account.setPassword(newPassword);
-        accountDao.updateAccount(account);
+        AccountUser accountUser = resetPasswordHash.getAccountUser();
+        accountUser.setPassword(newPassword);
+        accountDao.updateAccount(accountUser);
         accountDao.removeHashOfAccount(hash,ResetPasswordHash.class);
     }
 
@@ -246,15 +255,15 @@ public class AccountServiceImpl implements AccountService {
      *
      */
     @Transactional
-    public Account  activationOfAccount(String hash){
+    public AccountUser activationOfAccount(String hash){
         ActivationHash activationHash = accountDao.getHashesOfAccountByHash(hash, ActivationHash.class);
-        Account account;
+        AccountUser accountUser;
 
         if(activationHash!=null){
-            account = activationHash.getAccount();
-          if (account.getRole().equals(Account.ROLE_INACTIVE_USER)){
-               account.setRole(Account.ROLE_USER);
-               accountDao.updateAccount(account);
+            accountUser = activationHash.getAccountUser();
+          if (accountUser.getRole().equals(RoleConstants.ROLE_INACTIVE_USER)){
+               accountUser.setRole(RoleConstants.ROLE_USER);
+               accountDao.updateAccount(accountUser);
                accountDao.removeHashOfAccount(hash, ActivationHash.class);
            } else {
                accountDao.removeHashOfAccount(hash, ActivationHash.class);
@@ -262,8 +271,8 @@ public class AccountServiceImpl implements AccountService {
         }
 
         else {
-            account = null;
+            accountUser = null;
         }
-        return account;
+        return accountUser;
     }
 }

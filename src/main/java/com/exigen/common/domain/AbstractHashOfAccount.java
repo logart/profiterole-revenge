@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 /**
- * Class  {@code AbstractHashOfAccount} is used to activation of account and to reset
+ * Class  {@code AbstractHashOfAccount} is used to activation of accountUser and to reset
  *  password for user
  * @author Victoria Ganzha
  * Date 29.03.13
@@ -20,17 +20,17 @@ import javax.persistence.*;
 public abstract  class AbstractHashOfAccount {
 
     /**
-     * {@code hash} contains hash of account
+     * {@code hash} contains hash of accountUser
      */
 
     @Id
     private String hash;
 
     /**
-     * {@code account} reference to the object account
+     * {@code accountUser} reference to the object accountUser
      */
     @OneToOne
-    private Account account;
+    private AccountUser accountUser;
 
     /**
      * {methods get .. and set..} its a getters and setters
@@ -44,12 +44,12 @@ public abstract  class AbstractHashOfAccount {
         this.hash = hash;
     }
 
-    public Account getAccount() {
-        return account;
+    public AccountUser getAccountUser() {
+        return accountUser;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountUser(AccountUser accountUser) {
+        this.accountUser = accountUser;
     }
 
 }
