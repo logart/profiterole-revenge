@@ -8,7 +8,8 @@ package com.exigen.common.domain;
  * @date 31.08.13
  *
  */
-public class RoleConstants {
+public final class RoleConstants {
+
     public static final  String ROLE_ADMIN ="ROLE_ADMIN";
     public static final  String ROLE_USER ="ROLE_USER";
     public static final  String ROLE_INACTIVE_USER = "ROLE_INACTIVE_USER";
