@@ -21,6 +21,11 @@ import java.util.List;
 public class SearchController {
 
     /**
+     * {@code MAX_SEARCHING_UNIT_SIZE} Contains maximum value of searching unit
+     */
+    private static final int MAX_SEARCHING_UNIT_SIZE = 30;
+
+    /**
      * {@code SearchService} describes the SearchService for inject on this
      * class
      */
@@ -37,7 +42,7 @@ public class SearchController {
     @RequestMapping(value = {"/searchResults", "/searchNoResults"})
     public ModelAndView searchResults(@RequestParam("searchUnit") String searchingUnit) {
 
-        if (searchingUnit == null || searchingUnit.trim().isEmpty() || searchingUnit.length() > 30){
+        if (searchingUnit == null || searchingUnit.trim().isEmpty() || searchingUnit.length() > MAX_SEARCHING_UNIT_SIZE){
             return new ModelAndView("searchNoResults");
         }
         List<Recipe> foundedResults = this.searchService.getFoundedRecipesList(searchingUnit);
