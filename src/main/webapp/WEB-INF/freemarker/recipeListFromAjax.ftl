@@ -29,6 +29,7 @@
 [#else]
      ${a.recipe.timeOfCooking / 60 % 24}ч. ${a.recipe.timeOfCooking % 60 }мин.<br />
 [/#if]
+Сложность: ${a.recipe.complexity}; <br />
 [#list  a.markers?keys as marker]
     - ${marker}; <br />
 [/#list]
