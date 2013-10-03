@@ -648,6 +648,15 @@
         }
         singleValidationResulting("div[id=cookingTime]",errorText);
 
+        //photoOverview
+        errorText = "";
+        var value = document.getElementById("fileformlabel").innerHTML;
+        if ((value != "") && (typeof value != 'undefined')) {
+            errorText += validateByRegExp(value, ".(jpg|jpeg|gif|JPG|png|PNG)$",
+                    "Выберете файл формата *.jpg, *.png, *.gif или *.bmp");
+        }
+        singleValidationResulting("div.fileform", errorText);
+
         return isValidatedOk;
     }
 
