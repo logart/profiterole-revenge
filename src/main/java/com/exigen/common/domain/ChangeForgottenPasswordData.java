@@ -1,7 +1,5 @@
 package com.exigen.common.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -22,9 +20,8 @@ public class ChangeForgottenPasswordData {
     /**
      * {@code password} describes password for edit
      */
-    @NotEmpty(message = "Поле не должно быть пустым. Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
-    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "Длина пароля должна быть от " + MIN_LENGTH_OF_PASS + " до " + MAX_LENGTH_OF_PASS + " символов.")
-    @Pattern(regexp = "^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$", message = " Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). ")
+    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "{changeForgottenPasswordData.size.password}")
+    @Pattern(regexp = "^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$", message = " {changeForgottenPasswordData.pattern.password} ")
     private String password, passwordConfirm;
 
     /**

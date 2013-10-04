@@ -36,6 +36,11 @@
         </init-param>
     </filter>
 
+    <filter>
+        <filter-name>localizationFilter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
