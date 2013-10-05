@@ -1,6 +1,9 @@
 package com.exigen.common.domain;
 
-import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+
 
 
 /**
@@ -17,7 +20,7 @@ public class RegistrationData extends AccountData  {
     private static final long serialVersionUID = 1L;
 
 
-    @Size(min=1,message = "{registrationData.size.iImAgree}")
+    @NotEmpty(message = "Для завершения регистрации Вы должны принять Правила и условия работы на сайте.")
     private String iAmAgree;
 
     /**

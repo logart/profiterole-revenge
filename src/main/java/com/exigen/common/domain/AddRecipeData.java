@@ -1,5 +1,6 @@
 package com.exigen.common.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Pattern;
@@ -35,17 +36,17 @@ public class AddRecipeData {
     /**
      * {@code title} Contains the title of recipe.
      */
-
-    @Size(min=1, max = MAX_TITLE_SIZE, message = "{addRecipeData.size.title}")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"“”'‘’\\E]*$", message = "{addRecipeData.pattern.title}", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
+    @NotEmpty(message = "Поле не должно быть пустым.")
+    @Size(min=1, max = MAX_TITLE_SIZE, message = "Длина названия рецепта должна быть от 1 до " + MAX_TITLE_SIZE +  "  символов.")
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q.,()[]+-*/=\"“”'‘’\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы ( , () [] + - * / = “ ” ‘ ’ ).", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String title;
 
     /**
      * {@code description} This field is intended to describe the recipe.
      */
-
-    @Size(min=1, max = MAX_DESCRIPTION_SIZE, message = "{addRecipeData.size.description}")
-    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"“”'‘’:;[]!?*%<>/\\E]*$", message = "{addRecipeData.pattern.description}", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
+    @NotEmpty(message = "Поле не должно быть пустым.")
+    @Size(min=1, max = MAX_DESCRIPTION_SIZE, message = "Длина описания рецепта должна быть от 1 до " + MAX_DESCRIPTION_SIZE + " символов.")
+    @Pattern(regexp = "^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\Q(.,()+-=\"“”'‘’:;[]!?*%<>/\\E]*$", message = "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (. , () [] + - * / = “ ” ‘ ’ : ; ! ? % <>).", flags = javax.validation.constraints.Pattern.Flag.MULTILINE)
     private String description;
 
     /**
@@ -56,7 +57,7 @@ public class AddRecipeData {
     /**
      * {@code complexity} This field contains complexity of recipe.
      */
-    @Size(min = 1,message = "{addRecipeData.notEmpty.complexity}")
+    @NotEmpty(message = "Сложность приготовления блюда должна быть указана.")
     private String complexity;
 
     /**
@@ -77,13 +78,13 @@ public class AddRecipeData {
     /**
      * {@code cuisineId} This field contains the selected cuisine ID, to obtain appropriate cuisine
      */
-    @Size(min =1,message = "{addRecipeData.notEmpty.cuisineId}")
+    @NotEmpty(message = "Кухня должна быть выбрана.")
     private String cuisineId;
 
     /**
      * {@code cuisineId} This field contains the selected category ID, to obtain appropriate category
      */
-    @Size(min =1,message = "{addRecipeData.notEmpty.categoryId}")
+    @NotEmpty(message = "Категория должна быть выбрана.")
     private String categoryId;
 
 
