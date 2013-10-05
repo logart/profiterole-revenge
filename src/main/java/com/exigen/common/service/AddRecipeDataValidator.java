@@ -1,15 +1,15 @@
 package com.exigen.common.service;
 
 import com.exigen.common.domain.AddRecipeData;
+import com.exigen.common.domain.MeasuresBucket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.List;
-import java.util.Locale;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -70,6 +70,25 @@ public class AddRecipeDataValidator implements Validator {
      * {@code COOKING_TIME_MINUTES} Contains name of bean where ingredient's error should be add
      */
     private static final String WRONG_VALUE = "wrongValue.";
+    /**
+     * {@code COOKING_TIME_MINUTES} Contains name of bean where ingredient's error should be add
+     */
+    private static final String COOKING_TIME_MINUTES = "cookingTimeMinutes";
+
+    /**
+     * {@code COOKING_TIME_MINUTES} Contains name of bean where ingredient's error should be add
+     */
+    private static final String QUANTITY_OF_DISH = "quantityOfDish";
+
+   /**
+     * {@code INGREDIENTS_TYPE_LIST} Contains name of bean where ingredient's error should be add
+     */
+    private static final String INGREDIENTS_TYPE_LIST = "ingredientsTypeList";
+
+    /**
+     * {@code INGREDIENTS_TYPE_LIST} Contains name of bean where step's error should be add
+     */
+    private static final String STEPS_LIST = "stepsList";
 
     /**
      * {@code cookingTimeHoursValue} Contains hours of cooking time
@@ -89,8 +108,20 @@ public class AddRecipeDataValidator implements Validator {
     @Autowired
     private MeasureBucketService measureBucketService;
 
-    @Autowired
-    private MessageSource messageSource;
+    /**
+     * {@code COOKING_MINUTES_ERROR_MESSAGE} massage of cooking time minutes error
+     */
+    private static final String  COOKING_MINUTES_ERROR_MESSAGE = "Если не указаны часы времени приготовления, " +
+            "корректное значение для минут лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " минут до " +
+            MAX_COOKING_MINUTES_SIZE + " минут (целые), если часы указаны - значение для минут лежит в диапазоне от " +
+            MIN_COOKING_HOURS_SIZE + " минут до " + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
+            "но не более 9 часов.";
+
+    /**
+     * {@code COOKING_MINUTES_ERROR_MESSAGE} massage of cooking time minutes error
+     */
+    private static final String INGREDIENT_COUNT_ERROR_MESSAGE = "Корректное значение лежит в диапазоне от " +
+            MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".";
 
     /**
      * {@method supports(Class<?> aClass)}
@@ -127,73 +158,41 @@ public class AddRecipeDataValidator implements Validator {
         data.setIngredientsCountList(trimList(data.getIngredientsCountList()));
         data.setStepsList(trimList(data.getStepsList()));
         checkCookingTimeNotEmptyNotLiteral(data.getCookingTimeMinutes(), data.getCookingTimeHours(), errors);
-//        checkCookingTimeHours(this.cookingTimeHoursValue, errors);
-//        checkCookingTimeMinutes(this.cookingTimeHoursValue, this.cookingTimeMinutesValue, errors);
-//        checkQuantityOfDish(data.getQuantityOfDish(), data.getIngredientsCountList(), data.getIngredientsTypeList(),
-//                data.getIngredientsNameList(), errors);
-//        checkSteps(data.getStepsList(), errors);
-//        checkIngredientsCount(data.getIngredientsCountList(), errors);
-//        checkIngredientsName(data.getIngredientsNameList(), errors);
-//        checkIngredientsType(data.getIngredientsTypeList(), errors);
-//        checkForEmptyLists(data.getIngredientsCountList(), data.getIngredientsTypeList(), data.getIngredientsNameList(), data.getStepsList(), errors);
+        checkCookingTimeHours(this.cookingTimeHoursValue, errors);
+        checkCookingTimeMinutes(this.cookingTimeHoursValue, this.cookingTimeMinutesValue, errors);
+        checkQuantityOfDish(data.getQuantityOfDish(), data.getIngredientsCountList(), data.getIngredientsTypeList(),
+                data.getIngredientsNameList(), errors);
+        checkSteps(data.getStepsList(), errors);
+        checkIngredientsCount(data.getIngredientsCountList(), errors);
+        checkIngredientsName(data.getIngredientsNameList(), errors);
+        checkIngredientsType(data.getIngredientsTypeList(), errors);
+        checkForEmptyLists(data.getIngredientsCountList(), data.getIngredientsTypeList(), data.getIngredientsNameList(), data.getStepsList(), errors);
         data.setTitle(HtmlUtils.htmlEscape(data.getTitle()));
     }
+
     /**
-     * {@method checkCookingTimeNotEmptyNotLiteral(String cookingTimeHours, String cookingTimeMinutes,Errors errors)}
-     * method for check text of cooking time, and if something wrong,
+     * {@method checkSteps(List<String> stepsList, Errors errors)}
+     * method for check text of steps, and if something wrong,
      * add errors to instance errors
      *
-     * @param cookingTimeHours (hours of cooking time)
-     * @param cookingTimeMinutes (minutes of cooking time)
+     * @param stepsList(List of steps text)
+     * @param errors(Instance of Errors,where send all errors)
      */
-    private void checkCookingTimeNotEmptyNotLiteral(String cookingTimeMinutes, String cookingTimeHours, Errors errors) {
-
-        try {
-            if (cookingTimeHours.isEmpty()) {
-                this.cookingTimeHoursValue = 0;
-            } else {
-                this.cookingTimeHoursValue = Integer.parseInt(cookingTimeHours);
+    private void checkSteps(List<String> stepsList, Errors errors) {
+        Matcher stepMatcher;
+        for (int i = 0; i < stepsList.size(); i++) {
+            stepMatcher = stepPattern.matcher(stepsList.get(i));
+            if (stepsList.get(i).isEmpty()) {
+                errors.rejectValue(this.STEPS_LIST + "[" + i + "]", "emptyStep." + this.STEPS_LIST, "Поле не должно быть пустым.\n Длина описания шага должна быть от 1 до 3000 символов.\n Корректными значениями являются большие и маленькие буквы "+
+                       " (Русский, Украинский, Английский), цифры, символы (, . () [] + - * / = “ ”  ‘ ’ : ; ! ? % <>).");
+            } else if (stepMatcher.find()) {
+                errors.rejectValue(this.STEPS_LIST + "[" + i + "]", "wrongText." + this.STEPS_LIST, "Корректными значениями являются большие и маленькие буквы" +
+                        " (Русский, Украинский, Английский), цифры, символы (, . () [] + - * / = “ ”  ‘ ’ : ; ! ? % <>).");
+            } else if (stepsList.get(i).length() > MAX_STEP_SIZE) {
+                errors.rejectValue(this.STEPS_LIST + "[" + i + "]", "tooLong." + this.STEPS_LIST, " Длина описания шага должна быть от 1 до 3000 символов.");
             }
-
-            if (cookingTimeMinutes.isEmpty()) {
-                this.cookingTimeMinutesValue = 0;
-            } else {
-                this.cookingTimeMinutesValue = Integer.parseInt(cookingTimeMinutes);
-            }
-            if (this.cookingTimeMinutesValue == 0 && this.cookingTimeHoursValue == 0) {
-               errors.rejectValue("cookingTime","addRecipeDataValidator.cookingTimeMinutes.length","TRALIVALITRALIVALITRALIVALI");
-            }
-
-
-        } catch (NumberFormatException ex){
-            errors.rejectValue("cookingTime","addRecipeDataValidator.cookingTime.numberFormatException",messageSource.getMessage("addRecipeDataValidator.cookingTime.numberFormatException", null, Locale.getDefault()));
-//           errors.rejectValue("cookingTime","addRecipeDataValidator.cookingTime.numberFormatException","TRALIVALITRALIVALITRALIVALI");
         }
-
     }
-
-
-//    /**
-//     * {@method checkSteps(List<String> stepsList, Errors errors)}
-//     * method for check text of steps, and if something wrong,
-//     * add errors to instance errors
-//     *
-//     * @param stepsList(List of steps text)
-//     * @param errors(Instance of Errors,where send all errors)
-//     */
-//    private void checkSteps(List<String> stepsList, Errors errors) {
-//        Matcher stepMatcher;
-//        for (int i = 0; i < stepsList.size(); i++) {
-//            stepMatcher = stepPattern.matcher(stepsList.get(i));
-//            if (stepsList.get(i).isEmpty()) {
-//                errors.rejectValue("stepsList", "addRecipeDataValidator.stepsList.isEmpty");
-//            } else if (stepMatcher.find()) {
-//                errors.rejectValue("stepsList", "addRecipeDataValidator.stepMatcher.find");
-//            } else if (stepsList.get(i).length() > MAX_STEP_SIZE) {
-//                errors.rejectValue("stepsList", "addRecipeDataValidator.stepsList.size");
-//            }
-//        }
-//    }
 
     /**
      * {@method trimList(List<String> list)}
@@ -210,101 +209,145 @@ public class AddRecipeDataValidator implements Validator {
         return list;
     }
 
-//    /**
-//     * {@method checkIngredientsName(List<String> namesList, Errors errors)}
-//     * method for check text of ingredients name, and if something wrong,
-//     * add errors to instance errors
-//     *
-//     * @param namesList(List of ingredients name)
-//     * @param errors(Instance of Errors,where send all errors)
-//     */
-//    private void checkIngredientsName(List<String> namesList, Errors errors) {
-//        for (int i = 0; i < namesList.size(); i++) {
-//            if (namesList.get(i).isEmpty()) {
-//                errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.namesList.isEmpty",null,Locale.getDefault()));
-//            }
-//        }
-//    }
+    /**
+     * {@method checkIngredientsName(List<String> namesList, Errors errors)}
+     * method for check text of ingredients name, and if something wrong,
+     * add errors to instance errors
+     *
+     * @param namesList(List of ingredients name)
+     * @param errors(Instance of Errors,where send all errors)
+     */
+    private void checkIngredientsName(List<String> namesList, Errors errors) {
+        for (int i = 0; i < namesList.size(); i++) {
+            if (namesList.get(i).isEmpty()) {
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyName." + this.INGREDIENTS_TYPE_LIST, "Название ингредиента должно быть выбрано.");
+            }
+        }
+    }
 
-//    /**
-//     * {@method checkIngredientsType(List<String> typesList, Errors errors)}
-//     * method for check text of ingredients type, and if something wrong,
-//     * add errors to instance errors
-//     *
-//     * @param typesList(List of ingredients type)
-//     * @param errors(Instance of Errors,where send all errors)
-//     */
-//    private void checkIngredientsType(List<String> typesList, Errors errors) {
-//        for (int i = 0; i < typesList.size(); i++) {
-//            if (typesList.get(i).isEmpty()) {
-//                errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.typesList.isEmpty",null,Locale.getDefault()));
-//            }
-//        }
-//    }
-//
-//    /**
-//     * {@method checkIngredientsCount(List<String> countsList, Errors errors)}
-//     * method for check text of ingredients count, and if something wrong,
-//     * add errors to instance errors
-//     *
-//     * @param countsList(List of ingredients count)
-//     * @param errors(Instance of Errors,where send all errors)
-//     */
-//    private void checkIngredientsCount(List<String> countsList, Errors errors) {
-//        for (int i = 0; i < countsList.size(); i++) {
-//            if (countsList.get(i).isEmpty()) {
-//                errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.countList.isEmpty",null,Locale.getDefault()));
-//            }else {
-//                try {
-//                    if (Float.parseFloat(countsList.get(i).replace(',','.')) < MIN_INGREDIENT_COUNT_VALUE || Float.parseFloat(countsList.get(i).replace(',','.')) > MAX_INGREDIENT_COUNT_VALUE) {
-//                        errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.countList.length",null,Locale.getDefault()));
-//                    }
-//                } catch (NumberFormatException ex) {
-//                    errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.countList.length",null,Locale.getDefault()));
-//                }
-//            }
-//        }
-//    }
+    /**
+     * {@method checkIngredientsType(List<String> typesList, Errors errors)}
+     * method for check text of ingredients type, and if something wrong,
+     * add errors to instance errors
+     *
+     * @param typesList(List of ingredients type)
+     * @param errors(Instance of Errors,where send all errors)
+     */
+    private void checkIngredientsType(List<String> typesList, Errors errors) {
+        for (int i = 0; i < typesList.size(); i++) {
+            if (typesList.get(i).isEmpty()) {
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyType." + this.INGREDIENTS_TYPE_LIST, "Единица измерения ингредиента должна быть выбрана.");
+            }
+        }
+    }
 
+    /**
+     * {@method checkIngredientsCount(List<String> countsList, Errors errors)}
+     * method for check text of ingredients count, and if something wrong,
+     * add errors to instance errors
+     *
+     * @param countsList(List of ingredients count)
+     * @param errors(Instance of Errors,where send all errors)
+     */
+    private void checkIngredientsCount(List<String> countsList, Errors errors) {
+        for (int i = 0; i < countsList.size(); i++) {
+            if (countsList.get(i).isEmpty()) {
+                errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]", "emptyCount." + this.INGREDIENTS_TYPE_LIST, "Количество ингредиента должно быть указано.Корректное значение лежит в диапазоне от " + MIN_INGREDIENT_COUNT_VALUE + " до " + MAX_INGREDIENT_COUNT_VALUE + ".");
+            }else {
+                try {
+                    if (Float.parseFloat(countsList.get(i).replace(',','.')) < MIN_INGREDIENT_COUNT_VALUE || Float.parseFloat(countsList.get(i).replace(',','.')) > MAX_INGREDIENT_COUNT_VALUE) {
+                        errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]",
+                                WRONG_VALUE + this.INGREDIENTS_TYPE_LIST, INGREDIENT_COUNT_ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException ex) {
+                    errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[" + i + "]",
+                            WRONG_VALUE + this.INGREDIENTS_TYPE_LIST, INGREDIENT_COUNT_ERROR_MESSAGE);
+                }
+            }
+        }
+    }
 
+   /**
+    * {@method checkCookingTimeNotEmptyNotLiteral(String cookingTimeHours, String cookingTimeMinutes,Errors errors)}
+    * method for check text of cooking time, and if something wrong,
+    * add errors to instance errors
+    *
+    * @param cookingTimeHours (hours of cooking time)
+    * @param cookingTimeMinutes (minutes of cooking time)
+    */
+   private void checkCookingTimeNotEmptyNotLiteral(String cookingTimeMinutes, String cookingTimeHours, Errors errors) {
 
-//    /**
-//     * {@method checkCookingTimeHours(Errors errors)}
-//     * method for check text of cooking time, and if something wrong,
-//     * add errors to instance errors
-//     */
-//    private void checkCookingTimeHours(Integer cookingTimeHoursValue, Errors errors) {
-//
-//        if (cookingTimeHoursValue > MAX_COOKING_HOURS_SIZE || cookingTimeHoursValue < MIN_COOKING_HOURS_SIZE) {
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.cookingTimeHours.length",null,Locale.getDefault()));
-//        }
-//    }
-//
-//    /**
-//     * {@method checkCookingTimeMinutes(Errors errors)}
-//     * method for check text of cooking time, and if something wrong,
-//     * add errors to instance errors
-//     */
-//    private void checkCookingTimeMinutes(Integer cookingTimeHoursValue, Integer cookingTimeMinutesValue, Errors errors) {
-//
-//        if  (cookingTimeHoursValue == 0 && (cookingTimeMinutesValue < MIN_COOKING_TIME_SIZE ||
-//                cookingTimeMinutesValue > MAX_COOKING_MINUTES_SIZE)) {
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.cookingTimeHoursMinutes.values",null,Locale.getDefault()));
-//            return;
-//        }
-//
-//        if  ((cookingTimeHoursValue > 0 && cookingTimeHoursValue < MAX_COOKING_HOURS_SIZE) &&
-//                (cookingTimeMinutesValue < MIN_COOKING_HOURS_SIZE ||cookingTimeMinutesValue >
-//                MAX_COOKING_MINUTES_SIZE)) {
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.cookingTimeHoursMinutes.values",null,Locale.getDefault()));
-//            return;
-//        }
-//
-//        if  (cookingTimeHoursValue == MAX_COOKING_HOURS_SIZE && cookingTimeMinutesValue >
-//                MIN_COOKING_HOURS_SIZE) {
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.cookingTimeHoursMinutes.values",null,Locale.getDefault()));
-//        }
-//    }
+       try {
+           if (cookingTimeHours.isEmpty()) {
+               this.cookingTimeHoursValue = 0;
+           } else {
+                this.cookingTimeHoursValue = Integer.parseInt(cookingTimeHours);
+           }
+
+           if (cookingTimeMinutes.isEmpty()) {
+               this.cookingTimeMinutesValue = 0;
+           } else {
+               this.cookingTimeMinutesValue = Integer.parseInt(cookingTimeMinutes);
+           }
+
+           if (this.cookingTimeMinutesValue == 0 && this.cookingTimeHoursValue == 0) {
+               errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
+                       "Время приготовления должно быть указано. Корректное значение лежит в диапазоне от " +
+                               MIN_COOKING_TIME_SIZE + " минут до " + MAX_COOKING_HOURS_SIZE + " часов (целые).");
+           }
+
+       } catch (NumberFormatException ex){
+           errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
+                   "Корректное значение для часов приготовления лежит в диапазоне от " + MIN_COOKING_HOURS_SIZE +
+                           " часов до " + MAX_COOKING_HOURS_SIZE + " часов, для минут - " + MIN_COOKING_HOURS_SIZE +
+                           " минут до" + MAX_COOKING_MINUTES_SIZE + " минут (целые), " +
+                           "но не менее 6 минут и не более 9 часов");
+       }
+   }
+
+    /**
+     * {@method checkCookingTimeHours(Errors errors)}
+     * method for check text of cooking time, and if something wrong,
+     * add errors to instance errors
+     */
+    private void checkCookingTimeHours(Integer cookingTimeHoursValue, Errors errors) {
+
+        if (cookingTimeHoursValue > MAX_COOKING_HOURS_SIZE || cookingTimeHoursValue < MIN_COOKING_HOURS_SIZE) {
+            errors.rejectValue(this.COOKING_TIME_MINUTES, WRONG_VALUE + this.COOKING_TIME_MINUTES,
+                    "Корректное значение для часов приготовления лежит в диапазоне от " + MIN_COOKING_HOURS_SIZE +
+                            " часов до " + MAX_COOKING_HOURS_SIZE + " часов (целые).");
+        }
+    }
+
+    /**
+     * {@method checkCookingTimeMinutes(Errors errors)}
+     * method for check text of cooking time, and if something wrong,
+     * add errors to instance errors
+     */
+    private void checkCookingTimeMinutes(Integer cookingTimeHoursValue, Integer cookingTimeMinutesValue, Errors errors) {
+
+        if  (cookingTimeHoursValue == 0 && (cookingTimeMinutesValue < MIN_COOKING_TIME_SIZE ||
+                cookingTimeMinutesValue > MAX_COOKING_MINUTES_SIZE)) {
+            errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
+                    COOKING_MINUTES_ERROR_MESSAGE);
+            return;
+        }
+
+        if  ((cookingTimeHoursValue > 0 && cookingTimeHoursValue < MAX_COOKING_HOURS_SIZE) &&
+                (cookingTimeMinutesValue < MIN_COOKING_HOURS_SIZE ||cookingTimeMinutesValue >
+                MAX_COOKING_MINUTES_SIZE)) {
+            errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
+                    COOKING_MINUTES_ERROR_MESSAGE);
+            return;
+        }
+
+        if  (cookingTimeHoursValue == MAX_COOKING_HOURS_SIZE && cookingTimeMinutesValue >
+                MIN_COOKING_HOURS_SIZE) {
+            errors.rejectValue(COOKING_TIME_MINUTES, WRONG_VALUE + COOKING_TIME_MINUTES,
+                    COOKING_MINUTES_ERROR_MESSAGE);
+
+        }
+    }
 
 
     /**
@@ -314,34 +357,40 @@ public class AddRecipeDataValidator implements Validator {
      *
      * @param quantityOfDish (quantity of dish of recipe)
      */
-//    private void checkQuantityOfDish(String quantityOfDish, List<String> countsList, List<String> typesList,
-//                                     List<String> namesList, Errors errors) {
-//
-//        try {
-//            if (quantityOfDish.isEmpty()) {
-//                errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.quantityOfDish.isEmpty",null,Locale.getDefault()));
-//                return;
-//            } else {
-//                this.quantityOfDish = Integer.parseInt(quantityOfDish);
-//            }
-//
-//        } catch (NumberFormatException ex){
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.quantityOfDish.numberFormatException",null,Locale.getDefault()));
-//            return;
-//        }
-//        if (countsList.size() != 0 && typesList.size() != 0 && namesList.size() != 0) {
-//            int weightAllIngredients = 0;
-//            MeasuresBucket measuresBucket;
-//            for (int i=0; i < typesList.size(); i++) {
-//                measuresBucket = measureBucketService.getMeasuresBucketListById(Integer.parseInt(typesList.get(i)));
-//                weightAllIngredients += Integer.parseInt(countsList.get(i))*measuresBucket.getGramEquals();
-//            }
-//            if (this.quantityOfDish > weightAllIngredients || this.quantityOfDish < weightAllIngredients * MIN_DISH_OUTPUT){
-//                errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.quantityOfDish.weightAllIngredients", new Object[weightAllIngredients], Locale.getDefault()));
-//            }
-//        }
-//
-//    }
+    private void checkQuantityOfDish(String quantityOfDish, List<String> countsList, List<String> typesList,
+                                     List<String> namesList, Errors errors) {
+
+        try {
+            if (quantityOfDish.isEmpty()) {
+                errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
+                        "Вес готового блюда должнен быть указан (целое число), но не менее 25% и не более общего веса" +
+                                " всех входящих в рецепт ингредиентов.");
+                return;
+            } else {
+                this.quantityOfDish = Integer.parseInt(quantityOfDish);
+            }
+
+        } catch (NumberFormatException ex){
+            errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
+                    "Вес готового блюда должен быть целым числом, но не менее 25% и не более общего веса всех " +
+                            "входящих в рецепт ингредиентов.");
+            return;
+        }
+        if (countsList.size() != 0 && typesList.size() != 0 && namesList.size() != 0) {
+            int weightAllIngredients = 0;
+            MeasuresBucket measuresBucket;
+            for (int i=0; i < typesList.size(); i++) {
+                measuresBucket = measureBucketService.getMeasuresBucketListById(Integer.parseInt(typesList.get(i)));
+                weightAllIngredients += Integer.parseInt(countsList.get(i))*measuresBucket.getGramEquals();
+            }
+            if (this.quantityOfDish > weightAllIngredients || this.quantityOfDish < weightAllIngredients * MIN_DISH_OUTPUT){
+                errors.rejectValue(this.QUANTITY_OF_DISH, WRONG_VALUE + this.QUANTITY_OF_DISH,
+                        "Вес готового блюда не должен быть меньше 25% и не должен превышать вес всех входящих в " +
+                                "рецепт ингредиентов. (" + weightAllIngredients + " гр.)");
+            }
+        }
+
+    }
 
     /**
      * {@method checkForEmptyLists(List<String> countsList, List<String> typesList, List<String> namesList, List<String> stepsList, Errors errors)}
@@ -354,13 +403,13 @@ public class AddRecipeDataValidator implements Validator {
      * @param typesList(List of ingredients type)
      * @param errors(Instance of Errors,where send all errors)
      */
-//    private void checkForEmptyLists(List<String> countsList, List<String> typesList, List<String> namesList, List<String> stepsList, Errors errors) {
-//        if (countsList.size() == 0 || typesList.size() == 0 || namesList.size() == 0) {
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.countsList.typesList.namesList.size", null, Locale.getDefault()));
-//        }
-//        if (stepsList.size() == 0) {
-//            errors.getFieldError(messageSource.getMessage("addRecipeDataValidator.stepsList.null",null,Locale.getDefault()));
-//        }
-//    }
+    private void checkForEmptyLists(List<String> countsList, List<String> typesList, List<String> namesList, List<String> stepsList, Errors errors) {
+        if (countsList.size() == 0 || typesList.size() == 0 || namesList.size() == 0) {
+            errors.rejectValue(this.INGREDIENTS_TYPE_LIST + "[0]", "zeroIngredients." + this.INGREDIENTS_TYPE_LIST, "В рецепте должен быть хотя бы 1 ингредиент. ");
+        }
+        if (stepsList.size() == 0) {
+            errors.rejectValue(this.STEPS_LIST + "[0]", "zeroSteps." + this.STEPS_LIST, "В рецепте должен быть хотя бы 1 шаг.");
+        }
+    }
 
 }

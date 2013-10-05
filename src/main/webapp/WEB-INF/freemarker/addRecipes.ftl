@@ -497,4 +497,158 @@
         uploaded.innerHTML = filename;
     }
 
+    function validateForm() {
+        var MAX_TITLE_SIZE= 250;
+        var MAX_DESCRIPTION_SIZE = 3000;
+        var MAX_STEP_SIZE = 3000;
+        var MIN_COOKING_TIME_SIZE = 6 ;
+        var MAX_COOKING_MINUTES_SIZE = 59 ;
+        var MIN_COOKING_HOURS_SIZE = 0;
+        var MAX_COOKING_HOURS_SIZE = 9;
+        var MIN_DISH_OUTPUT = 0.25;
+
+        var isValidatedOk=true;
+
+        function wrapToErrorSpan(text){
+            return "<span class=\"error\">" + text + "</span><br>"
+        }
+        function wrapToErrorDiv(text){
+            return "<div class=\"error-div\" id=\"titleError\">"+text.substr(0,text.length-4) + "</div>"
+        }
+        function singleValidationResulting(selector,errorText){
+            if ($(selector).next().is("div.error-div")) $(selector).next().remove();
+            if (errorText !=""){
+                $(selector).after(wrapToErrorDiv(errorText));
+                isValidatedOk=false;
+            }
+        }
+        var  validateNotEmpty = function(value, message){
+            if (value=="") return wrapToErrorSpan(message);
+            return"";
+        }
+        var  validateByRegExp = function(value,regexp,message){
+            var expr = new RegExp(regexp);
+            if (!expr.test(value)) return wrapToErrorSpan(message);
+            return"";
+        }
+        var  validateByLength = function(value,min,max,message){
+           if(value.length<min ||value.length>max) return wrapToErrorSpan(message);
+           return"";
+        }
+
+        //title
+        var errorText="";
+        var value = $("input[name=title]")[0].value;
+        errorText+= validateNotEmpty(value,"Поле не должно быть пустым");
+        errorText+= validateByRegExp(value,"^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9 \\.\\,\\(\\)\\[\\]\\+\\-\\*\\/\\=\\\"\\“\\”\\'\\‘\\’]*$",
+                "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы ( , () [] + - * / = “ ” ‘ ’ ).") ;
+        errorText+= validateByLength(value,1,MAX_TITLE_SIZE,"Длина названия рецепта должна быть от 1 до " + MAX_TITLE_SIZE +  " символов.") ;
+        singleValidationResulting("input[name=title]",errorText);
+
+        //description
+        errorText="";
+        value = $("textarea[name=description]")[0].value;
+        errorText+= validateNotEmpty(value,"Поле не должно быть пустым");
+        errorText+= validateByRegExp(value,"^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\.\\,\\(\\)\\+\\-\\=\\\"\\“\\”\\'\\‘\\’\\:\\;\\[\\]\\!\\?\\*\\%\\<\\>\\/]*$",
+                "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (. , () [] + - * / = “ ” ‘ ’ : ; ! ? % <>).") ;
+        errorText+= validateByLength(value,1,MAX_DESCRIPTION_SIZE,"Длина описания рецепта должна быть от 1 до " + MAX_DESCRIPTION_SIZE +  " символов.") ;
+        singleValidationResulting("textarea[name=description]",errorText);
+
+        //complexity
+        errorText="";
+        value = $("select[name=complexity]")[0].value;
+        errorText+= validateNotEmpty(value,"Сложность приготовления блюда должна быть указана.");
+        singleValidationResulting("select[name=complexity]",errorText);
+
+        //cuisineId
+        errorText="";
+        value = $("select[name=cuisineId]")[0].value;
+        errorText+= validateNotEmpty(value,"Кухня должна быть выбрана.");
+        singleValidationResulting("select[name=cuisineId]",errorText);
+
+        //categoryId
+        errorText="";
+        value = $("select[name=categoryId]")[0].value;
+        errorText+= validateNotEmpty(value,"Категория должна быть выбрана.");
+        singleValidationResulting("select[name=categoryId]",errorText);
+
+        //steps
+        for (var i=0;i<$("textarea.stepTextarea").length ; i++){
+            errorText="";
+            value = $("textarea[name='stepsList["+ i +"]']")[0].value;
+            errorText+= validateNotEmpty(value,"Поле не должно быть пустым");
+            errorText+= validateByRegExp(value,"^[а-яА-ЯіІїЇєЄёЁa-zA-Z0-9\\r\\n \\.\\,\\(\\)\\+\\-\\=\\\"\\“\\”\\'\\‘\\’\\:\\;\\[\\]\\!\\?\\*\\%\\<\\>\\/]*$",
+                    "Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (. , () [] + - * / = “ ” ‘ ’ : ; ! ? % <>).") ;
+            errorText+= validateByLength(value,1,MAX_STEP_SIZE,"Длина описания шага должна быть от 1 до " + MAX_STEP_SIZE +  " символов.") ;
+            singleValidationResulting("textarea[name='stepsList["+ i +"]']",errorText);
+        }
+
+        //ingredients
+        var weightAllIngredients = 0;
+        var selectedIngredientId;
+        var countOfIngredient;
+        var selectedMesureID;
+
+        for (var i=0;i<$("input.ingrName").length ; i++){
+            errorText="";
+
+            selectedIngredientId = parseInt($("input[name='ingredientsIdList["+ i +"]']")[0].value);
+            if (isNaN(selectedIngredientId)) errorText+= wrapToErrorSpan("Название ингредиента должно быть выбрано.");
+
+            countOfIngredient = parseFloat($("input[name='ingredientsCountList["+ i +"]']")[0].value);
+            if (isNaN(countOfIngredient)) errorText+= wrapToErrorSpan("Количество ингредиента должно быть указано.");
+
+            selectedMesureID = parseInt($("select[name='ingredientsTypeList["+ i +"]']")[0].value);
+            if (isNaN(selectedMesureID)||selectedMesureID==0) errorText+= wrapToErrorSpan("Единица измерения ингредиента должна быть выбрана.");
+
+            singleValidationResulting("select[name='ingredientsTypeList["+ i +"]']",errorText);
+
+            if (!isNaN(selectedIngredientId) && !isNaN(countOfIngredient) && !isNaN(selectedMesureID)) {
+                weightAllIngredients += parseInt(countOfIngredient)*parseInt(ingredientsMeasuresGramEquals[selectedIngredientId][selectedMesureID]);
+            }
+
+        }
+
+        //quantityOfDish
+        errorText="";
+        var quantityOfDish = parseInt($("input[name=quantityOfDish]")[0].value);
+        if (isNaN(quantityOfDish)) {
+            errorText+= wrapToErrorSpan("Вес готового блюда должнен быть указан (целое число), " +
+                    "но не менее 25% и не более общего веса всех входящих в рецепт ингредиентов.");
+        }else if(quantityOfDish > weightAllIngredients || quantityOfDish < weightAllIngredients * MIN_DISH_OUTPUT){
+            errorText+= wrapToErrorSpan("Вес готового блюда не должен быть меньше 25% и не должен превышать вес всех " +
+                    "входящих в рецепт ингредиентов. (" + weightAllIngredients + " гр.)");
+        }
+        singleValidationResulting("div[id=quantityOfDish]",errorText);
+
+        //cookingTime
+        errorText="";
+        var cookingTimeHours = parseInt($("input[name=cookingTimeHours]")[0].value, 10);
+        var cookingTimeMinutes = parseInt($("input[name=cookingTimeMinutes]")[0].value, 10);
+        if (isNaN(cookingTimeHours)) cookingTimeHours=0;
+        if (isNaN(cookingTimeMinutes)) cookingTimeMinutes=0;
+        if (cookingTimeHours==0 && cookingTimeMinutes==0)
+            errorText+= wrapToErrorSpan("Время приготовления должно быть указано.");
+        if (cookingTimeHours > MAX_COOKING_HOURS_SIZE || cookingTimeHours < MIN_COOKING_HOURS_SIZE) {
+            errorText+= wrapToErrorSpan("Корректное значение для часов приготовления лежит в диапазоне от " +
+                    MIN_COOKING_HOURS_SIZE + " часов до " + MAX_COOKING_HOURS_SIZE + " часов (целые).");
+        }
+        if  (cookingTimeHours == 0 && (cookingTimeMinutes < MIN_COOKING_TIME_SIZE ||
+                cookingTimeMinutes > MAX_COOKING_MINUTES_SIZE)) {
+            errorText+= wrapToErrorSpan("Если не указаны часы времени приготовления, " +
+                    "корректное значение для минут лежит в диапазоне от " + MIN_COOKING_TIME_SIZE + " минут до " +
+                    MAX_COOKING_MINUTES_SIZE + " минут (целые)");
+        }else if((cookingTimeHours > 0 && cookingTimeHours < MAX_COOKING_HOURS_SIZE) &&
+                (cookingTimeMinutes < 0 || cookingTimeMinutes > MAX_COOKING_MINUTES_SIZE)){
+
+            errorText+= wrapToErrorSpan("Значение для минут лежит в диапазоне от 0 минут до " + MAX_COOKING_MINUTES_SIZE +
+                    " минут (целые).");
+        }else if (cookingTimeHours == MAX_COOKING_HOURS_SIZE && cookingTimeMinutes > 0){
+            errorText+= wrapToErrorSpan("Время приготовление не должно превышать " + MAX_COOKING_HOURS_SIZE + " часов.");
+        }
+        singleValidationResulting("div[id=cookingTime]",errorText);
+
+        return isValidatedOk;
+    }
+
 </script>

@@ -1,5 +1,8 @@
 package com.exigen.common.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -31,36 +34,39 @@ public class AccountData implements Serializable {
     /**
      * {@code login} describes username
      */
-    @Size(min = MIN_LENGTH_OF_LOGIN, max = MAX_LENGTH_OF_LOGIN, message = "{accountData.size.login}")
-    @Pattern(regexp="^[a-zA-Z0-9\\Q.+-();:_\\E]*$",message = "{accountData.pattern.login}")
+    @NotEmpty(message = "Поле не должно быть пустым. Корректными значениями являются большие и маленькие буквы (Английский), цифры, символы (. + - () : ; _ ).")
+    @Size(min = MIN_LENGTH_OF_LOGIN, max = MAX_LENGTH_OF_LOGIN, message = "Длина логина должна быть от " + MIN_LENGTH_OF_LOGIN + " до " + MAX_LENGTH_OF_LOGIN + " символов.")
+    @Pattern(regexp="^[a-zA-Z0-9\\Q.+-();:_\\E]*$",message = "Корректными значениями являются большие и маленькие буквы (Английский), цифры, символы (. + - () : ; _ ).")
     private String login;
 
     /**
      * {@code password} describes password for edit
      */
-    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "{accountData.size.password}")
-    @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message ="{accountData.size.pattern}")
+    @NotEmpty(message = "Поле не должно быть пустым. Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ).")
+    @Size(min = MIN_LENGTH_OF_PASS, max = MAX_LENGTH_OF_PASS, message = "Длина пароля должна быть от " + MIN_LENGTH_OF_PASS + " до " + MAX_LENGTH_OF_PASS + " символов.")
+    @Pattern(regexp="^[\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*/=-]*$",message =" Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). ")
     private String password;
 
     /**
      * {@code email} describes email address
      */
-    @Size(max = MAX_LENGTH_OF_EMAIL,message = "{accountData.size.email}")
-//    @Email (message = "{accountData.email.email}")
+    @NotEmpty(message = "Поле не должно быть пустым.")
+    @Size(max = MAX_LENGTH_OF_EMAIL,message = "Длина e-mail должна быть не больше 250 символов")
+    @Email (message = "Введите корректный e-mail.")
     private String email;
 
     /**
      * {@code dateOfBirth} describes date of birth of some user
      */
 
-    @Pattern(regexp="^(([0-2]\\d|3[0,1])\\.(0[1-9]|1[0-2])\\.((19|20)\\d{2})){0,1}$",message = "{accountData.pattern.dateOfBirth}")
+    @Pattern(regexp="^(([0-2]\\d|3[0,1])\\.(0[1-9]|1[0-2])\\.((19|20)\\d{2})){0,1}$",message = "Дата рождения должна быть выбрана из календаря или заполнена самостоятельно в формате дд.мм.гггг.")
     private String dateOfBirth;
 
     private String maleOrFemale;
 
     private String country;
 
-    @Pattern(regexp="^$|^([\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*\\/\\=\\-]{6,35})$",message ="{accountData.pattern.changePassword}")
+    @Pattern(regexp="^$|^([\\x28\\x29\\x5b\\x5d\\x2e,;:а-яА-ЯіІїЇєЄёЁ\\w\\+\\*\\/\\=\\-]{6,35})$",message =" Корректными значениями являются большие и маленькие буквы (Русский, Украинский, Английский), цифры, символы (, . + - * / () [] = : ; _ ). Длина пароля должна быть от " + MIN_LENGTH_OF_PASS + " до " + MAX_LENGTH_OF_PASS + " символов. ")
     private String changePassword;
 
     private String confirmPassword;
