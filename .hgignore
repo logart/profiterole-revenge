@@ -1,0 +1,10 @@
+syntax: glob
+
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings
+.idea
+target
