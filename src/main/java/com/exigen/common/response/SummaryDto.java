@@ -7,5 +7,5 @@ package com.exigen.common.response;
  * Time: 5:15 AM
  * To change this template use File | Settings | File Templates.
  */
-public class SummaryDto implements Dto{
+public class SummaryDto implements PrintDto {
 }

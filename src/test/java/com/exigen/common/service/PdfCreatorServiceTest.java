@@ -1,22 +1,16 @@
 package com.exigen.common.service;
 
-import com.exigen.common.response.Dto;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRField;
-import net.sf.jasperreports.engine.data.JRAbstractBeanDataSource;
+import com.exigen.common.response.PrintDto;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
-import java.io.InputStream;
 import java.io.OutputStream;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- *
+ * This test describes how JasperReports works.
  */
 public class PdfCreatorServiceTest {
 
@@ -26,13 +20,12 @@ public class PdfCreatorServiceTest {
         TestDto dataMock = mock(TestDto.class);
         when(dataMock.getTestField()).thenReturn("testText");
 
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("test.pdf");
-        OutputStream outputStream = new PdfCreatorService().createReport("test.jrxml", dataMock);
+        OutputStream outputStream = new PdfCreatorService().createReport("test.jasper", dataMock);
 
         Assert.assertNotNull(outputStream);
     }
 
-    public class TestDto implements Dto {
+    public class TestDto implements PrintDto {
         private String testField;
 
         public String getTestField() {

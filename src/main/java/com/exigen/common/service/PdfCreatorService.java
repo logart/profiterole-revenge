@@ -1,5 +1,6 @@
 package com.exigen.common.service;
 
+import com.exigen.common.response.PrintDto;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -10,24 +11,40 @@ import java.io.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
+ * {@inheritDoc}
+ * Creates *.prf file.
  */
 @Service
-public class PdfCreatorService {
+public class PdfCreatorService implements ReportCreatorService {
 
-    public OutputStream createReport(String templateName, Object dataTransferObject)
-            throws FileNotFoundException, JRException {
+    protected static final Logger LOG = Logger.getLogger(PdfCreatorService.class.getName());
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param templateFile contains file path
+     * @param dataTransferObject contains POJO with mapping data
+     * @return OutputStream with pdf format
+     * @throws FileNotFoundException
+     */
+    @Override
+    public OutputStream createReport(final String templateFile, final PrintDto dataTransferObject)
+            throws FileNotFoundException {
         ArrayList<Object> objects = new ArrayList<Object>();
         objects.add(dataTransferObject);
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(objects);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(templateName);
-        JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), dataSource);
-        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(templateFile);
+        try {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, new HashMap(), dataSource);
+            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+        } catch (JRException e) {
+            LOG.log(Level.WARNING, "JRException in JasperReports API", e);
+        }
 
         return outputStream;
     }
