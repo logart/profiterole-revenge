@@ -1,0 +1,446 @@
+.add-recipe-title {
+    width: 315px;
+    font-size: 14px;
+}
+
+body {
+    background-image: url('/img/background.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cooking-time {
+    width: 30px;
+    font-size: 14px;
+}
+
+.recipe {
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 21px;
+    padding: 21px 27.3px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+
+}
+
+.img-head {
+    margin: 0;
+    height: auto;
+    width: 1000px;
+}
+
+.img-cuisine {
+    width: 100px;
+    height: 100px;
+}
+
+.delete_ingr.ui-icon {
+    position: relative;
+    background-position: -98px -130px;
+}
+
+.delete_step.ui-icon {
+    position: relative;
+    background-position: -98px -130px;
+}
+
+.block-create-menu {
+    background-color: white;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.white-block {
+    background-color: white;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+
+.white-block:before,
+.white-block:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.white-block:after {
+    clear: both;
+}
+
+.block-search-results {
+    display: block;
+    background-color: white;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.error-div {
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    margin-bottom: 21px;
+    padding: 14px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    text-align: center;
+    margin-top: 20px;
+    width: 350px;
+}
+
+.error{
+    color: #ff0000;
+}
+
+.btn.create {
+    margin-top: 40px;
+    height: 60px;
+}
+
+.btn-group {
+    text-align: center;
+}
+
+.btn-large {
+    width: 100px;
+}
+
+.btn-large-admin {
+    height: 50px;
+    width: 150px;
+}
+
+.imgContainer {
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+}
+
+.imgContainer img {
+    vertical-align: middle;
+}
+
+.recipe_title{
+    height: 70px;
+    width: 100px;
+}
+
+.title {
+    height: 70px;
+    width: 100px;
+    cursor: move;
+    overflow: hidden;
+    word-wrap:break-word;
+}
+
+.title-search {
+    width: 600px;
+    word-wrap:break-word;
+}
+
+.time-search {
+    width: 65px;
+    text-align: right;
+}
+
+.navbar-inner {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.btn {
+    margin-bottom: 4px;
+}
+
+.droppable > .recepies_btn {
+    margin: 2px;
+    margin-bottom: 4px;
+
+
+}
+
+.droppable > .btn > a.ui-icon.ui-icon-trash {
+    background-position: -98px -130px;
+    left: 98px;
+    position: absolute;
+    top: -7px;
+}
+.draggable {
+
+    padding: 2px;
+}
+
+.sliderCont {
+    width: 401px;
+    height: 30px;
+    float: left;
+    background: url(../img/scale.png) 0 bottom no-repeat;
+}
+
+.slider-input {
+    border-color: #FFFFFF;
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+    background-color: #FFFFFF !important;
+}
+
+.ui-slider .ui-slider-range {
+    background: #f6931f;
+}
+
+#slider-range{
+    background: lightgray;
+}
+
+.no-display {
+    display: none;
+}
+
+.no-outline {
+    outline: none !important;
+}
+
+a.ui-slider-handle {
+    outline: none !important;
+}
+
+.no-text-decoration {
+    text-decoration: none;
+}
+
+.content {
+    margin-top: 10px;
+    display: block;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-cener {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.fileform {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 26px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
+    width: 230px;
+}
+
+.fileform .selectbutton {
+    background-color: #A2A3A3;
+    border: 1px solid #939494;
+    border-radius: 2px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 2px 6px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+
+.fileform #upload{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    -moz-opacity: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    font-size: 150px;
+    height: 30px;
+    z-index:20;
+}
+
+.fileform .fileformlabel {
+    background-color: #FFFFFF;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    padding: 2px;
+    text-align: left;
+    vertical-align: middle;
+    width:160px;
+}
+
+.for-adding-recipes {
+    text-align: left;
+     margin-left:1px;
+     height: 500px;
+     width: 500px;
+ }
+
+
+.error-block {
+      vertical-align:middle;
+      text-align: center;
+      margin-top:5px;
+      width: 100px;
+      height: 100px;
+  }
+
+.combobox {
+    height: 30px;
+    width: 117px;
+    font-size: 14px;
+}
+
+.combobox.ingrCount {
+    height: 30px;
+    width: 25px;
+    font-size: 14px;
+}
+
+.combobox.ingrName {
+    height: 30px;
+    width: 217px;
+    font-size: 14px;
+}
+
+.combobox.ingrType {
+    height: 40px;
+    width: 61px;
+    font-size: 14px;
+}
+
+.combobox1 {
+    height: 30px;
+    width: 130px;
+    font-size: 14px;
+}
+
+.forinputs {
+    font-size: 14px;
+    width: 315px;
+    height: 100px;
+}
+
+.padding {
+    padding-left: 15px;
+}
+
+.paddingBig {
+    padding-left: 25px;
+}
+
+.rec_count{
+    margin-left: 10px;
+    width:20px;
+    margin-right: 10px;
+}
+
+.plus_btn, .minus_btn{
+    width:20px;
+}
+
+.recepies_btn {
+    position: relative;
+}
+.imgMarkersContainer {
+    position: absolute;
+    top: -10px;
+    left: -2px;
+}
+.markersTitle{
+     width:77px;
+     float: left;
+ }
+.markersCheckbox{
+    margin-left: 77px;
+}
+.dayOfWeekButton{
+    height: 3em;
+}
+
+.dayOfWeekButton > .breakfastMarker {
+    position: absolute;
+    top:2% ;
+    left:10%;
+    width: 80%;
+    height: 30%;
+}
+.dayOfWeekButton > .dinnerMarker {
+    position: absolute;
+    top:35% ;
+    left:10%;
+    width: 80%;
+    height: 30%;
+}
+.dayOfWeekButton > .supperMarker {
+    position: absolute;
+    top:68%;
+    left:10%;
+    width: 80%;
+    height: 30%;
+}
+.dayOfWeekButton > .breakfastMarker.marked, .dinnerMarker.marked, .supperMarker.marked{
+    background: #f6931f;
+}
+.modal {
+    width: 760px;
+    left: 40%;
+}
+.span4{
+    width: 31.114893617021278%;
+}
+.row-fluid .span4 {
+    width: 30.914893617021278%;
+}
+
+.fixed-table {
+    table-layout:fixed;
+}
+
+.summListRecipeName{
+    width: 45%;
+    word-wrap: break-word;
+}
