@@ -1,0 +1,10 @@
+[#ftl]
+
+[#list model as a]
+<div class="item1">
+
+        <img src="${a.imglink}" height="100" width="100"/>
+        <label class="title">${a.cuisin}</label>
+</div>
+
+[/#list]
