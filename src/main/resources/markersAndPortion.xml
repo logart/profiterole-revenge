@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <util:map id="markers" map-class="java.util.LinkedHashMap">
+        <entry key="острый" value="/img/gchilli.png"/>
+        <entry key="диетический" value="/img/gdieta.png"/>
+        <entry key="вегитарианский" value="/img/gcarrot.png"/>
+    </util:map>
+
+    <util:list id="portion" list-class="java.util.ArrayList">
+        <value>150</value>
+        <value>250</value>
+    </util:list>
+
+    <bean id="recipeService" class="com.exigen.common.service.RecipeServiceImpl">
+        <property name="markers" ref="markers" />
+        <property name="portion" ref="portion"/>
+    </bean>
+
+
+</beans>
+
