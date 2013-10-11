@@ -70,9 +70,33 @@
 </div>
 <div class="modal-footer noprint">
     <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
+    <button class="btn btn-primary pull-left" onclick="menuPDF()">Меню в PDF</button>
 </div>
 
 <script type="text/javascript">
+    var breakfastDishes = [];
+    var dinnerDishes = [];
+    var supperDishes = [];
+    var dayMenu = [];
+    var weekMenu = [];
+    function menuPDF() {$.ajax({
+                        type: "post",
+                        url: "http://localhost:8080/menuPDF",
+                        contentType: "application/json",
+                        data: JSON.stringify({weekMenu:weekMenu}),
+                        cache: false,
+                        success: function(response) {
+                            alert('PDF generated success!');
+                    
+                        },
+                        error: function() {
+                            alert('Error while request..');
+                        }
+                    });
+}
+    
+
+
     $(document).ready(function () {
         var br_cal = 0;
         var dn_cal = 0;
@@ -90,6 +114,7 @@
                     calcDish(portion, quantityOfDish) + "x" + portion + "</nobr></td><td><nobr>" + quantityOfDish +
                     "</nobr></td></tr>");
             br_cal += cal * count;
+            breakfastDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
             return true;
         });
 
@@ -104,6 +129,7 @@
                     calcDish(portion, quantityOfDish) + "x" + portion + "</nobr></td><td><nobr>" + quantityOfDish +
                     "</nobr></td></tr>");
             dn_cal += cal * count;
+            dinnerDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
             return true;
         });
 
@@ -118,9 +144,12 @@
                     calcDish(portion, quantityOfDish) + "x" + portion + "</nobr></td><td><nobr>" + quantityOfDish +
                     "</nobr></td></tr>");
             sp_cal += cal * count;
+            supperDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
             return true;
         });
 
+        dayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+        weekMenu.push({mondayMenu:dayMenu,tuesdayMenu:dayMenu,wednesdayMenu:dayMenu,thursdayMenu:dayMenu,fridayMenu:dayMenu,saturdayMenu:dayMenu,sundayMenu:dayMenu});
 
         $("#br_kkal").text(br_cal);
         $("#dn_kkal").text(dn_cal);

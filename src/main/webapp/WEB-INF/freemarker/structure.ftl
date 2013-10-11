@@ -18,6 +18,8 @@ ${scripts!}
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
     <script type="text/javascript" src="<@spring.url '/js/jquery.ui.datepicker.js'/>"></script>
     <script type="text/javascript" src="<@spring.url '/js/printBlock.js'/>"></script>
+    
+    <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
 
     <title>Profiterole</title>
 
