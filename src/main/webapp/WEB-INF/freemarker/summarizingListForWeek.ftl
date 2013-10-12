@@ -10,6 +10,8 @@
 </ul>
 
 <script type="text/javascript">
+
+       
     $(function () {
         $('#summarizingTab a:first').tab('show');
     })
@@ -60,6 +62,7 @@
     </div>
     <div class="modal-footer noprint">
         <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
+        <button class="btn btn-primary pull-left" onclick="menuPDF()">Меню в PDF</button>
     </div>
 </div>
 
@@ -81,10 +84,42 @@
     </div>
     <div class="modal-footer noprint">
         <button class="btn btn-primary pull-left" onclick="printBlock('#modalForSummarizingList')">Печать</button>
+        <button class="btn btn-primary pull-left" onclick="menuPDF()">Меню в PDF</button>
     </div>
 </div>
 
 <script type="text/javascript">
+
+    var breakfastDishes = [];
+    var dinnerDishes = [];
+    var supperDishes = [];
+
+    var mondayMenu = [];
+    var tuesdayMenu = [];
+    var wednesdayMenu = [];
+    var thursdayMenu = [];
+    var fridayMenu = [];
+    var saturdayMenu = [];
+    var sundayMenu = [];
+    var weekMenu = [];
+
+                    function menuPDF() {
+                        $.ajax({
+                        type: "post",
+                        url: "http://localhost:8080/weekMenuPDF",
+                        contentType: "application/json",
+                        data: JSON.stringify({weekMenu:weekMenu}),
+                        cache: false,
+                        success: function(response) {
+                            alert('PDF generated success!');
+                    
+                        },
+                        error: function() {
+                            alert('Error while request..');
+                        }
+                    });
+                    }
+
     $(document).ready(function () {
         var dayNames = [
             ["Пн", "Mo", "Понедельник"],
@@ -153,19 +188,55 @@
                             quantityOfDish + "</nobr></td></tr>");
 
                     meal_cal[j] += cal * count;
+                    if (j==0){
+                     breakfastDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                    }
+                    if (j==1){
+                     dinnerDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                    }
+                    if (j==2){                     
+                     supperDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                    }
                     return true;
                 });
+
                 day_cal += meal_cal[j];
             }
             ;
+
             week_cal += day_cal;
             $("#tab12").clone().attr("id", dayNames[i][1] + "_cal").removeAttr("style").appendTo("#tab10");
             $("#" + dayNames[i][1] + "_cal  span[data-name='br_kkal']").text(meal_cal[0]);
             $("#" + dayNames[i][1] + "_cal  span[data-name='dn_kkal']").text(meal_cal[1]);
             $("#" + dayNames[i][1] + "_cal  span[data-name='sp_kkal']").text(meal_cal[2]);
             $("#" + dayNames[i][1] + "_cal  span[data-name='itogo_kkal']").text(day_cal);
-        }
-        ;
+
+            
+            if(i==0){
+                mondayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            if(i==1){
+                tuesdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            if(i==2){
+                wednesdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            if(i==3){
+                thursdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            if(i==4){
+                fridayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            if(i==5){
+                saturdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            if(i==6){
+                sundayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+            }
+            
+        };
+        weekMenu.push({mondayMenu:mondayMenu,tuesdayMenu:tuesdayMenu,wednesdayMenu:wednesdayMenu,thursdayMenu:thursdayMenu,fridayMenu:fridayMenu,saturdayMenu:saturdayMenu,sundayMenu:sundayMenu});    
+        
         $("#week_kkal  span").text(week_cal);
         $("#week_kkal").appendTo("#tab10");
 
