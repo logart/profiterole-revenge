@@ -90,9 +90,9 @@
 
 <script type="text/javascript">
 
-    var breakfastDishes = [];
-    var dinnerDishes = [];
-    var supperDishes = [];
+    var breakfastDishes = [[],[],[],[],[],[],[]];
+    var dinnerDishes = [[],[],[],[],[],[],[]];
+    var supperDishes = [[],[],[],[],[],[],[]];
 
     var mondayMenu = [];
     var tuesdayMenu = [];
@@ -189,13 +189,13 @@
 
                     meal_cal[j] += cal * count;
                     if (j==0){
-                     breakfastDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                     breakfastDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
                     }
                     if (j==1){
-                     dinnerDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                     dinnerDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
                     }
                     if (j==2){                     
-                     supperDishes.push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                     supperDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
                     }
                     return true;
                 });
@@ -213,25 +213,25 @@
 
             
             if(i==0){
-                mondayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                mondayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             if(i==1){
-                tuesdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                tuesdayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             if(i==2){
-                wednesdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                wednesdayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             if(i==3){
-                thursdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                thursdayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             if(i==4){
-                fridayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                fridayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             if(i==5){
-                saturdayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                saturdayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             if(i==6){
-                sundayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
+                sundayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
             
         };
