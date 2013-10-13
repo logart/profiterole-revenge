@@ -149,7 +149,7 @@
         });
 
         dayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
-        weekMenu.push({mondayMenu:dayMenu,tuesdayMenu:dayMenu,wednesdayMenu:dayMenu,thursdayMenu:dayMenu,fridayMenu:dayMenu,saturdayMenu:dayMenu,sundayMenu:dayMenu});
+        weekMenu.push({dayMenu:dayMenu});
 
         $("#br_kkal").text(br_cal);
         $("#dn_kkal").text(dn_cal);
