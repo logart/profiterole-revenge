@@ -62,6 +62,7 @@
                 <td>${a.ingredient.name}</td>
                 <td>${a.countOfIngredient}</td>
                 <td>${a.measuresBucket.measure.title}</td>
+
             </tr>
         [/#list]
         </table>
@@ -79,6 +80,13 @@
     var supperDishes = [];
     var dayMenu = [];
     var weekMenu = [];
+    var ingridients = [];
+   
+    [#list model as a]
+          ingridients.push({ingridientId:${a.ingredient.id}});
+    [/#list]
+    
+    
     function menuPDF() {$.ajax({
                         type: "post",
                         url: "http://localhost:8080/menuPDF",
@@ -148,8 +156,10 @@
             return true;
         });
 
+ 
+
         dayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
-        weekMenu.push({dayMenu:dayMenu});
+        weekMenu.push({mondayMenu:dayMenu,ingridients:ingridients});
 
         $("#br_kkal").text(br_cal);
         $("#dn_kkal").text(dn_cal);

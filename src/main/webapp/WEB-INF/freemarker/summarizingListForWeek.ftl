@@ -103,6 +103,13 @@
     var sundayMenu = [];
     var weekMenu = [];
 
+   var ingridients = [];
+   
+    [#list model as a]
+          ingridients.push({ingridientId:${a.ingredient.id}});
+    [/#list]
+  
+
                     function menuPDF() {
                         $.ajax({
                         type: "post",
@@ -235,7 +242,7 @@
             }
             
         };
-        weekMenu.push({mondayMenu:mondayMenu,tuesdayMenu:tuesdayMenu,wednesdayMenu:wednesdayMenu,thursdayMenu:thursdayMenu,fridayMenu:fridayMenu,saturdayMenu:saturdayMenu,sundayMenu:sundayMenu});    
+        weekMenu.push({mondayMenu:mondayMenu,tuesdayMenu:tuesdayMenu,wednesdayMenu:wednesdayMenu,thursdayMenu:thursdayMenu,fridayMenu:fridayMenu,saturdayMenu:saturdayMenu,sundayMenu:sundayMenu,ingridients:ingridients});    
         
         $("#week_kkal  span").text(week_cal);
         $("#week_kkal").appendTo("#tab10");
