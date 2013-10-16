@@ -49,7 +49,7 @@
 </div>
 <div class="modal-footer noprint">
     <button class="btn btn-primary pull-left " onclick="printBlock('#myModal')">Печать</button>
-
+    <a class="btn btn-primary pull-left " href="/pdf?recipeId=${recipe.id}">Сохранить в PDF</a>
     <button class="btn btn-success" style="display: none;" data-dismiss="modal" onclick="addButtonClick(${recipe.id})">
         Добавить
     </button>

@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 
-       
+
     $(function () {
         $('#summarizingTab a:first').tab('show');
     })
@@ -103,29 +103,42 @@
     var sundayMenu = [];
     var weekMenu = [];
 
-   var ingridients = [];
-   
-    [#list model as a]
-          ingridients.push({ingridientId:${a.ingredient.id}});
-    [/#list]
-  
+    var ingridients = [];
 
-                    function menuPDF() {
-                        $.ajax({
-                        type: "post",
-                        url: "http://localhost:8080/weekMenuPDF",
-                        contentType: "application/json",
-                        data: JSON.stringify({weekMenu:weekMenu}),
-                        cache: false,
-                        success: function(response) {
-                            alert('PDF generated success!');
-                    
-                        },
-                        error: function() {
-                            alert('Error while request..');
-                        }
-                    });
-                    }
+    [#list model as a]
+    ingridients.push({ingridientId:${a.ingredient.id}});
+    [/#list]
+
+
+    function menuPDF() {
+        /* $.ajax({
+         type: "post",
+         url: "http://localhost:8080/weekMenuPDF",
+         contentType: "application/json",
+         data: JSON.stringify({weekMenu:weekMenu}),
+         cache: false,
+         success: function(response) {
+             alert('PDF generated success!');
+
+         },
+         error: function() {
+             alert('Error while request..');
+         }
+     });*/
+        var form = document.createElement("form"); //created dummy form for submitting.
+        var element1 = document.createElement("input");
+        form.method = "POST";
+        form.action = "http://localhost:8080/menuPDF";
+
+        element1.value=weekMenu; //its a json string I need to pass to server.
+        element1.name="data";
+        element1.type = 'hidden'
+        form.appendChild(element1);
+
+        document.body.appendChild(form);
+
+        form.submit();
+    }
 
     $(document).ready(function () {
         var dayNames = [
@@ -196,13 +209,13 @@
 
                     meal_cal[j] += cal * count;
                     if (j==0){
-                     breakfastDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                        breakfastDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
                     }
                     if (j==1){
-                     dinnerDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                        dinnerDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
                     }
-                    if (j==2){                     
-                     supperDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
+                    if (j==2){
+                        supperDishes[i].push({ name:name,count:count,cal:cal,portion:portion,quantityOfDish:quantityOfDish  });
                     }
                     return true;
                 });
@@ -218,7 +231,7 @@
             $("#" + dayNames[i][1] + "_cal  span[data-name='sp_kkal']").text(meal_cal[2]);
             $("#" + dayNames[i][1] + "_cal  span[data-name='itogo_kkal']").text(day_cal);
 
-            
+
             if(i==0){
                 mondayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
@@ -240,10 +253,10 @@
             if(i==6){
                 sundayMenu.push({breakfast:breakfastDishes[i],dinner:dinnerDishes[i],supper:supperDishes[i]});
             }
-            
+
         };
-        weekMenu.push({mondayMenu:mondayMenu,tuesdayMenu:tuesdayMenu,wednesdayMenu:wednesdayMenu,thursdayMenu:thursdayMenu,fridayMenu:fridayMenu,saturdayMenu:saturdayMenu,sundayMenu:sundayMenu,ingridients:ingridients});    
-        
+        weekMenu.push({mondayMenu:mondayMenu,tuesdayMenu:tuesdayMenu,wednesdayMenu:wednesdayMenu,thursdayMenu:thursdayMenu,fridayMenu:fridayMenu,saturdayMenu:saturdayMenu,sundayMenu:sundayMenu,ingridients:ingridients});
+
         $("#week_kkal  span").text(week_cal);
         $("#week_kkal").appendTo("#tab10");
 

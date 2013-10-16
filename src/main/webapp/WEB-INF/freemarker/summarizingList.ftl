@@ -81,28 +81,44 @@
     var dayMenu = [];
     var weekMenu = [];
     var ingridients = [];
-   
+
     [#list model as a]
-          ingridients.push({ingridientId:${a.ingredient.id}});
+    ingridients.push({ingridientId:${a.ingredient.id}});
     [/#list]
-    
-    
-    function menuPDF() {$.ajax({
-                        type: "post",
-                        url: "http://localhost:8080/menuPDF",
-                        contentType: "application/json",
-                        data: JSON.stringify({weekMenu:weekMenu}),
-                        cache: false,
-                        success: function(response) {
-                            alert('PDF generated success!');
-                    
-                        },
-                        error: function() {
-                            alert('Error while request..');
-                        }
-                    });
-}
-    
+
+
+    function menuPDF() {
+        /*
+                            $.ajax({
+                            type: "post",
+                            url: "http://localhost:8080/menuPDF",
+                            contentType: "application/json",
+                            data: JSON.stringify({weekMenu:weekMenu}),
+                            cache: false,
+                            success: function(response) {
+                                alert('PDF generated success!');
+
+                            },
+                            error: function() {
+                                alert('Error while request..');
+                            }
+                        });*/
+        var form = document.createElement("form"); //created dummy form for submitting.
+        var element1 = document.createElement("input");
+        form.method = "POST";
+        form.action = "http://localhost:8080/menuPDF";
+
+        element1.value=weekMenu; //its a json string I need to pass to server.
+        element1.name="data";
+        element1.type = 'hidden'
+        form.appendChild(element1);
+
+        document.body.appendChild(form);
+
+        form.submit();
+
+    }
+
 
 
     $(document).ready(function () {
@@ -156,7 +172,7 @@
             return true;
         });
 
- 
+
 
         dayMenu.push({breakfast:breakfastDishes,dinner:dinnerDishes,supper:supperDishes});
         weekMenu.push({mondayMenu:dayMenu,ingridients:ingridients});
