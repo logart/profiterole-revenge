@@ -4,6 +4,7 @@ import com.exigen.common.response.PrintDto;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
 import static org.mockito.Mockito.mock;
@@ -20,9 +21,10 @@ public class PdfCreatorServiceTest {
         TestDto dataMock = mock(TestDto.class);
         when(dataMock.getTestField()).thenReturn("testText");
 
-        OutputStream outputStream = new PdfCreatorService().createReport("test.jasper", dataMock);
-
+        OutputStream outputStream = new ByteArrayOutputStream();
+        new PdfCreatorService().createReport("test.jasper", dataMock, outputStream);
         Assert.assertNotNull(outputStream);
+
     }
 
     public class TestDto implements PrintDto {
